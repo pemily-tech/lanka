@@ -1,0 +1,1 @@
+export { FloatingTextArea } from './floating';
