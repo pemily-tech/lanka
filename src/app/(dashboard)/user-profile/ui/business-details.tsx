@@ -70,7 +70,7 @@ const BusinessForm = () => {
 					) : (
 						<UserIcon width={200} height={200} />
 					)}
-					<label className="z-3 bg-primary-1 shadow-base3 absolute right-0 top-[26px] flex size-[32px] cursor-pointer items-center justify-center rounded-full">
+					<label className="z-3 bg-primary shadow-base3 absolute right-0 top-[26px] flex size-[32px] cursor-pointer items-center justify-center rounded-full">
 						<input
 							type="file"
 							onChange={onChange}
