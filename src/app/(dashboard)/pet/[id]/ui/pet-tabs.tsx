@@ -1,6 +1,7 @@
 import { TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
 
 import Followup from '../../../../../ui/components/followup/followup';
+import MedicalRecord from '../../../../../ui/components/medical-record/medical-record';
 import TabItem from './tab';
 
 export default function PetTabs() {
@@ -16,7 +17,9 @@ export default function PetTabs() {
 					</div>
 				</TabList>
 				<TabPanels className="mt-6">
-					<TabPanel>{/* <MedicalRecord /> */}</TabPanel>
+					<TabPanel>
+						<MedicalRecord />
+					</TabPanel>
 					<TabPanel>{/* <Vaccination /> */}</TabPanel>
 					<TabPanel>
 						<Followup />

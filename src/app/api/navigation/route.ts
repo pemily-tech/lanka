@@ -10,6 +10,14 @@ const data: ICommonTypes.INavigationItem[] = [
 		icon: 'House',
 	},
 	{
+		id: 12,
+		type: 'link',
+		path: '/medical-records',
+		title: 'Medical Records',
+		isIcon: false,
+		icon: '/images/medical-records.png',
+	},
+	{
 		id: 2,
 		type: 'link',
 		path: '/follow-up',
