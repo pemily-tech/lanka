@@ -95,11 +95,7 @@ export default function Filters({
 							whileHover={{ rotate: 360 }}
 							transition={{ duration: 0.5 }}
 						>
-							<UploadIcon
-								className="group-hover:text-primary text-white"
-								width="100%"
-								height="100%"
-							/>
+							<UploadIcon className="group-hover:text-primary !size-16 text-white" />
 						</motion.div>
 					</Button>
 				</Tooltip>

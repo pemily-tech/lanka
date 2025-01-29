@@ -1,4 +1,4 @@
-import { UserIcon } from 'lucide-react';
+import { CircleUserRound } from 'lucide-react';
 
 import { useGetUserProfileUrl } from '../../api/profile-image/profile-image';
 import { ImagePlaceholder } from '../shared/image';
@@ -28,7 +28,7 @@ const UserProfileImage = ({
 					imageClasses={`rounded-full ${imageClasses}`}
 				/>
 			) : (
-				<UserIcon
+				<CircleUserRound
 					color={iconColor}
 					width={iconWidth}
 					height={iconHeight}

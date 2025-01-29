@@ -34,6 +34,14 @@ const data: ICommonTypes.INavigationItem[] = [
 		icon: 'PackageSearch',
 	},
 	{
+		id: 19,
+		type: 'link',
+		path: '/pet-parents',
+		title: 'Pet Parents',
+		isIcon: true,
+		icon: 'UserCircleIcon',
+	},
+	{
 		id: 9,
 		type: 'link',
 		path: '/user-profile',
