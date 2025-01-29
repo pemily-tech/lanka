@@ -18,6 +18,22 @@ const data: ICommonTypes.INavigationItem[] = [
 		icon: '/images/follow-ups.png',
 	},
 	{
+		id: 3,
+		type: 'link',
+		path: '/billing',
+		title: 'Billing',
+		isIcon: true,
+		icon: 'ReceiptIndianRupee',
+	},
+	{
+		id: 3,
+		type: 'link',
+		path: '/items',
+		title: 'Products',
+		isIcon: true,
+		icon: 'PackageSearch',
+	},
+	{
 		id: 9,
 		type: 'link',
 		path: '/user-profile',

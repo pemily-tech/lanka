@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
 import {
 	ChevronRight,
 	House,
 	LogOutIcon,
+	PackageSearch,
+	ReceiptIndianRupee,
 	UserCircleIcon,
 	UserRoundCheck,
 } from 'lucide-react';
@@ -46,15 +47,17 @@ import {
 	SidebarRail,
 } from '../shared/sidebar';
 
-const IconMap = {
+const IconMap: Record<string, React.ElementType> = {
 	House,
 	UserCircleIcon,
-} as any;
+	ReceiptIndianRupee,
+	PackageSearch,
+};
 
 export const AppSidebar = () => {
 	const { name, mobile } = useAppSelector((state) => state.auth);
 	const { data } = useGetNavigation();
-	const navMenu = data?.data || [];
+	const navMenu: ICommonTypes.INavigationItem[] = data?.data || [];
 
 	const handleLogout = () => {
 		logout();
@@ -67,9 +70,7 @@ export const AppSidebar = () => {
 					<SidebarMenuItem>
 						<SidebarMenuButton>
 							<UserRoundCheck className="text-primary" />
-							<span className="text-14">
-								{name ? name : mobile}
-							</span>
+							<span className="text-14">{name || mobile}</span>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>
@@ -129,7 +130,8 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 	return (
 		<SidebarMenu className="gap-16 px-8">
 			{navMenu.map((item) => {
-				const Icon = item.icon ? IconMap[item.icon] : null;
+				const Icon =
+					item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
 				const active =
 					pathname === item.path ||
 					pathname.split('/')[1] === item.path.split('/')[1];
@@ -148,7 +150,7 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 							asChild
 						>
 							<Link href={item.path}>
-								{item.isIcon ? (
+								{item.isIcon && Icon ? (
 									<Icon className="!size-18" />
 								) : (
 									<ImagePlaceholder
@@ -156,7 +158,6 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 										src={item.icon as string}
 									/>
 								)}
-
 								<span className="text-14">{item.title}</span>
 							</Link>
 						</SidebarMenuButton>
@@ -168,7 +169,7 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 };
 
 const MenuItem = ({ item }: { item: ICommonTypes.INavigationItem }) => {
-	const Icon = item.icon ? IconMap[item.icon] : null;
+	const Icon = item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
 	const pathname = usePathname();
 	const activeItem = pathname.split('/').filter(Boolean)[0];
 	const activeCollapse = `/${activeItem}` === item.path;
@@ -182,14 +183,14 @@ const MenuItem = ({ item }: { item: ICommonTypes.INavigationItem }) => {
 			<SidebarMenuItem className="py-6">
 				<CollapsibleTrigger asChild>
 					<SidebarMenuButton className="px-0">
-						<Icon className="!size-18" />
+						{Icon && <Icon className="!size-18" />}
 						<span className="text-14">{item.title}</span>
 						<ChevronRight className="!size-18 ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
 					</SidebarMenuButton>
 				</CollapsibleTrigger>
 				<CollapsibleContent>
 					<SidebarMenuSub className="mx-0 mt-8 gap-12 px-0">
-						{item?.items?.map((ite) => {
+						{item.items?.map((ite) => {
 							const active = pathname === ite.path;
 							return (
 								<SidebarMenuSubItem key={ite.id}>
