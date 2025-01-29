@@ -11,7 +11,7 @@
 		"lint:fix": "next lint --fix",
 		"format:check": "prettier --check \"**/*.{ts,tsx,mdx}\" --cache",
 		"format:write": "prettier --write \"**/*.{ts,tsx,mdx}\" --cache",
-		"typecheck": "tsc --noEmit",
+		"type-check": "tsc --noEmit",
 		"test": "jest",
 		"test:watch": "jest --watchAll",
 		"e2e": "playwright test",
