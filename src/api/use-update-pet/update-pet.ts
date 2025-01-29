@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../services/http-service';
-import { closeModal } from '../../store/layout';
+import { closeModal } from '../../store/modal';
 import useGetPetById from '../use-get-pet-by-id/get-pet-by-id';
 
 interface IPayload {

@@ -8,7 +8,7 @@ import { toast } from 'sonner';
 import { Routes } from '../../../../helpers/routes';
 import { useAppDispatch } from '../../../../store';
 import { authenticateUser } from '../../../../store/auth';
-import { closeModal, openModal } from '../../../../store/layout';
+import { closeDialog, openDialog } from '../../../../store/layout';
 import useOtpHook from './use-otp-hook';
 
 export default function Page() {
@@ -32,13 +32,13 @@ export default function Page() {
 	useEffect(() => {
 		if (isExecuting) {
 			dispatch(
-				openModal({
+				openDialog({
 					view: 'LOADING',
 					loadingText: 'Setting up user...',
 				})
 			);
 		} else {
-			dispatch(closeModal());
+			dispatch(closeDialog());
 		}
 	}, [dispatch, isExecuting]);
 

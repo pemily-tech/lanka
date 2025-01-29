@@ -10,6 +10,7 @@ import storage from 'redux-persist/lib/storage';
 
 import authReducer from './auth';
 import layoutReducer from './layout';
+import modalReducer from './modal';
 
 const persistConfig = {
 	key: 'root',
@@ -18,7 +19,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-	// modal: modalReducer,
+	modal: modalReducer,
 	// snackbar: snackbarReducer,
 	layout: layoutReducer,
 	auth: authReducer,

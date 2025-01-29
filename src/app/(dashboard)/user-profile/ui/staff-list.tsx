@@ -1,12 +1,14 @@
 'use client';
 
 import { useState } from 'react';
-import { useGetStaff, useUpdateClinicMemberProfile } from '@webservices/api';
-import { createFormDataForImage } from '@webservices/helpers';
-import { EditIcon, PlusIcon, UploadIcon } from '@webservices/icons';
-import { BoxLoader, ButtonWrapper } from '@webservices/ui';
+import { EditIcon, PlusIcon, UploadIcon } from 'lucide-react';
 
-import UserProfileImage from '../../../../../core/ui/user-profile';
+import useGetStaff from '../../../../api/use-get-staff/get-staff';
+import useUpdateClinicMemberProfile from '../../../../api/use-update-clinic-member-profile/update-clinic-member-profile';
+import { createFormDataForImage } from '../../../../helpers/utils';
+import UserProfileImage from '../../../../ui/components/user-profile';
+import { Button } from '../../../../ui/shared/button';
+import Spinner from '../../../../ui/shared/spinner';
 import AddEditStaff from './add-edit-staff';
 
 const StaffList = () => {
@@ -46,7 +48,7 @@ const StaffList = () => {
 	};
 
 	if (isPending) {
-		return <BoxLoader rows={2} columns={7} coverHeight={144} />;
+		return <Spinner />;
 	}
 
 	return (
@@ -91,25 +93,25 @@ const StaffList = () => {
 										/>
 										<UploadIcon className="w-22 h-22" />
 									</label>
-									<ButtonWrapper
+									<Button
 										data-id={staff?.staff?.staffId}
 										className="flex size-24 items-center justify-center"
 									>
 										<EditIcon className="size-16" />
-									</ButtonWrapper>
+									</Button>
 								</section>
 							</section>
 						</section>
 					);
 				})}
-				<ButtonWrapper
+				<Button
 					onClick={handleAdd}
 					className="border-primary-1 rounded-8 flex size-[154px] cursor-pointer items-center justify-center border-2 border-dashed"
 				>
-					<section className="bg-primary-1 flex size-[58px] items-center justify-center rounded-full">
+					<section className="bg-primary flex size-[58px] items-center justify-center rounded-full">
 						<PlusIcon className="text-white" />
 					</section>
-				</ButtonWrapper>
+				</Button>
 			</section>
 		</>
 	);

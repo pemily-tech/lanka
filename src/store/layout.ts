@@ -14,11 +14,11 @@ export const layoutSlice = createSlice({
 		handleMobileMenu: (state, action) => {
 			state.mobileMenu = action.payload;
 		},
-		openModal: (state, action) => {
+		openDialog: (state, action) => {
 			state.isOpen = true;
 			Object.assign(state, action.payload);
 		},
-		closeModal: (state) => {
+		closeDialog: (state) => {
 			state.isOpen = false;
 		},
 		// handleSidebarCollapsed: (state, action) => {
@@ -36,6 +36,7 @@ export const layoutSlice = createSlice({
 	},
 });
 
-export const { handleMobileMenu, openModal, closeModal } = layoutSlice.actions;
+export const { handleMobileMenu, openDialog, closeDialog } =
+	layoutSlice.actions;
 
 export default layoutSlice.reducer;

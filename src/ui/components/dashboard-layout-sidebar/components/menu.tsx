@@ -33,9 +33,7 @@ const menu = [
 	},
 	{
 		link: '/pet-parents',
-		icon: (
-			<PetParentIcon className="text-primary-1" width={24} height={24} />
-		),
+		icon: <PetParentIcon className="text-primary" width={24} height={24} />,
 		text: 'Pet Parents',
 		type: 'icon',
 	},

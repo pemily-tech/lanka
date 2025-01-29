@@ -57,13 +57,12 @@ const config = {
 				},
 
 				brand: '#007A65',
-				// primary: {
-				// 	1: '#007A65',
-				// 	2: '#007A6533',
-				// 	3: '#E2F0DD',
-				// 	4: '#F2FFFD',
-				// 	5: '#E7FAF4',
-				// },
+				green: {
+					2: '#007A6533',
+					3: '#E2F0DD',
+					4: '#F2FFFD',
+					5: '#E7FAF4',
+				},
 				red: {
 					1: '#B03A2E',
 					2: '#F2D7D5',
@@ -215,6 +214,14 @@ const config = {
 				930: '930px',
 				'70vh': '70vh',
 				56.25: '56.25%',
+			},
+			boxShadow: {
+				base: '0px 0px 1px rgba(40, 41, 61, 0.08), 0px 0.5px 2px rgba(96, 97, 112, 0.16)',
+				base2: '0px 2px 4px rgba(40, 41, 61, 0.04), 0px 8px 16px rgba(96, 97, 112, 0.16)',
+				base3: '16px 10px 40px rgba(15, 23, 42, 0.22)',
+				deep: '-2px 0px 8px rgba(0, 0, 0, 0.16)',
+				dropdown: '0px 4px 8px rgba(0, 0, 0, 0.08)',
+				testi: '0px 4px 24px rgba(0, 0, 0, 0.06)',
 			},
 		},
 	},

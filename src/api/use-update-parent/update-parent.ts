@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
-import { closeModal } from '../../store/layout';
+import { closeModal } from '../../store/modal';
 import useGetParentById from '../use-get-parent-by-id/get-parent-by-id';
 
 interface IPayload {

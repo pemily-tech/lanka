@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { persistor, store } from '../store';
+import ModalView from '../ui/components/modal-view';
 import { LoadingModal } from '../ui/components/spinner';
 
 import { Toaster } from '@/ui/shared/toast';
@@ -20,6 +21,7 @@ export default function Providers({ children }: { children: ReactNode }) {
 					{children}
 					<Toaster />
 					<LoadingModal />
+					<ModalView />
 				</QueryClientProvider>
 			</PersistGate>
 		</Provider>
