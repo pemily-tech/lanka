@@ -19,7 +19,7 @@ export default function Providers({ children }: { children: ReactNode }) {
 			<PersistGate loading={null} persistor={persistor}>
 				<QueryClientProvider client={queryClient}>
 					{children}
-					<Toaster />
+					<Toaster closeButton richColors position="bottom-left" />
 					<LoadingModal />
 					<ModalView />
 				</QueryClientProvider>

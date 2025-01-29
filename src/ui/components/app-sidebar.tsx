@@ -129,7 +129,7 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 
 	return (
 		<SidebarMenu className="gap-16 px-8">
-			{navMenu.map((item) => {
+			{navMenu.map((item, index) => {
 				const Icon =
 					item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
 				const active =
@@ -137,7 +137,7 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 					pathname.split('/')[1] === item.path.split('/')[1];
 
 				if (item.type === 'menu') {
-					return <MenuItem key={item.id} item={item} />;
+					return <MenuItem key={index} item={item} />;
 				} else {
 					return (
 						<SidebarMenuButton
@@ -146,7 +146,7 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 									? 'bg-grey-bg3 text-accent-foreground hover:bg-greyBg hover:text-accent-foreground py-12 hover:opacity-80'
 									: 'px-0'
 							}`}
-							key={item.id}
+							key={index}
 							asChild
 						>
 							<Link href={item.path}>
@@ -190,10 +190,10 @@ const MenuItem = ({ item }: { item: ICommonTypes.INavigationItem }) => {
 				</CollapsibleTrigger>
 				<CollapsibleContent>
 					<SidebarMenuSub className="mx-0 mt-8 gap-12 px-0">
-						{item.items?.map((ite) => {
+						{item.items?.map((ite, index) => {
 							const active = pathname === ite.path;
 							return (
-								<SidebarMenuSubItem key={ite.id}>
+								<SidebarMenuSubItem key={index}>
 									<SidebarMenuSubButton
 										className={`${
 											active
