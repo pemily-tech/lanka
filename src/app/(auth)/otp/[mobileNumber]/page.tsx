@@ -5,6 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
+import { Routes } from '../../../../helpers/routes';
 import { useAppDispatch } from '../../../../store';
 import { authenticateUser } from '../../../../store/auth';
 import { closeModal, openModal } from '../../../../store/layout';
@@ -49,11 +50,11 @@ export default function Page() {
 		if (result.data.status === 'SUCCESS') {
 			dispatch(
 				authenticateUser({
-					accessToken: result.data.data?.accessToken ?? '',
+					token: result.data.data?.accessToken ?? '',
 					refreshToken: result.data.data?.refreshToken ?? '',
+					navigateFunction: () => router.push(Routes.HOME),
 				})
 			);
-			router.push('/home');
 		} else {
 			toast.error(result.data.msg ?? 'An error occurred');
 		}

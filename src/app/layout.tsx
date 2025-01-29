@@ -1,4 +1,6 @@
 import '@/styles/globals.css';
+// import 'react-calendar/dist/Calendar.css';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';

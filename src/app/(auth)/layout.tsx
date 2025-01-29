@@ -4,6 +4,7 @@ import { type ReactNode, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import { Routes } from '../../helpers/routes';
 import { useAppSelector } from '../../store';
 import { ImagePlaceholder } from '../../ui/shared/image';
 
@@ -13,7 +14,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 
 	useEffect(() => {
 		if (loggedIn) {
-			router.push('/home');
+			router.push(Routes.HOME);
 		}
 	}, [loggedIn, router]);
 
