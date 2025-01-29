@@ -30,7 +30,7 @@ export default function ClinicDetails() {
 			{role === Roles.Staff ? (
 				<StaffName id={clinicId as string} />
 			) : (
-				<p className="text-24 font-semibold">{name}</p>
+				<p className="text-18 font-medium">{name}</p>
 			)}
 		</div>
 	);

@@ -1,30 +1,18 @@
-'use client';
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from 'react';
 
-export function useIsMobile() {
-	const [isDesktop, setIsDesktop] = useState(() => {
-		if (typeof window !== 'undefined') {
-			return window.innerWidth >= 1024;
-		}
-		return false;
-	});
+export const useIsMobile = () => {
+	const [isMobile, setIsMobile] = useState<boolean>(false);
 
 	useEffect(() => {
-		const updateDesktop = () => {
-			setIsDesktop(window.innerWidth >= 1024);
-		};
-
-		window.addEventListener('resize', updateDesktop);
-
-		updateDesktop();
-
-		return () => window.removeEventListener('resize', updateDesktop);
+		const userAgent =
+			navigator.userAgent || navigator.vendor || (window as any).opera;
+		setIsMobile(
+			/Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+				userAgent
+			)
+		);
 	}, []);
 
-	return {
-		isDesktop,
-	};
-}
-
-export default useIsMobile;
+	return isMobile;
+};

@@ -281,4 +281,14 @@ declare namespace ICommonTypes {
 		preview: string;
 		index: string;
 	}
+	interface INavigationItem {
+		id: number;
+		type: 'link' | 'menu';
+		path: string;
+		title: string;
+		items?: INavigationItem[];
+		icon?: string;
+		isIcon: boolean;
+	}
+	type IFileWithPreview = File & { preview: string };
 }
