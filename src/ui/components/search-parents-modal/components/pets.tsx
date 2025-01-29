@@ -17,12 +17,12 @@ const RecordUpload = dynamic(() => import('./record-upload'), {
 	loading: () => <Loading />,
 });
 
-// const VaccinationForm = dynamic(
-// 	() => import('../../vaccination-form/vaccination-form'),
-// 	{
-// 		loading: () => <Loading />,
-// 	}
-// );
+const VaccinationForm = dynamic(
+	() => import('../../vaccination-form/vaccination-form'),
+	{
+		loading: () => <Loading />,
+	}
+);
 
 const FollowupForm = dynamic(
 	() => import('../../followup-form/followup-form'),
@@ -153,7 +153,7 @@ function PetsList({
 					activeClinic={activeClinic}
 				/>
 			)}
-			{/* {Boolean(activePet) && recordType === 'vaccination' && (
+			{Boolean(activePet) && recordType === 'vaccination' && (
 				<VaccinationForm
 					parentId={activeParent}
 					petId={activePet}
@@ -161,7 +161,7 @@ function PetsList({
 					handleClose={handleClose}
 					type="modal"
 				/>
-			)} */}
+			)}
 			{Boolean(activePet) && recordType === 'follow-up' && (
 				<FollowupForm
 					parentId={activeParent}

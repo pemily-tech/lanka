@@ -18,6 +18,14 @@ const data: ICommonTypes.INavigationItem[] = [
 		icon: '/images/medical-records.png',
 	},
 	{
+		id: 12,
+		type: 'link',
+		path: '/vaccination-records',
+		title: 'Vaccination Records',
+		isIcon: false,
+		icon: '/images/vaccination-records.png',
+	},
+	{
 		id: 2,
 		type: 'link',
 		path: '/follow-up',
