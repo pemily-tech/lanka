@@ -199,7 +199,7 @@ const MenuItem = ({ item }: { item: ICommonTypes.INavigationItem }) => {
 									<SidebarMenuSubButton
 										className={`${
 											active
-												? 'text-accent-foreground hover:bg-greyBg hover:text-accent-foreground bg-white p-12 hover:opacity-80'
+												? 'text-accent-foreground hover:bg-greyBg hover:text-accent-foreground bg-grey-bg3 p-12 hover:opacity-80'
 												: ''
 										}`}
 										asChild

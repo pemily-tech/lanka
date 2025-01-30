@@ -5,16 +5,18 @@ import {
 	getCoreRowModel,
 	useReactTable,
 } from '@tanstack/react-table';
+import Link from 'next/link';
 
-import { cn } from '../../../../helpers/utils';
+import { Routes } from '../../../../../helpers/routes';
+import { cn } from '../../../../../helpers/utils';
 import {
 	Pagination,
 	PaginationContent,
 	PaginationItem,
 	PaginationNext,
 	PaginationPrevious,
-} from '../../../../ui/shared/pagination';
-import Spinner from '../../../../ui/shared/spinner';
+} from '../../../../../ui/shared/pagination';
+import Spinner from '../../../../../ui/shared/spinner';
 import {
 	Table,
 	TableBody,
@@ -22,7 +24,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from '../../../../ui/shared/table';
+} from '../../../../../ui/shared/table';
 import { useProductListingContext } from '../context/context';
 
 export default function Columns() {
@@ -35,9 +37,12 @@ export default function Columns() {
 				header: 'Title',
 				cell: ({ row }) => {
 					return (
-						<p className="text-black-1 text-14">
+						<Link
+							href={`${Routes.EDIT_ITEM}/${row.original.itemId}`}
+							className="text-black-1 text-14 hover:underline"
+						>
 							{row.original.name}
-						</p>
+						</Link>
 					);
 				},
 				size: 200,

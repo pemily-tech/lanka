@@ -4,7 +4,7 @@ import {
 	useQuery,
 } from '@tanstack/react-query';
 
-import { HttpService } from '../../../../services/http-service';
+import { HttpService } from '../../../../../services/http-service';
 
 const getProductsList = async ({
 	queryKey,

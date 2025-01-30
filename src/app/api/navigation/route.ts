@@ -1,10 +1,12 @@
 import { NextResponse } from 'next/server';
 
+import { Routes } from '../../../helpers/routes';
+
 const data: ICommonTypes.INavigationItem[] = [
 	{
 		id: 1,
 		type: 'link',
-		path: '/home',
+		path: Routes.HOME,
 		title: 'Home',
 		isIcon: true,
 		icon: 'House',
@@ -12,7 +14,7 @@ const data: ICommonTypes.INavigationItem[] = [
 	{
 		id: 12,
 		type: 'link',
-		path: '/medical-records',
+		path: Routes.MEDICAL_RECORDS,
 		title: 'Medical Records',
 		isIcon: false,
 		icon: '/images/medical-records.png',
@@ -20,7 +22,7 @@ const data: ICommonTypes.INavigationItem[] = [
 	{
 		id: 12,
 		type: 'link',
-		path: '/vaccination-records',
+		path: Routes.VACCINATION_RECORDS,
 		title: 'Vaccination Records',
 		isIcon: false,
 		icon: '/images/vaccination-records.png',
@@ -28,7 +30,7 @@ const data: ICommonTypes.INavigationItem[] = [
 	{
 		id: 2,
 		type: 'link',
-		path: '/follow-up',
+		path: Routes.FOLLOW_UP,
 		title: 'Follow Up',
 		isIcon: false,
 		icon: '/images/follow-ups.png',
@@ -43,11 +45,27 @@ const data: ICommonTypes.INavigationItem[] = [
 	},
 	{
 		id: 3,
-		type: 'link',
-		path: '/items',
+		type: 'menu',
+		path: '/items/list',
 		title: 'Products',
 		isIcon: true,
 		icon: 'PackageSearch',
+		items: [
+			{
+				id: 3,
+				type: 'link',
+				path: Routes.ITEMS_LIST,
+				title: 'Items',
+				isIcon: false,
+			},
+			{
+				id: 4,
+				type: 'link',
+				path: Routes.ADD_ITEM,
+				title: 'Add Item',
+				isIcon: false,
+			},
+		],
 	},
 	{
 		id: 19,

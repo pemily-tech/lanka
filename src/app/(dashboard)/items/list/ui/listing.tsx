@@ -7,7 +7,7 @@ import {
 } from '@tanstack/react-table';
 import { useSearchParams } from 'next/navigation';
 
-import { cn } from '../../../../helpers/utils';
+import { cn } from '../../../../../helpers/utils';
 import { useGetProductsList } from '../api/use-get-items';
 import { ProductListingContext } from '../context/context';
 
