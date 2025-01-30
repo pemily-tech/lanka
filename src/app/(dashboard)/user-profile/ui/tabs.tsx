@@ -1,11 +1,17 @@
 'use client';
 
-import { Tab, TabGroup, TabList, TabPanel, TabPanels } from '@headlessui/react';
+import { useEffect } from 'react';
 import dynamic from 'next/dynamic';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { Roles } from '../../../../helpers/primitives';
 import { useAppSelector } from '../../../../store';
-import PrescriptionIcon from '../../../../ui/icons/prescription-icon';
+import {
+	Tabs,
+	TabsContent,
+	TabsList,
+	TabsTrigger,
+} from '../../../../ui/shared';
 import Loading from '../../../loading';
 
 const PersonalDetailsForm = dynamic(() => import('./personal-details'), {
@@ -25,112 +31,66 @@ const Contact = dynamic(() => import('./contact'), {
 });
 
 export default function UserTabs() {
-	const tabClass =
-		'data-[selected]:font-semibold focus:outline-none cursor-pointer text-center data-[selected]:border-b-2 data-[selected]:border-purple flex items-center gap-8 pb-6 ';
 	const authState = useAppSelector((state) => state.auth);
+	const router = useRouter();
+	const pathname = usePathname();
+	const params = useSearchParams();
+	const type = params.get('type') as string;
+
+	useEffect(() => {
+		if (authState.role === Roles.Clinic) {
+			router.replace(`${pathname}?type=personal`);
+		} else {
+			router.replace(`${pathname}?type=contact`);
+		}
+	}, []);
+
+	const handleChange = (val: string) => {
+		router.replace(`${pathname}?type=${val}`);
+	};
 
 	return (
-		<div className="col-span-2 rounded-[16px] bg-white px-16 py-32">
-			<TabGroup className="flex-1 overflow-hidden px-16">
-				<TabList className="flex gap-32">
+		<div className="col-span-2 rounded-[16px] bg-white p-16">
+			<Tabs value={type} onValueChange={handleChange} className="">
+				<TabsList className="mb-12 w-full justify-start bg-white">
 					{authState.role === Roles.Clinic && (
-						<Tab className={tabClass}>
-							{({ selected }) => (
-								<>
-									<PrescriptionIcon
-										className={
-											selected ? 'text-purple' : ''
-										}
-										width={18}
-										height={18}
-									/>
-									<span
-										className={`${selected ? 'text-purple' : ''} text-14`}
-									>
-										Personal Details
-									</span>
-								</>
-							)}
-						</Tab>
+						<TabsTrigger className="flex-1 py-12" value="personal">
+							Personal Details
+						</TabsTrigger>
 					)}
 					{authState.role === Roles.Clinic && (
-						<Tab className={tabClass}>
-							{({ selected }) => (
-								<>
-									<PrescriptionIcon
-										className={
-											selected ? 'text-purple' : ''
-										}
-										width={18}
-										height={18}
-									/>
-									<span
-										className={`${selected ? 'text-purple' : ''} text-14`}
-									>
-										Primary Address
-									</span>
-								</>
-							)}
-						</Tab>
+						<TabsTrigger className="flex-1 py-12" value="address">
+							Primary Address
+						</TabsTrigger>
 					)}
 					{authState.role === Roles.Clinic && (
-						<Tab className={tabClass}>
-							{({ selected }) => (
-								<>
-									<PrescriptionIcon
-										className={
-											selected ? 'text-purple' : ''
-										}
-										width={18}
-										height={18}
-									/>
-									<span
-										className={`${selected ? 'text-purple' : ''} text-14`}
-									>
-										Business Details
-									</span>
-								</>
-							)}
-						</Tab>
+						<TabsTrigger className="flex-1 py-12" value="business">
+							Business Details
+						</TabsTrigger>
 					)}
-					<Tab className={tabClass}>
-						{({ selected }) => (
-							<>
-								<PrescriptionIcon
-									className={selected ? 'text-purple' : ''}
-									width={18}
-									height={18}
-								/>
-								<span
-									className={`${selected ? 'text-purple' : ''} text-14`}
-								>
-									Contact Us
-								</span>
-							</>
-						)}
-					</Tab>
-				</TabList>
-				<TabPanels className="mt-32">
-					{authState.role === Roles.Clinic && (
-						<TabPanel>
-							<PersonalDetailsForm />
-						</TabPanel>
-					)}
-					{authState.role === Roles.Clinic && (
-						<TabPanel>
-							<AddressForm />
-						</TabPanel>
-					)}
-					{authState.role === Roles.Clinic && (
-						<TabPanel>
-							<BusinessForm />
-						</TabPanel>
-					)}
-					<TabPanel>
-						<Contact />
-					</TabPanel>
-				</TabPanels>
-			</TabGroup>
+					<TabsTrigger className="flex-1 py-12" value="contact">
+						Contact Us
+					</TabsTrigger>
+				</TabsList>
+				{authState.role === Roles.Clinic && (
+					<TabsContent className="mt-0" value="personal">
+						<PersonalDetailsForm />
+					</TabsContent>
+				)}
+				{authState.role === Roles.Clinic && (
+					<TabsContent className="mt-0" value="address">
+						<AddressForm />
+					</TabsContent>
+				)}
+				{authState.role === Roles.Clinic && (
+					<TabsContent className="mt-0" value="business">
+						<BusinessForm />
+					</TabsContent>
+				)}
+				<TabsContent className="mt-0" value="contact">
+					<Contact />
+				</TabsContent>
+			</Tabs>
 		</div>
 	);
 }

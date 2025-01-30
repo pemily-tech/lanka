@@ -1,136 +1,224 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import DatePicker from 'react-datepicker';
+import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
-import * as yup from 'yup';
+import { CalendarIcon } from 'lucide-react';
+import { z } from 'zod';
 
-import useUpdateUserDetails from '../../../../api/update-user-details/update-user-details';
 import { useGetUser } from '../../../../api/user-details/user-details';
+import { cn } from '../../../../helpers/utils';
 import { useAppSelector } from '../../../../store';
-import Radio from '../../../../ui/components/radio';
-import TextInput from '../../../../ui/components/text-input';
-import { Button } from '../../../../ui/shared/button';
+import {
+	Button,
+	Calendar,
+	FloatingInput,
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from '../../../../ui/shared';
+import useUpdateUserDetails from '../api/update-user-details';
 
-const validationSchema = yup.object().shape({
-	name: yup.string().required('Name is required'),
-	mobile: yup.string(),
-	email: yup.string().email('Invalid email'),
+const schema = z.object({
+	name: z.string().min(1, 'Name is required'),
+	mobile: z.string().optional(),
+	email: z.string().email('Invalid email').optional(),
+	gender: z.string().min(1, 'Gender is required').optional(),
+	dob: z.string().min(1, 'Date of Birth is required').optional(),
 });
 
+type IFormData = z.infer<typeof schema>;
+
 const PersonalDetailsForm = () => {
-	const {
-		register,
-		formState: { errors },
-		handleSubmit,
-		setValue,
-	} = useForm({
-		resolver: yupResolver(validationSchema),
-		mode: 'all',
+	const form = useForm({
+		resolver: zodResolver(schema),
+		defaultValues: {
+			name: '',
+			mobile: '',
+			email: '',
+			gender: '',
+			dob: '',
+		},
 	});
 	const authState = useAppSelector((state) => state.auth);
-	const { data } = useGetUser(authState.userId as string);
-	const [userDob, setDob] = useState<Date>(new Date());
-	const [userGender, setGender] = useState('M');
-	const { mutate: updateUser, isPending } = useUpdateUserDetails();
-	const { name, mobile, email, dob, gender } = data?.data?.user || {};
+	const { data, refetch } = useGetUser(authState.userId as string);
+	const userData = useMemo(() => {
+		return data?.data?.user || ({} as IUserTypes.IUserDetails);
+	}, [data?.data?.user]);
+	const { mutateAsync: updateUser, isPending } = useUpdateUserDetails();
 
 	useEffect(() => {
-		if (data?.data?.user) {
-			setValue('name', name as string);
-			setValue('mobile', mobile);
-			setValue('email', email);
-			if (dob) {
-				setDob(new Date(dob));
-			}
-			setGender(gender || 'M');
+		if (userData) {
+			form.reset({
+				name: userData?.name || '',
+				mobile: userData?.mobile || '',
+				email: userData?.email || '',
+				gender: userData?.gender || '',
+				dob: userData?.dob || '',
+			});
 		}
-	}, [data?.data?.user, dob, email, gender, mobile, name, setValue]);
+	}, [data?.data?.user, form, userData]);
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const onSubmit = (values: any) => {
-		const payload = {
-			name: values.name,
-			email: values.email,
-			gender: userGender,
-			dob: format(userDob, 'yyyy-MM-dd'),
-		};
-		updateUser(payload);
+	const onSubmit = async (values: IFormData) => {
+		const { mobile, ...rest } = values;
+		console.debug(mobile);
+		const response = await updateUser(rest);
+		if (response.status === 'SUCCESS') {
+			refetch();
+		}
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
-			<section className="mb-24 grid grid-cols-2 gap-24">
-				<TextInput
-					label="Name"
-					placeholder="Enter your Mobile Number"
-					error={errors?.name}
-					{...register('name')}
-				/>
-				<TextInput
-					label="Mobile Number"
-					type="numeric"
-					placeholder=""
-					error={errors?.mobile}
-					maxLength={10}
-					readonly={true}
-					disabled={true}
-					{...register('mobile')}
-				/>
-			</section>
-			<section className="mb-24 grid grid-cols-2 gap-24">
-				<TextInput
-					label="Email"
-					placeholder="Enter your Email ID"
-					error={errors?.email}
-					{...register('email')}
-				/>
-				<section className="flex flex-col">
-					<label className="text-14">Date of Birth</label>
-					<DatePicker
-						className="mt-[4px] bg-white"
-						onChange={(date) => date && setDob(date)}
-						selected={userDob}
-						maxDate={new Date()}
-						dateFormat="yyyy-MM-dd"
-					/>
-				</section>
-			</section>
-			<section className="mb-24 grid grid-cols-2 gap-24">
-				<section>
-					<label className="text-14 leading-14 mb-10 block">
-						Choose Gender
-					</label>
-					<section className="rounded-8 border-grey-divider flex h-[52px] items-center gap-24 border bg-white px-12">
-						<Radio
-							label="Male"
-							value="M"
-							checked={userGender === 'M'}
-							name="male"
-							onChange={() => setGender('M')}
+		<Form {...form}>
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="grid grid-cols-2 gap-24"
+			>
+				{[
+					['name', 'Name', 'text'],
+					['mobile', 'Mobile Number', 'numeric'],
+					['email', 'Email', 'email'],
+					['gender', 'Gender', 'text', 'select'],
+				].map(([name, label, type, select]) => {
+					if (select === 'select') {
+						return (
+							<FormField
+								key={name}
+								control={form.control}
+								name={name as keyof IFormData}
+								render={({
+									field: selectField,
+									fieldState,
+								}) => {
+									return (
+										<FormItem>
+											<FormLabel>Choose Gender</FormLabel>
+											<Select
+												onValueChange={
+													selectField.onChange
+												}
+												defaultValue={selectField.value}
+												value={selectField.value}
+											>
+												<FormControl>
+													<SelectTrigger
+														isError={
+															!!fieldState.error
+														}
+														className="!mt-6 bg-white"
+													>
+														<SelectValue placeholder="Select a gender" />
+													</SelectTrigger>
+												</FormControl>
+												<SelectContent>
+													<SelectItem value="M">
+														Male
+													</SelectItem>
+													<SelectItem value="F">
+														Female
+													</SelectItem>
+												</SelectContent>
+											</Select>
+											<FormMessage />
+										</FormItem>
+									);
+								}}
+							/>
+						);
+					}
+					return (
+						<FormField
+							key={name}
+							control={form.control}
+							name={name as keyof IFormData}
+							render={({ field, fieldState }) => (
+								<FormItem className="relative">
+									<FormControl>
+										<FloatingInput
+											label={label}
+											id={name}
+											isError={!!fieldState.error}
+											type={type || 'text'}
+											disabled={name === 'mobile'}
+											{...field}
+										/>
+									</FormControl>
+									<FormMessage />
+								</FormItem>
+							)}
 						/>
-						<Radio
-							label="Female"
-							value="F"
-							checked={userGender === 'F'}
-							name="female"
-							onChange={() => setGender('F')}
-						/>
-					</section>
-				</section>
-			</section>
-			<section className="!mt-[42px]">
+					);
+				})}
+				<FormField
+					control={form.control}
+					name="dob"
+					render={({ field }) => (
+						<FormItem className="flex flex-col">
+							<FormLabel>Date of birth</FormLabel>
+							<Popover>
+								<PopoverTrigger asChild>
+									<FormControl>
+										<Button
+											variant={'outline'}
+											className={cn(
+												'text-left font-normal',
+												!field.value &&
+													'text-muted-foreground'
+											)}
+										>
+											{field.value ? (
+												format(field.value, 'PPP')
+											) : (
+												<span>Pick a date</span>
+											)}
+											<CalendarIcon className="ml-auto size-24 opacity-50" />
+										</Button>
+									</FormControl>
+								</PopoverTrigger>
+								<PopoverContent
+									className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width]"
+									align="start"
+								>
+									<Calendar
+										mode="single"
+										onSelect={field.onChange}
+										disabled={(date) =>
+											date > new Date() ||
+											date < new Date('1900-01-01')
+										}
+									/>
+								</PopoverContent>
+							</Popover>
+							<FormDescription>
+								Your date of birth is used to calculate your
+								age.
+							</FormDescription>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 				<Button
-					className="min-w-[250px]"
-					loading={isPending}
 					disabled={isPending}
+					loading={isPending}
+					className="col-span-2 max-w-[240px]"
 				>
-					<span className="font-bold">Save Profile</span>
+					Submit
 				</Button>
-			</section>
-		</form>
+			</form>
+		</Form>
 	);
 };
 

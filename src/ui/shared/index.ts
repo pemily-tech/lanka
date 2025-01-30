@@ -118,12 +118,12 @@ export {
 	PaginationPrevious,
 } from './pagination';
 export { PaginationWithLinks } from './pagination-with-links';
-// export {
-// 	Popover,
-// 	PopoverAnchor,
-// 	PopoverContent,
-// 	PopoverTrigger,
-// } from './popover';
+export {
+	Popover,
+	PopoverAnchor,
+	PopoverContent,
+	PopoverTrigger,
+} from './popover';
 // export {
 // 	SearchSelectContent,
 // 	SearchSelectInput,
@@ -194,7 +194,7 @@ export {
 	TableHeader,
 	TableRow,
 } from './table';
-// export { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
+export { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
 export * from './text-area';
 export { Toaster } from './toast';
 // export {
@@ -203,3 +203,4 @@ export { Toaster } from './toast';
 // 	TooltipProvider,
 // 	TooltipTrigger,
 // } from './tooltip';
+export { Calendar } from './calender';
