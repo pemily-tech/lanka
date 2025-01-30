@@ -54,8 +54,8 @@ const data: ICommonTypes.INavigationItem[] = [
 		type: 'link',
 		path: '/pet-parents',
 		title: 'Pet Parents',
-		isIcon: true,
-		icon: 'UserCircleIcon',
+		isIcon: false,
+		icon: '/images/Pet-Parent.svg',
 	},
 	{
 		id: 9,

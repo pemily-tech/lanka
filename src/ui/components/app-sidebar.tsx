@@ -128,7 +128,7 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 	const pathname = usePathname();
 
 	return (
-		<SidebarMenu className="gap-16 px-8">
+		<SidebarMenu className="gap-24 px-8">
 			{navMenu.map((item, index) => {
 				const Icon =
 					item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
@@ -151,10 +151,12 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 						>
 							<Link href={item.path}>
 								{item.isIcon && Icon ? (
-									<Icon className="!size-18" />
+									<div className="flex size-32 items-center justify-center">
+										<Icon className="!size-24" />
+									</div>
 								) : (
 									<ImagePlaceholder
-										containerClasses="w-24 h-24"
+										containerClasses="w-32 h-32"
 										src={item.icon as string}
 									/>
 								)}
