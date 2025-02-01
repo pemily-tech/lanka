@@ -43,14 +43,14 @@ export default function UserTabs() {
 		} else {
 			router.replace(`${pathname}?type=contact`);
 		}
-	}, []);
+	}, [authState.role, pathname, router]);
 
 	const handleChange = (val: string) => {
 		router.replace(`${pathname}?type=${val}`);
 	};
 
 	return (
-		<div className="col-span-2 rounded-[16px] bg-white p-16">
+		<div className="col-span-2 p-16">
 			<Tabs value={type} onValueChange={handleChange} className="">
 				<TabsList className="mb-12 w-full justify-start bg-white">
 					{authState.role === Roles.Clinic && (

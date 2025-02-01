@@ -85,7 +85,7 @@ const PersonalDetailsForm = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="grid grid-cols-2 gap-24"
+				className="shadow-card1 rounded-12 mt-12 grid grid-cols-2 gap-24 bg-white px-16 py-24"
 			>
 				{[
 					['name', 'Name', 'text'],

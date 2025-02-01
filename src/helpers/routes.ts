@@ -8,4 +8,7 @@ export const Routes = {
 	ITEMS_LIST: '/items/list',
 	ADD_ITEM: '/items/add',
 	EDIT_ITEM: '/items/edit',
+	BILLING_LIST: '/billing/list',
+	ADD_BILLING_ITEM: '/billing/add',
+	EDIT_BILLING_ITEM: '/billing/edit',
 };

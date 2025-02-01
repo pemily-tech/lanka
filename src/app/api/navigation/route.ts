@@ -37,11 +37,27 @@ const data: ICommonTypes.INavigationItem[] = [
 	},
 	{
 		id: 3,
-		type: 'link',
+		type: 'menu',
 		path: '/billing',
 		title: 'Billing',
 		isIcon: true,
 		icon: 'ReceiptIndianRupee',
+		items: [
+			{
+				id: 3,
+				type: 'link',
+				path: Routes.BILLING_LIST,
+				title: 'Invoice List',
+				isIcon: false,
+			},
+			{
+				id: 4,
+				type: 'link',
+				path: Routes.ADD_BILLING_ITEM,
+				title: 'Create Invoice',
+				isIcon: false,
+			},
+		],
 	},
 	{
 		id: 3,
