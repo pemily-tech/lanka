@@ -6,7 +6,7 @@ import { ProductListing } from './ui/listing';
 
 export default function Page() {
 	return (
-		<ProductListing activeType="ACTIVE" apiKey="item/list">
+		<ProductListing apiKey="item/list">
 			<Header />
 			<Columns />
 		</ProductListing>

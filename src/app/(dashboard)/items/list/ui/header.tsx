@@ -13,8 +13,14 @@ import {
 import { useProductListingContext } from '../context/context';
 
 export default function Header() {
-	const { value, handleSearchChange, pagination, setPagination } =
-		useProductListingContext();
+	const {
+		value,
+		handleSearchChange,
+		pagination,
+		setPagination,
+		type,
+		setType,
+	} = useProductListingContext();
 
 	const handleRowChange = (newRow: string) => {
 		setPagination({
@@ -52,7 +58,25 @@ export default function Header() {
 						)}
 					</div>
 				</div>
-				<div className="flex flex-1 justify-end">
+				<div className="flex flex-1 justify-end gap-24">
+					<div className="flex items-center gap-4">
+						<span className="whitespace-nowrap text-sm">
+							Product Type:
+						</span>
+						<Button
+							onClick={() =>
+								setType(
+									type === 'PRODUCT' ? 'SERVICE' : 'PRODUCT'
+								)
+							}
+							variant="secondary"
+							size="sm"
+						>
+							<span className="text-14 font-normal">
+								{type === 'PRODUCT' ? 'Service' : 'Product'}
+							</span>
+						</Button>
+					</div>
 					<div className="flex items-center gap-4">
 						<span className="whitespace-nowrap text-sm">
 							Rows per page:{' '}

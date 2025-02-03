@@ -13,14 +13,12 @@ import { ProductListingContext } from '../context/context';
 
 interface IProductListingProps {
 	children: ReactNode;
-	activeType: 'ACTIVE' | 'INACTIVE';
 	apiKey: string;
 	className?: string;
 }
 
 export function ProductListing({
 	children,
-	activeType,
 	apiKey,
 	className,
 }: IProductListingProps) {
@@ -31,14 +29,15 @@ export function ProductListing({
 		pageIndex: Number(page) || 0,
 		pageSize: 15,
 	});
+	const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
+	const [type, setType] = useState<'PRODUCT' | 'SERVICE'>('PRODUCT');
 	const { data, isLoading, refetch } = useGetProductsList({
 		searchTerm: search,
 		apiKey,
-		type: activeType,
+		type,
 		page: pagination.pageIndex,
 		limit: pagination.pageSize,
 	});
-	const [rowSelection, setRowSelection] = useState<RowSelectionState>({});
 
 	const handleSearchChange = useCallback(
 		(value: string) => {
@@ -64,6 +63,8 @@ export function ProductListing({
 			setPagination,
 			apiKey,
 			totalCount: data?.data?.totalCount || 0,
+			type,
+			setType,
 		}),
 		[
 			apiKey,
@@ -75,6 +76,7 @@ export function ProductListing({
 			refetch,
 			rowSelection,
 			search,
+			type,
 		]
 	);
 

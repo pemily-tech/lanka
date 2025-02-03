@@ -9,7 +9,7 @@ import { HttpService } from '../../../../../services/http-service';
 const getProductsList = async ({
 	queryKey,
 }: QueryFunctionContext<
-	[string, string, number, 'ACTIVE' | 'INACTIVE', number]
+	[string, string, number, 'PRODUCT' | 'SERVICE', number]
 >) => {
 	const [_key, searchTerm, limit, type, page] = queryKey;
 
@@ -38,7 +38,7 @@ export function useGetProductsList({
 }: {
 	searchTerm: string;
 	apiKey: string;
-	type: 'ACTIVE' | 'INACTIVE';
+	type: 'PRODUCT' | 'SERVICE';
 	page: number;
 	limit: number;
 }) {

@@ -16,6 +16,8 @@ export type IProductListingContextType = {
 	setPagination: (state: PaginationState) => void;
 	apiKey: string;
 	totalCount: number;
+	type: 'PRODUCT' | 'SERVICE';
+	setType: (type: 'PRODUCT' | 'SERVICE') => void;
 };
 
 export const ProductListingContext = createContext<
