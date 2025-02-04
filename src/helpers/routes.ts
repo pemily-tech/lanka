@@ -11,4 +11,5 @@ export const Routes = {
 	BILLING_LIST: '/billing/list',
 	ADD_BILLING_ITEM: '/billing/add',
 	EDIT_BILLING_ITEM: '/billing/edit',
+	BILLING_DETAILS: '/billing/details',
 };
