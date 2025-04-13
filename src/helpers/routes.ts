@@ -12,4 +12,7 @@ export const Routes = {
 	ADD_BILLING_ITEM: '/billing/add',
 	EDIT_BILLING_ITEM: '/billing/edit',
 	BILLING_DETAILS: '/billing/details',
+	PRESCRIPTION_LIST: '/prescription/list',
+	PRESCRIPTION_ADD: '/prescription/create',
+	MEDICINES: '/prescription/medicines',
 };

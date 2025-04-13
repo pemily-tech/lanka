@@ -5,6 +5,7 @@ import {
 	House,
 	LogOutIcon,
 	PackageSearch,
+	Pill,
 	ReceiptIndianRupee,
 	UserCircleIcon,
 	UserRoundCheck,
@@ -52,6 +53,7 @@ const IconMap: Record<string, React.ElementType> = {
 	UserCircleIcon,
 	ReceiptIndianRupee,
 	PackageSearch,
+	Pill,
 };
 
 export const AppSidebar = () => {
@@ -191,7 +193,7 @@ const MenuItem = ({ item }: { item: ICommonTypes.INavigationItem }) => {
 					</SidebarMenuButton>
 				</CollapsibleTrigger>
 				<CollapsibleContent>
-					<SidebarMenuSub className="mx-0 mt-8 gap-12 px-0">
+					<SidebarMenuSub className="mx-0 ml-24 mt-8 gap-12 px-0">
 						{item.items?.map((ite, index) => {
 							const active = pathname === ite.path;
 							return (
