@@ -14,5 +14,7 @@ export const Routes = {
 	BILLING_DETAILS: '/billing/details',
 	PRESCRIPTION_LIST: '/prescription/list',
 	PRESCRIPTION_ADD: '/prescription/create',
-	MEDICINES: '/prescription/medicines',
+	MEDICINES_CREATE: '/medicines/create',
+	MEDICINES_UPDATE: '/medicines/update',
+	MEDICINES_LIST: '/medicines/list',
 };

@@ -51,7 +51,10 @@ export const PaginationLink = ({
 	<Button
 		variant={isActive ? 'default' : 'ghost'}
 		size={size}
-		className={cn(className, 'rounded-8')}
+		className={cn(
+			className,
+			'rounded-8 flex size-32 items-center justify-center'
+		)}
 		{...props}
 	/>
 );
@@ -63,7 +66,7 @@ export const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
 	<PaginationLink
 		size="default"
-		className={cn('rounded-8', className)}
+		className={cn('rounded-8 !size-auto', className)}
 		{...props}
 	>
 		<ChevronLeft className="size-24" />
@@ -78,7 +81,7 @@ export const PaginationNext = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
 	<PaginationLink
 		size="default"
-		className={cn('rounded-8', className)}
+		className={cn('rounded-8 !size-auto', className)}
 		{...props}
 	>
 		<span>Next</span>

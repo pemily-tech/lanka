@@ -109,7 +109,7 @@ const data: ICommonTypes.INavigationItem[] = [
 			{
 				id: 4,
 				type: 'link',
-				path: Routes.MEDICINES,
+				path: Routes.MEDICINES_LIST,
 				title: 'Medicines',
 				isIcon: false,
 			},

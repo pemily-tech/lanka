@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import Providers from '../services/providers';
 
@@ -50,7 +51,9 @@ const RootLayout = ({ children }: PropsWithChildren) => {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={cn('font-satoshi min-h-screen', fonts)}>
-				<Providers>{children}</Providers>
+				<NuqsAdapter>
+					<Providers>{children}</Providers>
+				</NuqsAdapter>
 			</body>
 		</html>
 	);
