@@ -11,6 +11,7 @@ import useUpdateMedicalRecord from '../../../../api/use-update-medical-record/up
 import Loading from '../../../../app/loading';
 import { ModalTypes } from '../../../../helpers/primitives';
 import { closeModal, openModal } from '../../../../store/modal';
+import { type IMedicalRecord } from '../../../../types/clinic';
 import { Button } from '../../../shared/button';
 import useDocumentDownlaod from '../hooks/use-download-document.hook';
 import PreviewImage from './preview-image';
@@ -20,7 +21,7 @@ const CommentModal = dynamic(() => import('./comment-modal'), {
 });
 
 interface IRecordItem {
-	record: IClinicTypes.IMedicalRecord;
+	record: IMedicalRecord;
 	refetch: () => void;
 	activeFilter: string;
 }

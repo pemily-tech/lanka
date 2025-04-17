@@ -4,10 +4,12 @@ import {
 	type RowSelectionState,
 } from '@tanstack/react-table';
 
+import { type IProduct } from '../../../../../types/invoice';
+
 export type IProductListingContextType = {
 	value: string;
 	handleSearchChange: (value: string) => void;
-	data: IInvoiceTypes.IProduct[];
+	data: IProduct[];
 	isFetching: boolean;
 	rowSelection: RowSelectionState;
 	setRowSelection: (state: RowSelectionState) => void;

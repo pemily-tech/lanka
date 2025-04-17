@@ -5,6 +5,10 @@ import {
 } from '@tanstack/react-query';
 
 import { HttpService } from '../../../../../services/http-service';
+import { type IApiResponse } from '../../../../../types/common';
+import { type IProduct } from '../../../../../types/invoice';
+
+import { env } from '@/env.mjs';
 
 const getProductsList = async ({
 	queryKey,
@@ -13,15 +17,15 @@ const getProductsList = async ({
 >) => {
 	const [_key, searchTerm, limit, type, page] = queryKey;
 
-	let url = `${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}?page=${page}&limit=${limit}&type=${type}`;
+	let url = `${env.NEXT_PUBLIC_BASE_PATH}/${_key}?page=${page}&limit=${limit}&type=${type}`;
 
 	if (searchTerm && searchTerm.length > 2) {
 		url += `&searchTerm=${searchTerm}`;
 	}
 
 	const { data } = await HttpService.get<
-		ICommonTypes.IApiResponse<{
-			items: IInvoiceTypes.IProduct[];
+		IApiResponse<{
+			items: IProduct[];
 			totalCount: number;
 		}>
 	>(url);

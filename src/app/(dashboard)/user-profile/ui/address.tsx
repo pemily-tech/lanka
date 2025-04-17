@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
@@ -11,6 +12,7 @@ import { usePincode } from '../../../../api/use-pincode/pincode';
 import useUpdateAddress from '../../../../api/use-update-address/update-address';
 import { useGetUser } from '../../../../api/user-details/user-details';
 import { useAppSelector } from '../../../../store';
+import { type IAddress } from '../../../../types/common';
 import Radio from '../../../../ui/components/radio';
 import TextInput from '../../../../ui/components/text-input';
 import { Button } from '../../../../ui/shared/button';
@@ -88,7 +90,7 @@ const AddressForm = () => {
 		getPincode(pincode, {
 			onSuccess: (addressData) => {
 				const { district, state } = addressData?.data
-					?.address as IUserTypes.IAddress;
+					?.address as IAddress;
 				setValue('district', district);
 				setValue('state', state);
 			},

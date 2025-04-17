@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
@@ -10,6 +11,7 @@ import * as yup from 'yup';
 import useCreateDoctor from '../../../../api/use-create-doctor/create-doctor';
 import useGetDoctorById from '../../../../api/use-get-doctor-by-id/get-doctor-by-id';
 import useUpdateDoctor from '../../../../api/use-update-doctor/update-doctor';
+import { type IClinicDoctor } from '../../../../types/clinic';
 import Switch from '../../../../ui/components/switch';
 import TextInput from '../../../../ui/components/text-input';
 import { Button } from '../../../../ui/shared/button';
@@ -48,7 +50,7 @@ const AddEditDoctor = ({
 	const [checked, setChecked] = useState(false);
 	const { data } = useGetDoctorById(doctorId as string);
 	const doctorData =
-		data?.data?.doctors?.[0] || (null as IClinicTypes.IClinicDoctor | null);
+		data?.data?.doctors?.[0] || (null as IClinicDoctor | null);
 	const { mutate: updateDoctor, isPending } = useUpdateDoctor(
 		doctorData?.doctor?.doctorId as string,
 		handleClose

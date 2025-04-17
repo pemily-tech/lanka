@@ -3,6 +3,8 @@ import { toast } from 'sonner';
 
 import { HttpService } from '../../../../services/http-service';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	type: string;
 	year: number;
@@ -12,7 +14,7 @@ interface IPayload {
 const vaccinationExcel = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.post(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/clinic/vaccinationDataInExcel`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/clinic/vaccinationDataInExcel`,
 			payload
 		);
 		return data;

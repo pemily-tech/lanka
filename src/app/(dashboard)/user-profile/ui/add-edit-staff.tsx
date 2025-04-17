@@ -10,6 +10,7 @@ import * as yup from 'yup';
 import useCreateStaff from '../../../../api/use-create-staff/create-staff';
 import useGetStaffById from '../../../../api/use-get-staff-by-id/get-staff-by-id';
 import useUpdateStaff from '../../../../api/use-update-staff/update-staff';
+import { type IClinicStaff } from '../../../../types/clinic';
 import Switch from '../../../../ui/components/switch';
 import TextInput from '../../../../ui/components/text-input';
 import { Button } from '../../../../ui/shared/button';
@@ -41,8 +42,7 @@ const AddEditStaff = ({
 	});
 	const [checked, setChecked] = useState(false);
 	const { data } = useGetStaffById(staffId as string);
-	const staffData =
-		data?.data?.staffs?.[0] || (null as IClinicTypes.IClinicStaff | null);
+	const staffData = data?.data?.staffs?.[0] || (null as IClinicStaff | null);
 	const { mutate: updateStaff, isPending } = useUpdateStaff(
 		staffData?.staff?.staffId as string,
 		handleClose

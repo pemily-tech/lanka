@@ -1,5 +1,6 @@
 import { memo } from 'react';
 
+import { type IMedicalRecord } from '../../../../types/clinic';
 import { ImagePlaceholder } from '../../../shared/image';
 import Spinner from '../../../shared/spinner';
 import useRecord from '../hooks/record.hook';
@@ -36,7 +37,7 @@ function Record({ activeFilter, petId, selectedDate }: IRecord) {
 
 	return (
 		<div className="mt-12 min-h-[395px]">
-			{medicalRecords?.map((record: IClinicTypes.IMedicalRecord) => {
+			{medicalRecords?.map((record: IMedicalRecord) => {
 				return (
 					<RecordItem
 						key={record._id}

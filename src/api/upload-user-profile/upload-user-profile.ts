@@ -6,10 +6,12 @@ import { HttpService } from '../../services/http-service';
 import { useAppSelector } from '../../store';
 import { useGetUserProfileUrl } from '../profile-image/profile-image';
 
+import { env } from '@/env.mjs';
+
 const uploadProfile = async (payload: FormData) => {
 	try {
 		const { data } = await HttpService.post(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadProfile}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadProfile}`,
 			payload,
 			{
 				headers: {

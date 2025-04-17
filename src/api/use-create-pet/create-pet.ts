@@ -6,6 +6,8 @@ import { HttpService } from '../../services/http-service';
 import { closeModal } from '../../store/modal';
 import useGetPets from '../use-get-pets/get-pets';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	name: string;
 	breed: string;
@@ -19,7 +21,7 @@ interface IPayload {
 const createPet = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.post(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/pet`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/pet`,
 			payload
 		);
 		return data;

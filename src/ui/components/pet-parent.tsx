@@ -1,3 +1,4 @@
+import { type IPetParent } from '../../types/clinic';
 import UserProfileImage from './user-profile';
 
 const PetParent = ({
@@ -5,8 +6,8 @@ const PetParent = ({
 	handlePetParent,
 	active = false,
 }: {
-	parent: IClinicTypes.IPetParent;
-	handlePetParent: (p: IClinicTypes.IPetParent) => void;
+	parent: IPetParent;
+	handlePetParent: (p: IPetParent) => void;
 	active?: boolean;
 }) => {
 	return (

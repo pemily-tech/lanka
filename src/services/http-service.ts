@@ -5,6 +5,8 @@ import { store } from '../store';
 // eslint-disable-next-line import/no-cycle
 import { ResetTokenAndReattemptRequest } from './reattempt-token.service';
 
+import { env } from '@/env.mjs';
+
 // Interface for the error response data
 interface AxiosErrorResponseData {
 	status: string;
@@ -19,7 +21,7 @@ interface CustomAxiosError extends AxiosError {
 
 // Create an instance of axios
 const HttpService = axios.create({
-	baseURL: process.env.NEXT_PUBLIC_BASE_PATH,
+	baseURL: env.NEXT_PUBLIC_BASE_PATH,
 });
 
 HttpService.interceptors.request.use(

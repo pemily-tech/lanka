@@ -4,6 +4,10 @@ import { z } from 'zod';
 
 import { phoneValidator } from '../../../helpers/utils';
 import { safeActionClient } from '../../../services/next-safe-actions';
+import { type IsUserRegisteredInterface } from '../../../types/auth';
+import { type IApiResponse } from '../../../types/common';
+
+import { env } from '@/env.mjs';
 
 const schema = z.object({
 	mobileNumber: z
@@ -19,7 +23,7 @@ export const getOtpAction = safeActionClient
 		const { mobileNumber } = parsedInput;
 		try {
 			const response = await fetch(
-				`${process.env.NEXT_PUBLIC_BASE_PATH}/auth/isUser/${mobileNumber}`
+				`${env.NEXT_PUBLIC_BASE_PATH}/auth/isUser/${mobileNumber}`
 			);
 
 			if (!response.ok) {
@@ -28,16 +32,16 @@ export const getOtpAction = safeActionClient
 					msg: 'Failed to check user registration.',
 					data: null,
 					statusCode: response.status,
-				} as ICommonTypes.IApiResponse<null>;
+				} as IApiResponse<null>;
 			}
 
 			const data =
-				(await response.json()) as ICommonTypes.IApiResponse<IAuthTypes.IsUserRegisteredInterface>;
+				(await response.json()) as IApiResponse<IsUserRegisteredInterface>;
 
 			if (data?.status === 'SUCCESS' && data?.data?.isUser) {
 				try {
 					const otpResponse = await fetch(
-						`${process.env.NEXT_PUBLIC_BASE_PATH}/auth/sendOtp`,
+						`${env.NEXT_PUBLIC_BASE_PATH}/auth/sendOtp`,
 						{
 							method: 'POST',
 							headers: {
@@ -52,12 +56,11 @@ export const getOtpAction = safeActionClient
 							msg: 'Failed to check user registration.',
 							data: null,
 							statusCode: response.status,
-						} as ICommonTypes.IApiResponse<null>;
+						} as IApiResponse<null>;
 					}
-					const otpData =
-						(await otpResponse.json()) as ICommonTypes.IApiResponse<{
-							type: 'success';
-						}>;
+					const otpData = (await otpResponse.json()) as IApiResponse<{
+						type: 'success';
+					}>;
 					return otpData;
 				} catch (err) {
 					console.error(err);
@@ -74,7 +77,7 @@ export const getOtpAction = safeActionClient
 					msg: 'Only registered users can log in.',
 					data: null,
 					statusCode: 401,
-				} as ICommonTypes.IApiResponse<null>;
+				} as IApiResponse<null>;
 			}
 		} catch (err) {
 			console.error(err);

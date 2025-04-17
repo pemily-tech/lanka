@@ -2,6 +2,10 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../services/http-service';
+import { type IApiResponse } from '../../../../types/common';
+import { type IProduct } from '../../../../types/invoice';
+
+import { env } from '@/env.mjs';
 
 interface IPayload {
 	name: string;
@@ -15,8 +19,8 @@ interface IPayload {
 const addItem = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.post<
-			ICommonTypes.IApiResponse<{ item: IInvoiceTypes.IProduct }>
-		>(`${process.env.NEXT_PUBLIC_BASE_PATH}/item/create`, payload);
+			IApiResponse<{ item: IProduct }>
+		>(`${env.NEXT_PUBLIC_BASE_PATH}/item/create`, payload);
 		return data;
 	} catch (err) {
 		console.error(err);

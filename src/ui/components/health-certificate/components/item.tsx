@@ -10,12 +10,13 @@ import useUpdateMedicalRecord from '../../../../api/use-update-medical-record/up
 import { certificateData } from '../../../../helpers/constant';
 import { ModalTypes } from '../../../../helpers/primitives';
 import { closeModal, openModal } from '../../../../store/modal';
+import { type IMedicalRecord } from '../../../../types/clinic';
 import { PdfIcon } from '../../../icons/pdf-icon';
 import { Button } from '../../../shared/button';
 import useDocumentDownlaod from '../hooks/use-download-document';
 
 interface IRecordItem {
-	record: IClinicTypes.IMedicalRecord;
+	record: IMedicalRecord;
 	refetch: () => void;
 	activeFilter: string;
 }

@@ -1,5 +1,6 @@
 import { memo } from 'react';
 
+import { type IVaccinationRecord } from '../../../../types/clinic';
 import { ImagePlaceholder } from '../../../shared/image';
 import Spinner from '../../../shared/spinner';
 import useRecord from '../hooks/use-record.hook';
@@ -36,18 +37,16 @@ function VaccinationRecords({ activeFilter, petId, selectedDate }: IRecord) {
 
 	return (
 		<div className="mt-12 min-h-[395px]">
-			{vaccinationRecords?.map(
-				(record: IClinicTypes.IVaccinationRecord) => {
-					return (
-						<RecordItem
-							key={record._id}
-							record={record}
-							refetch={refetch}
-							activeFilter={activeFilter}
-						/>
-					);
-				}
-			)}
+			{vaccinationRecords?.map((record: IVaccinationRecord) => {
+				return (
+					<RecordItem
+						key={record._id}
+						record={record}
+						refetch={refetch}
+						activeFilter={activeFilter}
+					/>
+				);
+			})}
 		</div>
 	);
 }

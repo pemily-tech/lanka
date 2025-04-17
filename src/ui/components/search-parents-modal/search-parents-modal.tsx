@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 'use client';
 
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -5,6 +6,7 @@ import { useInView } from 'react-intersection-observer';
 
 import Loading from '../../../app/loading';
 import { useAppSelector } from '../../../store';
+import { type IPetParent } from '../../../types/clinic';
 import Spinner from '../../shared/spinner';
 import { useGetPetParentsList } from './api/get-pet-parents';
 import Parent from './components/parent';
@@ -134,7 +136,7 @@ export function SearchParentsModal() {
 					</div>
 				) : (
 					<Parent
-						data={parents as IClinicTypes.IPetParent[]}
+						data={parents as IPetParent[]}
 						handleParent={handleParent}
 						activeParent={activeParent}
 						focusedIndex={focusedIndex}

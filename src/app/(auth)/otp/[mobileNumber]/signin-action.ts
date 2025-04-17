@@ -4,6 +4,10 @@ import { z } from 'zod';
 
 import { otpValidator, phoneValidator } from '../../../../helpers/utils';
 import { safeActionClient } from '../../../../services/next-safe-actions';
+import { type ILoginInterface } from '../../../../types/auth';
+import { type IApiResponse } from '../../../../types/common';
+
+import { env } from '@/env.mjs';
 
 const schema = z.object({
 	mobileNumber: z
@@ -25,7 +29,7 @@ const signinAction = safeActionClient
 
 		try {
 			const response = await fetch(
-				`${process.env.NEXT_PUBLIC_BASE_PATH}/auth/signIn`,
+				`${env.NEXT_PUBLIC_BASE_PATH}/auth/signIn`,
 				{
 					method: 'POST',
 					headers: {
@@ -43,24 +47,24 @@ const signinAction = safeActionClient
 					msg: 'Unable to verify OTP. Please try again.',
 					data: null,
 					statusCode: response.status,
-				} as ICommonTypes.IApiResponse<null>;
+				} as IApiResponse<null>;
 			}
 			const otpData =
-				(await response.json()) as ICommonTypes.IApiResponse<IAuthTypes.ILoginInterface>;
+				(await response.json()) as IApiResponse<ILoginInterface>;
 			if (otpData.status === 'SUCCESS') {
 				return {
 					status: 'SUCCESS',
 					msg: '',
 					data: otpData?.data,
 					statusCode: response.status,
-				} as ICommonTypes.IApiResponse<IAuthTypes.ILoginInterface>;
+				} as IApiResponse<ILoginInterface>;
 			} else {
 				return {
 					status: 'ERROR',
 					msg: 'Unable to signin. Please try again.',
 					data: null,
 					statusCode: response.status,
-				} as ICommonTypes.IApiResponse<null>;
+				} as IApiResponse<null>;
 			}
 		} catch (err) {
 			console.error(err);

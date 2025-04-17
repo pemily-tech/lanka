@@ -8,6 +8,8 @@ import {
 	createFormDataForImage,
 } from '../../../../helpers/utils';
 import useRouterQuery from '../../../../hooks/use-router-query';
+import { type IMedicalRecord } from '../../../../types/clinic';
+import { type IApiResponse, type IUploadType } from '../../../../types/common';
 
 export default function useMedicalRecord() {
 	const [activeFilter, setActiveFilter] = useState('PRESCRIPTION');
@@ -30,7 +32,7 @@ export default function useMedicalRecord() {
 	});
 
 	const handleUploadClick = async (
-		uploadFile: ICommonTypes.IUploadType,
+		uploadFile: IUploadType,
 		setFiles: (files: []) => void
 	) => {
 		const { file } = uploadFile;
@@ -50,7 +52,7 @@ export default function useMedicalRecord() {
 		}
 		const response = (await uploadMedicalRecord(
 			formData
-		)) as ICommonTypes.IApiResponse<IClinicTypes.IMedicalRecord>;
+		)) as IApiResponse<IMedicalRecord>;
 		if (response.status === 'SUCCESS') {
 			setShowSidebar(false);
 			setFiles([]);

@@ -2,14 +2,15 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { ApiEndpoints } from '../helpers/primitives';
 import { HttpService } from '../services/http-service';
+import { type IApiResponse } from '../types/common';
+
+import { env } from '@/env.mjs';
 
 const getClinicLogo = async ({ queryKey }: QueryFunctionContext<[string]>) => {
 	const [_key] = queryKey;
-	const url = `${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}`;
+	const url = `${env.NEXT_PUBLIC_BASE_PATH}/${_key}`;
 	const { data } =
-		await HttpService.get<ICommonTypes.IApiResponse<{ logoUrl: string }>>(
-			url
-		);
+		await HttpService.get<IApiResponse<{ logoUrl: string }>>(url);
 	return data;
 };
 

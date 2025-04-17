@@ -4,6 +4,8 @@ import { toast } from 'sonner';
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	parentMobile: number;
 	petName: string;
@@ -17,7 +19,7 @@ const vaccinationRemainder = async (payload: IPayload) => {
 	const { id, ...rest } = payload;
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.ClinicVaccinationRemainder}/${id}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.ClinicVaccinationRemainder}/${id}`,
 			rest
 		);
 		return data;

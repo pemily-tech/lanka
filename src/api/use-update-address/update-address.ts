@@ -5,6 +5,8 @@ import { HttpService } from '../../services/http-service';
 import { useAppSelector } from '../../store';
 import { useGetUser } from '../user-details/user-details';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	line1: string;
 	line2: string;
@@ -17,7 +19,7 @@ interface IPayload {
 const updateAddress = async (payload: IPayload, addressId: string) => {
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/address/${addressId}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/address/${addressId}`,
 			payload
 		);
 		return data;

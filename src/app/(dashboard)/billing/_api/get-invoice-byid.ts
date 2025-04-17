@@ -1,17 +1,21 @@
 import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { HttpService } from '../../../../services/http-service';
+import { type IApiResponse } from '../../../../types/common';
+import { type IInvoice } from '../../../../types/invoice';
+
+import { env } from '@/env.mjs';
 
 const getInvoiceById = async ({
 	queryKey,
 }: QueryFunctionContext<[string, string]>) => {
 	const [_key, _params] = queryKey;
 
-	const url = `${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}/${_params}`;
+	const url = `${env.NEXT_PUBLIC_BASE_PATH}/${_key}/${_params}`;
 
 	const { data } = await HttpService.get<
-		ICommonTypes.IApiResponse<{
-			invoice: IInvoiceTypes.IInvoice;
+		IApiResponse<{
+			invoice: IInvoice;
 		}>
 	>(url);
 

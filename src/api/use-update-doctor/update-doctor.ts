@@ -6,6 +6,8 @@ import { HttpService } from '../../services/http-service';
 import useGetDoctorById from '../use-get-doctor-by-id/get-doctor-by-id';
 import useGetDoctors from '../use-get-doctors/get-doctors';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	name: string;
 	degree: string;
@@ -16,7 +18,7 @@ interface IPayload {
 const updateDoctor = async (payload: IPayload, doctorId: string) => {
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UpdateDoctor}/${doctorId}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UpdateDoctor}/${doctorId}`,
 			payload
 		);
 		return data;

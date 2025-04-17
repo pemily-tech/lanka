@@ -3,6 +3,7 @@
 import { format } from 'date-fns';
 import { useParams } from 'next/navigation';
 
+import { type IInvoice } from '../../../../../../types/invoice';
 import { Spinner } from '../../../../../../ui/shared';
 import { useGetInvoiceById } from '../../../_api/get-invoice-byid';
 
@@ -10,7 +11,7 @@ export default function Header() {
 	const params = useParams();
 	const invoiceNo = params?.invoiceNo as string;
 	const { data, isPending } = useGetInvoiceById(invoiceNo);
-	const invoiceData = data?.data?.invoice || ({} as IInvoiceTypes.IInvoice);
+	const invoiceData = data?.data?.invoice || ({} as IInvoice);
 
 	if (isPending) {
 		return <Spinner />;

@@ -5,10 +5,12 @@ import { ApiEndpoints } from '../helpers/primitives';
 import { HttpService } from '../services/http-service';
 import useGetClinicLogo from './get-clinic-logo';
 
+import { env } from '@/env.mjs';
+
 const uploadLogo = async (payload: FormData) => {
 	try {
 		const { data } = await HttpService.post(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadLogo}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadLogo}`,
 			payload,
 			{
 				headers: {

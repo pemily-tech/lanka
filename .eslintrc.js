@@ -1,5 +1,4 @@
 module.exports = {
-	parser: '@typescript-eslint/parser',
 	extends: [
 		'next/core-web-vitals',
 		'prettier',
@@ -37,7 +36,7 @@ module.exports = {
 			},
 		],
 		'max-params': ['error', 3],
-		'max-lines-per-function': ['error', 120],
+		'max-lines-per-function': ['error', 140],
 		'react/display-name': 'off',
 		'react/no-inline-styles': 'off',
 		'react/destructuring-assignment': 'off',
@@ -98,6 +97,30 @@ module.exports = {
 		'@typescript-eslint/no-var-requires': 'off',
 		'@typescript-eslint/no-require-imports': 'off',
 	},
+
+	overrides: [
+		// Override for Prettier tab settings (optional, if targeting specific files)
+		{
+			files: ['*.js', '*.ts', '*.tsx'], // Add specific file patterns here
+			rules: {
+				'prettier/prettier': [
+					'warn',
+					{
+						useTabs: true,
+						tabWidth: 4,
+					},
+				],
+			},
+		},
+		{
+			// Configuration for testing files
+			files: [
+				'**/__tests__/**/*.[jt]s?(x)',
+				'**/?(*.)+(spec|test).[jt]s?(x)',
+			],
+			extends: ['plugin:testing-library/react'],
+		},
+	],
 	settings: {
 		tailwindcss: {
 			callees: ['cn'],

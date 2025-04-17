@@ -3,6 +3,10 @@ import { toast } from 'sonner';
 
 import { ApiEndpoints } from '../../../../helpers/primitives';
 import { HttpService } from '../../../../services/http-service';
+import { type IApiResponse } from '../../../../types/common';
+import { type IUserDetails } from '../../../../types/user';
+
+import { env } from '@/env.mjs';
 
 interface IPayload {
 	name: string;
@@ -14,9 +18,9 @@ interface IPayload {
 const updateUserDetails = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.patch<
-			ICommonTypes.IApiResponse<{ user: IUserTypes.IUserDetails }>
+			IApiResponse<{ user: IUserDetails }>
 		>(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UpdateUserBasic}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UpdateUserBasic}`,
 			payload
 		);
 		return data;

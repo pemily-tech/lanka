@@ -5,6 +5,8 @@ import { HttpService } from '../../services/http-service';
 import { useAppSelector } from '../../store';
 import { useGetUser } from '../user-details/user-details';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	ownerName: string;
 	pan: string;
@@ -15,7 +17,7 @@ interface IPayload {
 const updateBusiness = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/user/businessDetail`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/user/businessDetail`,
 			payload
 		);
 		return data;

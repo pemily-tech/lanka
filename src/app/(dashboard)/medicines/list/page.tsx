@@ -5,9 +5,10 @@ import { useQueryStates } from 'nuqs';
 import { type IMedicine } from '../../../../types/prescription';
 import { PaginationWithLinks } from '../../../../ui/shared';
 import { useGetMedicines } from './_api/use-get-medicines';
+import Listing from './_ui/list';
 
 export default function Page() {
-	const { data } = useGetMedicines({ count: 1 });
+	const { data, isPending } = useGetMedicines({ count: 1 });
 	const medicineData = data?.data?.medicines || ([] as IMedicine[]);
 	const totalCount = data?.data?.totalCount || 0;
 	const [{ page, limit, count }, setQuery] = useQueryStates({
@@ -39,6 +40,9 @@ export default function Page() {
 
 	return (
 		<div>
+			<div className="shadow-card1 rounded-8 relative bg-white">
+				<Listing data={medicineData} isPending={isPending} />
+			</div>
 			<div className="rounded-8 shadow-card1 mt-12 flex items-center justify-between gap-24 bg-white p-16">
 				<div className="flex-1">
 					Showing Results: {page * Number(limit) + 1}-

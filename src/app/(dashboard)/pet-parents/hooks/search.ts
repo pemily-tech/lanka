@@ -5,11 +5,11 @@ import { useDispatch } from 'react-redux';
 
 import { ModalTypes } from '../../../../helpers/primitives';
 import { openModal } from '../../../../store/modal';
+import { type IPetParent } from '../../../../types/clinic';
 import { useGetPetParentsList } from '../api/get-pet-parents';
 
 export default function useSearchHook() {
-	const [parentDetails, setParentDetails] =
-		useState<IClinicTypes.IPetParent>();
+	const [parentDetails, setParentDetails] = useState<IPetParent>();
 	const [value, setValue] = useState('');
 	// const { mutate: getPetParents, data, isPending } = useGetPetParentsMutation();
 	const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export default function useSearchHook() {
 		setValue('');
 	}, []);
 
-	const handlePetParent = useCallback((parent: IClinicTypes.IPetParent) => {
+	const handlePetParent = useCallback((parent: IPetParent) => {
 		setParentDetails(parent);
 	}, []);
 

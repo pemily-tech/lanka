@@ -1,8 +1,10 @@
+/* eslint-disable max-lines-per-function */
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
+import { type IProduct } from '../../../../types/invoice';
 import {
 	Button,
 	FloatingInput,
@@ -59,7 +61,7 @@ export default function AddEditForm({
 	});
 	const { mutateAsync: addItem, isPending } = useAddItem();
 	const { data, refetch } = useGetItemById(itemId);
-	const itemData = data?.data?.item || ({} as IInvoiceTypes.IProduct);
+	const itemData = data?.data?.item || ({} as IProduct);
 	const { mutateAsync: updateItem, isPending: isLoading } = useUpdateItem(
 		itemId as string
 	);

@@ -2,16 +2,16 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
+import { type IApiResponse, type IGetPetsResponse } from '../../types/common';
+
+import { env } from '@/env.mjs';
 
 const getPets = async ({
 	queryKey,
 }: QueryFunctionContext<[string, string]>) => {
 	const [_key, _params] = queryKey;
-	const url = `${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}/${_params}`;
-	const { data } =
-		await HttpService.get<
-			ICommonTypes.IApiResponse<ICommonTypes.IGetPetsResponse>
-		>(url);
+	const url = `${env.NEXT_PUBLIC_BASE_PATH}/${_key}/${_params}`;
+	const { data } = await HttpService.get<IApiResponse<IGetPetsResponse>>(url);
 	return data;
 };
 

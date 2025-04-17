@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable max-lines-per-function */
 import { useMemo } from 'react';
 import {
 	type ColumnDef,
@@ -9,6 +11,7 @@ import Link from 'next/link';
 
 import { Routes } from '../../../../../helpers/routes';
 import { cn } from '../../../../../helpers/utils';
+import { type IProduct } from '../../../../../types/invoice';
 import {
 	Pagination,
 	PaginationContent,
@@ -30,7 +33,7 @@ import { useProductListingContext } from '../context/context';
 export default function Columns() {
 	const { data, pagination, setPagination, isFetching } =
 		useProductListingContext();
-	const columns: ColumnDef<IInvoiceTypes.IProduct>[] = useMemo(
+	const columns: ColumnDef<IProduct>[] = useMemo(
 		() => [
 			{
 				accessorKey: 'name',

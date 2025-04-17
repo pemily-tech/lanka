@@ -4,10 +4,12 @@ import { toast } from 'sonner';
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
 
+import { env } from '@/env.mjs';
+
 const uploadMedicalRecord = async (payload: FormData, petId: string) => {
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadClinicMedicalRecords}/${petId}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadClinicMedicalRecords}/${petId}`,
 			payload,
 			{
 				headers: {

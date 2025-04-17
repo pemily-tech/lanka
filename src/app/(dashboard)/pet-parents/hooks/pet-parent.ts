@@ -11,6 +11,9 @@ import { createFormDataForImage } from '../../../../helpers/utils';
 import useRouterQuery from '../../../../hooks/use-router-query';
 import { HttpService } from '../../../../services/http-service';
 import { openModal } from '../../../../store/modal';
+import { type IPet } from '../../../../types/common';
+
+import { env } from '@/env.mjs';
 
 export default function usePetParentHook(
 	parentId: string,
@@ -36,7 +39,7 @@ export default function usePetParentHook(
 			const formData = createFormDataForImage(file, 'file');
 			try {
 				const { data } = await HttpService.patch(
-					`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadClinicMemberProfile}/${parentId}`,
+					`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadClinicMemberProfile}/${parentId}`,
 					formData,
 					{
 						headers: {
@@ -83,7 +86,7 @@ export default function usePetParentHook(
 		);
 	}, []);
 
-	const handlePet = useCallback((pet: ICommonTypes.IPet) => {
+	const handlePet = useCallback((pet: IPet) => {
 		router.push(`/pet/${pet.petId}?parentId=${parentId}`);
 	}, []);
 

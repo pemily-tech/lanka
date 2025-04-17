@@ -16,6 +16,7 @@ import { usePathname } from 'next/navigation';
 import { useGetNavigation } from '../../api/layout/use-get-navigation';
 import { logout } from '../../helpers/utils';
 import { useAppSelector } from '../../store';
+import { type INavigationItem } from '../../types/common';
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -59,7 +60,7 @@ const IconMap: Record<string, React.ElementType> = {
 export const AppSidebar = () => {
 	const { name, mobile } = useAppSelector((state) => state.auth);
 	const { data } = useGetNavigation();
-	const navMenu: ICommonTypes.INavigationItem[] = data?.data || [];
+	const navMenu: INavigationItem[] = data?.data || [];
 
 	const handleLogout = () => {
 		logout();
@@ -126,7 +127,7 @@ export const AppSidebar = () => {
 	);
 };
 
-const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
+const Menu = ({ navMenu }: { navMenu: INavigationItem[] }) => {
 	const pathname = usePathname();
 
 	return (
@@ -172,7 +173,7 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 	);
 };
 
-const MenuItem = ({ item }: { item: ICommonTypes.INavigationItem }) => {
+const MenuItem = ({ item }: { item: INavigationItem }) => {
 	const Icon = item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
 	const pathname = usePathname();
 	const activeItem = pathname.split('/').filter(Boolean)[0];

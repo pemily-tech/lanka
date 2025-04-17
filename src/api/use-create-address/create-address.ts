@@ -5,6 +5,8 @@ import { HttpService } from '../../services/http-service';
 import { useAppSelector } from '../../store';
 import { useGetUser } from '../user-details/user-details';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	line1: string;
 	line2: string;
@@ -18,7 +20,7 @@ interface IPayload {
 const createAddress = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.post(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/address`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/address`,
 			payload
 		);
 		return data;

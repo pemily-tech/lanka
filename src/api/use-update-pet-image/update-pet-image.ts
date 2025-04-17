@@ -5,10 +5,12 @@ import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
 import useGetPetProfileImage from '../use-get-pet-profile-image/get-pet-profile-image';
 
+import { env } from '@/env.mjs';
+
 const updatePetImage = async (payload: FormData, petId: string) => {
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadPetImage}/${petId}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadPetImage}/${petId}`,
 			payload,
 			{
 				headers: {

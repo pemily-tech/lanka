@@ -8,6 +8,8 @@ import { updateUser } from '../store/auth';
 // eslint-disable-next-line import/no-cycle
 import { HttpService } from './http-service';
 
+import { env } from '@/env.mjs';
+
 let isAlreadyFetchingAccessToken = false;
 type AccessTokenSubscriber = (accessToken: string) => void;
 let subscribers: AccessTokenSubscriber[] = [];
@@ -27,7 +29,7 @@ async function ResetTokenAndReattemptRequest(
 
 		try {
 			const resp = await axios.post(
-				`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.RefreshToken}`,
+				`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.RefreshToken}`,
 				{
 					refreshToken: store.getState().auth.refreshToken,
 				}

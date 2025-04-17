@@ -2,16 +2,18 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
+import { type ICertificateApiResponse } from '../../types/clinic';
+import { type IApiResponse } from '../../types/common';
+
+import { env } from '@/env.mjs';
 
 const getPetCertificateVaccination = async ({
 	queryKey,
 }: QueryFunctionContext<[string, string | undefined]>) => {
 	const [_key, petId] = queryKey;
-	const url = `${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}/${petId}/VACCINATION`;
+	const url = `${env.NEXT_PUBLIC_BASE_PATH}/${_key}/${petId}/VACCINATION`;
 	const { data } =
-		await HttpService.get<
-			ICommonTypes.IApiResponse<IClinicTypes.ICertificateApiResponse>
-		>(url);
+		await HttpService.get<IApiResponse<ICertificateApiResponse>>(url);
 	return data;
 };
 

@@ -2,6 +2,10 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
+import { type IClinicMedicalRecordsApiResponse } from '../../types/clinic';
+import { type IApiResponse } from '../../types/common';
+
+import { env } from '@/env.mjs';
 
 const getMedicalRecords = async ({
 	queryKey,
@@ -9,7 +13,7 @@ const getMedicalRecords = async ({
 	[string, string, string | undefined, string | undefined]
 >) => {
 	const [_key, type, petId, date] = queryKey;
-	let url = `${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}?type=${type}`;
+	let url = `${env.NEXT_PUBLIC_BASE_PATH}/${_key}?type=${type}`;
 	if (petId) {
 		url += `&petId=${petId}`;
 	}
@@ -17,9 +21,9 @@ const getMedicalRecords = async ({
 		url += `&uploadDate=${date}`;
 	}
 	const { data } =
-		await HttpService.get<
-			ICommonTypes.IApiResponse<IClinicTypes.IClinicMedicalRecordsApiResponse>
-		>(url);
+		await HttpService.get<IApiResponse<IClinicMedicalRecordsApiResponse>>(
+			url
+		);
 	return data;
 };
 

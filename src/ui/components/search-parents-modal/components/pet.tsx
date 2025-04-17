@@ -1,6 +1,7 @@
 import { memo } from 'react';
 
 import useGetPetProfileImage from '../../../../api/use-get-pet-profile-image/get-pet-profile-image';
+import { type IPet } from '../../../../types/common';
 import { ImagePlaceholder } from '../../../shared/image';
 
 const Pet = ({
@@ -9,7 +10,7 @@ const Pet = ({
 	containerStyles,
 	index,
 }: {
-	pet: ICommonTypes.IPet;
+	pet: IPet;
 	height?: string;
 	containerStyles?: string;
 	index?: number;

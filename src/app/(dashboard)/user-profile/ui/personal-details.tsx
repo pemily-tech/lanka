@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 'use client';
 
 import { useEffect, useMemo } from 'react';
@@ -10,6 +11,7 @@ import { z } from 'zod';
 import { useGetUser } from '../../../../api/user-details/user-details';
 import { cn } from '../../../../helpers/utils';
 import { useAppSelector } from '../../../../store';
+import { type IUserDetails } from '../../../../types/user';
 import {
 	Button,
 	Calendar,
@@ -56,7 +58,7 @@ const PersonalDetailsForm = () => {
 	const authState = useAppSelector((state) => state.auth);
 	const { data, refetch } = useGetUser(authState.userId as string);
 	const userData = useMemo(() => {
-		return data?.data?.user || ({} as IUserTypes.IUserDetails);
+		return data?.data?.user || ({} as IUserDetails);
 	}, [data?.data?.user]);
 	const { mutateAsync: updateUser, isPending } = useUpdateUserDetails();
 

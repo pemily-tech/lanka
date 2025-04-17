@@ -1,6 +1,10 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
 
 import { HttpService } from '../../../../services/http-service';
+import { type IPetParentsApiResponse } from '../../../../types/clinic';
+import { type IApiResponse } from '../../../../types/common';
+
+import { env } from '@/env.mjs';
 
 const getPetParentsList = async ({
 	pageParam = 0,
@@ -11,14 +15,12 @@ const getPetParentsList = async ({
 	searchTerm: string;
 	limit: number;
 }) => {
-	let url = `${process.env.NEXT_PUBLIC_BASE_PATH}/clinic/parents?page=${pageParam}&limit=${limit}`;
+	let url = `${env.NEXT_PUBLIC_BASE_PATH}/clinic/parents?page=${pageParam}&limit=${limit}`;
 	if (searchTerm && searchTerm.length > 2) {
 		url += `&searchTerm=${searchTerm}`;
 	}
 	const { data } =
-		await HttpService.get<
-			ICommonTypes.IApiResponse<IClinicTypes.IPetParentsApiResponse>
-		>(url);
+		await HttpService.get<IApiResponse<IPetParentsApiResponse>>(url);
 
 	return {
 		data,
