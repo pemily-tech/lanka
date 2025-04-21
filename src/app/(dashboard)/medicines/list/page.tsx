@@ -1,10 +1,7 @@
 'use client';
 
-import { useQueryStates } from 'nuqs';
-
 import { type IMedicine } from '../../../../types/prescription';
 import { PaginationWithLinks } from '../../../../ui/shared';
-import page from '../create/page';
 import { useGetMedicines } from './_api/use-get-medicines';
 import { useUpdateUrl } from './_hooks/use-update-url';
 import Filters from './_ui/filters';

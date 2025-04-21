@@ -1,3 +1,9 @@
+import Filters from './_ui/filters';
+
 export default function Page() {
-	return <div></div>;
+	return (
+		<div>
+			<Filters />
+		</div>
+	);
 }
