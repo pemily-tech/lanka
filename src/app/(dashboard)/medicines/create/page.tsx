@@ -1,3 +1,9 @@
+import { MedicineForm } from '../_ui/form';
+
 export default function Page() {
-	return <div></div>;
+	return (
+		<div className="max-w-screen-md">
+			<MedicineForm type="CREATE" />
+		</div>
+	);
 }

@@ -205,3 +205,4 @@ export { Toaster } from './toast';
 // } from './tooltip';
 export { Calendar } from './calender';
 export { SearchPetParents } from './search-pet-parents';
+export { Switch } from './switch';

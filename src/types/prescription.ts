@@ -12,4 +12,5 @@ export interface IMedicine {
 	active: boolean;
 	updatedBy: string;
 	take: string;
+	diagnosis: string;
 }
