@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useQueryStates } from 'nuqs';
 
 export const useUpdateUrl = () => {
@@ -44,5 +43,6 @@ export const useUpdateUrl = () => {
 		page,
 		limit,
 		setLimit,
+		count,
 	};
 };

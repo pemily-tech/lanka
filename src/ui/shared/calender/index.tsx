@@ -31,22 +31,22 @@ export const Calendar = ({
 				[UI.CaptionLabel]: 'text-14 font-medium',
 				[UI.PreviousMonthButton]: cn(
 					buttonVariants({ variant: 'outline', size: 'icon' }),
-					'absolute left-1 top-0 size-24 bg-transparent p-0 opacity-50 hover:opacity-100'
+					'absolute left-1 top-0 size-[32px] bg-transparent p-0 opacity-50 hover:opacity-100'
 				),
 				[UI.NextMonthButton]: cn(
 					buttonVariants({ variant: 'outline', size: 'icon' }),
-					'absolute right-1 top-0 size-24 bg-transparent p-0 opacity-50 hover:opacity-100'
+					'absolute right-1 top-0 size-[32px] bg-transparent p-0 opacity-50 hover:opacity-100'
 				),
 				[UI.MonthGrid]: 'w-full border-collapse space-y-6',
 				[UI.Weekdays]: 'flex',
 				[UI.Weekday]:
-					'text-muted-foreground rounded-md flex-1 font-normal text-14',
+					'text-muted-foreground rounded-md flex-1 font-normal text-14 flex justify-center items-center size-[38px]',
 				[UI.Week]: 'flex w-full mt-8 gap-6',
 				[UI.Day]:
-					'h-24 w-24 flex-1 text-center rounded-md text-14 p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
+					'size-[38px] flex-1 text-center rounded-md text-14 p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
 				[UI.DayButton]: cn(
 					buttonVariants({ variant: 'ghost' }),
-					'hover:bg-primary hover:text-primary-foreground size-24 p-0 font-normal aria-selected:opacity-100'
+					'hover:bg-primary hover:text-primary-foreground size-full p-0 font-normal aria-selected:opacity-100'
 				),
 				[SelectionState.range_end]: 'day-range-end',
 				[SelectionState.selected]:
@@ -71,13 +71,13 @@ export const Calendar = ({
 const Chevron = ({ orientation = 'left' }) => {
 	switch (orientation) {
 		case 'left':
-			return <ChevronLeftIcon className="size-18" />;
+			return <ChevronLeftIcon className="size-24" />;
 		case 'right':
-			return <ChevronRightIcon className="size-18" />;
+			return <ChevronRightIcon className="size-24" />;
 		case 'up':
-			return <ChevronUpIcon className="size-18" />;
+			return <ChevronUpIcon className="size-24" />;
 		case 'down':
-			return <ChevronDownIcon className="size-18" />;
+			return <ChevronDownIcon className="size-24" />;
 		default:
 			return null;
 	}

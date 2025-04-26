@@ -1,49 +1,86 @@
 'use client';
 
+import { memo } from 'react';
 import { addDays, format, isSameDay, parseISO, startOfToday } from 'date-fns';
-import { useQueryStates } from 'nuqs';
+import { CalendarIcon, Plus } from 'lucide-react';
 
 import { cn } from '../../../../../helpers/utils';
+import {
+	Button,
+	Calendar,
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from '../../../../../ui/shared';
 
-export default function Filters() {
+interface IProps {
+	selectedDate: Date;
+	setDate: (payload: { date: Date }) => void;
+}
+
+function Filters({ selectedDate, setDate }: IProps) {
 	const today = startOfToday();
-	const [{ date }, setQuery] = useQueryStates({
-		date: {
-			defaultValue: format(today, 'yyyy-MM-dd'),
-			parse: parseISO,
-			serialize: (date: Date) => format(date, 'yyyy-MM-dd'),
-		},
-	});
-	const selectedDate = date ?? today;
-
-	const days = Array.from({ length: 7 }).map((_, i) => addDays(today, i));
+	const days = Array.from({ length: 7 }).map((_, i) => addDays(today, -i));
 
 	return (
 		<div>
-			<div className="inline-flex flex-row gap-12 rounded-lg">
-				{days.map((day) => {
-					const formattedDay = format(day, 'dd MMM');
-					const isSelected = isSameDay(day, selectedDate);
+			<div className="text-24 pb-12 font-medium">
+				{format(selectedDate, 'dd MMM, yyyy')}
+			</div>
+			<div className="flex flex-row items-center justify-between">
+				<div className="inline-flex flex-row gap-12 rounded-lg">
+					{days.reverse().map((day) => {
+						const formattedDay = format(day, 'dd EEE');
+						const isSelected = isSameDay(day, selectedDate);
 
-					return (
-						<div
-							className={cn(
-								'border-black-1/10 flex w-[120px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-12',
-								isSelected && 'bg-primary text-white'
-							)}
-							key={day.toISOString()}
-							onClick={() => setQuery({ date: day })}
-						>
-							<span className="text-24 leading-24 font-semibold">
-								{formattedDay.split(' ')?.[0]}
-							</span>
-							<span className="text-16 leading-16">
-								{formattedDay.split(' ')?.[1]}
-							</span>
-						</div>
-					);
-				})}
+						return (
+							<div
+								className={cn(
+									'border-black-1/10 flex w-[90px] cursor-pointer flex-col items-center justify-center gap-6 rounded-lg border bg-white py-12',
+									isSelected && 'bg-primary text-white'
+								)}
+								key={day.toISOString()}
+								onClick={() => setDate({ date: day })}
+							>
+								<span className="text-24 leading-24 font-medium">
+									{formattedDay.split(' ')?.[0]}
+								</span>
+								<span className="text-16 leading-16">
+									{formattedDay.split(' ')?.[1]}
+								</span>
+							</div>
+						);
+					})}
+					<Popover>
+						<PopoverTrigger asChild>
+							<div
+								className={cn(
+									'border-black-1/10 flex w-[90px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-12'
+								)}
+							>
+								<CalendarIcon />
+							</div>
+						</PopoverTrigger>
+						<PopoverContent className="w-auto p-0">
+							<Calendar
+								mode="single"
+								selected={selectedDate}
+								onSelect={(day) => {
+									if (day) {
+										setDate({ date: day });
+									}
+								}}
+							/>
+						</PopoverContent>
+					</Popover>
+				</div>
+				<Button className="rounded-2xl" variant="outline">
+					<Plus />
+					<span className="font-medium">Create Prescription</span>
+				</Button>
 			</div>
 		</div>
 	);
 }
+
+export default memo(Filters);

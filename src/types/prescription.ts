@@ -14,3 +14,91 @@ export interface IMedicine {
 	take: string;
 	diagnosis: string;
 }
+
+export interface IPrescription {
+	_id: string;
+	prescriptionNo: string;
+	prescriptionDate: string;
+	parentId: string;
+	clinicId: string;
+	doctorId: string;
+	patientId: string;
+	parentName: string;
+	parentMobile: string;
+	patientName: string;
+	patientDetails: IPatientDetails;
+	clinicDetails: IClinicDetails;
+	doctorDetails: IDoctorDetails;
+	parentOrPatientAddress: IAddress;
+	clinicAddress: IAddress;
+	url: string;
+	advice: string;
+	vitals: string;
+	diagnosis: string;
+	soap: ISoap;
+	nextVisit: string;
+	active: boolean;
+	attachedDocuments: any[];
+	medicines: IMedicine[];
+	createdAt: string;
+}
+export interface IPatientDetails {
+	name: string;
+	dob: string;
+	age: string;
+	gender: 'M' | 'F' | 'O';
+	type: string;
+	breed: string;
+	weight: string;
+	microChipNo: string;
+	code: string;
+	active: boolean;
+	_id: string;
+	createdAt: string;
+	updatedAt: string;
+}
+
+export interface IClinicDetails {
+	name: string;
+	primaryContact: string;
+	businessContact: string;
+	email: string;
+	active: boolean;
+	_id: string;
+	createdAt: string;
+	updatedAt: string;
+}
+
+export interface IDoctorDetails {
+	name: string;
+	experience: number;
+	degree: string;
+	speciality: string;
+	regNo: string;
+	signatureUrl: string;
+	active: boolean;
+	_id: string;
+	createdAt: string;
+	updatedAt: string;
+}
+
+export interface ISoap {
+	subjective: string;
+	objective: string;
+	assessment: string;
+	plan: string;
+	active: boolean;
+	_id: string;
+	createdAt: string;
+	updatedAt: string;
+}
+export interface IAddress {
+	pincode: string;
+	line1: string;
+	line2: string;
+	state: string;
+	district: string;
+	_id: string;
+	createdAt: string;
+	updatedAt: string;
+}
