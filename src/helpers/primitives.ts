@@ -73,4 +73,5 @@ export const enum ModalTypes {
 	ADD_EDIT_PET = 'add_edit_pet',
 	LOADING_MODAL = 'loading',
 	SEARCH_PARENTS = 'search_parents',
+	PET_SELECT = 'pet_select',
 }

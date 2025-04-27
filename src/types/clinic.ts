@@ -190,6 +190,7 @@ export interface IParent {
 	name: string;
 	mobile: string;
 	parentId: string;
+	petNames: string[];
 }
 
 export interface IPetAndParentDetail {

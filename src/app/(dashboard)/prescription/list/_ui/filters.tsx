@@ -1,6 +1,6 @@
 'use client';
 
-import { memo } from 'react';
+import { memo, useState } from 'react';
 import { addDays, format, isSameDay, parseISO, startOfToday } from 'date-fns';
 import { CalendarIcon, Plus } from 'lucide-react';
 
@@ -12,6 +12,7 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from '../../../../../ui/shared';
+import PetSelectModal from '../../../../../ui/shared/pet-selection-modal';
 
 interface IProps {
 	selectedDate: Date;
@@ -21,6 +22,7 @@ interface IProps {
 function Filters({ selectedDate, setDate }: IProps) {
 	const today = startOfToday();
 	const days = Array.from({ length: 7 }).map((_, i) => addDays(today, -i));
+	const [open, setOpen] = useState(false);
 
 	return (
 		<div>
@@ -74,11 +76,16 @@ function Filters({ selectedDate, setDate }: IProps) {
 						</PopoverContent>
 					</Popover>
 				</div>
-				<Button className="rounded-2xl" variant="outline">
+				<Button
+					onClick={() => setOpen(!open)}
+					className="rounded-2xl"
+					variant="outline"
+				>
 					<Plus />
 					<span className="font-medium">Create Prescription</span>
 				</Button>
 			</div>
+			<PetSelectModal open={open} setOpen={setOpen} />
 		</div>
 	);
 }
