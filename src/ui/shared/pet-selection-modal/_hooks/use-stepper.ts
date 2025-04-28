@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -37,14 +38,7 @@ export function usePrescriptionStepper({
 	const stepper = useStepper();
 	const currentIndex = utils.getIndex(stepper.current.id);
 
-	const {
-		register,
-		handleSubmit,
-		setValue,
-		getValues,
-		trigger,
-		formState: { errors },
-	} = useForm<FormValues>({
+	const { register, setValue, getValues, watch } = useForm<FormValues>({
 		defaultValues: {
 			doctorId: '',
 			parentId: '',
@@ -53,6 +47,12 @@ export function usePrescriptionStepper({
 		resolver: zodResolver(FormSchema),
 		mode: 'onChange',
 	});
+	const [doctorError, setDoctorError] = useState(false);
+	const [parentError, setParentError] = useState(false);
+	const [petError, setPetError] = useState(false);
+	const selectedDoctorId = watch('doctorId');
+	const selectedParentId = watch('parentId');
+	const selectedPetId = watch('petId');
 
 	const handleNext = async () => {
 		const currentSchema = stepper.current.schema;
@@ -60,6 +60,10 @@ export function usePrescriptionStepper({
 
 		try {
 			await currentSchema.parseAsync(currentValues);
+			if (stepper.current.id === 'doctor') setDoctorError(false);
+			if (stepper.current.id === 'parent') setParentError(false);
+			if (stepper.current.id === 'pet') setPetError(false);
+
 			if (stepper.isLast) {
 				stepper.reset();
 				onComplete();
@@ -67,21 +71,10 @@ export function usePrescriptionStepper({
 				stepper.next();
 			}
 		} catch (error) {
-			console.error('Validation failed for step:', stepper.current.id);
+			if (stepper.current.id === 'doctor') setDoctorError(true);
+			if (stepper.current.id === 'parent') setParentError(true);
+			if (stepper.current.id === 'pet') setPetError(true);
 		}
-	};
-
-	const getErrorMessage = () => {
-		if (stepper.current.id === 'doctor' && errors.doctorId) {
-			return 'Please choose a doctor to proceed';
-		}
-		if (stepper.current.id === 'parent' && errors.parentId) {
-			return 'Please choose a parent to proceed';
-		}
-		if (stepper.current.id === 'pet' && errors.petId) {
-			return 'Please choose a pet to proceed';
-		}
-		return null;
 	};
 
 	return {
@@ -89,8 +82,13 @@ export function usePrescriptionStepper({
 		steps,
 		currentIndex,
 		handleNext,
-		getErrorMessage,
 		register,
 		setValue,
+		selectedDoctorId,
+		doctorError,
+		parentError,
+		petError,
+		selectedParentId,
+		selectedPetId,
 	};
 }

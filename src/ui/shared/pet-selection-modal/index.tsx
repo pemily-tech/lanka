@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
 import { Button } from '../button';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '../dialog';
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+} from '../dialog';
 import { Separator } from '../separator';
 import { usePrescriptionStepper } from './_hooks/use-stepper';
 import Doctor from './doctor';
+import ErrorMessage from './error-message';
+import Pet from './pet';
 import PetParent from './pet-parent';
 
 export default function PetSelectModal({
@@ -19,8 +27,13 @@ export default function PetSelectModal({
 		steps,
 		currentIndex,
 		handleNext,
-		getErrorMessage,
 		setValue,
+		selectedDoctorId,
+		doctorError,
+		parentError,
+		petError,
+		selectedParentId,
+		selectedPetId,
 	} = usePrescriptionStepper({
 		onComplete: () => setOpen(false),
 	});
@@ -29,33 +42,50 @@ export default function PetSelectModal({
 		<Dialog open={open} onOpenChange={setOpen}>
 			<DialogContent className="max-w-[60%]">
 				<DialogHeader>
-					<DialogTitle></DialogTitle>
-				</DialogHeader>
-				<div className="my-12">
-					<div className="flex justify-between py-12">
-						<h2 className="text-lg font-medium">
-							Create a New Prescription
-						</h2>
-						<span className="text-muted-foreground text-sm">
-							Step {currentIndex + 1} of {steps.length}
+					<DialogTitle>
+						Create a New Prescription{' '}
+						<span className="text-14 text-black-1/60 font-normal">
+							(Step {currentIndex + 1} of {steps.length})
 						</span>
-					</div>
+					</DialogTitle>
+				</DialogHeader>
+				<DialogDescription />
+				<div className="my-12">
 					<StepperNavigation
 						stepper={stepper}
 						currentIndex={currentIndex}
 					/>
-					<div className="space-y-4">
+					<div className="space-y-4 ">
 						{stepper.switch({
-							doctor: () => <Doctor setValue={setValue} />,
-							parent: () => <PetParent />,
-							pet: () => <div>Complete</div>,
+							doctor: () => (
+								<Doctor
+									setValue={setValue}
+									selectedDoctorId={selectedDoctorId}
+								/>
+							),
+							parent: () => (
+								<PetParent
+									setValue={setValue}
+									selectedParentId={selectedParentId}
+								/>
+							),
+							pet: () => (
+								<Pet
+									setValue={setValue}
+									selectedParentId={selectedParentId ?? ''}
+									selectedPetId={selectedPetId}
+								/>
+							),
 						})}
-						{getErrorMessage() && (
-							<p className="text-sm text-red-500">
-								{getErrorMessage()}
-							</p>
-						)}
-
+						<ErrorMessage
+							selectedDoctorId={selectedDoctorId}
+							selectedParentId={selectedParentId}
+							selectedPetId={selectedPetId}
+							stepperId={stepper.current.id}
+							doctorError={doctorError}
+							parentError={parentError}
+							petError={petError}
+						/>
 						<div className="flex justify-end gap-16">
 							<Button
 								type="button"
@@ -72,7 +102,7 @@ export default function PetSelectModal({
 								className="px-32"
 								size="lg"
 							>
-								{stepper.isLast ? 'Complete' : 'Next'}
+								{stepper.isLast ? 'Done' : 'Next'}
 							</Button>
 						</div>
 					</div>
@@ -93,7 +123,7 @@ function StepperNavigation({
 		<nav className="group my-4">
 			<ol className="flex items-center justify-between gap-2">
 				{stepper.all.map((step: any, index: number, array: any[]) => (
-					<React.Fragment key={step.id}>
+					<Fragment key={step.id}>
 						<li className="flex shrink-0 items-center gap-4">
 							<Button
 								type="button"
@@ -117,7 +147,7 @@ function StepperNavigation({
 								className={`mx-12 flex-1 ${index < currentIndex ? 'bg-primary h-[2px]' : 'bg-muted'}`}
 							/>
 						)}
-					</React.Fragment>
+					</Fragment>
 				))}
 			</ol>
 		</nav>
