@@ -102,3 +102,14 @@ export interface IAddress {
 	createdAt: string;
 	updatedAt: string;
 }
+
+export interface IPrescriptionBasicDetails {
+	parentName: string;
+	parentMobile: string;
+	patientName: string;
+	patientDetails: IPatientDetails;
+	clinicDetails: IClinicDetails;
+	doctorDetails: IDoctorDetails;
+	parentOrPatientAddress: IAddress;
+	clinicAddress: IAddress;
+}

@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 
 import { defineStepper } from '../../stepper';
+import { useCreatePrescription } from '../_api/use-create-prescription';
 
 const { useStepper, steps, utils } = defineStepper(
 	{
@@ -53,6 +55,8 @@ export function usePrescriptionStepper({
 	const selectedDoctorId = watch('doctorId');
 	const selectedParentId = watch('parentId');
 	const selectedPetId = watch('petId');
+	const { mutateAsync: createPrescription } = useCreatePrescription();
+	const router = useRouter();
 
 	const handleNext = async () => {
 		const currentSchema = stepper.current.schema;
@@ -65,8 +69,21 @@ export function usePrescriptionStepper({
 			if (stepper.current.id === 'pet') setPetError(false);
 
 			if (stepper.isLast) {
-				stepper.reset();
-				onComplete();
+				if (selectedParentId && selectedDoctorId && selectedPetId) {
+					const payload = {
+						parentId: selectedParentId,
+						doctorId: selectedDoctorId,
+						patientId: selectedPetId,
+					};
+					const response = await createPrescription(payload);
+					if (response.status === 'SUCCESS') {
+						router.push(
+							`/prescription/${response.data.prescription.prescriptionNo}`
+						);
+						stepper.reset();
+						onComplete();
+					}
+				}
 			} else {
 				stepper.next();
 			}
