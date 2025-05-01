@@ -1,6 +1,6 @@
 'use client';
 
-import { Fragment, useState } from 'react';
+import { Fragment, type MouseEvent, useState } from 'react';
 
 import {
 	Command,

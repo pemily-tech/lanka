@@ -62,7 +62,7 @@ export default function Filters({
 			onClick={handleClick}
 		>
 			<div className="flex gap-12">
-				{filters?.map((record) => {
+				{filters?.map((record: any) => {
 					const active = activeFilter === record.value;
 					return (
 						<FilterItem

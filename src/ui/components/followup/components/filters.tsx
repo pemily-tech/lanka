@@ -62,7 +62,7 @@ export default function Filters({
 			onClick={handleClick}
 		>
 			<div className="flex gap-12">
-				{filters?.map((record) => {
+				{filters?.map((record: any) => {
 					const active = activeFilter === record.value;
 					return (
 						<FilterItem
@@ -71,7 +71,7 @@ export default function Filters({
 							key={record.id}
 						>
 							<FilterIcon active={active}>
-								{record.icon()}
+								{record?.icon()}
 							</FilterIcon>
 							<FilterLabel active={active}>
 								{record.label}
