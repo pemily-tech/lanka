@@ -74,6 +74,7 @@ export default function Listing({
 						<TableCell
 							colSpan={columns.length}
 							className="text-center"
+							style={{ height: 320 }}
 						>
 							<Spinner />
 							<span>Fetching new results...</span>
