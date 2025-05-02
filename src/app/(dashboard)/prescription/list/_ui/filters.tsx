@@ -22,7 +22,6 @@ interface IProps {
 function Filters({ selectedDate, setDate }: IProps) {
 	const today = startOfToday();
 	const days = Array.from({ length: 7 }).map((_, i) => addDays(today, -i));
-	const [open, setOpen] = useState(false);
 
 	return (
 		<div>
@@ -76,16 +75,7 @@ function Filters({ selectedDate, setDate }: IProps) {
 						</PopoverContent>
 					</Popover>
 				</div>
-				<Button
-					onClick={() => setOpen(!open)}
-					className="rounded-2xl"
-					variant="outline"
-				>
-					<Plus />
-					<span className="font-medium">Create Prescription</span>
-				</Button>
 			</div>
-			<PetSelectModal open={open} setOpen={setOpen} />
 		</div>
 	);
 }

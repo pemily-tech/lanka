@@ -67,6 +67,7 @@ export interface IClinicDetails {
 	_id: string;
 	createdAt: string;
 	updatedAt: string;
+	logoUrl: string;
 }
 
 export interface IDoctorDetails {

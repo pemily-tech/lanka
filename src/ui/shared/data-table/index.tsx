@@ -2,7 +2,9 @@
 'use client';
 
 import { Fragment, useState } from 'react';
+import { isPending } from '@reduxjs/toolkit';
 import {
+	type ColumnDef,
 	flexRender,
 	getCoreRowModel,
 	getExpandedRowModel,
@@ -11,39 +13,44 @@ import {
 } from '@tanstack/react-table';
 import Lottie from 'lottie-react';
 
-import NothingFound from '../../../../../../public/lottie/nothing-found.json';
-import { type IPrescription } from '../../../../../types/prescription';
+import Loader from '../../../../public/lottie/loader-dog.json';
+import NothingFound from '../../../../public/lottie/nothing-found.json';
 import {
-	Spinner,
 	Table,
 	TableBody,
 	TableCell,
 	TableHead,
 	TableHeader,
 	TableRow,
-} from '../../../../../ui/shared';
-import { useColumns } from './columns';
+} from '../table';
 
-export default function Listing({
-	data,
-	isPending,
-}: {
-	data: IPrescription[];
+interface IDataTableProps<TData> {
+	data: TData[];
+	columns: ColumnDef<TData, any>[];
 	isPending: boolean;
-}) {
+	getRowId: (row: TData) => string;
+	emptyMessage?: string;
+}
+
+export function DataTable<TData>({
+	data,
+	columns,
+	isPending,
+	getRowId,
+	emptyMessage = 'Nothing found.',
+}: IDataTableProps<TData>) {
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
 		{}
 	);
-	const columns = useColumns();
 
 	const table = useReactTable({
-		data: data as IPrescription[],
+		data,
 		columns,
 		getCoreRowModel: getCoreRowModel(),
 		getExpandedRowModel: getExpandedRowModel(),
 		getRowCanExpand: () => true,
 		onColumnVisibilityChange: setColumnVisibility,
-		getRowId: (row) => row._id,
+		getRowId,
 		state: {
 			columnVisibility,
 		},
@@ -76,14 +83,16 @@ export default function Listing({
 							className="text-center"
 							style={{ height: 320 }}
 						>
-							<Spinner />
-							<span>Fetching new results...</span>
+							<Lottie
+								style={{ height: 320 }}
+								animationData={Loader}
+							/>
 						</TableCell>
 					</TableRow>
 				) : table.getRowModel().rows.length ? (
 					table.getRowModel().rows.map((row) => (
 						<Fragment key={row.id}>
-							<TableRow key={row.id}>
+							<TableRow>
 								{row.getVisibleCells().map((cell) => (
 									<TableCell
 										className="text-14"
@@ -102,15 +111,13 @@ export default function Listing({
 					<TableRow>
 						<TableCell
 							colSpan={columns.length}
-							className="gap-12 text-center"
+							className="text-center"
 						>
 							<Lottie
 								style={{ height: 320 }}
 								animationData={NothingFound}
 							/>
-							<span className="mt-12 block">
-								Nothing found for the day.
-							</span>
+							<span className="mt-12 block">{emptyMessage}</span>
 						</TableCell>
 					</TableRow>
 				)}

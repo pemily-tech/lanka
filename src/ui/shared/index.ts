@@ -133,6 +133,8 @@ export {
 // 	SearchSelectTrigger,
 // } from './search-select-list';
 // export { useSearchSelectTrigger } from './search-select-list/context';
+export { Calendar } from './calender';
+export { SearchPetParents } from './search-pet-parents';
 export {
 	Select,
 	SelectContent,
@@ -184,6 +186,7 @@ export {
 } from './sidebar';
 export * from './skeleton';
 export { Spinner } from './spinner';
+export { Switch } from './switch';
 export {
 	Table,
 	TableBody,
@@ -197,12 +200,3 @@ export {
 export { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
 export * from './text-area';
 export { Toaster } from './toast';
-// export {
-// 	Tooltip,
-// 	TooltipContent,
-// 	TooltipProvider,
-// 	TooltipTrigger,
-// } from './tooltip';
-export { Calendar } from './calender';
-export { SearchPetParents } from './search-pet-parents';
-export { Switch } from './switch';

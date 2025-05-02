@@ -7,11 +7,12 @@ import {
 	type IPatientDetails,
 	type IPrescriptionBasicDetails,
 } from '../../../../../types/prescription';
+import { ImagePlaceholder, Spinner } from '../../../../../ui/shared';
 import { useGetPrescriptionBasicDetails } from '../_api/use-get-details';
 
 export default function BasicDetails() {
 	const params = useParams();
-	const { data } = useGetPrescriptionBasicDetails(
+	const { data, isPending } = useGetPrescriptionBasicDetails(
 		params?.precriptionNo as string
 	);
 	const basicData =
@@ -21,10 +22,14 @@ export default function BasicDetails() {
 	const clinicDetails = basicData?.clinicDetails || ({} as IClinicDetails);
 	const patientDetails = basicData?.patientDetails || ({} as IPatientDetails);
 
+	if (isPending) {
+		return <Spinner />;
+	}
+
 	return (
 		<div className="flex flex-col gap-16">
 			<div className="flex items-center justify-between gap-16">
-				<div className="flex flex-col gap-16">
+				<div className="flex flex-1 flex-col gap-16">
 					<div className="flex flex-col gap-2">
 						<div className="text-purple text-16 font-semibold">
 							Dr.{doctorDetails.name}
@@ -67,7 +72,13 @@ export default function BasicDetails() {
 						)}
 					</div>
 				</div>
-				<div className="flex-1"></div>
+				<div className="size-[152px]">
+					<ImagePlaceholder
+						src={clinicDetails.logoUrl as string}
+						containerClasses="w-[160px] h-[160px] "
+						imageClasses="rounded-full object-cover"
+					/>
+				</div>
 			</div>
 			<div className="flex items-center justify-between border-y py-12">
 				<div className="flex flex-1 flex-row gap-12">

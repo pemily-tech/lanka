@@ -1,9 +1,6 @@
-import { Plus } from 'lucide-react';
-import Link from 'next/link';
-
-import { Routes } from '../../../../../helpers/routes';
 import {
-	Button,
+	Command,
+	CommandInput,
 	Label,
 	Select,
 	SelectContent,
@@ -13,19 +10,27 @@ import {
 } from '../../../../../ui/shared';
 import { useUpdateUrl } from '../_hooks/use-update-url';
 
-export default function Filters() {
+export default function Filters({
+	value,
+	setValue,
+}: {
+	value: string;
+	setValue: (s: string) => void;
+}) {
 	const { limit, setLimit } = useUpdateUrl();
 	return (
 		<div className="flex w-full flex-wrap items-center justify-between gap-12">
 			<div className="flex-1">
-				<Link href={`${Routes.MEDICINES_CREATE}`}>
-					<Button size="lg">
-						<Plus className="size-18" />
-						<span className="font-medium">Create Medicine</span>
-					</Button>
-				</Link>
+				<Command className="max-w-[450px] rounded-lg border">
+					<CommandInput
+						className="py-24"
+						placeholder="Search for medicines..."
+						value={value}
+						onValueChange={setValue}
+					/>
+				</Command>
 			</div>
-			<div className="flex flex-1 items-center justify-end">
+			<div className="flex flex-1 items-center justify-end gap-12">
 				<div className="flex min-w-[180px] max-w-[180px] flex-col">
 					<Select
 						value={limit.toString()}

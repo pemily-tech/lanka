@@ -1,25 +1,61 @@
 'use client';
 
+import { useCallback, useState } from 'react';
+import debounce from 'lodash.debounce';
+import { Pill } from 'lucide-react';
+import Link from 'next/link';
+
+import { Routes } from '../../../../helpers/routes';
 import { type IMedicine } from '../../../../types/prescription';
 import { PaginationWithLinks } from '../../../../ui/shared';
+import { DataTable } from '../../../../ui/shared/data-table';
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from '../../../../ui/shared/tooltip';
 import { useGetMedicines } from './_api/use-get-medicines';
 import { useUpdateUrl } from './_hooks/use-update-url';
+import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
-import Listing from './_ui/list';
 
 export default function Page() {
-	const { data, isPending } = useGetMedicines({ count: 1 });
+	const [input, setInput] = useState('');
+	const [searchTerm, setSearchTerm] = useState('');
+	const columns = useColumns();
+
+	const debouncedSearch = useCallback(
+		debounce((val: string) => setSearchTerm(val), 500),
+		[]
+	);
+
+	const handleChange = (val: string) => {
+		setInput(val);
+		debouncedSearch(val);
+	};
+
+	const { data, isPending } = useGetMedicines({
+		count: 1,
+		searchTerm,
+	});
+
 	const medicineData = data?.data?.medicines || ([] as IMedicine[]);
 	const totalCount = data?.data?.totalCount || 0;
 	const { limit, page, handlePagination } = useUpdateUrl();
 
 	return (
-		<div>
+		<div className="mb-[54px]">
 			<div className="rounded-8 shadow-card1 bg-white p-16">
-				<Filters />
+				<Filters value={input} setValue={handleChange} />
 			</div>
 			<div className="shadow-card1 rounded-8 relative my-12 bg-white">
-				<Listing data={medicineData} isPending={isPending} />
+				<DataTable
+					columns={columns}
+					data={medicineData}
+					isPending={isPending}
+					getRowId={(row) => row._id}
+					emptyMessage="Nothing found for the day."
+				/>
 			</div>
 			<div className="rounded-8 shadow-card1 flex items-center justify-between gap-24 bg-white p-16">
 				<div className="flex-1">
@@ -35,6 +71,19 @@ export default function Page() {
 					className="flex flex-1 items-center justify-end gap-12"
 				/>
 			</div>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<Link
+						className="bg-purple shadow-card1 fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white transition-transform duration-200 hover:scale-110"
+						href={Routes.MEDICINES_CREATE}
+					>
+						<Pill className="text-white" />
+					</Link>
+				</TooltipTrigger>
+				<TooltipContent className="border-purple rounded-2xl border bg-white px-12 py-6">
+					<p className="text-black-1">Create Medicine</p>
+				</TooltipContent>
+			</Tooltip>
 		</div>
 	);
 }

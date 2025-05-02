@@ -1,15 +1,23 @@
 'use client';
 
+import { useState } from 'react';
 import { format, parseISO, startOfToday } from 'date-fns';
+import { PillBottle } from 'lucide-react';
 import { useQueryStates } from 'nuqs';
-import { date } from 'zod';
 
 import { type IPrescription } from '../../../../types/prescription';
 import { PaginationWithLinks } from '../../../../ui/shared';
+import { DataTable } from '../../../../ui/shared/data-table';
+import PetSelectModal from '../../../../ui/shared/pet-selection-modal';
+import {
+	Tooltip,
+	TooltipContent,
+	TooltipTrigger,
+} from '../../../../ui/shared/tooltip';
 import { useUpdateUrl } from '../../medicines/list/_hooks/use-update-url';
 import { useGetPrescriptions } from './_api/use-get-prescription';
+import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
-import Listing from './_ui/list';
 
 export default function Page() {
 	const today = startOfToday();
@@ -28,14 +36,22 @@ export default function Page() {
 	const medicineData = data?.data?.prescriptions || ([] as IPrescription[]);
 	const totalCount = data?.data?.totalCount || 0;
 	const { limit, page, handlePagination } = useUpdateUrl();
+	const [open, setOpen] = useState(false);
+	const columns = useColumns();
 
 	return (
-		<div>
+		<div className="mb-[54px]">
 			<div className="rounded-8 shadow-card1 bg-white p-16">
 				<Filters selectedDate={selectedDate} setDate={setDate} />
 			</div>
 			<div className="shadow-card1 rounded-8 relative my-12 bg-white">
-				<Listing data={medicineData} isPending={isPending} />
+				<DataTable
+					columns={columns}
+					data={medicineData}
+					isPending={isPending}
+					getRowId={(row) => row._id}
+					emptyMessage="Nothing found for the day."
+				/>
 			</div>
 			<div className="rounded-8 shadow-card1 flex items-center justify-between gap-24 bg-white p-16">
 				<div className="flex-1">
@@ -51,6 +67,20 @@ export default function Page() {
 					className="flex flex-1 items-center justify-end gap-12"
 				/>
 			</div>
+			<Tooltip>
+				<TooltipTrigger asChild>
+					<div
+						className="bg-purple shadow-card1 fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white transition-transform duration-200 hover:scale-110"
+						onClick={() => setOpen(!open)}
+					>
+						<PillBottle className="text-white" />
+					</div>
+				</TooltipTrigger>
+				<TooltipContent className="border-purple rounded-2xl border bg-white px-12 py-6">
+					<p className="text-black-1">Create Prescription</p>
+				</TooltipContent>
+			</Tooltip>
+			<PetSelectModal open={open} setOpen={setOpen} />
 		</div>
 	);
 }
