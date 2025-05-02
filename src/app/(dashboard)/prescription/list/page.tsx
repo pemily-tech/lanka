@@ -53,20 +53,14 @@ export default function Page() {
 					emptyMessage="Nothing found for the day."
 				/>
 			</div>
-			<div className="rounded-8 shadow-card1 flex items-center justify-between gap-24 bg-white p-16">
-				<div className="flex-1">
-					Showing Results: {page * Number(limit) + 1}-
-					{Math.min((page + 1) * Number(limit), totalCount ?? 0)} of{' '}
-					{totalCount}
-				</div>
-				<PaginationWithLinks
-					page={page}
-					pageSize={Number(limit)}
-					totalCount={totalCount ?? 0}
-					handlePagination={handlePagination}
-					className="flex flex-1 items-center justify-end gap-12"
-				/>
-			</div>
+			<PaginationWithLinks
+				page={page}
+				pageSize={Number(limit)}
+				totalCount={totalCount ?? 0}
+				handlePagination={handlePagination}
+				className="flex flex-1 items-center justify-end gap-12"
+				limit={limit}
+			/>
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<div

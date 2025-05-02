@@ -42,7 +42,7 @@ export function useGetMedicines({
 	count = 0,
 	page = 0,
 	limit = 15,
-	searchTerm = 'test',
+	searchTerm,
 }: IProps) {
 	return useQuery({
 		queryKey: [

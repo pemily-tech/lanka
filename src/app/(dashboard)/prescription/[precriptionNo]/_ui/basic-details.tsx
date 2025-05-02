@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
 import { useParams } from 'next/navigation';
 
+import useDocumentDownload from '../../../../../hooks/use-download-document';
 import {
 	type IClinicDetails,
 	type IDoctorDetails,
@@ -21,6 +22,7 @@ export default function BasicDetails() {
 	const doctorDetails = basicData?.doctorDetails || ({} as IDoctorDetails);
 	const clinicDetails = basicData?.clinicDetails || ({} as IClinicDetails);
 	const patientDetails = basicData?.patientDetails || ({} as IPatientDetails);
+	const { url } = useDocumentDownload(clinicDetails.logoUrl ?? '');
 
 	if (isPending) {
 		return <Spinner />;
@@ -73,11 +75,13 @@ export default function BasicDetails() {
 					</div>
 				</div>
 				<div className="size-[152px]">
-					<ImagePlaceholder
-						src={clinicDetails.logoUrl as string}
-						containerClasses="w-[160px] h-[160px] "
-						imageClasses="rounded-full object-cover"
-					/>
+					{url && (
+						<ImagePlaceholder
+							src={url as string}
+							containerClasses="w-[160px] h-[160px] "
+							imageClasses="rounded-full object-cover"
+						/>
+					)}
 				</div>
 			</div>
 			<div className="flex items-center justify-between border-y py-12">

@@ -3,7 +3,6 @@
 import { useParams } from 'next/navigation';
 
 import { useGetPrescriptionById } from './_api/use-get-byid';
-import { useGetPrescriptionBasicDetails } from './_api/use-get-details';
 import BasicDetails from './_ui/basic-details';
 import Medicines from './_ui/medicines';
 

@@ -19,6 +19,7 @@ export interface PaginationWithLinksProps {
 	page: number;
 	handlePagination: (type: 'prev' | 'next' | number) => void;
 	className?: string;
+	limit: number;
 }
 
 export function PaginationWithLinks({
@@ -27,6 +28,7 @@ export function PaginationWithLinks({
 	page,
 	handlePagination,
 	className,
+	limit,
 }: PaginationWithLinksProps) {
 	const totalPageCount = Math.ceil(totalCount / pageSize);
 
@@ -108,36 +110,45 @@ export function PaginationWithLinks({
 	};
 
 	return (
-		<Pagination className={cn(className)}>
-			<PaginationContent className="max-sm:gap-0">
-				<PaginationItem>
-					<PaginationPrevious
-						onClick={() => handlePagination(Math.max(page - 1, 0))}
-						disabled={page === 0}
-						className={
-							page === 0
-								? 'pointer-events-none opacity-50'
-								: undefined
-						}
-					/>
-				</PaginationItem>
-				{renderPageNumbers()}
-				<PaginationItem>
-					<PaginationNext
-						onClick={() =>
-							handlePagination(
-								Math.min(page + 1, totalPageCount - 1)
-							)
-						}
-						disabled={page === totalPageCount - 1}
-						className={
-							page === totalPageCount - 1
-								? 'pointer-events-none opacity-50'
-								: undefined
-						}
-					/>
-				</PaginationItem>
-			</PaginationContent>
-		</Pagination>
+		<div className="rounded-8 shadow-card1 flex items-center justify-between gap-24 bg-white p-16">
+			<div className="flex-1">
+				Showing Results: {page * Number(limit) + 1}-
+				{Math.min((page + 1) * Number(limit), totalCount ?? 0)} of{' '}
+				{totalCount}
+			</div>
+			<Pagination className={cn(className)}>
+				<PaginationContent className="max-sm:gap-0">
+					<PaginationItem>
+						<PaginationPrevious
+							onClick={() =>
+								handlePagination(Math.max(page - 1, 0))
+							}
+							disabled={page === 0}
+							className={
+								page === 0
+									? 'pointer-events-none opacity-50'
+									: undefined
+							}
+						/>
+					</PaginationItem>
+					{renderPageNumbers()}
+					<PaginationItem>
+						<PaginationNext
+							onClick={() =>
+								handlePagination(
+									Math.min(page + 1, totalPageCount - 1)
+								)
+							}
+							disabled={page === totalPageCount - 1}
+							className={
+								page === totalPageCount - 1
+									? 'pointer-events-none opacity-50'
+									: undefined
+							}
+						/>
+					</PaginationItem>
+				</PaginationContent>
+			</Pagination>
+		</div>
 	);
 }
