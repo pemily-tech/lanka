@@ -112,7 +112,7 @@ export const AutoComplete = <T,>({
 							</CommandGroup>
 						)}
 						{!isLoading && options.length === 0 && (
-							<CommandEmpty className="select-none rounded-sm px-2 py-3 text-center text-sm">
+							<CommandEmpty className="text-14 select-none rounded-sm px-2 py-12 text-center">
 								{emptyMessage}
 							</CommandEmpty>
 						)}
