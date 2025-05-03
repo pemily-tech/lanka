@@ -1,35 +1,18 @@
-import { setTimeout } from 'timers';
-import {
-	type KeyboardEvent,
-	useCallback,
-	useMemo,
-	useRef,
-	useState,
-} from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { PencilLine } from 'lucide-react';
 
-import { cn } from '../../../../../helpers/utils';
 import { type IMedicine } from '../../../../../types/prescription';
-import {
-	Button,
-	Command as CommandPrimitive,
-	CommandEmpty,
-	CommandGroup,
-	CommandInput,
-	CommandItem,
-	CommandList,
-} from '../../../../../ui/shared';
+import { Button } from '../../../../../ui/shared';
+import { AutoComplete } from '../../../../../ui/shared/auto-complete';
 import { useGetMedicines } from '../../../medicines/list/_api/use-get-medicines';
 
 export default function Medicines() {
 	const [toggleSearch, setToggleSearch] = useState(false);
 	const [input, setInput] = useState('');
 	const [searchTerm, setSearchTerm] = useState('');
-	const [isOpen, setOpen] = useState(false);
 	const [selected, setSelected] = useState<IMedicine | null>(null);
-	const inputRef = useRef<HTMLInputElement>(null);
-	console.log(selected);
+	const [selectedMedicines, setSelectedMedicines] = useState<IMedicine[]>([]);
 
 	const debouncedSearch = useCallback(
 		debounce((val: string) => setSearchTerm(val), 500),
@@ -51,23 +34,34 @@ export default function Medicines() {
 		[data]
 	);
 
-	const handleKeyDown = useCallback(
-		(event: KeyboardEvent<HTMLDivElement>) => {},
-		[]
-	);
+	const handleKeyDown = (value: string) => {
+		const optionToSelect = medicinesData.find(
+			(option) => option.name === value
+		);
+		if (optionToSelect) {
+			setSelected(optionToSelect);
+			setSelectedMedicines((prev) => {
+				const exists = prev.some(
+					(med) => med._id === optionToSelect._id
+				);
+				return exists ? prev : [...prev, optionToSelect];
+			});
+		}
+	};
 
-	const handleSelectOption = useCallback((option: IMedicine) => {
+	const handleSelect = (option: IMedicine) => {
 		setInput(option.name);
 		setSelected(option);
-		setTimeout(() => {
-			inputRef.current?.blur();
-		}, 100);
-	}, []);
+		setSelectedMedicines((prev) => {
+			const exists = prev.some((med) => med._id === option._id);
+			return exists ? prev : [...prev, option];
+		});
+	};
 
-	const handleBlur = useCallback(() => {
-		setTimeout(() => setOpen(false), 100);
+	const handleBlur = () => {
 		setInput(selected?.name || '');
-	}, [selected]);
+	};
+	console.log(selectedMedicines);
 
 	return (
 		<div className="border-l px-16 pt-16">
@@ -86,58 +80,22 @@ export default function Medicines() {
 			</div>
 			{toggleSearch && (
 				<div className="mt-12">
-					<CommandPrimitive onKeyDown={handleKeyDown}>
-						<CommandInput
-							ref={inputRef}
-							value={input}
-							onValueChange={handleChange}
-							onBlur={handleBlur}
-							onFocus={() => setOpen(true)}
-							placeholder="Search for medicines..."
-							className="text-14"
-						/>
-						<div className="relative h-[300px] w-full">
-							<div
-								className={cn(
-									'animate-in fade-in-0 zoom-in-95 absolute top-0 z-10 block w-full rounded-xl bg-white outline-none',
-									isOpen ? 'block' : 'hidden'
-								)}
-							>
-								<CommandList className="border">
-									{!isPending && medicinesData.length > 0 && (
-										<CommandGroup>
-											{medicinesData?.map((medicine) => {
-												return (
-													<CommandItem
-														key={medicine._id}
-														onSelect={() =>
-															handleSelectOption(
-																medicine
-															)
-														}
-														onMouseDown={(e) => {
-															e.preventDefault();
-															e.stopPropagation();
-														}}
-													>
-														<div>
-															{medicine.name}
-														</div>
-													</CommandItem>
-												);
-											})}
-										</CommandGroup>
-									)}
-									{!isPending &&
-										medicinesData.length === 0 && (
-											<CommandEmpty className="select-none rounded-sm px-2 py-3 text-center text-sm">
-												No results
-											</CommandEmpty>
-										)}
-								</CommandList>
+					<AutoComplete<IMedicine>
+						options={medicinesData as IMedicine[]}
+						renderOption={(option) => (
+							<div className="text-sm text-gray-900">
+								{option.name}
 							</div>
-						</div>
-					</CommandPrimitive>
+						)}
+						isLoading={isPending}
+						emptyMessage="No results"
+						handleDownKey={handleKeyDown}
+						handleSelect={handleSelect}
+						handleBlur={handleBlur}
+						value={input}
+						onValueChange={handleChange}
+						placeholder="Search for medicines..."
+					/>
 				</div>
 			)}
 			<div className="h-[380px]"></div>
