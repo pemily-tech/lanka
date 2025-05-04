@@ -5,10 +5,10 @@ import {
 	useRef,
 	useState,
 } from 'react';
+import { Command as CommandPrimitive } from 'cmdk';
 
 import { cn } from '../../../helpers/utils';
 import {
-	Command as CommandPrimitive,
 	CommandEmpty,
 	CommandGroup,
 	CommandInput,
@@ -83,7 +83,7 @@ export const AutoComplete = <T,>({
 				placeholder={placeholder}
 				className="text-14"
 			/>
-			<div className="relative h-[300px] w-full">
+			<div className="relative w-full">
 				<div
 					className={cn(
 						'animate-in fade-in-0 zoom-in-95 absolute top-0 z-10 block w-full rounded-xl bg-white outline-none',

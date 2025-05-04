@@ -13,9 +13,9 @@ export default function Page() {
 	return (
 		<div className="shadow-card1 rounded-lg bg-white p-16">
 			<BasicDetails />
-			<div className="grid grid-cols-5">
+			<div className="grid grid-cols-6">
 				<div className="col-span-2"></div>
-				<div className="col-span-3">
+				<div className="col-span-4">
 					<Medicines />
 				</div>
 			</div>
