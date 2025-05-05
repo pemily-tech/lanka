@@ -1,6 +1,6 @@
 import { type IMedicine } from '../../../../../../types/prescription';
 import { AutoComplete } from '../../../../../../ui/shared/auto-complete';
-import { useMedicineSearchStore } from '../../_store/medicine-search';
+import { useMedicineStore } from '../../_store/medicine-store';
 
 type Props = {
 	medicines: IMedicine[];
@@ -8,8 +8,7 @@ type Props = {
 };
 
 export function Search({ medicines, isPending }: Props) {
-	const { input, setInput, selectMedicine, resetSearch } =
-		useMedicineSearchStore();
+	const { input, setInput, selectMedicine, resetSearch } = useMedicineStore();
 
 	const handleDownKey = (val: string) => {
 		const selected = medicines.find((med) => med.name === val);

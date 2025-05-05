@@ -19,9 +19,17 @@ type State = {
 	) => void;
 	removeMedicine: (id: string) => void;
 	updateFullMedicine: (id: string, medicine: IMedicine) => void;
+	vitals: string;
+	diagnosis: string;
+	setVitals: (value: string) => void;
+	setDiagnosis: (value: string) => void;
+	advice: string;
+	follwup: string;
+	setAdvice: (value: string) => void;
+	setFollowup: (value: string) => void;
 };
 
-export const useMedicineSearchStore = create<State>((set, get) => ({
+export const useMedicineStore = create<State>((set, get) => ({
 	input: '',
 	searchTerm: '',
 	selected: null,
@@ -77,8 +85,18 @@ export const useMedicineSearchStore = create<State>((set, get) => ({
 		const selected = get().selected;
 		set({ input: selected?.name || '' });
 	},
+
+	vitals: '',
+	diagnosis: '',
+	setVitals: (value) => set({ vitals: value }),
+	setDiagnosis: (value) => set({ diagnosis: value }),
+
+	advice: '',
+	follwup: '',
+	setAdvice: (value) => set({ advice: value }),
+	setFollowup: (value) => set({ follwup: value }),
 }));
 
 const debouncedSetSearchTerm = debounce((val: string) => {
-	useMedicineSearchStore.getState().setSearchTerm(val);
+	useMedicineStore.getState().setSearchTerm(val);
 }, 500);

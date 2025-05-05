@@ -20,11 +20,11 @@ import {
 	DialogTitle,
 	DialogTrigger,
 } from '../../../../../../ui/shared';
-import { useMedicineSearchStore } from '../../_store/medicine-search';
+import { useMedicineStore } from '../../_store/medicine-store';
 import UpdateMedicine from './update-medicine';
 
 export function useColumns(): ColumnDef<IMedicine>[] {
-	const removeMedicine = useMedicineSearchStore((s) => s.removeMedicine);
+	const removeMedicine = useMedicineStore((s) => s.removeMedicine);
 
 	return [
 		{

@@ -1,16 +1,18 @@
+'use client';
+
 import { useMemo, useState } from 'react';
 import { PencilLine } from 'lucide-react';
 
 import { type IMedicine } from '../../../../../../types/prescription';
 import { Button } from '../../../../../../ui/shared';
 import { useGetMedicines } from '../../../../medicines/list/_api/use-get-medicines';
-import { useMedicineSearchStore } from '../../_store/medicine-search';
+import { useMedicineStore } from '../../_store/medicine-store';
 import { Search } from './search';
 import SelectedMedicines from './selected-medicines';
 
 export default function Medicines() {
 	const [toggleSearch, setToggleSearch] = useState(false);
-	const searchTerm = useMedicineSearchStore((s) => s.searchTerm);
+	const searchTerm = useMedicineStore((s) => s.searchTerm);
 
 	const { data, isPending } = useGetMedicines({
 		count: 1,
@@ -23,7 +25,7 @@ export default function Medicines() {
 	);
 
 	return (
-		<div className="border-l px-16 pt-16">
+		<div className="px-16">
 			<div className="flex flex-row items-center gap-8">
 				<h4 className="text-16 text-primary font-semibold">
 					Medicine (RX)

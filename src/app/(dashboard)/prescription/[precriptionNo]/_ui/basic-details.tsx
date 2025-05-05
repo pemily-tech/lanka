@@ -1,7 +1,9 @@
+'use client';
+
 import { format } from 'date-fns';
 import { useParams } from 'next/navigation';
 
-import useDocumentDownload from '../../../../../hooks/use-download-document';
+import useGetClinicLogo from '../../../../../api/get-clinic-logo';
 import {
 	type IClinicDetails,
 	type IDoctorDetails,
@@ -22,7 +24,8 @@ export default function BasicDetails() {
 	const doctorDetails = basicData?.doctorDetails || ({} as IDoctorDetails);
 	const clinicDetails = basicData?.clinicDetails || ({} as IClinicDetails);
 	const patientDetails = basicData?.patientDetails || ({} as IPatientDetails);
-	const { url } = useDocumentDownload(clinicDetails.logoUrl ?? '');
+	const { data: logoData } = useGetClinicLogo();
+	const clinicLogo = logoData?.data?.logoUrl;
 
 	if (isPending) {
 		return <Spinner />;
@@ -74,12 +77,12 @@ export default function BasicDetails() {
 						)}
 					</div>
 				</div>
-				<div className="size-[152px]">
-					{url && (
+				<div className="border-purple-1/20 size-[152px] rounded-full border-2 p-12">
+					{clinicLogo && (
 						<ImagePlaceholder
-							src={url as string}
-							containerClasses="w-[160px] h-[160px] "
-							imageClasses="rounded-full object-cover"
+							src={clinicLogo as string}
+							containerClasses="size-full"
+							imageClasses="rounded-full object-contain"
 						/>
 					)}
 				</div>

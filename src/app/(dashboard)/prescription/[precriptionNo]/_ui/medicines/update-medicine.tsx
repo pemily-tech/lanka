@@ -2,15 +2,13 @@ import { useState } from 'react';
 
 import { type IMedicine } from '../../../../../../types/prescription';
 import { Button, DialogClose } from '../../../../../../ui/shared';
-import { useMedicineSearchStore } from '../../_store/medicine-search';
+import { useMedicineStore } from '../../_store/medicine-store';
 import SelectMedicineType from './select';
 
 export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 	const [localData, setLocalData] = useState<IMedicine>(medicine);
 
-	const updateFullMedicine = useMedicineSearchStore(
-		(s) => s.updateFullMedicine
-	);
+	const updateFullMedicine = useMedicineStore((s) => s.updateFullMedicine);
 
 	return (
 		<div>
