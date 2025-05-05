@@ -1,6 +1,13 @@
 import { type StylesConfig } from 'react-select';
 import { type ClassValue, clsx } from 'clsx';
-import { format } from 'date-fns';
+import {
+	addMonths,
+	addYears,
+	differenceInDays,
+	differenceInMonths,
+	differenceInYears,
+	format,
+} from 'date-fns';
 import { twMerge } from 'tailwind-merge';
 
 import { store } from '../store';
@@ -108,4 +115,30 @@ export const firstCharCapital = (str: string) => {
 	}
 
 	return '';
+};
+
+export const calculateAge = (birthDateString: string) => {
+	const birthDate = new Date(birthDateString);
+	const today = new Date();
+
+	if (isNaN(birthDate.getTime()) || birthDate > today) {
+		return `${0}Y, ${0}M, ${0}D`;
+	}
+
+	const years = differenceInYears(today, birthDate);
+	const adjustedDateAfterYears = addYears(birthDate, years);
+
+	const months = differenceInMonths(today, adjustedDateAfterYears);
+	const adjustedDateAfterMonths = addMonths(adjustedDateAfterYears, months);
+
+	const days = differenceInDays(today, adjustedDateAfterMonths);
+
+	if (years === 0) {
+		if (months === 0) {
+			return `${days}D`;
+		}
+		return `${months}M, ${days}D`;
+	}
+
+	return `${years}Y, ${months}M, ${days}D`;
 };
