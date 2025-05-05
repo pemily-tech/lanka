@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
 import { type IPrescription } from '../../../../../types/prescription';
-import { FloatingInput } from '../../../../../ui/shared';
+import { FloatingInput, FloatingTextArea } from '../../../../../ui/shared';
 import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useMedicineStore } from '../_store/medicine-store';
 
@@ -29,7 +29,7 @@ export default function Vitals() {
 	return (
 		<div className="flex flex-1 flex-row gap-16 px-16 py-24">
 			<div className="flex-1">
-				<FloatingInput
+				<FloatingTextArea
 					value={vitals}
 					label="Vitals"
 					id="vitals"
@@ -37,7 +37,7 @@ export default function Vitals() {
 				/>
 			</div>
 			<div className="flex-1">
-				<FloatingInput
+				<FloatingTextArea
 					label="Diagnosis"
 					id="diagnosis"
 					value={diagnosis}
