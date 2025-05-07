@@ -2,6 +2,7 @@ import AdviceFollowup from './_ui/advice-followup';
 import BasicDetails from './_ui/basic-details';
 import Footer from './_ui/footer';
 import Medicines from './_ui/medicines';
+import Signature from './_ui/signature';
 import Soap from './_ui/soap';
 import Vitals from './_ui/vitals';
 
@@ -17,6 +18,7 @@ export default function Page() {
 					<Vitals />
 					<Medicines />
 					<AdviceFollowup />
+					<Signature />
 					<Footer />
 				</div>
 			</div>

@@ -24,78 +24,85 @@ type State = {
 	setVitals: (value: string) => void;
 	setDiagnosis: (value: string) => void;
 	advice: string;
-	follwup: string;
+	follwup: Date | null;
 	setAdvice: (value: string) => void;
-	setFollowup: (value: string) => void;
+	setFollowup: (value: Date | null) => void;
 };
 
-export const useMedicineStore = create<State>((set, get) => ({
+const initialState = {
 	input: '',
 	searchTerm: '',
 	selected: null,
 	selectedMedicines: [],
-
-	setInput: (val: string) => {
-		set({ input: val });
-		debouncedSetSearchTerm(val);
-	},
-
-	setSearchTerm: (val: string) => set({ searchTerm: val }),
-
-	selectMedicine: (medicine: IMedicine) => {
-		const { selectedMedicines } = get();
-		const exists = selectedMedicines.some(
-			(med) => med.medicineId === medicine.medicineId
-		);
-		set({
-			input: medicine.name,
-			selected: medicine,
-			selectedMedicines: exists
-				? selectedMedicines
-				: [...selectedMedicines, medicine],
-		});
-	},
-
-	updateMedicineField: (id, field, value) =>
-		set((state) => ({
-			selectedMedicines: state.selectedMedicines.map((medicine) =>
-				medicine.medicineId === id
-					? { ...medicine, [field]: value }
-					: medicine
-			),
-		})),
-
-	updateFullMedicine: (id, updatedData) =>
-		set((state) => ({
-			selectedMedicines: state.selectedMedicines.map((medicine) =>
-				medicine.medicineId === id
-					? { ...medicine, ...updatedData }
-					: medicine
-			),
-		})),
-
-	removeMedicine: (id) =>
-		set((state) => ({
-			selectedMedicines: state.selectedMedicines.filter(
-				(medicine) => medicine.medicineId !== id
-			),
-		})),
-
-	resetSearch: () => {
-		const selected = get().selected;
-		set({ input: selected?.name || '' });
-	},
-
 	vitals: '',
 	diagnosis: '',
-	setVitals: (value) => set({ vitals: value }),
-	setDiagnosis: (value) => set({ diagnosis: value }),
-
 	advice: '',
-	follwup: '',
-	setAdvice: (value) => set({ advice: value }),
-	setFollowup: (value) => set({ follwup: value }),
-}));
+	follwup: null,
+};
+
+export const useMedicineStore = create<State & { reset: () => void }>(
+	(set, get) => ({
+		...initialState,
+
+		setInput: (val: string) => {
+			set({ input: val });
+			debouncedSetSearchTerm(val);
+		},
+
+		setSearchTerm: (val: string) => set({ searchTerm: val }),
+
+		selectMedicine: (medicine: IMedicine) => {
+			const { selectedMedicines } = get();
+			const exists = selectedMedicines.some(
+				(med) => med.medicineId === medicine.medicineId
+			);
+			set({
+				input: medicine.name,
+				selected: medicine,
+				selectedMedicines: exists
+					? selectedMedicines
+					: [...selectedMedicines, medicine],
+			});
+		},
+
+		updateMedicineField: (id, field, value) =>
+			set((state) => ({
+				selectedMedicines: state.selectedMedicines.map((medicine) =>
+					medicine.medicineId === id
+						? { ...medicine, [field]: value }
+						: medicine
+				),
+			})),
+
+		updateFullMedicine: (id, updatedData) =>
+			set((state) => ({
+				selectedMedicines: state.selectedMedicines.map((medicine) =>
+					medicine.medicineId === id
+						? { ...medicine, ...updatedData }
+						: medicine
+				),
+			})),
+
+		removeMedicine: (id) =>
+			set((state) => ({
+				selectedMedicines: state.selectedMedicines.filter(
+					(medicine) => medicine.medicineId !== id
+				),
+			})),
+
+		resetSearch: () => {
+			const selected = get().selected;
+			set({ input: selected?.name || '' });
+		},
+
+		setVitals: (value) => set({ vitals: value }),
+		setDiagnosis: (value) => set({ diagnosis: value }),
+		setAdvice: (value) => set({ advice: value }),
+		setFollowup: (value) => set({ follwup: value }),
+
+		reset: () => set(initialState),
+	})
+);
 
 const debouncedSetSearchTerm = debounce((val: string) => {
 	useMedicineStore.getState().setSearchTerm(val);

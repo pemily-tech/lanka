@@ -1,12 +1,17 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { Plus } from 'lucide-react';
+import { format, setDate } from 'date-fns';
+import { se } from 'date-fns/locale';
+import { CalendarIcon, Plus } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
+import { DATE_FORMAT } from '../../../../../helpers/constant';
+import { cn } from '../../../../../helpers/utils';
 import { type IPrescription } from '../../../../../types/prescription';
 import {
 	Button,
+	Calendar,
 	Dialog,
 	DialogClose,
 	DialogContent,
@@ -14,6 +19,9 @@ import {
 	DialogHeader,
 	DialogTitle,
 	FloatingTextArea,
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
 } from '../../../../../ui/shared';
 import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useMedicineStore } from '../_store/medicine-store';
@@ -68,21 +76,21 @@ export default function AdviceFollowup() {
 	}, [data?.data?.prescription]);
 	const isPrescriptionSaved = !!prescription.url;
 
-	const { setAdvice, setFollowup } = useMedicineStore();
+	const { setAdvice, setFollowup, follwup } = useMedicineStore();
 	const [openAdvice, setOpenAdvice] = useState(false);
-	const [openFollowup, setOpenFollowup] = useState(false);
 
 	const [localAdvice, setLocalAdvice] = useState('');
-	const [localFollowup, setLocalFollowup] = useState('');
 
 	useEffect(() => {
 		setLocalAdvice(prescription.advice || '');
-		setLocalFollowup(prescription.nextVisit || '');
+		setFollowup(
+			prescription.nextVisit ? new Date(prescription.nextVisit) : null
+		);
 	}, [prescription]);
 
 	return (
-		<div className="flex flex-col gap-[24px] px-16 py-24">
-			<div>
+		<div className="flex flex-col gap-16 px-16 py-24">
+			<div className="flex flex-row items-center gap-8">
 				<Button
 					onClick={
 						isPrescriptionSaved
@@ -96,23 +104,39 @@ export default function AdviceFollowup() {
 					<Plus className="text-primary size-16" />
 					<span className="text-primary font-medium">Advice:</span>
 				</Button>
-				<span>{prescription.advice}</span>
+				<span>
+					{isPrescriptionSaved ? prescription.advice : localAdvice}
+				</span>
 			</div>
 			<div>
-				<Button
-					onClick={
-						isPrescriptionSaved
-							? () => null
-							: () => setOpenFollowup(true)
-					}
-					className="flex cursor-pointer flex-row items-center gap-4 px-4"
-					variant="ghost"
-					size="lg"
-				>
-					<Plus className="text-primary size-16" />
-					<span className="text-primary font-medium">Followup:</span>
-				</Button>
-				<span>{prescription.nextVisit}</span>
+				<Popover>
+					<PopoverTrigger asChild>
+						<Button
+							className="flex cursor-pointer flex-row items-center gap-8 px-4"
+							variant="ghost"
+							size="lg"
+						>
+							<CalendarIcon className="text-primary size-16" />
+							<span className="text-primary font-medium">
+								Followup:
+							</span>
+							<span>
+								{isPrescriptionSaved
+									? prescription.nextVisit
+									: follwup && format(follwup, DATE_FORMAT)}
+							</span>
+						</Button>
+					</PopoverTrigger>
+					{!isPrescriptionSaved && (
+						<PopoverContent className="w-auto p-0">
+							<Calendar
+								mode="single"
+								selected={follwup ?? undefined}
+								onSelect={(day) => setFollowup(day ?? null)}
+							/>
+						</PopoverContent>
+					)}
+				</Popover>
 			</div>
 
 			<EditableDialog
@@ -122,17 +146,10 @@ export default function AdviceFollowup() {
 				open={openAdvice}
 				onOpenChange={setOpenAdvice}
 				onChange={setLocalAdvice}
-				onConfirm={() => setAdvice(localAdvice)}
-			/>
-
-			<EditableDialog
-				title="Update Followup"
-				label="Followup"
-				value={localFollowup}
-				open={openFollowup}
-				onOpenChange={setOpenFollowup}
-				onChange={setLocalFollowup}
-				onConfirm={() => setFollowup(localFollowup)}
+				onConfirm={() => {
+					setAdvice(localAdvice);
+					setOpenAdvice(false);
+				}}
 			/>
 		</div>
 	);

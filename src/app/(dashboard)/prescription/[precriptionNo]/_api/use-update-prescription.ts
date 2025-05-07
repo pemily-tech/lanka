@@ -60,7 +60,7 @@ interface IPayload {
 	diagnosis?: string;
 	vitals?: string;
 	advice?: string;
-	nextVisit?: string;
+	nextVisit?: Date | null;
 }
 
 const updatePrescription = async (payload: IPayload, id: string) => {
