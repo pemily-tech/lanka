@@ -39,7 +39,7 @@ export const CommandInput = React.forwardRef<
 	React.ElementRef<typeof CommandPrimitive.Input>,
 	React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
-	<div className="flex items-center border-b px-12">
+	<div className="flex items-center border-b px-12" cmdk-input-wrapper="">
 		<Search className="mr-12 size-16 shrink-0 opacity-50" />
 		<CommandPrimitive.Input
 			ref={ref}

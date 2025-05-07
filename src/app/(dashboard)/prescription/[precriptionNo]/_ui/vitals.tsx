@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
 import { type IPrescription } from '../../../../../types/prescription';
-import { FloatingInput, FloatingTextArea } from '../../../../../ui/shared';
+import { FloatingTextArea } from '../../../../../ui/shared';
 import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useMedicineStore } from '../_store/medicine-store';
 
@@ -15,6 +15,7 @@ export default function Vitals() {
 		return data?.data?.prescription || ({} as IPrescription);
 	}, [data?.data?.prescription]);
 	const { vitals, diagnosis, setVitals, setDiagnosis } = useMedicineStore();
+	const isPrescriptionSaved = !!prescriptionData.url;
 
 	useEffect(() => {
 		if (prescriptionData.vitals) {
@@ -29,20 +30,32 @@ export default function Vitals() {
 	return (
 		<div className="flex flex-1 flex-row gap-16 px-16 py-24">
 			<div className="flex-1">
-				<FloatingTextArea
-					value={vitals}
-					label="Vitals"
-					id="vitals"
-					onChange={(e) => setVitals(e.target.value)}
-				/>
+				{isPrescriptionSaved ? (
+					<div>
+						<span>Vitals: {prescriptionData?.vitals}</span>
+					</div>
+				) : (
+					<FloatingTextArea
+						value={vitals}
+						label="Vitals"
+						id="vitals"
+						onChange={(e) => setVitals(e.target.value)}
+					/>
+				)}
 			</div>
 			<div className="flex-1">
-				<FloatingTextArea
-					label="Diagnosis"
-					id="diagnosis"
-					value={diagnosis}
-					onChange={(e) => setDiagnosis(e.target.value)}
-				/>
+				{isPrescriptionSaved ? (
+					<div>
+						<span>Diagnosis: {prescriptionData?.diagnosis}</span>
+					</div>
+				) : (
+					<FloatingTextArea
+						label="Diagnosis"
+						id="diagnosis"
+						value={diagnosis}
+						onChange={(e) => setDiagnosis(e.target.value)}
+					/>
+				)}
 			</div>
 		</div>
 	);

@@ -1,10 +1,15 @@
+import { type IMedicine } from '../../../../../../types/prescription';
 import { DataTable } from '../../../../../../ui/shared/data-table';
-import { useMedicineStore } from '../../_store/medicine-store';
 import { useColumns } from './medicine-columns';
 
-export default function SelectedMedicines() {
-	const selectedMedicines = useMedicineStore((s) => s.selectedMedicines);
-	const columns = useColumns();
+export default function SelectedMedicines({
+	selectedMedicines,
+	isPrescriptionSaved,
+}: {
+	selectedMedicines: IMedicine[];
+	isPrescriptionSaved: boolean;
+}) {
+	const columns = useColumns(isPrescriptionSaved);
 
 	return (
 		<div className="mt-12 max-h-[380px] min-h-[280px] overflow-y-scroll">

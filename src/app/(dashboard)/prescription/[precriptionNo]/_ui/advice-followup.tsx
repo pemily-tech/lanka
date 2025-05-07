@@ -66,6 +66,7 @@ export default function AdviceFollowup() {
 	const prescription = useMemo(() => {
 		return data?.data?.prescription || ({} as IPrescription);
 	}, [data?.data?.prescription]);
+	const isPrescriptionSaved = !!prescription.url;
 
 	const { setAdvice, setFollowup } = useMedicineStore();
 	const [openAdvice, setOpenAdvice] = useState(false);
@@ -81,20 +82,36 @@ export default function AdviceFollowup() {
 
 	return (
 		<div className="flex flex-col gap-[24px] px-16 py-24">
-			<div
-				onClick={() => setOpenAdvice(true)}
-				className="flex cursor-pointer flex-row items-center gap-4"
-			>
-				<Plus className="text-primary size-16" />
-				<span className="text-primary font-medium">Advice:</span>
+			<div>
+				<Button
+					onClick={
+						isPrescriptionSaved
+							? () => null
+							: () => setOpenAdvice(true)
+					}
+					className="flex cursor-pointer flex-row items-center gap-4 px-4"
+					variant="ghost"
+					size="lg"
+				>
+					<Plus className="text-primary size-16" />
+					<span className="text-primary font-medium">Advice:</span>
+				</Button>
 				<span>{prescription.advice}</span>
 			</div>
-			<div
-				onClick={() => setOpenFollowup(true)}
-				className="flex cursor-pointer flex-row items-center gap-4"
-			>
-				<Plus className="text-primary size-16" />
-				<span className="text-primary font-medium">Followup:</span>
+			<div>
+				<Button
+					onClick={
+						isPrescriptionSaved
+							? () => null
+							: () => setOpenFollowup(true)
+					}
+					className="flex cursor-pointer flex-row items-center gap-4 px-4"
+					variant="ghost"
+					size="lg"
+				>
+					<Plus className="text-primary size-16" />
+					<span className="text-primary font-medium">Followup:</span>
+				</Button>
 				<span>{prescription.nextVisit}</span>
 			</div>
 

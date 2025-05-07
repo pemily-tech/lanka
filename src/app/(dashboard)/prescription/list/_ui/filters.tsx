@@ -1,18 +1,16 @@
 'use client';
 
-import { memo, useState } from 'react';
-import { addDays, format, isSameDay, parseISO, startOfToday } from 'date-fns';
-import { CalendarIcon, Plus } from 'lucide-react';
+import { memo } from 'react';
+import { addDays, format, isSameDay, startOfToday } from 'date-fns';
+import { CalendarIcon } from 'lucide-react';
 
 import { cn } from '../../../../../helpers/utils';
 import {
-	Button,
 	Calendar,
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
 } from '../../../../../ui/shared';
-import PetSelectModal from '../../../../../ui/shared/pet-selection-modal';
 
 interface IProps {
 	selectedDate: Date;

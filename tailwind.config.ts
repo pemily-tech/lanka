@@ -11,7 +11,7 @@ const config = {
 	prefix: '',
 	theme: {
 		fontFamily: {
-			satoshi: ['var(--font-urbanist)'],
+			urbanist: ['var(--font-urbanist)'],
 		},
 		container: {
 			center: true,

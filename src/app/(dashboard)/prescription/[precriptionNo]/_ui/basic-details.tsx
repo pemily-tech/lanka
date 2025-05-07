@@ -1,6 +1,7 @@
+/* eslint-disable max-lines-per-function */
 'use client';
 
-import { format } from 'date-fns';
+import { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
 import useGetClinicLogo from '../../../../../api/get-clinic-logo';
@@ -10,9 +11,11 @@ import {
 	type IClinicDetails,
 	type IDoctorDetails,
 	type IPatientDetails,
+	type IPrescription,
 	type IPrescriptionBasicDetails,
 } from '../../../../../types/prescription';
 import { ImagePlaceholder, Spinner } from '../../../../../ui/shared';
+import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useGetPrescriptionBasicDetails } from '../_api/use-get-details';
 
 export default function BasicDetails() {
@@ -23,12 +26,34 @@ export default function BasicDetails() {
 	const basicData =
 		data?.data?.prescriptionBasicDetails ||
 		({} as IPrescriptionBasicDetails);
-	const doctorDetails = basicData?.doctorDetails || ({} as IDoctorDetails);
-	const clinicDetails = basicData?.clinicDetails || ({} as IClinicDetails);
-	const clinicAddress = basicData?.clinicAddress || ({} as IAddress);
-	const patientDetails = basicData?.patientDetails || ({} as IPatientDetails);
-	const parentOrPatientAddress =
-		basicData?.parentOrPatientAddress || ({} as IAddress);
+	const { data: prescriptionData } = useGetPrescriptionById(
+		params?.precriptionNo as string
+	);
+	const prescription = useMemo(() => {
+		return prescriptionData?.data?.prescription || ({} as IPrescription);
+	}, [prescriptionData?.data?.prescription]);
+	const isPrescriptionSaved = !!prescription.url;
+
+	const doctorDetails = isPrescriptionSaved
+		? prescription?.doctorDetails || ({} as IDoctorDetails)
+		: basicData?.doctorDetails || ({} as IDoctorDetails);
+
+	const clinicDetails = isPrescriptionSaved
+		? prescription?.clinicDetails || ({} as IClinicDetails)
+		: basicData?.clinicDetails || ({} as IClinicDetails);
+
+	const clinicAddress = isPrescriptionSaved
+		? prescription?.clinicAddress || ({} as IAddress)
+		: basicData?.clinicAddress || ({} as IAddress);
+
+	const patientDetails = isPrescriptionSaved
+		? prescription?.patientDetails || ({} as IPatientDetails)
+		: basicData?.patientDetails || ({} as IPatientDetails);
+
+	const parentOrPatientAddress = isPrescriptionSaved
+		? prescription?.parentOrPatientAddress || ({} as IAddress)
+		: basicData?.parentOrPatientAddress || ({} as IAddress);
+
 	const { data: logoData } = useGetClinicLogo();
 	const clinicLogo = logoData?.data?.logoUrl;
 
@@ -112,7 +137,7 @@ export default function BasicDetails() {
 				{patientDetails.dob && (
 					<div className="flex flex-row gap-6">
 						<span className="text-black-1/60">DOB: </span>{' '}
-						<span>{format(patientDetails.dob, 'd MMM, yyyy')}</span>
+						<span>{patientDetails.dob}</span>
 					</div>
 				)}
 				<div className="flex flex-row gap-6">

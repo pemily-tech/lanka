@@ -33,6 +33,10 @@ function ImagePlaceholder(props: ImagePlaceholderProps) {
 		...rest
 	} = props;
 
+	if (!src) {
+		return;
+	}
+
 	return (
 		<figure className={cn('relative', containerClasses)} {...rest}>
 			<Image

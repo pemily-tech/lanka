@@ -17,9 +17,9 @@ export default function Page() {
 					<Vitals />
 					<Medicines />
 					<AdviceFollowup />
+					<Footer />
 				</div>
 			</div>
-			<Footer />
 		</div>
 	);
 }

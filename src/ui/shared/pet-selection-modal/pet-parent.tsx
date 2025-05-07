@@ -1,16 +1,10 @@
-import { Fragment, type MouseEvent, useState } from 'react';
+import { type MouseEvent, useCallback, useState } from 'react';
 import { type UseFormSetValue } from 'react-hook-form';
+import debounce from 'lodash.debounce';
 
 import { useGetPetParents } from '../../../api/get-pet-parent';
 import { cn } from '../../../helpers/utils';
-import {
-	Command,
-	CommandEmpty,
-	CommandInput,
-	CommandItem,
-	CommandList,
-	CommandSeparator,
-} from '../command';
+import { Command, CommandEmpty, CommandInput, CommandList } from '../command';
 import { UserProfile } from '../profile-image/user';
 import Spinner from '../spinner';
 
@@ -22,12 +16,23 @@ export default function PetParent({
 	selectedParentId: string | undefined;
 }) {
 	const [value, setSearchValue] = useState('');
+	const [searchTerm, setSearchTerm] = useState('');
 	const { data, isPending } = useGetPetParents({
 		apiKey: 'clinic/parents',
-		searchTerm: value,
+		searchTerm: searchTerm,
 		limit: 15,
 	});
 	const petParentData = data?.data?.parents || [];
+
+	const debouncedSearch = useCallback(
+		debounce((val: string) => setSearchTerm(val), 500),
+		[]
+	);
+
+	const handleChange = (val: string) => {
+		setSearchValue(val);
+		debouncedSearch(val);
+	};
 
 	const handleSelect = async (e: MouseEvent<HTMLDivElement>) => {
 		e.stopPropagation();
@@ -45,44 +50,36 @@ export default function PetParent({
 				className="py-24"
 				placeholder="Search for pet parents..."
 				value={value}
-				onValueChange={setSearchValue}
+				onValueChange={handleChange}
 			/>
 			<CommandList onClick={handleSelect} className="max-h-full">
 				{isPending && <Spinner />}
 				{petParentData?.map((parent) => {
 					return (
-						<Fragment key={parent._id}>
-							<CommandItem
-								className={cn(
-									'flex gap-24',
-									selectedParentId ===
-										parent.parent.parentId &&
-										'bg-primary/20'
-								)}
-								key={parent._id}
-								data-id={parent.parent.parentId}
-							>
-								<UserProfile
-									id={parent?.parent?.parentId}
-									containerClasses="!size-[54px]"
-									imageClasses="!rounded-8"
-									iconClasses="!size-[54px]"
-								/>
-								<div>
-									<p className="text-16 text-left font-medium">
-										{parent?.parent?.name}
-									</p>
-									<p className="text-14 text-left leading-[30px]">
-										Pets:{' '}
-										{parent?.parent?.petNames.join(', ')}
-									</p>
-									<p className="text-14 text-left leading-[30px]">
-										{parent?.parent?.mobile}
-									</p>
-								</div>
-							</CommandItem>
-							<CommandSeparator />
-						</Fragment>
+						<div
+							className={cn(
+								'text-14 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-24 border-b px-12 py-8 outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-16 [&_svg]:shrink-0',
+								selectedParentId === parent.parent.parentId &&
+									'bg-primary/20 data-[selected=true]:bg-primary/20'
+							)}
+							key={parent._id}
+							data-id={parent.parent.parentId}
+						>
+							<UserProfile
+								id={parent?.parent?.parentId}
+								containerClasses="!size-[54px]"
+								imageClasses="!rounded-8"
+								iconClasses="!size-[54px]"
+							/>
+							<div>
+								<p className="text-14 text-left leading-[30px]">
+									Pets: {parent?.parent?.petNames.join(', ')}
+								</p>
+								<p className="text-14 text-left leading-[30px]">
+									{parent?.parent?.mobile}
+								</p>
+							</div>
+						</div>
 					);
 				})}
 				{!isPending && data && data?.data?.parents?.length <= 0 && (
