@@ -4,6 +4,7 @@ import { toast } from 'sonner';
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
 import { useAppSelector } from '../../store';
+import { useAuthStore } from '../../store/user-auth';
 import { useGetUserProfileUrl } from '../profile-image/profile-image';
 
 import { env } from '@/env.mjs';
@@ -28,10 +29,8 @@ const uploadProfile = async (payload: FormData) => {
 };
 
 export function useUploadUserProfile(id?: string) {
-	const authState = useAppSelector((state) => state.auth);
-	const { refetch } = useGetUserProfileUrl(
-		id ? id : (authState.userId as string)
-	);
+	const { userId } = useAuthStore();
+	const { refetch } = useGetUserProfileUrl(id ? id : (userId as string));
 
 	return useMutation({
 		mutationFn: uploadProfile,

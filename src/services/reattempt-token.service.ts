@@ -5,6 +5,7 @@ import { ApiEndpoints } from '../helpers/primitives';
 import { logout } from '../helpers/utils';
 import { store } from '../store';
 import { updateUser } from '../store/auth';
+import { useAuthStore } from '../store/user-auth';
 // eslint-disable-next-line import/no-cycle
 import { HttpService } from './http-service';
 
@@ -31,14 +32,14 @@ async function ResetTokenAndReattemptRequest(
 			const resp = await axios.post(
 				`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.RefreshToken}`,
 				{
-					refreshToken: store.getState().auth.refreshToken,
+					refreshToken: useAuthStore.getState().refreshToken,
 				}
 			);
 
 			if (resp?.data?.status === 'SUCCESS') {
 				store.dispatch(
 					updateUser({
-						...store.getState().auth,
+						...useAuthStore.getState(),
 						token: resp?.data?.data?.accessToken,
 					})
 				);

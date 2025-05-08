@@ -1,7 +1,7 @@
 import axios, { type AxiosError, type AxiosResponse } from 'axios';
 
 import { logout } from '../helpers/utils';
-import { store } from '../store';
+import { useAuthStore } from '../store/user-auth';
 // eslint-disable-next-line import/no-cycle
 import { ResetTokenAndReattemptRequest } from './reattempt-token.service';
 
@@ -27,9 +27,9 @@ const HttpService = axios.create({
 HttpService.interceptors.request.use(
 	async (config) => {
 		try {
-			const state = store.getState();
-			if (state?.auth?.loggedIn && state?.auth?.token) {
-				config.headers.Authorization = `Bearer ${state.auth.token}`;
+			const state = useAuthStore.getState();
+			if (state?.loggedIn && state?.token) {
+				config.headers.Authorization = `Bearer ${state.token}`;
 			}
 			return config;
 		} catch (error) {

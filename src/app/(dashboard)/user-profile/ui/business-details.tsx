@@ -10,6 +10,7 @@ import useUpdateBusiness from '../../../../api/use-update-business/update-busine
 import { useGetUser } from '../../../../api/user-details/user-details';
 import { createFormDataForImage } from '../../../../helpers/utils';
 import { useAppSelector } from '../../../../store';
+import { useAuthStore } from '../../../../store/user-auth';
 import TextInput from '../../../../ui/components/text-input';
 import { Button } from '../../../../ui/shared/button';
 
@@ -22,8 +23,8 @@ import { Button } from '../../../../ui/shared/button';
 
 const BusinessForm = () => {
 	const { register, handleSubmit, setValue } = useForm();
-	const authState = useAppSelector((state) => state.auth);
-	const { data } = useGetUser(authState.userId as string);
+	const { userId } = useAuthStore();
+	const { data } = useGetUser(userId as string);
 	const { mutate: updateBusiness, isPending } = useUpdateBusiness();
 	const { ownerName, pan, gstNo, businessContact } = data?.data?.user || {};
 	const { data: getLogo } = useGetClinicLogo();

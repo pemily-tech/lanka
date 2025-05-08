@@ -11,6 +11,7 @@ import { z } from 'zod';
 import { useGetUser } from '../../../../api/user-details/user-details';
 import { cn } from '../../../../helpers/utils';
 import { useAppSelector } from '../../../../store';
+import { useAuthStore } from '../../../../store/user-auth';
 import { type IUserDetails } from '../../../../types/user';
 import {
 	Button,
@@ -55,8 +56,8 @@ const PersonalDetailsForm = () => {
 			dob: '',
 		},
 	});
-	const authState = useAppSelector((state) => state.auth);
-	const { data, refetch } = useGetUser(authState.userId as string);
+	const { userId } = useAuthStore();
+	const { data, refetch } = useGetUser(userId as string);
 	const userData = useMemo(() => {
 		return data?.data?.user || ({} as IUserDetails);
 	}, [data?.data?.user]);

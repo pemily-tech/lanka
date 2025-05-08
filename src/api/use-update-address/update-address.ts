@@ -3,6 +3,7 @@ import { toast } from 'sonner';
 
 import { HttpService } from '../../services/http-service';
 import { useAppSelector } from '../../store';
+import { useAuthStore } from '../../store/user-auth';
 import { useGetUser } from '../user-details/user-details';
 
 import { env } from '@/env.mjs';
@@ -30,8 +31,8 @@ const updateAddress = async (payload: IPayload, addressId: string) => {
 };
 
 export function useUpdateAddress(addressId: string) {
-	const authState = useAppSelector((state) => state.auth);
-	const { refetch } = useGetUser(authState.userId as string);
+	const { userId } = useAuthStore();
+	const { refetch } = useGetUser(userId as string);
 
 	return useMutation({
 		mutationFn: (payload: IPayload) => updateAddress(payload, addressId),

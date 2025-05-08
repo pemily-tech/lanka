@@ -12,6 +12,7 @@ import { usePincode } from '../../../../api/use-pincode/pincode';
 import useUpdateAddress from '../../../../api/use-update-address/update-address';
 import { useGetUser } from '../../../../api/user-details/user-details';
 import { useAppSelector } from '../../../../store';
+import { useAuthStore } from '../../../../store/user-auth';
 import { type IAddress } from '../../../../types/common';
 import Radio from '../../../../ui/components/radio';
 import TextInput from '../../../../ui/components/text-input';
@@ -48,8 +49,8 @@ const AddressForm = () => {
 	} = useForm({
 		resolver: yupResolver(validationSchema),
 	});
-	const authState = useAppSelector((state) => state.auth);
-	const { data } = useGetUser(authState.userId as string);
+	const { userId } = useAuthStore();
+	const { data } = useGetUser(userId as string);
 	const [addressType, setType] = useState('HOME');
 	const { mutate: getPincode } = usePincode();
 	const { mutate: updateAddress, isPending } = useUpdateAddress(

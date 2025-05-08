@@ -16,6 +16,7 @@ import { usePathname } from 'next/navigation';
 import { useGetNavigation } from '../../api/layout/use-get-navigation';
 import { logout } from '../../helpers/utils';
 import { useAppSelector } from '../../store';
+import { useAuthStore } from '../../store/user-auth';
 import { type INavigationItem } from '../../types/common';
 import {
 	AlertDialog,
@@ -58,7 +59,7 @@ const IconMap: Record<string, React.ElementType> = {
 };
 
 export const AppSidebar = () => {
-	const { name, mobile } = useAppSelector((state) => state.auth);
+	const { name, mobile } = useAuthStore();
 	const { data } = useGetNavigation();
 	const navMenu: INavigationItem[] = data?.data || [];
 

@@ -13,14 +13,13 @@ import useUploadUserProfile from '../../../../api/upload-user-profile/upload-use
 import { useGetUser } from '../../../../api/user-details/user-details';
 import { createFormDataForImage } from '../../../../helpers/utils';
 import { useAppSelector } from '../../../../store';
+import { useAuthStore } from '../../../../store/user-auth';
 import { ImagePlaceholder } from '../../../../ui/shared/image';
 
 const ProfileImage = () => {
-	const authState = useAppSelector((state) => state.auth);
-	const { data: profileData } = useGetUserProfileUrl(
-		authState.userId as string
-	);
-	const { data: userData } = useGetUser(authState.userId as string);
+	const { userId } = useAuthStore();
+	const { data: profileData } = useGetUserProfileUrl(userId as string);
+	const { data: userData } = useGetUser(userId as string);
 	const { mutate: uploadUserProfile } = useUploadUserProfile();
 	const { profileUrl } = profileData?.data || {};
 	const { name, mobile, email } = userData?.data?.user || {};

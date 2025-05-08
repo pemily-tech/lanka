@@ -6,6 +6,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { Roles } from '../../../../helpers/primitives';
 import { useAppSelector } from '../../../../store';
+import { useAuthStore } from '../../../../store/user-auth';
 import {
 	Tabs,
 	TabsContent,
@@ -31,19 +32,19 @@ const Contact = dynamic(() => import('./contact'), {
 });
 
 export default function UserTabs() {
-	const authState = useAppSelector((state) => state.auth);
+	const { role } = useAuthStore();
 	const router = useRouter();
 	const pathname = usePathname();
 	const params = useSearchParams();
 	const type = params.get('type') as string;
 
 	useEffect(() => {
-		if (authState.role === Roles.Clinic) {
+		if (role === Roles.Clinic) {
 			router.replace(`${pathname}?type=personal`);
 		} else {
 			router.replace(`${pathname}?type=contact`);
 		}
-	}, [authState.role, pathname, router]);
+	}, [role, pathname, router]);
 
 	const handleChange = (val: string) => {
 		router.replace(`${pathname}?type=${val}`);
@@ -53,17 +54,17 @@ export default function UserTabs() {
 		<div className="col-span-2 p-16">
 			<Tabs value={type} onValueChange={handleChange} className="">
 				<TabsList className="mb-12 w-full justify-start bg-white">
-					{authState.role === Roles.Clinic && (
+					{role === Roles.Clinic && (
 						<TabsTrigger className="flex-1 py-12" value="personal">
 							Personal Details
 						</TabsTrigger>
 					)}
-					{authState.role === Roles.Clinic && (
+					{role === Roles.Clinic && (
 						<TabsTrigger className="flex-1 py-12" value="address">
 							Primary Address
 						</TabsTrigger>
 					)}
-					{authState.role === Roles.Clinic && (
+					{role === Roles.Clinic && (
 						<TabsTrigger className="flex-1 py-12" value="business">
 							Business Details
 						</TabsTrigger>
@@ -72,17 +73,17 @@ export default function UserTabs() {
 						Contact Us
 					</TabsTrigger>
 				</TabsList>
-				{authState.role === Roles.Clinic && (
+				{role === Roles.Clinic && (
 					<TabsContent className="mt-0" value="personal">
 						<PersonalDetailsForm />
 					</TabsContent>
 				)}
-				{authState.role === Roles.Clinic && (
+				{role === Roles.Clinic && (
 					<TabsContent className="mt-0" value="address">
 						<AddressForm />
 					</TabsContent>
 				)}
-				{authState.role === Roles.Clinic && (
+				{role === Roles.Clinic && (
 					<TabsContent className="mt-0" value="business">
 						<BusinessForm />
 					</TabsContent>

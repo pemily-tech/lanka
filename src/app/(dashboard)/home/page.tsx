@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 import { Roles } from '../../../helpers/primitives';
-import { useAppSelector } from '../../../store';
+import { useAuthStore } from '../../../store/user-auth';
 import { Button } from '../../../ui/shared/button';
 import { ImagePlaceholder } from '../../../ui/shared/image';
 import { useVaccinationExcel } from './api/analytics';
@@ -55,7 +55,7 @@ export default function Page() {
 	const [month, setMonth] = useState(1);
 	const [year, setYear] = useState(2025);
 	const { mutateAsync: vaccinationExcel, isPending } = useVaccinationExcel();
-	const auth = useAppSelector((state) => state.auth);
+	const { role } = useAuthStore();
 
 	const handleSubmit = async () => {
 		const payload = {
@@ -142,7 +142,7 @@ export default function Page() {
 							</div>
 						</div>
 						<Button
-							disabled={isPending || auth.role === Roles.Staff}
+							disabled={isPending || role === Roles.Staff}
 							loading={isPending}
 							onClick={handleSubmit}
 							className="mt-24 w-full"

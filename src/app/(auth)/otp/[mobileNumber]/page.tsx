@@ -7,14 +7,15 @@ import { toast } from 'sonner';
 
 import { Routes } from '../../../../helpers/routes';
 import { useAppDispatch } from '../../../../store';
-import { authenticateUser } from '../../../../store/auth';
 import { closeDialog, openDialog } from '../../../../store/layout';
+import { useAuthStore } from '../../../../store/user-auth';
 import useOtpHook from './use-otp-hook';
 
 export default function Page() {
 	const params = useParams<{ mobileNumber: string }>();
 	const dispatch = useAppDispatch();
 	const router = useRouter();
+	const verifyUser = useAuthStore((state) => state.verifyUser);
 
 	const {
 		otp,
@@ -48,17 +49,17 @@ export default function Page() {
 		}
 
 		if (result.data.status === 'SUCCESS') {
-			dispatch(
-				authenticateUser({
-					token: result.data.data?.accessToken ?? '',
-					refreshToken: result.data.data?.refreshToken ?? '',
-					navigateFunction: () => router.push(Routes.HOME),
-				})
+			verifyUser(
+				result.data.data?.accessToken ?? '',
+				result.data.data?.refreshToken ?? '',
+				() => {
+					router.push(Routes.HOME);
+				}
 			);
 		} else {
 			toast.error(result.data.msg ?? 'An error occurred');
 		}
-	}, [dispatch, result, result.data, router]);
+	}, [result, result.data, router]);
 
 	return (
 		<div>
