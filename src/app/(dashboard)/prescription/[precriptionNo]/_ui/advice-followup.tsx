@@ -1,13 +1,11 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { format, setDate } from 'date-fns';
-import { se } from 'date-fns/locale';
+import { format } from 'date-fns';
 import { CalendarIcon, Plus } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 import { DATE_FORMAT } from '../../../../../helpers/constant';
-import { cn } from '../../../../../helpers/utils';
 import { type IPrescription } from '../../../../../types/prescription';
 import {
 	Button,

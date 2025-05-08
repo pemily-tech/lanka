@@ -47,10 +47,6 @@ export function useFooterActions() {
 	const handleSave = async () => {
 		const payload = {
 			...basicDetails,
-			patientDetails: {
-				...basicDetails.patientDetails,
-				age: calculateAge(basicDetails.patientDetails.dob),
-			},
 			medicines: selectedMedicines,
 			...(diagnosis && { diagnosis }),
 			...(vitals && { vitals }),
