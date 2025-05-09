@@ -10,6 +10,7 @@ import {
 } from '../../../../../types/prescription';
 import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useGetPrescriptionBasicDetails } from '../_api/use-get-details';
+import { useShareDoc } from '../_api/use-share-doc';
 import { useUpdatePrescription } from '../_api/use-update-prescription';
 import { useUploadPrescription } from '../_api/use-upload-prescription';
 import { useMedicineStore } from '../_store/medicine-store';
@@ -17,28 +18,27 @@ import { useMedicineStore } from '../_store/medicine-store';
 export function useFooterActions() {
 	const router = useRouter();
 	const params = useParams();
+	const prescriptionNo = params.precriptionNo as string;
 	const { vitals, diagnosis, selectedMedicines, advice, follwup, reset } =
 		useMedicineStore();
 
 	const { mutateAsync: updatePrescription, isPending: isUpdating } =
-		useUpdatePrescription(params.precriptionNo as string);
+		useUpdatePrescription(prescriptionNo);
 	const { mutateAsync: uploadPrescription, isPending: isUploading } =
-		useUploadPrescription(params.precriptionNo as string);
+		useUploadPrescription(prescriptionNo);
 
-	const { data: detailsData } = useGetPrescriptionBasicDetails(
-		params.precriptionNo as string
-	);
+	const { data: detailsData } =
+		useGetPrescriptionBasicDetails(prescriptionNo);
 	const basicDetails =
 		detailsData?.data?.prescriptionBasicDetails ||
 		({} as IPrescriptionBasicDetails);
 
-	const { data: prescriptionData } = useGetPrescriptionById(
-		params.precriptionNo as string
-	);
+	const { data: prescriptionData } = useGetPrescriptionById(prescriptionNo);
 	const prescription = useMemo(() => {
 		return prescriptionData?.data?.prescription || ({} as IPrescription);
 	}, [prescriptionData?.data?.prescription]);
 	const { url } = useDocumentDownload(prescription.url);
+	const { mutateAsync: shareDoc } = useShareDoc(prescriptionNo);
 
 	const isPrescriptionSaved = !!prescription.url;
 
@@ -73,6 +73,10 @@ export function useFooterActions() {
 		router.back();
 	};
 
+	const handleShare = () => {
+		shareDoc({ type: 'PRESCRIPTION' });
+	};
+
 	return {
 		isPrescriptionSaved,
 		isUpdating,
@@ -81,5 +85,6 @@ export function useFooterActions() {
 		handleCreate,
 		handleCancel,
 		prescriptionUrl: url,
+		handleShare,
 	};
 }

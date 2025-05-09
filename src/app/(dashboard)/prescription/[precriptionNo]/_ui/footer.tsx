@@ -24,6 +24,7 @@ export default function Footer() {
 		isUploading,
 		handleCreate,
 		prescriptionUrl,
+		handleShare,
 	} = useFooterActions();
 
 	return (
@@ -76,6 +77,7 @@ export default function Footer() {
 				disabled={!isPrescriptionSaved}
 				className="min-w-[120px] !rounded-2xl"
 				variant="outline"
+				onClick={handleShare}
 			>
 				<SendHorizonal className="size-16" />
 				<span className="font-normal">Share Pdf</span>
