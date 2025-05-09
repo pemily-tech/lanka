@@ -1,12 +1,9 @@
 /* eslint-disable max-lines-per-function */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-import { register } from 'module';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { errors } from '@playwright/test';
 import { z } from 'zod';
 
 import useCreateAddress from '../../../../../api/use-create-address/create-address';
@@ -15,21 +12,15 @@ import useUpdateAddress from '../../../../../api/use-update-address/update-addre
 import { useGetUser } from '../../../../../api/user-details/user-details';
 import { useAuthStore } from '../../../../../store/user-auth';
 import { type IAddress } from '../../../../../types/common';
-import TextInput from '../../../../../ui/components/text-input';
 import {
 	Button,
-	Calendar,
 	FloatingInput,
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
 	Select,
 	SelectContent,
 	SelectItem,
@@ -47,11 +38,14 @@ const schema = z.object({
 		.regex(/^[1-9][0-9]{5}$/, 'The pincode should consist of 6 digits.'),
 	district: z.string().min(1, 'District is required'),
 	state: z.string().min(1, 'State is required'),
+	type: z.string().min(1, 'Address type is required'),
 });
+
+type IFormData = z.infer<typeof schema>;
 
 interface IPayload {
 	line1: string;
-	line2: string;
+	line2?: string;
 	pincode: string;
 	district: string;
 	state: string;
@@ -60,7 +54,7 @@ interface IPayload {
 }
 
 const AddressForm = () => {
-	const form = useForm({
+	const form = useForm<IFormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
 			line1: '',
@@ -68,31 +62,34 @@ const AddressForm = () => {
 			pincode: '',
 			district: '',
 			state: '',
+			type: 'HOME',
 		},
 	});
+
 	const { userId } = useAuthStore();
 	const { data } = useGetUser(userId as string);
-	const [addressType, setType] = useState('HOME');
 	const { mutate: getPincode } = usePincode();
 	const { mutate: updateAddress, isPending } = useUpdateAddress(
 		data?.data?.user?.addressId as string
 	);
 	const { mutate: createAddress, isPending: isLoading } = useCreateAddress();
-	const { line1, line2, pincode, district, state, type } =
-		data?.data?.user?.address || {};
+
 	const watchPincode = form.watch('pincode');
 
 	useEffect(() => {
-		if (data?.data?.user) {
+		if (data?.data?.user?.address) {
+			const { line1, line2, pincode, district, state, type } =
+				data.data.user.address;
 			form.reset({
 				line1: line1 || '',
 				line2: line2 || '',
 				pincode: pincode || '',
 				district: district || '',
 				state: state || '',
+				type: type || 'HOME',
 			});
 		}
-	}, [data?.data?.user, district, form, line1, line2, pincode, state, type]);
+	}, [data?.data?.user?.address]);
 
 	useEffect(() => {
 		if (watchPincode?.length === 6) {
@@ -101,24 +98,24 @@ const AddressForm = () => {
 	}, [watchPincode]);
 
 	const handlePincode = (pincode: string) => {
-		// getPincode(pincode, {
-		// 	onSuccess: (addressData) => {
-		// 		const { district, state } = addressData?.data
-		// 			?.address as IAddress;
-		// 		setValue('district', district);
-		// 		setValue('state', state);
-		// 	},
-		// 	onError: (error) => {
-		// 		console.error('Error fetching pincode:', error);
-		// 	},
-		// });
+		getPincode(pincode, {
+			onSuccess: (addressData) => {
+				const { district, state } = addressData?.data
+					?.address as IAddress;
+				form.setValue('district', district);
+				form.setValue('state', state);
+			},
+			onError: (error) => {
+				console.error('Error fetching pincode:', error);
+			},
+		});
 	};
 
-	const onSubmit = (values: any) => {
-		const payload = {
+	const onSubmit = (values: IFormData) => {
+		const payload: IPayload = {
 			...values,
-			type: addressType,
-		} as IPayload;
+			isPrimary: false,
+		};
 		if (data?.data?.user?.addressId) {
 			updateAddress(payload);
 		} else {
@@ -131,95 +128,74 @@ const AddressForm = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="shadow-card1 rounded-12 mt-12 grid grid-cols-2 gap-24 bg-white px-16 py-24"
-			></form>
+				className="rounded-12 mt-12 grid max-w-3xl grid-cols-2 gap-24 bg-white px-16 py-24"
+			>
+				{[
+					['line1', 'Line1', 'text'],
+					['line2', 'Line2', 'text'],
+					['pincode', 'Pincode', 'numeric'],
+					['district', 'District', 'text'],
+					['state', 'State', 'text'],
+				].map(([name, label, type]) => (
+					<FormField
+						key={name}
+						control={form.control}
+						name={name as keyof IFormData}
+						render={({ field, fieldState }) => (
+							<FormItem className="relative">
+								<FormControl>
+									<FloatingInput
+										label={label}
+										id={name}
+										isError={!!fieldState.error}
+										type={type}
+										disabled={
+											name === 'district' ||
+											name === 'state'
+										}
+										{...field}
+									/>
+								</FormControl>
+								<FormMessage />
+							</FormItem>
+						)}
+					/>
+				))}
+				<FormField
+					control={form.control}
+					name="type"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Choose address type</FormLabel>
+							<Select
+								onValueChange={field.onChange}
+								value={field.value}
+							>
+								<FormControl>
+									<SelectTrigger>
+										<SelectValue placeholder="Choose address type" />
+									</SelectTrigger>
+								</FormControl>
+								<SelectContent>
+									<SelectItem value="HOME">Home</SelectItem>
+									<SelectItem value="WORK">Work</SelectItem>
+									<SelectItem value="OTHER">Other</SelectItem>
+								</SelectContent>
+							</Select>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<Button
+					disabled={isPending || isLoading}
+					loading={isPending || isLoading}
+					className="col-span-2 max-w-[240px]"
+				>
+					Submit
+				</Button>
+			</form>
 		</Form>
 	);
-
-	// return (
-	// 	<form onSubmit={handleSubmit(onSubmit)}>
-	// 		<section className="mb-24 grid grid-cols-2 gap-24">
-	// 			<TextInput
-	// 				label="Line1"
-	// 				placeholder=""
-	// 				error={errors?.line1}
-	// 				{...register('line1')}
-	// 			/>
-	// 			<TextInput
-	// 				label="Line2"
-	// 				placeholder=""
-	// 				error={errors?.line2}
-	// 				{...register('line2')}
-	// 			/>
-	// 		</section>
-	// 		<section className="mb-24 grid grid-cols-2 gap-24">
-	// 			<TextInput
-	// 				label="Pincode"
-	// 				placeholder=""
-	// 				error={errors?.pincode}
-	// 				type="numeric"
-	// 				maxLength={6}
-	// 				minLength={6}
-	// 				{...register('pincode')}
-	// 			/>
-	// 			<TextInput
-	// 				label="District"
-	// 				placeholder=""
-	// 				error={errors?.district}
-	// 				readonly={true}
-	// 				disabled={true}
-	// 				{...register('district')}
-	// 			/>
-	// 		</section>
-	// 		<section className="mb-24 grid grid-cols-2 gap-24">
-	// 			<TextInput
-	// 				label="State"
-	// 				placeholder=""
-	// 				error={errors?.state}
-	// 				readonly={true}
-	// 				disabled={true}
-	// 				{...register('state')}
-	// 			/>
-	// 			<section>
-	// 				<label className="text-14 leading-14 mb-10 block">
-	// 					Choose Gender
-	// 				</label>
-	// 				<section className="rounded-8 border-grey-divider flex h-[52px] items-center gap-24 border bg-white px-12">
-	// 					<Radio
-	// 						label="Home"
-	// 						value="HOME"
-	// 						checked={addressType === 'HOME'}
-	// 						name="home"
-	// 						onChange={() => setType('HOME')}
-	// 					/>
-	// 					<Radio
-	// 						label="Work"
-	// 						value="WORK"
-	// 						checked={addressType === 'WORK'}
-	// 						name="work"
-	// 						onChange={() => setType('WORK')}
-	// 					/>
-	// 					<Radio
-	// 						label="Other"
-	// 						value="OTHER"
-	// 						checked={addressType === 'OTHER'}
-	// 						name="other"
-	// 						onChange={() => setType('OTHER')}
-	// 					/>
-	// 				</section>
-	// 			</section>
-	// 		</section>
-	// 		<section className="!mt-[42px]">
-	// 			<Button
-	// 				className="min-w-[250px]"
-	// 				loading={isPending || isLoading}
-	// 				disabled={isPending || isLoading}
-	// 			>
-	// 				<span className="font-bold">Save Address</span>
-	// 			</Button>
-	// 		</section>
-	// 	</form>
-	// );
 };
 
 export default AddressForm;

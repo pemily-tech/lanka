@@ -2,15 +2,14 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../services/http-service';
-import { useAppSelector } from '../../store';
+import { queryClient } from '../../services/providers';
 import { useAuthStore } from '../../store/user-auth';
-import { useGetUser } from '../user-details/user-details';
 
 import { env } from '@/env.mjs';
 
 interface IPayload {
 	line1: string;
-	line2: string;
+	line2?: string;
 	pincode: string;
 	district: string;
 	state: string;
@@ -33,13 +32,14 @@ const createAddress = async (payload: IPayload) => {
 
 export function useCreateAddress() {
 	const { userId } = useAuthStore();
-	const { refetch } = useGetUser(userId as string);
 
 	return useMutation({
 		mutationFn: createAddress,
 		onSuccess: (data) => {
 			if (data?.status === 'SUCCESS') {
-				refetch();
+				queryClient.invalidateQueries({
+					queryKey: ['user/userId', userId],
+				});
 				toast.success('Address created successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

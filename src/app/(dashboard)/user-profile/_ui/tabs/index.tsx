@@ -12,8 +12,8 @@ import {
 	TabsList,
 	TabsTrigger,
 } from '../../../../../ui/shared/tabs';
-import BusinessForm from '../../ui/business-details';
 import AddressForm from './address';
+import BusinessForm from './business-details';
 import PersonalDetailsForm from './personal-details';
 
 export default function UserTabs() {
@@ -58,7 +58,7 @@ export default function UserTabs() {
 			label: 'Contact Us',
 			value: 'contact',
 			component: <Contact />,
-			roleRequired: null, // For everyone
+			roleRequired: null,
 		},
 	];
 
@@ -68,8 +68,8 @@ export default function UserTabs() {
 
 	return (
 		<div className="w-full">
-			<Tabs value={type} onValueChange={handleChange} className="">
-				<TabsList className="mb-12 w-full justify-start bg-white">
+			<Tabs value={type} onValueChange={handleChange}>
+				<TabsList className="mb-12 w-full max-w-3xl justify-start rounded-none border-b bg-white">
 					{filteredTabs.map((tab) => (
 						<TabsTrigger
 							key={tab.value}
