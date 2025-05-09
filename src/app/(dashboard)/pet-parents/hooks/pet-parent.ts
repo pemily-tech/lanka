@@ -3,7 +3,7 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { useGetUserProfileUrl } from '../../../../api/profile-image/profile-image';
+import { useGetUserProfileUrl } from '../../../../api/profile-image';
 import useGetParentById from '../../../../api/use-get-parent-by-id/get-parent-by-id';
 import useGetPets from '../../../../api/use-get-pets/get-pets';
 import { ApiEndpoints, ModalTypes } from '../../../../helpers/primitives';

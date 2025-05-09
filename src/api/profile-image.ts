@@ -1,8 +1,8 @@
 import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
-import { ApiEndpoints } from '../../helpers/primitives';
-import { HttpService } from '../../services/http-service';
-import { type IApiResponse } from '../../types/common';
+import { ApiEndpoints } from '../helpers/primitives';
+import { HttpService } from '../services/http-service';
+import { type IApiResponse } from '../types/common';
 
 import { env } from '@/env.mjs';
 
@@ -18,7 +18,7 @@ const getUserProfileUrl = async ({
 
 export function useGetUserProfileUrl(id: string) {
 	return useQuery({
-		queryKey: [ApiEndpoints.UserProfile, id],
+		queryKey: ['user/profileUrl', id],
 		queryFn: getUserProfileUrl,
 	});
 }

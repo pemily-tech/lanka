@@ -1,6 +1,6 @@
 import { CircleUserRound } from 'lucide-react';
 
-import { useGetUserProfileUrl } from '../../../api/profile-image/profile-image';
+import { useGetUserProfileUrl } from '../../../api/profile-image';
 import { cn } from '../../../helpers/utils';
 import { ImagePlaceholder } from '../image';
 

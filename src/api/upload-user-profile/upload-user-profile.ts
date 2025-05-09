@@ -3,9 +3,8 @@ import { toast } from 'sonner';
 
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
-import { useAppSelector } from '../../store';
 import { useAuthStore } from '../../store/user-auth';
-import { useGetUserProfileUrl } from '../profile-image/profile-image';
+import { useGetUserProfileUrl } from '../profile-image';
 
 import { env } from '@/env.mjs';
 

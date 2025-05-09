@@ -10,8 +10,7 @@ import {
 } from 'date-fns';
 import { twMerge } from 'tailwind-merge';
 
-import { store } from '../store';
-import { resetUser } from '../store/auth';
+import { useAuthStore } from '../store/user-auth';
 
 export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
@@ -25,7 +24,7 @@ export const gstValidator = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/;
 
 export const logout = () => {
 	localStorage.removeItem('persist:root');
-	store.dispatch(resetUser());
+	useAuthStore.getState().resetUser();
 };
 
 export const createFormDataForImage = (

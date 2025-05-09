@@ -197,6 +197,5 @@ export {
 	TableHeader,
 	TableRow,
 } from './table';
-export { Tabs, TabsContent, TabsList, TabsTrigger } from './tabs';
 export * from './text-area';
 export { Toaster } from './toast';

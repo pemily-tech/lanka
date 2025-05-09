@@ -3,8 +3,6 @@ import axios, { type AxiosResponse } from 'axios';
 
 import { ApiEndpoints } from '../helpers/primitives';
 import { logout } from '../helpers/utils';
-import { store } from '../store';
-import { updateUser } from '../store/auth';
 import { useAuthStore } from '../store/user-auth';
 // eslint-disable-next-line import/no-cycle
 import { HttpService } from './http-service';
@@ -27,22 +25,21 @@ async function ResetTokenAndReattemptRequest(
 
 	if (!isAlreadyFetchingAccessToken) {
 		isAlreadyFetchingAccessToken = true;
+		const authStore = useAuthStore.getState();
 
 		try {
 			const resp = await axios.post(
 				`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.RefreshToken}`,
 				{
-					refreshToken: useAuthStore.getState().refreshToken,
+					refreshToken: authStore.refreshToken,
 				}
 			);
 
 			if (resp?.data?.status === 'SUCCESS') {
-				store.dispatch(
-					updateUser({
-						...useAuthStore.getState(),
-						token: resp?.data?.data?.accessToken,
-					})
-				);
+				authStore.updateUser({
+					...useAuthStore.getState(),
+					token: resp?.data?.data?.accessToken,
+				});
 				onAccessTokenFetched(resp?.data?.data?.accessToken);
 			} else {
 				logout();

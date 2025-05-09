@@ -8,11 +8,10 @@ import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { z } from 'zod';
 
-import { useGetUser } from '../../../../api/user-details/user-details';
-import { cn } from '../../../../helpers/utils';
-import { useAppSelector } from '../../../../store';
-import { useAuthStore } from '../../../../store/user-auth';
-import { type IUserDetails } from '../../../../types/user';
+import { useGetUser } from '../../../../../api/user-details/user-details';
+import { cn } from '../../../../../helpers/utils';
+import { useAuthStore } from '../../../../../store/user-auth';
+import { type IUserDetails } from '../../../../../types/user';
 import {
 	Button,
 	Calendar,
@@ -32,8 +31,8 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../ui/shared';
-import useUpdateUserDetails from '../api/update-user-details';
+} from '../../../../../ui/shared';
+import useUpdateUserDetails from '../../api/update-user-details';
 
 const schema = z.object({
 	name: z.string().min(1, 'Name is required'),
@@ -77,7 +76,6 @@ const PersonalDetailsForm = () => {
 
 	const onSubmit = async (values: IFormData) => {
 		const { mobile, ...rest } = values;
-		console.debug(mobile);
 		const response = await updateUser(rest);
 		if (response.status === 'SUCCESS') {
 			refetch();
