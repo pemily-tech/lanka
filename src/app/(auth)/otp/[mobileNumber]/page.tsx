@@ -6,14 +6,19 @@ import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import { Routes } from '../../../../helpers/routes';
-import { useAppDispatch } from '../../../../store';
-import { closeDialog, openDialog } from '../../../../store/layout';
 import { useAuthStore } from '../../../../store/user-auth';
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	Spinner,
+} from '../../../../ui/shared';
 import useOtpHook from './use-otp-hook';
 
 export default function Page() {
 	const params = useParams<{ mobileNumber: string }>();
-	const dispatch = useAppDispatch();
 	const router = useRouter();
 	const verifyUser = useAuthStore((state) => state.verifyUser);
 
@@ -29,19 +34,6 @@ export default function Page() {
 	} = useOtpHook({
 		mobile: params?.mobileNumber ?? '',
 	});
-
-	useEffect(() => {
-		if (isExecuting) {
-			dispatch(
-				openDialog({
-					view: 'LOADING',
-					loadingText: 'Setting up user...',
-				})
-			);
-		} else {
-			dispatch(closeDialog());
-		}
-	}, [dispatch, isExecuting]);
 
 	useEffect(() => {
 		if (!result.data) {
@@ -63,6 +55,22 @@ export default function Page() {
 
 	return (
 		<div>
+			<Dialog open={isExecuting}>
+				<DialogContent
+					onInteractOutside={(event) => event.preventDefault()}
+					showCloseButton={false}
+					className="w-[150px]"
+				>
+					<DialogHeader>
+						<DialogTitle></DialogTitle>
+						<DialogDescription></DialogDescription>
+					</DialogHeader>
+					<Spinner />
+					<span className="text-14 text-center font-medium">
+						Setting up user...
+					</span>
+				</DialogContent>
+			</Dialog>
 			<div onClick={handleBack} className="flex items-center gap-12">
 				<div className="flex size-32 cursor-pointer items-center justify-center">
 					<ArrowLeft width={24} height={24} />

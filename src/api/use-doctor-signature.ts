@@ -19,5 +19,6 @@ export function useGetDoctorSignature({ doctorId }: { doctorId: string }) {
 	return useQuery({
 		queryKey: ['clinic/signatureUrl', doctorId],
 		queryFn: getSignature,
+		enabled: !!doctorId,
 	});
 }

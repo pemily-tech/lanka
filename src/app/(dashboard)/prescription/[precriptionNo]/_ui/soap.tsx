@@ -73,7 +73,7 @@ export default function Soap() {
 	}
 
 	return (
-		<div className=" my-24 px-16">
+		<div className=" my-24 pr-16">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
