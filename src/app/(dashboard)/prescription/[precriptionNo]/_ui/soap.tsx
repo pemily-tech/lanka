@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams } from 'next/navigation';
 import { z } from 'zod';
 
-import { type IPrescription } from '../../../../../types/prescription';
+import { type ISoap } from '../../../../../types/prescription';
 import {
 	Button,
 	FloatingTextArea,
@@ -17,7 +17,7 @@ import {
 	FormMessage,
 	Spinner,
 } from '../../../../../ui/shared';
-import { useGetPrescriptionById } from '../_api/use-get-byid';
+import { useGetPrescriptionSoap } from '../_api/use-get-soap';
 import { useUpdateSoap } from '../_api/use-update.soap';
 
 const schema = z.object({
@@ -31,12 +31,12 @@ type IFormData = z.infer<typeof schema>;
 
 export default function Soap() {
 	const params = useParams();
-	const { data, isPending, refetch } = useGetPrescriptionById(
+	const { data, isPending, refetch } = useGetPrescriptionSoap(
 		params?.precriptionNo as string
 	);
-	const prescriptionData = useMemo(() => {
-		return data?.data?.prescription || ({} as IPrescription);
-	}, [data?.data?.prescription]);
+	const soapData = useMemo(() => {
+		return data?.data?.soap?.soap || ({} as ISoap);
+	}, [data?.data?.soap]);
 	const form = useForm({
 		resolver: zodResolver(schema),
 		defaultValues: {
@@ -51,15 +51,15 @@ export default function Soap() {
 	);
 
 	useEffect(() => {
-		if (prescriptionData.soap) {
+		if (soapData) {
 			form.reset({
-				subjective: prescriptionData?.soap?.subjective ?? '',
-				objective: prescriptionData?.soap?.objective ?? '',
-				assessment: prescriptionData?.soap?.assessment ?? '',
-				plan: prescriptionData?.soap?.plan ?? '',
+				subjective: soapData?.subjective ?? '',
+				objective: soapData?.objective ?? '',
+				assessment: soapData?.assessment ?? '',
+				plan: soapData?.plan ?? '',
 			});
 		}
-	}, [form, prescriptionData]);
+	}, [form, soapData]);
 
 	const onSubmit = async (values: IFormData) => {
 		const response = await updateSoap(values);

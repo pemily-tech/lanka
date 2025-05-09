@@ -1,5 +1,5 @@
 import AdviceFollowup from './_ui/advice-followup';
-import AttachPrescription from './_ui/attach-prescription';
+import AttachDocs from './_ui/attach-docs';
 import BasicDetails from './_ui/basic-details';
 import Footer from './_ui/footer';
 import Medicines from './_ui/medicines';
@@ -14,7 +14,7 @@ export default async function Page() {
 			<div className="grid grid-cols-6">
 				<div className="col-span-2">
 					<Soap />
-					<AttachPrescription />
+					<AttachDocs />
 				</div>
 				<div className="col-span-4 border-l ">
 					<Vitals />

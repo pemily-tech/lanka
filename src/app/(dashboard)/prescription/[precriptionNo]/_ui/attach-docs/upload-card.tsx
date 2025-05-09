@@ -4,6 +4,7 @@ import { FileIcon } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 import { createFormDataForDocument } from '../../../../../../helpers/utils';
+import { queryClient } from '../../../../../../services/providers';
 import { useUploadAttachDocs } from '../../_api/use-upload-attach-docs';
 
 export default function UploadCard({ type }: { type: string }) {
@@ -21,11 +22,15 @@ export default function UploadCard({ type }: { type: string }) {
 				}
 			);
 			const response = await uploadAttachDocs(formData);
-			console.log(response);
-
-			// if (response.status === 'SUCCESS') {
-			// 	refetch();
-			// }
+			if (response.status === 'SUCCESS') {
+				queryClient.invalidateQueries({
+					queryKey: [
+						'prescription/attachedDocuments',
+						prescriptionNo,
+						type,
+					],
+				});
+			}
 		});
 	}, []);
 

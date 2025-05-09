@@ -114,3 +114,18 @@ export interface IPrescriptionBasicDetails {
 	parentOrPatientAddress: IAddress;
 	clinicAddress: IAddress;
 }
+
+export interface IAttachedDocument {
+	url: string;
+	type: string;
+	comment: string | null;
+	active: boolean;
+	updatedBy: string;
+	_id: string;
+}
+
+export interface IAttachedDocuments {
+	_id: string;
+	prescriptionNo: string;
+	attachedDocuments: IAttachedDocument[];
+}
