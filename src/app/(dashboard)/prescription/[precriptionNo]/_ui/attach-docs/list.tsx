@@ -2,12 +2,26 @@ import { Share, Trash2 } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 import useDocumentDownload from '../../../../../../hooks/use-download-document';
+import { queryClient } from '../../../../../../services/providers';
 import {
 	type IAttachedDocument,
 	type IAttachedDocuments,
 } from '../../../../../../types/prescription';
-import { Button } from '../../../../../../ui/shared';
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+	Button,
+} from '../../../../../../ui/shared';
 import { useGetAttatchDocs } from '../../_api/use-get-attatch-docs';
+import { useRemoveAttachDoc } from '../../_api/use-remove-docs';
+import { useShareDoc } from '../../_api/use-share-doc';
 
 export default function DocsList({ type }: { type: string }) {
 	const params = useParams();
@@ -19,18 +33,52 @@ export default function DocsList({ type }: { type: string }) {
 	return (
 		<div className="mt-16">
 			{attachDocs.attachedDocuments?.map((doc) => {
-				return <Doc key={doc._id} doc={doc} />;
+				return (
+					<Doc
+						key={doc._id}
+						doc={doc}
+						prescriptionNo={prescriptionNo}
+						type={type}
+					/>
+				);
 			})}
 		</div>
 	);
 }
 
-function Doc({ doc }: { doc: IAttachedDocument }) {
+function Doc({
+	doc,
+	prescriptionNo,
+	type,
+}: {
+	doc: IAttachedDocument;
+	prescriptionNo: string;
+	type: string;
+}) {
 	const { url } = useDocumentDownload(doc.url);
+	const { mutateAsync: removeDoc } = useRemoveAttachDoc(prescriptionNo);
+	const { mutate: shareDoc, isPending } = useShareDoc(prescriptionNo);
 
 	if (!url) {
 		return null;
 	}
+
+	const handelRemove = async (id: string) => {
+		const response = await removeDoc({ attachedDocumentId: id });
+		if (response.status === 'SUCCESS') {
+			queryClient.invalidateQueries({
+				queryKey: [
+					'prescription/attachedDocuments',
+					prescriptionNo,
+					type,
+				],
+			});
+		}
+	};
+
+	const handelShare = async (id: string) => {
+		shareDoc({ attachedDocumentId: id, type });
+	};
 
 	return (
 		<div className="flex flex-row items-center gap-12 py-6" key={doc?._id}>
@@ -42,12 +90,42 @@ function Doc({ doc }: { doc: IAttachedDocument }) {
 				{doc?.url}
 			</a>
 			<div className="flex flex-row gap-8">
-				<Button size="icon" variant="ghost">
+				<Button
+					onClick={() => handelShare(doc._id)}
+					size="icon"
+					variant="ghost"
+					disabled={isPending}
+				>
 					<Share className="size-18" />
 				</Button>
-				<Button size="icon" variant="ghost">
-					<Trash2 className="size-18 text-destructive" />
-				</Button>
+				<AlertDialog>
+					<AlertDialogTrigger asChild>
+						<Button size="icon" variant="ghost">
+							<Trash2 className="size-18 text-destructive" />
+						</Button>
+					</AlertDialogTrigger>
+					<AlertDialogContent className="gap-24">
+						<AlertDialogHeader>
+							<AlertDialogTitle className="text-24">
+								Delete
+							</AlertDialogTitle>
+							<AlertDialogDescription>
+								Are you sure you want to delete?
+							</AlertDialogDescription>
+						</AlertDialogHeader>
+						<AlertDialogFooter className="!pt-32">
+							<AlertDialogAction
+								onClick={() => handelRemove(doc._id)}
+								className="px-24"
+							>
+								Confirm
+							</AlertDialogAction>
+							<AlertDialogCancel>
+								<span className="text-14">Cancel</span>
+							</AlertDialogCancel>
+						</AlertDialogFooter>
+					</AlertDialogContent>
+				</AlertDialog>
 			</div>
 		</div>
 	);
