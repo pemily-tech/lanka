@@ -7,7 +7,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import { persistor, store } from '../store';
 import ModalView from '../ui/components/modal-view';
-import { LoadingModal } from '../ui/components/spinner';
 import { TooltipProvider } from '../ui/shared/tooltip';
 
 import { Toaster } from '@/ui/shared/toast';
@@ -26,7 +25,6 @@ export default function Providers({ children }: { children: ReactNode }) {
 							richColors
 							position="bottom-left"
 						/>
-						<LoadingModal />
 						<ModalView />
 					</TooltipProvider>
 				</QueryClientProvider>
