@@ -99,7 +99,7 @@ const BusinessForm = () => {
 	};
 
 	return (
-		<div className="flex max-w-4xl gap-32 bg-white">
+		<div className="flex max-w-4xl gap-24 bg-white">
 			<div className="w-[200px]">
 				<div className="border-primary-1 relative flex size-[200px] items-center justify-center rounded-full border">
 					{getLogo?.data?.logoUrl && getLogo?.data?.logoUrl !== '' ? (
