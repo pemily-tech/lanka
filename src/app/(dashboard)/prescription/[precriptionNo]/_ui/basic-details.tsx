@@ -86,22 +86,6 @@ export default function BasicDetails() {
 						</div>
 					</div>
 				</div>
-				{/* <div className="flex flex-1 flex-col items-end gap-6 overflow-hidden">
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Doctor Name: </span>
-						<span>Dr.{doctorDetails.name}</span>
-					</div>
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Degree: </span>
-						<span>{doctorDetails.degree}</span>
-					</div>
-					<div className="flex flex-row gap-6">
-						<span>
-							{doctorDetails.speciality},{' '}
-							{doctorDetails.experience}
-						</span>
-					</div>
-				</div> */}
 				<div className="flex flex-1 flex-col items-end gap-2 overflow-hidden">
 					<span className="text-black-1/60">
 						Doctor Name: <span className="text-black">{doctorDetails.name}</span>
