@@ -54,19 +54,19 @@ export default function BasicDetails() {
 							</div>
 						)}
 						<div className="flex flex-row">
-							<span className="text-black-1/60 pr-6">Cell: </span>
+							<span className="text-black-1/60 pr-6">Contact: </span>
 							{(clinicDetails.primaryContact ||
 								clinicDetails.businessContact) && (
 								<a
 									className="hover:text-purple"
 									href={`tel:+91${
-										clinicDetails.primaryContact ||
-										clinicDetails.businessContact
+										clinicDetails.businessContact ||
+										clinicDetails.primaryContact
 									}`}
 								>
 									+91-
-									{clinicDetails.primaryContact ||
-										clinicDetails.businessContact}
+									{clinicDetails.businessContact ||
+										clinicDetails.primaryContact}
 								</a>
 							)}
 						</div>
@@ -86,7 +86,7 @@ export default function BasicDetails() {
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-1 flex-col items-end gap-6 overflow-hidden">
+				{/* <div className="flex flex-1 flex-col items-end gap-6 overflow-hidden">
 					<div className="flex flex-row gap-6">
 						<span className="text-black-1/60">Doctor Name: </span>
 						<span>Dr.{doctorDetails.name}</span>
@@ -101,7 +101,19 @@ export default function BasicDetails() {
 							{doctorDetails.experience}
 						</span>
 					</div>
+				</div> */}
+				<div className="flex flex-1 flex-col items-end gap-2 overflow-hidden">
+					<span className="text-black-1/60">
+						Doctor Name: <span className="text-black">{doctorDetails.name}</span>
+					</span>
+					<span className="text-black-1/60">
+						Reg No: <span className="text-black">{doctorDetails.regNo}</span>
+					</span>
+					<span className="text-black">
+					{doctorDetails.degree},{doctorDetails.speciality},{doctorDetails.experience}
+					</span>
 				</div>
+
 			</div>
 			<div className="flex flex-1 flex-row gap-24 border-y py-12">
 				<div className="flex flex-row gap-6">
@@ -127,43 +139,19 @@ export default function BasicDetails() {
 					</span>
 				</div>
 				
-				<div className="flex flex-row gap-6">
-					<span className="text-black-1/60">Patient: </span>
-					<span>{patientDetails.name}</span>
-				</div>
-				<div className="flex flex-row gap-6">
-					<span className="text-black-1/60">Type: </span>
-					<span>{patientDetails.type}</span>
-				</div>
-				<div className="flex flex-row gap-6">
-					<span className="text-black-1/60">Sex: </span>
-					<span>{patientDetails.gender}</span>
-				</div>
-				<div className="flex flex-row gap-6">
-					<span className="text-black-1/60">Breed: </span>
-					<span>{patientDetails.breed}</span>
-				</div>
-				<div className="flex flex-row gap-6">
-					<span className="text-black-1/60">Code: </span>
-					<span>{patientDetails.code}</span>
-				</div>
+				<div className="flex flex-row gap-6"><span className="text-black-1/60">Patient: </span><span>{patientDetails.name}</span></div>
+				<div className="flex flex-row gap-6"><span className="text-black-1/60">Type: </span><span>{patientDetails.type}</span></div>
+				<div className="flex flex-row gap-6"><span className="text-black-1/60">Sex: </span><span>{patientDetails.gender}</span></div>
+				<div className="flex flex-row gap-6"><span className="text-black-1/60">Breed: </span><span>{patientDetails.breed}</span></div>
+				<div className="flex flex-row gap-6"><span className="text-black-1/60">Code: </span><span>{patientDetails.code}</span></div>
 				{patientDetails.dob && (
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">DOB: </span>
-						<span>{patientDetails.dob}</span>
-					</div>
+					<div className="flex flex-row gap-6"><span className="text-black-1/60">DOB: </span><span>{patientDetails.dob}</span></div>
 				)}
 				{patientDetails?.age && (
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Age: </span>
-						<span>{patientDetails.age}</span>
-					</div>
+					<div className="flex flex-row gap-6"><span className="text-black-1/60">Age: </span><span>{patientDetails.age}</span></div>
 				)}
 				{patientDetails.microChipNo && (
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">MicroChip No: </span>
-						<span>{patientDetails.microChipNo}</span>
-					</div>
+					<div className="flex flex-row gap-6"><span className="text-black-1/60">MicroChip No: </span><span>{patientDetails.microChipNo}</span></div>
 				)}
 			</div>
 		</div>
