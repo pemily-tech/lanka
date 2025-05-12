@@ -37,7 +37,7 @@ export default function Footer() {
 						className="min-w-[120px] !rounded-2xl"
 					>
 						<Check className="size-16" />
-						<span className="font-normal">Save Pdf</span>
+						<span className="font-normal">Save</span>
 					</Button>
 				</AlertDialogTrigger>
 				<AlertDialogContent className="gap-24">
@@ -71,7 +71,7 @@ export default function Footer() {
 				className="min-w-[120px] !rounded-2xl"
 			>
 				<Plus className="size-16" />
-				<span className="font-normal">Create Pdf</span>
+				<span className="font-normal">Create PDF</span>
 			</Button>
 			<Button
 				disabled={!isPrescriptionSaved}
@@ -80,7 +80,7 @@ export default function Footer() {
 				onClick={handleShare}
 			>
 				<SendHorizonal className="size-16" />
-				<span className="font-normal">Share Pdf</span>
+				<span className="font-normal">Share PDF</span>
 			</Button>
 			<Button
 				disabled={!isPrescriptionSaved}
@@ -89,7 +89,7 @@ export default function Footer() {
 				onClick={() => window.open(prescriptionUrl ?? '')}
 			>
 				<Eye className="size-16" />
-				<span className="font-normal">View Pdf</span>
+				<span className="font-normal">View PDF</span>
 			</Button>
 		</div>
 	);

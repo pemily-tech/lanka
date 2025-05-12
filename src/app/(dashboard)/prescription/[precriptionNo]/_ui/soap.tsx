@@ -73,9 +73,9 @@ export default function Soap() {
 	}
 
 	return (
-		<div className=" my-24 pr-16">
+		<div className="my-24 pr-16">
 			<h3 className="font-semibold">SOAP</h3>
-			<Form {...form}>
+			<Form className="mt-12" {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="grid grid-cols-1 gap-24"

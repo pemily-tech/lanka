@@ -175,6 +175,6 @@ export const certificateData = [
 	{ value: 'BOARDING_AND_LODGING', label: 'Boarding & Lodging' },
 ];
 
-export const DATE_FORMAT = 'dd/MM/yyyy';
+export const DATE_FORMAT = 'do MMM, yyyy';
 export const DATE_TIME_FORMAT = 'dd/MM/yyyy HH:mm:ss';
 export const TIME_FORMAT = 'HH:mm:ss';
