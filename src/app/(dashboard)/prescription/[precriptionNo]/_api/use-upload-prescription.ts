@@ -6,15 +6,10 @@ import { type IApiResponse } from '../../../../../types/common';
 import { type IPrescription } from '../../../../../types/prescription';
 
 const updatePrescription = async (id: string) => {
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ prescription: string }>
-		>(`prescription/upload/${id}`, {});
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<
+		IApiResponse<{ prescription: string }>
+	>(`prescription/upload/${id}`, {});
+	return data;
 };
 
 export const useUploadPrescription = (id: string) => {

@@ -12,6 +12,7 @@ interface IProps {
 	page?: number;
 	limit?: number;
 	prescriptionDate: string;
+	active: number;
 }
 
 const getPrescriptions = async ({
@@ -43,6 +44,7 @@ export function useGetPrescriptions({
 	page = 0,
 	limit = 15,
 	prescriptionDate,
+	active = 1,
 }: IProps) {
 	return useQuery({
 		queryKey: [
@@ -52,6 +54,7 @@ export function useGetPrescriptions({
 				page,
 				limit,
 				prescriptionDate,
+				active,
 			},
 		],
 		queryFn: getPrescriptions,

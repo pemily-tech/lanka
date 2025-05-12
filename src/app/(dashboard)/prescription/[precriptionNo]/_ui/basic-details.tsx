@@ -21,8 +21,71 @@ export default function BasicDetails() {
 
 	return (
 		<div>
-			<div className="flex flex-row gap-16  pb-16">
-				<div className="flex flex-1 flex-col gap-6 overflow-hidden">
+			<div className="flex flex-row justify-between gap-16  pb-16">
+				<div className="flex flex-1 gap-24">
+					<div className="flex size-[152px] items-center justify-center">
+						<div className="border-purple-1/20 size-[142px] rounded-full border-2 p-4">
+							{clinicLogo && (
+								<ImagePlaceholder
+									src={clinicLogo}
+									containerClasses="size-full"
+									imageClasses="rounded-full object-cover"
+								/>
+							)}
+						</div>
+					</div>
+					<div className="flex flex-1 flex-col gap-6">
+						<div className="flex flex-row gap-6">
+							<span className="text-black-1/60">
+								Clinic Name:{' '}
+							</span>
+							<span>{clinicDetails.name}</span>
+						</div>
+						{clinicDetails.email && (
+							<div className="flex flex-row gap-6">
+								<span className="text-black-1/60">Email: </span>
+								<a
+									className="hover:text-purple"
+									href={`mailto:${clinicDetails.email}`}
+								>
+									{clinicDetails.email}
+								</a>
+							</div>
+						)}
+						<div className="flex flex-row">
+							<span className="text-black-1/60 pr-6">Cell: </span>
+							{(clinicDetails.primaryContact ||
+								clinicDetails.businessContact) && (
+								<a
+									className="hover:text-purple"
+									href={`tel:+91${
+										clinicDetails.primaryContact ||
+										clinicDetails.businessContact
+									}`}
+								>
+									+91-
+									{clinicDetails.primaryContact ||
+										clinicDetails.businessContact}
+								</a>
+							)}
+						</div>
+						<div className="flex flex-row gap-6">
+							<span className="text-black-1/60">Address: </span>
+							<span>
+								{[
+									clinicAddress.line1,
+									clinicAddress.line2,
+									clinicAddress.district,
+									clinicAddress.state,
+									clinicAddress.pincode,
+								]
+									.filter(Boolean)
+									.join(', ')}
+							</span>
+						</div>
+					</div>
+				</div>
+				<div className="flex flex-1 flex-col items-end gap-6 overflow-hidden">
 					<div className="flex flex-row gap-6">
 						<span className="text-black-1/60">Doctor Name: </span>
 						<span>Dr.{doctorDetails.name}</span>
@@ -36,67 +99,6 @@ export default function BasicDetails() {
 							{doctorDetails.speciality},{' '}
 							{doctorDetails.experience}
 						</span>
-					</div>
-				</div>
-				<div className="flex flex-1 flex-col gap-6">
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Clinic Name: </span>
-						<span>{clinicDetails.name}</span>
-					</div>
-					{clinicDetails.email && (
-						<div className="flex flex-row gap-6">
-							<span className="text-black-1/60">Email: </span>
-							<a
-								className="hover:text-purple"
-								href={`mailto:${clinicDetails.email}`}
-							>
-								{clinicDetails.email}
-							</a>
-						</div>
-					)}
-					{clinicDetails?.primaryContact && (
-						<div className="flex flex-row">
-							<span className="text-black-1/60 pr-6">Cell: </span>
-							<a
-								className="hover:text-purple"
-								href={`tel:${clinicDetails.primaryContact}`}
-							>
-								+91-{clinicDetails.primaryContact}
-							</a>
-							{clinicDetails?.businessContact && (
-								<a
-									className="hover:text-purple"
-									href={`tel:${clinicDetails.businessContact}`}
-								>
-									{', '}+91-{clinicDetails.businessContact}
-								</a>
-							)}
-						</div>
-					)}
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Address: </span>
-						<span>
-							{[
-								clinicAddress.line1,
-								clinicAddress.line2,
-								clinicAddress.district,
-								clinicAddress.state,
-								clinicAddress.pincode,
-							]
-								.filter(Boolean)
-								.join(', ')}
-						</span>
-					</div>
-				</div>
-				<div className="flex size-[152px] items-center justify-center">
-					<div className="border-purple-1/20 size-[142px] rounded-full border-2 p-12">
-						{clinicLogo && (
-							<ImagePlaceholder
-								src={clinicLogo}
-								containerClasses="size-full"
-								imageClasses="rounded-full object-contain"
-							/>
-						)}
 					</div>
 				</div>
 			</div>

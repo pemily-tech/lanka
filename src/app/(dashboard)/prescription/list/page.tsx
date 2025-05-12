@@ -29,20 +29,26 @@ export default function Page() {
 		},
 	});
 	const selectedDate = date ?? today;
+	const { limit, page, handlePagination, active, setActive } = useUpdateUrl();
+	const [open, setOpen] = useState(false);
+	const columns = useColumns();
 	const { data, isPending } = useGetPrescriptions({
 		count: 1,
 		prescriptionDate: format(selectedDate, 'yyyy-MM-dd'),
+		active,
 	});
 	const medicineData = data?.data?.prescriptions || ([] as IPrescription[]);
 	const totalCount = data?.data?.totalCount || 0;
-	const { limit, page, handlePagination } = useUpdateUrl();
-	const [open, setOpen] = useState(false);
-	const columns = useColumns();
 
 	return (
 		<div className="mb-[54px]">
 			<div className="rounded-8 shadow-card1 bg-white p-16">
-				<Filters selectedDate={selectedDate} setDate={setDate} />
+				<Filters
+					selectedDate={selectedDate}
+					setDate={setDate}
+					active={active}
+					setActive={setActive}
+				/>
 			</div>
 			<div className="shadow-card1 rounded-8 relative my-12 bg-white">
 				<DataTable

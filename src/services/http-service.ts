@@ -56,10 +56,23 @@ HttpService.interceptors.response.use(
 			} else if (error.response.data?.msg === 'Inactive user!') {
 				logout();
 			}
+			const message =
+				error.response?.data?.msg ||
+				error.message ||
+				'Something went wrong. Please try again.';
+			return Promise.reject(new Error(message));
 		} else if (error.request) {
-			// Handle errors that occur during the request but no response was received
+			console.error('No response received:', error.request);
+			return Promise.reject(
+				new Error(
+					'No response from server. Please check your connection.'
+				)
+			);
 		} else {
-			// Handle other types of errors (e.g., configuration issues)
+			console.error('Unexpected error:', error);
+			return Promise.reject(
+				new Error('Unexpected error occurred. Please try again.')
+			);
 		}
 
 		return Promise.reject(error);

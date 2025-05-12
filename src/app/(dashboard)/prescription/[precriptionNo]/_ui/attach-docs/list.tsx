@@ -31,7 +31,7 @@ export default function DocsList({ type }: { type: string }) {
 		data?.data?.attachedDocuments || ({} as IAttachedDocuments);
 
 	return (
-		<div className="mt-16">
+		<div className="mt-4">
 			{attachDocs.attachedDocuments?.map((doc) => {
 				return (
 					<Doc

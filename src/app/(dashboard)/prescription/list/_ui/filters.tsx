@@ -7,17 +7,26 @@ import { CalendarIcon } from 'lucide-react';
 import { cn } from '../../../../../helpers/utils';
 import {
 	Calendar,
+	Label,
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectLabel,
+	SelectTrigger,
+	SelectValue,
 } from '../../../../../ui/shared';
 
 interface IProps {
 	selectedDate: Date;
 	setDate: (payload: { date: Date }) => void;
+	active: number;
+	setActive: (active: number) => void;
 }
 
-function Filters({ selectedDate, setDate }: IProps) {
+function Filters({ selectedDate, setDate, active, setActive }: IProps) {
 	const today = startOfToday();
 	const days = Array.from({ length: 7 }).map((_, i) => addDays(today, -i));
 
@@ -72,6 +81,21 @@ function Filters({ selectedDate, setDate }: IProps) {
 							/>
 						</PopoverContent>
 					</Popover>
+				</div>
+				<div>
+					<Select
+						value={String(active)}
+						onValueChange={(val) => setActive(Number(val))}
+					>
+						<Label>Choose Active / Inactive</Label>
+						<SelectTrigger className="mt-3 w-[180px]">
+							<SelectValue placeholder="Theme" />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectItem value="1">Active</SelectItem>
+							<SelectItem value="0">Inactive</SelectItem>
+						</SelectContent>
+					</Select>
 				</div>
 			</div>
 		</div>

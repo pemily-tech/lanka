@@ -14,6 +14,7 @@ import { useShareDoc } from '../_api/use-share-doc';
 import { useUpdatePrescription } from '../_api/use-update-prescription';
 import { useUploadPrescription } from '../_api/use-upload-prescription';
 import { useMedicineStore } from '../_store/medicine-store';
+import selectedMedicines from '../_ui/medicines/selected-medicines';
 
 export function useFooterActions() {
 	const router = useRouter();
@@ -42,12 +43,35 @@ export function useFooterActions() {
 
 	const isPrescriptionSaved = !!prescription.url;
 
-	useEffect(() => reset, [reset]);
+	useEffect(() => {
+		return reset;
+	}, [reset]);
+	console.log(selectedMedicines);
 
 	const handleSave = async () => {
 		const payload = {
 			...basicDetails,
-			medicines: selectedMedicines,
+			medicines: selectedMedicines.map(
+				({
+					name,
+					strength,
+					interval,
+					dose,
+					frequency,
+					duration,
+					take,
+					medicineId,
+				}) => ({
+					name,
+					strength,
+					interval,
+					dose,
+					frequency,
+					duration,
+					take,
+					medicineId,
+				})
+			),
 			...(diagnosis && { diagnosis }),
 			...(vitals && { vitals }),
 			...(advice && { advice }),

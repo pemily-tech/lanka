@@ -32,20 +32,6 @@ export default function Vitals() {
 			<div className="flex-1">
 				{isPrescriptionSaved ? (
 					<div>
-						<span>Vitals: {prescriptionData?.vitals}</span>
-					</div>
-				) : (
-					<FloatingTextArea
-						value={vitals}
-						label="Vitals"
-						id="vitals"
-						onChange={(e) => setVitals(e.target.value)}
-					/>
-				)}
-			</div>
-			<div className="flex-1">
-				{isPrescriptionSaved ? (
-					<div>
 						<span>Diagnosis: {prescriptionData?.diagnosis}</span>
 					</div>
 				) : (
@@ -54,6 +40,20 @@ export default function Vitals() {
 						id="diagnosis"
 						value={diagnosis}
 						onChange={(e) => setDiagnosis(e.target.value)}
+					/>
+				)}
+			</div>
+			<div className="flex-1">
+				{isPrescriptionSaved ? (
+					<div>
+						<span>Vitals: {prescriptionData?.vitals}</span>
+					</div>
+				) : (
+					<FloatingTextArea
+						value={vitals}
+						label="Vitals"
+						id="vitals"
+						onChange={(e) => setVitals(e.target.value)}
 					/>
 				)}
 			</div>

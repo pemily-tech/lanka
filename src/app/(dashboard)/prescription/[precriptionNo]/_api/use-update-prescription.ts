@@ -64,15 +64,10 @@ interface IPayload {
 }
 
 const updatePrescription = async (payload: IPayload, id: string) => {
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ prescription: IPrescription }>
-		>(`prescription/update/${id}`, payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<
+		IApiResponse<{ prescription: IPrescription }>
+	>(`prescription/update/${id}`, payload);
+	return data;
 };
 
 export const useUpdatePrescription = (id: string) => {

@@ -30,26 +30,26 @@ export default function AttachDocs() {
 					<TabsTrigger className="flex-1 py-12" value="FOLLOWUP">
 						Follow up
 					</TabsTrigger>
-					<TabsTrigger className="flex-1 py-12" value="REPORT">
-						Report
+					<TabsTrigger className="flex-1 py-12" value="OTHER">
+						Other
 					</TabsTrigger>
 				</TabsList>
-				<TabsContent value="PRESCRIPTION">
-					<div className="flex flex-col">
-						<UploadCard type="PRESCRIPTION" />
+				<TabsContent className="mt-0" value="PRESCRIPTION">
+					<div className="flex flex-col gap-12">
 						<DocsList type="PRESCRIPTION" />
+						<UploadCard type="PRESCRIPTION" />
 					</div>
 				</TabsContent>
-				<TabsContent value="FOLLOWUP">
-					<div className="flex flex-col">
-						<UploadCard type="FOLLOWUP" />
+				<TabsContent className="mt-0" value="FOLLOWUP">
+					<div className="flex flex-col gap-12">
 						<DocsList type="FOLLOWUP" />
+						<UploadCard type="FOLLOWUP" />
 					</div>
 				</TabsContent>
-				<TabsContent value="REPORT">
-					<div className="flex flex-col">
-						<UploadCard type="REPORT" />
-						<DocsList type="REPORT" />
+				<TabsContent className="mt-0" value="OTHER">
+					<div className="flex flex-col gap-12">
+						<DocsList type="OTHER" />
+						<UploadCard type="OTHER" />
 					</div>
 				</TabsContent>
 			</Tabs>
