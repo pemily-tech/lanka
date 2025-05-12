@@ -94,7 +94,7 @@ export default function BasicDetails() {
 						Reg No: <span className="text-black">{doctorDetails.regNo}</span>
 					</span>
 					<span className="text-black">
-					{doctorDetails.degree},{doctorDetails.speciality},{doctorDetails.experience}
+						{doctorDetails.degree},{doctorDetails.speciality},{doctorDetails.experience}
 					</span>
 				</div>
 
