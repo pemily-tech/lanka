@@ -27,8 +27,8 @@ export default function AttachDocs() {
 					<TabsTrigger className="flex-1 py-12" value="PRESCRIPTION">
 						Prescription
 					</TabsTrigger>
-					<TabsTrigger className="flex-1 py-12" value="FOLLOWUP">
-						Follow up
+					<TabsTrigger className="flex-1 py-12" value="REPORT">
+						Report
 					</TabsTrigger>
 					<TabsTrigger className="flex-1 py-12" value="OTHER">
 						Other
