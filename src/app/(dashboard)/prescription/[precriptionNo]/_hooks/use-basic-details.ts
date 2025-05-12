@@ -46,11 +46,16 @@ export function useBasicDetails() {
 		? (prescription.parentOrPatientAddress ?? {})
 		: (basicData.parentOrPatientAddress ?? {});
 
+	const parentName = isPrescriptionSaved
+		? (prescription.parentName ?? {})
+		: (basicData.parentName ?? {});
+
+	const parentMobile = isPrescriptionSaved
+		? (prescription.parentMobile ?? {})
+		: (basicData.parentMobile ?? {});
+
 	const { data: logoData } = useGetClinicLogo();
 	const clinicLogo = logoData?.data?.logoUrl;
-
-	const calculatedAge =
-		patientDetails?.age && calculateAge(patientDetails.age);
 
 	return {
 		isPending,
@@ -60,6 +65,7 @@ export function useBasicDetails() {
 		patientDetails,
 		parentOrPatientAddress,
 		clinicLogo,
-		calculatedAge,
+		parentName,
+		parentMobile
 	};
 }
