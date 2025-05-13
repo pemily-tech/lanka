@@ -40,10 +40,10 @@ export default function AttachDocs() {
 						<UploadCard type="PRESCRIPTION" />
 					</div>
 				</TabsContent>
-				<TabsContent className="mt-0" value="FOLLOWUP">
+				<TabsContent className="mt-0" value="REPORT">
 					<div className="flex flex-col gap-12">
-						<DocsList type="FOLLOWUP" />
-						<UploadCard type="FOLLOWUP" />
+						<DocsList type="REPORT" />
+						<UploadCard type="REPORT" />
 					</div>
 				</TabsContent>
 				<TabsContent className="mt-0" value="OTHER">

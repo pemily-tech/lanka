@@ -116,7 +116,7 @@ export default function AdviceFollowup() {
 						>
 							<CalendarIcon className="text-primary size-16" />
 							<span className="text-primary font-medium">
-								Follow-up On - 
+								Follow-up On -
 							</span>
 							<span>
 								{isPrescriptionSaved

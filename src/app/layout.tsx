@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
+import Script from 'next/script';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import Providers from '../services/providers';
@@ -54,6 +55,11 @@ const RootLayout = ({ children }: PropsWithChildren) => {
 				<NuqsAdapter>
 					<Providers>{children}</Providers>
 				</NuqsAdapter>
+				<Script
+					defer
+					src="https://analytics.pemilyy.com/script.js"
+					data-website-id="5a28f341-39b2-4362-a17d-2ca0e60d6f9b"
+				/>
 			</body>
 		</html>
 	);

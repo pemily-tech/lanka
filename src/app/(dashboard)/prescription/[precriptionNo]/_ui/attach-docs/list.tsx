@@ -1,4 +1,4 @@
-import { Share, Trash2 } from 'lucide-react';
+import { Eye, Share, Trash2 } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 import useDocumentDownload from '../../../../../../hooks/use-download-document';
@@ -31,7 +31,7 @@ export default function DocsList({ type }: { type: string }) {
 		data?.data?.attachedDocuments || ({} as IAttachedDocuments);
 
 	return (
-		<div className="mt-4">
+		<div className="mt-4 flex flex-col gap-12">
 			{attachDocs.attachedDocuments?.map((doc) => {
 				return (
 					<Doc
@@ -81,15 +81,22 @@ function Doc({
 	};
 
 	return (
-		<div className="flex flex-row items-center gap-12 py-6" key={doc?._id}>
-			<a
-				href={url}
-				target="_blank"
-				className="flex-1 truncate hover:underline"
-			>
-				{doc?.url}
+		<div
+			className="flex flex-row items-center gap-12 rounded-lg border p-12"
+			key={doc?._id}
+		>
+			<a href={url} target="_blank" className="size-[54px]">
+				<img src="/images/pdf.png" />
 			</a>
-			<div className="flex flex-row gap-8">
+			<div className="flex flex-1 flex-row items-center justify-end gap-8">
+				<Button
+					onClick={() => window.open(url)}
+					size="icon"
+					variant="ghost"
+					disabled={isPending}
+				>
+					<Eye className="size-18" />
+				</Button>
 				<Button
 					onClick={() => handelShare(doc._id)}
 					size="icon"

@@ -43,11 +43,6 @@ export function useFooterActions() {
 
 	const isPrescriptionSaved = !!prescription.url;
 
-	useEffect(() => {
-		return reset;
-	}, [reset]);
-	console.log(selectedMedicines);
-
 	const handleSave = async () => {
 		const payload = {
 			...basicDetails,
@@ -77,10 +72,7 @@ export function useFooterActions() {
 			...(advice && { advice }),
 			...(follwup && { nextVisit: follwup }),
 		};
-		const response = await updatePrescription(payload);
-		if (response.status === 'SUCCESS') {
-			reset();
-		}
+		await updatePrescription(payload);
 	};
 
 	const handleCreate = async () => {
