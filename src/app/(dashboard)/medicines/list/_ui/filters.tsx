@@ -13,9 +13,13 @@ import { useUpdateUrl } from '../_hooks/use-update-url';
 export default function Filters({
 	value,
 	setValue,
+	active,
+	setActive,
 }: {
 	value: string;
 	setValue: (s: string) => void;
+	active: number;
+	setActive: (active: number) => void;
 }) {
 	const { limit, setLimit } = useUpdateUrl();
 	return (
@@ -31,13 +35,28 @@ export default function Filters({
 				</Command>
 			</div>
 			<div className="flex flex-1 items-center justify-end gap-12">
-				<div className="flex min-w-[180px] max-w-[180px] flex-col">
+				<div>
+					<Select
+						value={String(active)}
+						onValueChange={(val) => setActive(Number(val))}
+					>
+						<Label>Choose Active / Inactive</Label>
+						<SelectTrigger className="mt-3 w-[180px]">
+							<SelectValue placeholder="Theme" />
+						</SelectTrigger>
+						<SelectContent>
+							<SelectItem value="1">Active</SelectItem>
+							<SelectItem value="0">Inactive</SelectItem>
+						</SelectContent>
+					</Select>
+				</div>
+				<div>
 					<Select
 						value={limit.toString()}
 						onValueChange={(val) => setLimit(Number(val))}
 					>
-						<Label className="mb-8">Rows per Page</Label>
-						<SelectTrigger className="bg-white">
+						<Label>Rows per Page</Label>
+						<SelectTrigger className="mt-3 w-[180px]">
 							<SelectValue placeholder="Select a limit" />
 						</SelectTrigger>
 						<SelectContent>

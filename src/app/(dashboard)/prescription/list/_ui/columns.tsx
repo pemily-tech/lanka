@@ -3,7 +3,6 @@ import { format } from 'date-fns';
 import { Edit2, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
-import { Routes } from '../../../../../helpers/routes';
 import { cn } from '../../../../../helpers/utils';
 import { type IPrescription } from '../../../../../types/prescription';
 import {

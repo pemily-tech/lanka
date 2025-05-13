@@ -43,6 +43,11 @@ export function useFooterActions() {
 
 	const isPrescriptionSaved = !!prescription.url;
 
+	//leave the component make the component to intial values
+	useEffect(() => {
+		return reset;
+	}, [reset]);
+
 	const handleSave = async () => {
 		const payload = {
 			...basicDetails,

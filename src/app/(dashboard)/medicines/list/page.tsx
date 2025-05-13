@@ -33,20 +33,26 @@ export default function Page() {
 		setInput(val);
 		debouncedSearch(val);
 	};
+	const { limit, page, handlePagination, active, setActive } = useUpdateUrl();
 
 	const { data, isPending } = useGetMedicines({
 		count: 1,
 		searchTerm,
+		active,
 	});
 
 	const medicineData = data?.data?.medicines || ([] as IMedicine[]);
 	const totalCount = data?.data?.totalCount || 0;
-	const { limit, page, handlePagination } = useUpdateUrl();
 
 	return (
 		<div className="mb-[54px]">
 			<div className="rounded-8 shadow-card1 bg-white p-16">
-				<Filters value={input} setValue={handleChange} />
+				<Filters
+					value={input}
+					setValue={handleChange}
+					active={active}
+					setActive={setActive}
+				/>
 			</div>
 			<div className="shadow-card1 rounded-8 relative my-12 bg-white">
 				<DataTable

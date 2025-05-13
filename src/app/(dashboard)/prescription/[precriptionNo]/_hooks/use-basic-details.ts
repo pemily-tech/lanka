@@ -2,7 +2,6 @@ import { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
 import useGetClinicLogo from '../../../../../api/get-clinic-logo';
-import { calculateAge } from '../../../../../helpers/utils';
 import {
 	type IPrescription,
 	type IPrescriptionBasicDetails,
@@ -66,6 +65,6 @@ export function useBasicDetails() {
 		parentOrPatientAddress,
 		clinicLogo,
 		parentName,
-		parentMobile
+		parentMobile,
 	};
 }

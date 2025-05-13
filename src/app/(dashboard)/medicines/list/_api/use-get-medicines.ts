@@ -13,6 +13,7 @@ interface IProps {
 	limit?: number;
 	searchTerm?: string;
 	enabled?: boolean;
+	active?: number;
 }
 
 const getMedicines = async ({
@@ -45,6 +46,7 @@ export function useGetMedicines({
 	limit = 15,
 	searchTerm,
 	enabled,
+	active = 1,
 }: IProps) {
 	return useQuery({
 		queryKey: [
@@ -54,6 +56,7 @@ export function useGetMedicines({
 				page,
 				limit,
 				searchTerm,
+				active,
 			},
 		],
 		queryFn: getMedicines,
