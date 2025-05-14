@@ -85,7 +85,11 @@ export function useColumns(): ColumnDef<IPrescription>[] {
 						</Link>
 						<AlertDialog>
 							<AlertDialogTrigger asChild>
-								<Button size="icon" variant="ghost">
+								<Button
+									disabled={!row.original.active}
+									size="icon"
+									variant="ghost"
+								>
 									<Trash2 className="size-18 text-destructive" />
 								</Button>
 							</AlertDialogTrigger>
