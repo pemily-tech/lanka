@@ -41,7 +41,14 @@ export default function Page() {
 		to: end ?? today,
 	} as DateRange;
 
-	const { limit, page, handlePagination, active, setActive } = useUpdateUrl();
+	const {
+		limit,
+		page,
+		handlePagination,
+		active,
+		setActive,
+		updateQueryParams,
+	} = useUpdateUrl();
 	const [open, setOpen] = useState(false);
 	const columns = useColumns();
 	const { data, isPending } = useGetPrescriptions({
@@ -63,7 +70,7 @@ export default function Page() {
 			<div className="rounded-8 shadow-card1 sticky top-0 z-20 bg-white p-16">
 				<Filters
 					selectedDate={selectedDateRange}
-					setDate={({ date }) =>
+					setDate={({ date }) => {
 						setDateRange({
 							start: date.from
 								? parseISO(
@@ -73,8 +80,9 @@ export default function Page() {
 							end: date.to
 								? parseISO(format(date.to, DEFAULT_DATE_FORMAT))
 								: new Date(),
-						})
-					}
+						});
+						updateQueryParams({ page: 0 });
+					}}
 					active={active}
 					setActive={setActive}
 				/>
