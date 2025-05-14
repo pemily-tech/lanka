@@ -91,8 +91,7 @@ export const useMedicineStore = create<State & { reset: () => void }>(
 			})),
 
 		resetSearch: () => {
-			const selected = get().selected;
-			set({ input: selected?.name || '' });
+			set({ input: '' });
 		},
 
 		setVitals: (value) => set({ vitals: value }),
