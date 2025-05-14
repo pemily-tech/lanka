@@ -53,6 +53,7 @@ export default function Page() {
 			? format(selectedDateRange.to, DEFAULT_DATE_FORMAT)
 			: format(new Date(), DEFAULT_DATE_FORMAT),
 		active,
+		page,
 	});
 	const medicineData = data?.data?.prescriptions || ([] as IPrescription[]);
 	const totalCount = data?.data?.totalCount || 0;
