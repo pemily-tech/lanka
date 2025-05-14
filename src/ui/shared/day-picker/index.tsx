@@ -31,7 +31,7 @@ export function DayPicker({
 
 	const displayDate = fromDate
 		? toDate && fromDate.getTime() !== toDate.getTime()
-			? `${format(fromDate, 'dd MMM')} - ${format(toDate, 'dd MMM, yyyy')}`
+			? `${format(fromDate, 'dd MMM, yyyy')} - ${format(toDate, 'dd MMM, yyyy')}`
 			: format(fromDate, 'dd MMM, yyyy')
 		: 'Select date range';
 
