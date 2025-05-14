@@ -1,9 +1,10 @@
 /* eslint-disable indent */
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { type DateRange } from 'react-day-picker';
 import { format, parseISO, startOfToday } from 'date-fns';
+import debounce from 'lodash.debounce';
 import { PillBottle } from 'lucide-react';
 import { useQueryStates } from 'nuqs';
 
@@ -51,6 +52,8 @@ export default function Page() {
 	} = useUpdateUrl();
 	const [open, setOpen] = useState(false);
 	const columns = useColumns();
+	const [input, setInput] = useState('');
+	const [searchTerm, setSearchTerm] = useState('');
 	const { data, isPending } = useGetPrescriptions({
 		count: 1,
 		startDate: selectedDateRange.from
@@ -61,9 +64,20 @@ export default function Page() {
 			: format(new Date(), DEFAULT_DATE_FORMAT),
 		active,
 		page,
+		searchTerm,
 	});
 	const medicineData = data?.data?.prescriptions || ([] as IPrescription[]);
 	const totalCount = data?.data?.totalCount || 0;
+
+	const debouncedSearch = useCallback(
+		debounce((val: string) => setSearchTerm(val), 500),
+		[]
+	);
+
+	const handleChange = (val: string) => {
+		setInput(val);
+		debouncedSearch(val);
+	};
 
 	return (
 		<div className="mb-[54px]">
@@ -82,9 +96,12 @@ export default function Page() {
 								: new Date(),
 						});
 						updateQueryParams({ page: 0 });
+						handleChange('');
 					}}
 					active={active}
 					setActive={setActive}
+					searchTerm={input}
+					setSearchTerm={handleChange}
 				/>
 			</div>
 			<div className="shadow-card1 rounded-8 relative my-12 bg-white">
