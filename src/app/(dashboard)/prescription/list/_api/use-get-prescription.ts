@@ -11,7 +11,8 @@ interface IProps {
 	count?: 0 | 1;
 	page?: number;
 	limit?: number;
-	prescriptionDate: string;
+	startDate: string;
+	endDate: string;
 	active: number;
 }
 
@@ -43,8 +44,9 @@ export function useGetPrescriptions({
 	count = 0,
 	page = 0,
 	limit = 15,
-	prescriptionDate,
 	active = 1,
+	startDate,
+	endDate,
 }: IProps) {
 	return useQuery({
 		queryKey: [
@@ -53,8 +55,9 @@ export function useGetPrescriptions({
 				count,
 				page,
 				limit,
-				prescriptionDate,
 				active,
+				startDate,
+				endDate,
 			},
 		],
 		queryFn: getPrescriptions,

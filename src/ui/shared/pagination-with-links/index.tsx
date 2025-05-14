@@ -110,7 +110,7 @@ export function PaginationWithLinks({
 	};
 
 	return (
-		<div className="rounded-8 shadow-card1 flex items-center justify-between gap-24 bg-white p-16">
+		<div className="rounded-8 shadow-card1 flex items-center justify-between gap-24 bg-white px-16 py-8">
 			<div className="flex-1">
 				Showing Results: {page * Number(limit) + 1}-
 				{Math.min((page + 1) * Number(limit), totalCount ?? 0)} of{' '}

@@ -1,10 +1,13 @@
+/* eslint-disable indent */
 'use client';
 
 import { useState } from 'react';
+import { type DateRange } from 'react-day-picker';
 import { format, parseISO, startOfToday } from 'date-fns';
 import { PillBottle } from 'lucide-react';
 import { useQueryStates } from 'nuqs';
 
+import { DEFAULT_DATE_FORMAT } from '../../../../helpers/constant';
 import { type IPrescription } from '../../../../types/prescription';
 import { PaginationWithLinks } from '../../../../ui/shared';
 import { DataTable } from '../../../../ui/shared/data-table';
@@ -21,20 +24,34 @@ import Filters from './_ui/filters';
 
 export default function Page() {
 	const today = startOfToday();
-	const [{ date }, setDate] = useQueryStates({
-		date: {
-			defaultValue: format(today, 'yyyy-MM-dd'),
+	const [{ start, end }, setDateRange] = useQueryStates({
+		start: {
+			defaultValue: format(today, DEFAULT_DATE_FORMAT),
 			parse: parseISO,
-			serialize: (date: Date) => format(date, 'yyyy-MM-dd'),
+			serialize: (date: Date) => format(date, DEFAULT_DATE_FORMAT),
+		},
+		end: {
+			defaultValue: format(today, DEFAULT_DATE_FORMAT),
+			parse: parseISO,
+			serialize: (date: Date) => format(date, DEFAULT_DATE_FORMAT),
 		},
 	});
-	const selectedDate = date ?? today;
+	const selectedDateRange = {
+		from: start ?? today,
+		to: end ?? today,
+	} as DateRange;
+
 	const { limit, page, handlePagination, active, setActive } = useUpdateUrl();
 	const [open, setOpen] = useState(false);
 	const columns = useColumns();
 	const { data, isPending } = useGetPrescriptions({
 		count: 1,
-		prescriptionDate: format(selectedDate, 'yyyy-MM-dd'),
+		startDate: selectedDateRange.from
+			? format(selectedDateRange.from, DEFAULT_DATE_FORMAT)
+			: format(new Date(), DEFAULT_DATE_FORMAT),
+		endDate: selectedDateRange.to
+			? format(selectedDateRange.to, DEFAULT_DATE_FORMAT)
+			: format(new Date(), DEFAULT_DATE_FORMAT),
 		active,
 	});
 	const medicineData = data?.data?.prescriptions || ([] as IPrescription[]);
@@ -44,8 +61,19 @@ export default function Page() {
 		<div className="mb-[54px]">
 			<div className="rounded-8 shadow-card1 sticky top-0 z-20 bg-white p-16">
 				<Filters
-					selectedDate={selectedDate}
-					setDate={setDate}
+					selectedDate={selectedDateRange}
+					setDate={({ date }) =>
+						setDateRange({
+							start: date.from
+								? parseISO(
+										format(date.from, DEFAULT_DATE_FORMAT)
+									)
+								: new Date(),
+							end: date.to
+								? parseISO(format(date.to, DEFAULT_DATE_FORMAT))
+								: new Date(),
+						})
+					}
 					active={active}
 					setActive={setActive}
 				/>

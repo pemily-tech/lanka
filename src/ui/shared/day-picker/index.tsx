@@ -1,4 +1,5 @@
-import { addDays, format, isSameDay, startOfToday } from 'date-fns';
+import { type DateRange, type Matcher } from 'react-day-picker';
+import { addDays, format, isSameDay, parseISO, startOfToday } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 
 import { cn } from '../../../helpers/utils';
@@ -8,24 +9,47 @@ import { Popover, PopoverContent, PopoverTrigger } from '../popover';
 export function DayPicker({
 	selectedDate,
 	setDate,
+	disabled,
 }: {
-	selectedDate: Date;
-	setDate: (payload: { date: Date }) => void;
+	selectedDate: DateRange | undefined;
+	setDate: (payload: { date: DateRange }) => void;
+	disabled?: boolean | DateRange | Date[] | Matcher[] | Matcher;
 }) {
 	const today = startOfToday();
-	const days = Array.from({ length: 7 }).map((_, i) => addDays(today, -i));
+	const days = Array.from({ length: 7 }, (_, i) => addDays(today, -i));
+
+	const fromDate = selectedDate?.from
+		? typeof selectedDate.from === 'string'
+			? parseISO(selectedDate.from)
+			: selectedDate.from
+		: undefined;
+	const toDate = selectedDate?.to
+		? typeof selectedDate.to === 'string'
+			? parseISO(selectedDate.to)
+			: selectedDate.to
+		: undefined;
+
+	const displayDate = fromDate
+		? toDate && fromDate.getTime() !== toDate.getTime()
+			? `${format(fromDate, 'dd MMM')} - ${format(toDate, 'dd MMM, yyyy')}`
+			: format(fromDate, 'dd MMM, yyyy')
+		: 'Select date range';
+
+	const onDaySelect = (day: Date) => {
+		setDate({ date: { from: day, to: day } });
+	};
 
 	return (
 		<div className="flex flex-col gap-12">
 			<div className="flex items-center justify-between">
-				<div className="text-24 font-medium">
-					{format(selectedDate, 'dd MMM, yyyy')}
-				</div>
+				<div className="text-24 font-medium">{displayDate}</div>
 			</div>
 			<div className="inline-flex flex-row flex-wrap gap-12 rounded-lg">
 				{days.reverse().map((day) => {
 					const formattedDay = format(day, 'dd EEE');
-					const isSelected = isSameDay(day, selectedDate);
+					const isSelected = selectedDate?.from
+						? isSameDay(day, selectedDate.from)
+						: false;
 
 					return (
 						<div
@@ -34,7 +58,7 @@ export function DayPicker({
 								isSelected && 'bg-primary text-white'
 							)}
 							key={day.toISOString()}
-							onClick={() => setDate({ date: day })}
+							onClick={() => onDaySelect(day)}
 						>
 							<span className="text-24 leading-24 font-medium">
 								{formattedDay.split(' ')?.[0]}
@@ -47,24 +71,18 @@ export function DayPicker({
 				})}
 				<Popover>
 					<PopoverTrigger asChild>
-						<div
-							className={cn(
-								'border-black-1/10 flex w-[90px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-12'
-							)}
-						>
+						<div className="border-black-1/10 flex w-[90px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-12">
 							<CalendarIcon />
 						</div>
 					</PopoverTrigger>
 					<PopoverContent className="w-auto p-0">
 						<Calendar
-							mode="single"
+							mode="range"
 							selected={selectedDate}
-							onSelect={(day) => {
-								if (day) {
-									setDate({ date: day });
-								}
+							onSelect={(range) => {
+								if (range?.from) setDate({ date: range });
 							}}
-							disabled={{ after: new Date() }}
+							disabled={disabled}
 						/>
 					</PopoverContent>
 				</Popover>

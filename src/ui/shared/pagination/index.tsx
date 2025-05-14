@@ -53,7 +53,7 @@ export const PaginationLink = ({
 		size={size}
 		className={cn(
 			className,
-			'rounded-8 flex size-32 items-center justify-center'
+			'rounded-8 flex size-32 items-center justify-center gap-4 p-12'
 		)}
 		{...props}
 	/>
@@ -69,7 +69,7 @@ export const PaginationPrevious = ({
 		className={cn('rounded-8 !size-auto', className)}
 		{...props}
 	>
-		<ChevronLeft className="size-24" />
+		<ChevronLeft className="size-16" />
 		<span>Previous</span>
 	</PaginationLink>
 );
@@ -85,7 +85,7 @@ export const PaginationNext = ({
 		{...props}
 	>
 		<span>Next</span>
-		<ChevronRight className="size-24" />
+		<ChevronRight className="size-16" />
 	</PaginationLink>
 );
 PaginationNext.displayName = 'PaginationNext';

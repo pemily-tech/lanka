@@ -1,7 +1,7 @@
 import { useQueryStates } from 'nuqs';
 
 export const useUpdateUrl = () => {
-	const [{ page, limit, count, active }, setQuery] = useQueryStates({
+	const [{ page, limit, active }, setQuery] = useQueryStates({
 		page: {
 			defaultValue: 0,
 			parse: Number,
@@ -9,11 +9,6 @@ export const useUpdateUrl = () => {
 		},
 		limit: {
 			defaultValue: 15,
-			parse: Number,
-			serialize: String,
-		},
-		count: {
-			defaultValue: 1,
 			parse: Number,
 			serialize: String,
 		},
@@ -31,13 +26,10 @@ export const useUpdateUrl = () => {
 	};
 
 	const handlePagination = (newPage: number | 'next' | 'prev') => {
-		let nextPage =
+		const nextPage =
 			typeof newPage === 'number'
 				? newPage
 				: page + (newPage === 'next' ? 1 : -1);
-
-		nextPage = Math.max(0, Math.min(nextPage, count - 1));
-
 		setQuery({ page: nextPage });
 	};
 
@@ -52,7 +44,6 @@ export const useUpdateUrl = () => {
 	return {
 		page,
 		limit,
-		count,
 		active,
 		handlePagination,
 		updateQueryParams,

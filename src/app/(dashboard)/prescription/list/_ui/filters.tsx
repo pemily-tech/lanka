@@ -1,7 +1,7 @@
 'use client';
 
 import { memo } from 'react';
-import { format } from 'date-fns';
+import { type DateRange } from 'react-day-picker';
 
 import {
 	Label,
@@ -14,8 +14,8 @@ import {
 import { DayPicker } from '../../../../../ui/shared/day-picker';
 
 interface IProps {
-	selectedDate: Date;
-	setDate: (payload: { date: Date }) => void;
+	selectedDate: DateRange | undefined;
+	setDate: (payload: { date: DateRange }) => void;
 	active: number;
 	setActive: (active: number) => void;
 }
@@ -23,7 +23,11 @@ interface IProps {
 function Filters({ selectedDate, setDate, active, setActive }: IProps) {
 	return (
 		<div className="flex flex-row items-end justify-between gap-24">
-			<DayPicker selectedDate={selectedDate} setDate={setDate} />
+			<DayPicker
+				selectedDate={selectedDate}
+				setDate={setDate}
+				disabled={{ after: new Date() }}
+			/>
 			<div>
 				<Select
 					value={String(active)}
