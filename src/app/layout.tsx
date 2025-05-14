@@ -4,10 +4,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
-import Script from 'next/script';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import Providers from '../services/providers';
+import AnalyticsScript from '../ui/shared/analytics-script';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -55,11 +55,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
 				<NuqsAdapter>
 					<Providers>{children}</Providers>
 				</NuqsAdapter>
-				<Script
-					defer
-					src="https://analytics.pemilyy.com/script.js"
-					data-website-id="e73663f9-1970-40f8-a82d-72e22dfdb350"
-				/>
+				<AnalyticsScript />
 			</body>
 		</html>
 	);
