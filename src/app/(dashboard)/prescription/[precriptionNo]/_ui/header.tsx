@@ -24,9 +24,11 @@ export default function Header() {
 			</div>
 			<div className="flex items-center gap-6">
 				<span className="text-black-1/60">Date: </span>
-				<span className="text-lg font-medium">
-					{format(prescription.createdAt, DATE_FORMAT)}
-				</span>
+				{prescription?.prescriptionDate && (
+					<span className="text-lg font-medium">
+						{format(prescription?.prescriptionDate, DATE_FORMAT)}
+					</span>
+				)}
 			</div>
 		</div>
 	);

@@ -178,3 +178,4 @@ export const certificateData = [
 export const DATE_FORMAT = 'do MMM, yyyy';
 export const DATE_TIME_FORMAT = 'dd/MM/yyyy HH:mm:ss';
 export const TIME_FORMAT = 'HH:mm:ss';
+export const DEFAULT_DATE_FORMAT = 'yyyy-MM-dd';

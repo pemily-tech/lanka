@@ -1,6 +1,8 @@
 import { useEffect, useMemo } from 'react';
+import { format } from 'date-fns';
 import { useParams, useRouter } from 'next/navigation';
 
+import { DEFAULT_DATE_FORMAT } from '../../../../../helpers/constant';
 import { calculateAge } from '../../../../../helpers/utils';
 import useDocumentDownload from '../../../../../hooks/use-download-document';
 import { queryClient } from '../../../../../services/providers';
@@ -75,7 +77,7 @@ export function useFooterActions() {
 			...(diagnosis && { diagnosis }),
 			...(vitals && { vitals }),
 			...(advice && { advice }),
-			...(follwup && { nextVisit: follwup }),
+			...(follwup && { nextVisit: format(follwup, DEFAULT_DATE_FORMAT) }),
 		};
 		await updatePrescription(payload);
 	};

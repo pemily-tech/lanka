@@ -58,7 +58,7 @@ const RootLayout = ({ children }: PropsWithChildren) => {
 				<Script
 					defer
 					src="https://analytics.pemilyy.com/script.js"
-					data-website-id="5a28f341-39b2-4362-a17d-2ca0e60d6f9b"
+					data-website-id="e73663f9-1970-40f8-a82d-72e22dfdb350"
 				/>
 			</body>
 		</html>

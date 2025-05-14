@@ -73,15 +73,42 @@ export default function Footer() {
 				<Plus className="size-16" />
 				<span className="font-normal">Create PDF</span>
 			</Button>
-			<Button
-				disabled={!isPrescriptionSaved}
-				className="min-w-[120px] !rounded-2xl"
-				variant="outline"
-				onClick={handleShare}
-			>
-				<SendHorizonal className="size-16" />
-				<span className="font-normal">Share PDF</span>
-			</Button>
+			<AlertDialog>
+				<AlertDialogTrigger asChild>
+					<Button
+						disabled={!isPrescriptionSaved}
+						className="min-w-[120px] !rounded-2xl"
+						variant="outline"
+					>
+						<SendHorizonal className="size-16" />
+						<span className="font-normal">Share PDF</span>
+					</Button>
+				</AlertDialogTrigger>
+				<AlertDialogContent className="gap-24">
+					<AlertDialogHeader>
+						<AlertDialogTitle className="text-24">
+							Share Prescription
+						</AlertDialogTitle>
+						<AlertDialogDescription>
+							This document will be shared with pet parent through
+							WhatsApp and Pemilyy app.
+						</AlertDialogDescription>
+					</AlertDialogHeader>
+					<AlertDialogFooter className="!pt-32">
+						<AlertDialogAction
+							onClick={handleShare}
+							className="bg-secondary hover:bg-secondary/90 px-24 text-white hover:text-white"
+						>
+							Confirm
+						</AlertDialogAction>
+						<AlertDialogCancel className="bg-transparent hover:bg-transparent">
+							<span className="text-14 text-black-1 font-normal">
+								Cancel
+							</span>
+						</AlertDialogCancel>
+					</AlertDialogFooter>
+				</AlertDialogContent>
+			</AlertDialog>
 			<Button
 				disabled={!isPrescriptionSaved}
 				className="min-w-[120px] !rounded-2xl"

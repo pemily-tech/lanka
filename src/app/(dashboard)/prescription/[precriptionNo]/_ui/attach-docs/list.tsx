@@ -97,14 +97,42 @@ function Doc({
 				>
 					<Eye className="size-18" />
 				</Button>
-				<Button
-					onClick={() => handelShare(doc._id)}
-					size="icon"
-					variant="ghost"
-					disabled={isPending}
-				>
-					<Share className="size-18" />
-				</Button>
+				<AlertDialog>
+					<AlertDialogTrigger asChild>
+						<Button
+							size="icon"
+							variant="ghost"
+							disabled={isPending}
+						>
+							<Share className="size-18" />
+						</Button>
+					</AlertDialogTrigger>
+					<AlertDialogContent className="gap-24">
+						<AlertDialogHeader>
+							<AlertDialogTitle className="text-24">
+								Share Prescription
+							</AlertDialogTitle>
+							<AlertDialogDescription>
+								This document will be shared with pet parent
+								through WhatsApp and Pemilyy app.
+							</AlertDialogDescription>
+						</AlertDialogHeader>
+						<AlertDialogFooter className="!pt-32">
+							<AlertDialogAction
+								onClick={() => handelShare(doc._id)}
+								className="bg-secondary hover:bg-secondary/90 px-24 text-white hover:text-white"
+							>
+								Confirm
+							</AlertDialogAction>
+							<AlertDialogCancel className="bg-transparent hover:bg-transparent">
+								<span className="text-14 text-black-1 font-normal">
+									Cancel
+								</span>
+							</AlertDialogCancel>
+						</AlertDialogFooter>
+					</AlertDialogContent>
+				</AlertDialog>
+
 				<AlertDialog>
 					<AlertDialogTrigger asChild>
 						<Button size="icon" variant="ghost">

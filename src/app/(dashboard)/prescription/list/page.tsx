@@ -42,7 +42,7 @@ export default function Page() {
 
 	return (
 		<div className="mb-[54px]">
-			<div className="rounded-8 shadow-card1 bg-white p-16">
+			<div className="rounded-8 shadow-card1 sticky top-0 z-20 bg-white p-16">
 				<Filters
 					selectedDate={selectedDate}
 					setDate={setDate}
