@@ -29,7 +29,7 @@ export function useVaccinationExcel() {
 		mutationFn: vaccinationExcel,
 		onSuccess: (data) => {
 			if (data?.status === 'SUCCESS' && data?.data?.signedUrl) {
-				toast.success('Data Downloaded Successfully!');
+				toast.success('Data downloaded successfully!');
 			} else if (
 				data?.status === 'SUCCESS' &&
 				data?.data?.signedUrl === '' &&
