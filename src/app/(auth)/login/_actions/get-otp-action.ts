@@ -37,12 +37,13 @@ export const getOtpAction = safeActionClient
 
 			const data =
 				(await response.json()) as IApiResponse<IsUserRegisteredInterface>;
+			const isSuccess = data?.status === 'SUCCESS';
+			const isUser = data?.data?.isUser;
+			const isClinicOrStaff =
+				data?.data?.role === Roles.Clinic ||
+				data?.data?.role === Roles.Staff;
 
-			if (
-				data?.status === 'SUCCESS' &&
-				data?.data?.isUser &&
-				data?.data?.role === Roles.Clinic
-			) {
+			if (isSuccess && isUser && isClinicOrStaff) {
 				try {
 					const otpResponse = await fetch(
 						`${env.NEXT_PUBLIC_BASE_PATH}/auth/sendOtp`,

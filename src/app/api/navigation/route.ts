@@ -3,6 +3,8 @@ import { NextResponse } from 'next/server';
 import { Routes } from '../../../helpers/routes';
 import { type INavigationItem } from '../../../types/common';
 
+import { Roles } from '@/helpers/primitives';
+
 const data: INavigationItem[] = [
 	{
 		id: 1,
@@ -11,6 +13,7 @@ const data: INavigationItem[] = [
 		title: 'Home',
 		isIcon: true,
 		icon: 'House',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
 		id: 12,
@@ -19,6 +22,7 @@ const data: INavigationItem[] = [
 		title: 'Medical Records',
 		isIcon: false,
 		icon: '/images/medical-records.png',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
 		id: 12,
@@ -27,6 +31,7 @@ const data: INavigationItem[] = [
 		title: 'Vaccination Records',
 		isIcon: false,
 		icon: '/images/vaccination-records.png',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
 		id: 2,
@@ -35,55 +40,8 @@ const data: INavigationItem[] = [
 		title: 'Follow Up',
 		isIcon: false,
 		icon: '/images/follow-ups.png',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
-	// {
-	// 	id: 3,
-	// 	type: 'menu',
-	// 	path: '/billing',
-	// 	title: 'Billing',
-	// 	isIcon: true,
-	// 	icon: 'ReceiptIndianRupee',
-	// 	items: [
-	// 		{
-	// 			id: 3,
-	// 			type: 'link',
-	// 			path: Routes.BILLING_LIST,
-	// 			title: 'Invoice List',
-	// 			isIcon: false,
-	// 		},
-	// 		{
-	// 			id: 4,
-	// 			type: 'link',
-	// 			path: Routes.ADD_BILLING_ITEM,
-	// 			title: 'Create Invoice',
-	// 			isIcon: false,
-	// 		},
-	// 	],
-	// },
-	// {
-	// 	id: 3,
-	// 	type: 'menu',
-	// 	path: '/items/list',
-	// 	title: 'Products',
-	// 	isIcon: true,
-	// 	icon: 'PackageSearch',
-	// 	items: [
-	// 		{
-	// 			id: 3,
-	// 			type: 'link',
-	// 			path: Routes.ITEMS_LIST,
-	// 			title: 'Items',
-	// 			isIcon: false,
-	// 		},
-	// 		{
-	// 			id: 4,
-	// 			type: 'link',
-	// 			path: Routes.ADD_ITEM,
-	// 			title: 'Add Item',
-	// 			isIcon: false,
-	// 		},
-	// 	],
-	// },
 	{
 		id: 19,
 		type: 'link',
@@ -91,6 +49,7 @@ const data: INavigationItem[] = [
 		title: 'Pet Parents',
 		isIcon: false,
 		icon: '/images/Pet-Parent.svg',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
 		id: 3,
@@ -99,6 +58,7 @@ const data: INavigationItem[] = [
 		title: 'Prescription',
 		isIcon: true,
 		icon: 'Pill',
+		roles: [Roles.Clinic],
 		items: [
 			{
 				id: 3,
@@ -106,6 +66,7 @@ const data: INavigationItem[] = [
 				path: Routes.PRESCRIPTION_LIST,
 				title: 'List',
 				isIcon: false,
+				roles: [Roles.Clinic],
 			},
 			{
 				id: 4,
@@ -113,6 +74,7 @@ const data: INavigationItem[] = [
 				path: Routes.MEDICINES_LIST,
 				title: 'Medicines',
 				isIcon: false,
+				roles: [Roles.Clinic],
 			},
 		],
 	},
@@ -123,6 +85,7 @@ const data: INavigationItem[] = [
 		title: 'Profile',
 		isIcon: true,
 		icon: 'UserCircleIcon',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
 ];
 

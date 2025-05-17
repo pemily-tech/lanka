@@ -40,31 +40,32 @@ export default function UserTabs() {
 			label: 'Personal Details',
 			value: 'personal',
 			component: <PersonalDetailsForm />,
-			roleRequired: Roles.Clinic,
+			role: [Roles.Clinic],
 		},
 		{
 			label: 'Primary Address',
 			value: 'address',
 			component: <AddressForm />,
-			roleRequired: Roles.Clinic,
+			role: [Roles.Clinic],
 		},
 		{
 			label: 'Business Details',
 			value: 'business',
 			component: <BusinessForm />,
-			roleRequired: Roles.Clinic,
+			role: [Roles.Clinic],
 		},
 		{
 			label: 'Contact Us',
 			value: 'contact',
 			component: <Contact />,
-			roleRequired: Roles.Clinic,
+			role: [Roles.Clinic, Roles.Staff],
 		},
 	];
 
-	const filteredTabs = tabData.filter(
-		(tab) => !tab.roleRequired || tab.roleRequired === role
-	);
+	const filteredTabs = tabData.filter((item) => {
+		if (!item.role) return true;
+		return item.role.includes(role as Roles);
+	});
 
 	return (
 		<div className="w-full">

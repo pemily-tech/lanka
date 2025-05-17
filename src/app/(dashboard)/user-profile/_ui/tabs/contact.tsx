@@ -3,7 +3,7 @@ import { Globe, Mail, PhoneIcon } from 'lucide-react';
 const contactInfo = [
 	{
 		label: 'Phone',
-		value: '7047037587',
+		value: '+91-7047037587',
 		href: 'tel:7047037587',
 		icon: PhoneIcon,
 	},

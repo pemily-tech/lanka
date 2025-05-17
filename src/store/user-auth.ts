@@ -4,6 +4,8 @@ import { persist } from 'zustand/middleware';
 
 import { type ISubscription } from '../types/auth';
 
+import { Roles } from '@/helpers/primitives';
+
 type AuthState = {
 	loading: boolean;
 	loggedIn: boolean;
@@ -14,7 +16,7 @@ type AuthState = {
 	name?: string;
 	active?: boolean;
 	gender?: string;
-	role?: string | null;
+	role: string;
 	clinicIds?: string[];
 	createdAt?: string;
 	updatedAt?: string;
@@ -38,6 +40,7 @@ const initialState: AuthState = {
 	loggedIn: false,
 	token: null,
 	refreshToken: null,
+	role: Roles.Clinic,
 };
 
 export const useAuthStore = create<AuthState & AuthActions>()(

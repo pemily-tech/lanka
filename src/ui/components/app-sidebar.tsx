@@ -15,7 +15,6 @@ import { usePathname } from 'next/navigation';
 
 import { useGetNavigation } from '../../api/layout/use-get-navigation';
 import { logout } from '../../helpers/utils';
-import { useAppSelector } from '../../store';
 import { useAuthStore } from '../../store/user-auth';
 import { type INavigationItem } from '../../types/common';
 import {
@@ -59,9 +58,13 @@ const IconMap: Record<string, React.ElementType> = {
 };
 
 export const AppSidebar = () => {
-	const { name, mobile } = useAuthStore();
+	const { name, mobile, role } = useAuthStore();
 	const { data } = useGetNavigation();
 	const navMenu: INavigationItem[] = data?.data || [];
+	const filteredNavMenu = navMenu.filter((item) => {
+		if (!item.roles) return true;
+		return item.roles.includes(role);
+	});
 
 	const handleLogout = () => {
 		logout();
@@ -81,7 +84,7 @@ export const AppSidebar = () => {
 			</SidebarHeader>
 			<SidebarContent className="py-24">
 				<SidebarGroup>
-					<Menu navMenu={navMenu} />
+					<Menu navMenu={filteredNavMenu} role={role} />
 				</SidebarGroup>
 			</SidebarContent>
 			<SidebarFooter className="px-8">
@@ -128,7 +131,13 @@ export const AppSidebar = () => {
 	);
 };
 
-const Menu = ({ navMenu }: { navMenu: INavigationItem[] }) => {
+const Menu = ({
+	navMenu,
+	role,
+}: {
+	navMenu: INavigationItem[];
+	role: string;
+}) => {
 	const pathname = usePathname();
 
 	return (
@@ -141,7 +150,7 @@ const Menu = ({ navMenu }: { navMenu: INavigationItem[] }) => {
 					pathname.split('/')[1] === item.path.split('/')[1];
 
 				if (item.type === 'menu') {
-					return <MenuItem key={index} item={item} />;
+					return <MenuItem key={index} item={item} role={role} />;
 				} else {
 					return (
 						<SidebarMenuButton
@@ -174,11 +183,14 @@ const Menu = ({ navMenu }: { navMenu: INavigationItem[] }) => {
 	);
 };
 
-const MenuItem = ({ item }: { item: INavigationItem }) => {
+const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 	const Icon = item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
 	const pathname = usePathname();
 	const activeItem = pathname.split('/').filter(Boolean)[0];
 	const activeCollapse = `/${activeItem}` === item.path;
+	const visibleItems = (item.items || []).filter(
+		(subItem) => !subItem.roles || subItem.roles.includes(role)
+	);
 
 	return (
 		<Collapsible
@@ -196,7 +208,7 @@ const MenuItem = ({ item }: { item: INavigationItem }) => {
 				</CollapsibleTrigger>
 				<CollapsibleContent>
 					<SidebarMenuSub className="mx-0 ml-24 mt-8 gap-12 px-0">
-						{item.items?.map((ite, index) => {
+						{visibleItems?.map((ite, index) => {
 							const active = pathname === ite.path;
 							return (
 								<SidebarMenuSubItem key={index}>

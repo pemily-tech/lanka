@@ -285,5 +285,6 @@ export interface INavigationItem {
 	items?: INavigationItem[];
 	icon?: string;
 	isIcon: boolean;
+	roles: string[];
 }
 export type IFileWithPreview = File & { preview: string };
