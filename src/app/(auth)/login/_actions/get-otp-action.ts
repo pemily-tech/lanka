@@ -2,12 +2,12 @@
 
 import { z } from 'zod';
 
-import { phoneValidator } from '../../../helpers/utils';
-import { safeActionClient } from '../../../services/next-safe-actions';
-import { type IsUserRegisteredInterface } from '../../../types/auth';
-import { type IApiResponse } from '../../../types/common';
-
 import { env } from '@/env.mjs';
+import { Roles } from '@/helpers/primitives';
+import { phoneValidator } from '@/helpers/utils';
+import { safeActionClient } from '@/services/next-safe-actions';
+import { type IsUserRegisteredInterface } from '@/types/auth';
+import { type IApiResponse } from '@/types/common';
 
 const schema = z.object({
 	mobileNumber: z
@@ -38,7 +38,11 @@ export const getOtpAction = safeActionClient
 			const data =
 				(await response.json()) as IApiResponse<IsUserRegisteredInterface>;
 
-			if (data?.status === 'SUCCESS' && data?.data?.isUser) {
+			if (
+				data?.status === 'SUCCESS' &&
+				data?.data?.isUser &&
+				data?.data?.role === Roles.Clinic
+			) {
 				try {
 					const otpResponse = await fetch(
 						`${env.NEXT_PUBLIC_BASE_PATH}/auth/sendOtp`,

@@ -15,7 +15,7 @@ import {
 	DialogTitle,
 	Spinner,
 } from '../../../../ui/shared';
-import useOtpHook from './use-otp-hook';
+import useOtpHook from './_hooks/use-otp-hook';
 
 export default function Page() {
 	const params = useParams<{ mobileNumber: string }>();
