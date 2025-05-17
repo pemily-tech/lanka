@@ -102,6 +102,7 @@ export default function Page() {
 					setActive={setActive}
 					searchTerm={input}
 					setSearchTerm={handleChange}
+					setOpenPrescription={() => setOpen(!open)}
 				/>
 			</div>
 			<div className="shadow-card1 rounded-8 relative my-12 bg-white">

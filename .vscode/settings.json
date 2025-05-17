@@ -44,8 +44,10 @@
 	},
 
 	// Custom settings
-	"cSpell.words": ["Flashlist", "Lato", "sonner"], // Custom words for spell checker
+	"cSpell.words": ["Flashlist", "Lato", "nuqs", "sonner"], // Custom words for spell checker
 	"tailwindCSS.experimental.classRegex": [
 		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-	]
+	],
+	"editor.wordWrap": "on",
+	"editor.wordWrapColumn": 100
 }

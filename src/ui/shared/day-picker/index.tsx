@@ -54,7 +54,7 @@ export function DayPicker({
 					return (
 						<div
 							className={cn(
-								'border-black-1/10 flex w-[90px] cursor-pointer flex-col items-center justify-center gap-6 rounded-lg border bg-white py-12',
+								'border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center gap-6 rounded-lg border bg-white py-12',
 								isSelected && 'bg-primary text-white'
 							)}
 							key={day.toISOString()}
@@ -71,7 +71,7 @@ export function DayPicker({
 				})}
 				<Popover>
 					<PopoverTrigger asChild>
-						<div className="border-black-1/10 flex w-[90px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-12">
+						<div className="border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-12">
 							<CalendarIcon />
 						</div>
 					</PopoverTrigger>
