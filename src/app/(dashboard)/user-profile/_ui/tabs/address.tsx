@@ -1,9 +1,11 @@
+/* eslint-disable indent */
 /* eslint-disable max-lines-per-function */
 'use client';
 
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { ChevronDown } from 'lucide-react';
 import { z } from 'zod';
 
 import useCreateAddress from '../../../../../api/use-create-address/create-address';
@@ -21,12 +23,12 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
 } from '../../../../../ui/shared';
+
+import { cn } from '@/helpers/utils';
 
 const schema = z.object({
 	line1: z.string().min(1, 'Line1 is required'),
@@ -52,6 +54,12 @@ interface IPayload {
 	type: string;
 	isPrimary: boolean;
 }
+
+const addressTypes = [
+	{ label: 'Home', value: 'HOME' },
+	{ label: 'Work', value: 'WORK' },
+	{ label: 'Other', value: 'OTHER' },
+];
 
 const AddressForm = () => {
 	const form = useForm<IFormData>({
@@ -165,23 +173,44 @@ const AddressForm = () => {
 					control={form.control}
 					name="type"
 					render={({ field }) => (
-						<FormItem>
+						<FormItem className="flex flex-col space-y-6">
 							<FormLabel>Choose address type</FormLabel>
-							<Select
-								onValueChange={field.onChange}
-								value={field.value}
-							>
-								<FormControl>
-									<SelectTrigger>
-										<SelectValue placeholder="Choose address type" />
-									</SelectTrigger>
-								</FormControl>
-								<SelectContent>
-									<SelectItem value="HOME">Home</SelectItem>
-									<SelectItem value="WORK">Work</SelectItem>
-									<SelectItem value="OTHER">Other</SelectItem>
-								</SelectContent>
-							</Select>
+							<Popover>
+								<PopoverTrigger asChild>
+									<Button
+										variant="outline"
+										role="combobox"
+										className={cn(
+											'justify-between font-normal',
+											!field.value &&
+												'text-muted-foreground'
+										)}
+									>
+										{field.value
+											? addressTypes.find(
+													(item) =>
+														item.value ===
+														field.value
+												)?.label
+											: 'Choose address type'}
+										<ChevronDown className="ml-2 size-16 shrink-0 opacity-50" />
+									</Button>
+								</PopoverTrigger>
+								<PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
+									{addressTypes.map((type) => (
+										<Button
+											key={type.value}
+											variant="ghost"
+											className="w-full justify-start px-16 text-left"
+											onClick={() =>
+												field.onChange(type.value)
+											}
+										>
+											{type.label}
+										</Button>
+									))}
+								</PopoverContent>
+							</Popover>
 							<FormMessage />
 						</FormItem>
 					)}

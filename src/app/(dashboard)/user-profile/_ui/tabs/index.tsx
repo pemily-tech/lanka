@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { Contact } from 'lucide-react';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { Roles } from '../../../../../helpers/primitives';
@@ -14,6 +13,7 @@ import {
 } from '../../../../../ui/shared/tabs';
 import AddressForm from './address';
 import BusinessForm from './business-details';
+import Contact from './contact';
 import PersonalDetailsForm from './personal-details';
 
 export default function UserTabs() {
@@ -58,7 +58,7 @@ export default function UserTabs() {
 			label: 'Contact Us',
 			value: 'contact',
 			component: <Contact />,
-			roleRequired: null,
+			roleRequired: Roles.Clinic,
 		},
 	];
 

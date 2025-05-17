@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable max-lines-per-function */
 'use client';
 
@@ -5,7 +6,7 @@ import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
-import { CalendarIcon } from 'lucide-react';
+import { CalendarIcon, ChevronDown } from 'lucide-react';
 import { z } from 'zod';
 
 import { useGetUser } from '../../../../../api/user-details/user-details';
@@ -26,11 +27,6 @@ import {
 	Popover,
 	PopoverContent,
 	PopoverTrigger,
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
 } from '../../../../../ui/shared';
 import useUpdateUserDetails from '../../api/update-user-details';
 
@@ -41,6 +37,11 @@ const schema = z.object({
 	gender: z.string().min(1, 'Gender is required').optional(),
 	dob: z.string().min(1, 'Date of Birth is required').optional(),
 });
+
+const genders = [
+	{ label: 'Male', value: 'M' },
+	{ label: 'Female', value: 'F' },
+];
 
 type IFormData = z.infer<typeof schema>;
 
@@ -100,39 +101,48 @@ const PersonalDetailsForm = () => {
 								key={name}
 								control={form.control}
 								name={name as keyof IFormData}
-								render={({
-									field: selectField,
-									fieldState,
-								}) => {
+								render={({ field, fieldState }) => {
 									return (
-										<FormItem>
+										<FormItem className="flex flex-col space-y-6">
 											<FormLabel>Choose Gender</FormLabel>
-											<Select
-												onValueChange={
-													selectField.onChange
-												}
-												defaultValue={selectField.value}
-												value={selectField.value}
-											>
-												<FormControl>
-													<SelectTrigger
-														isError={
-															!!fieldState.error
-														}
-														className="!mt-6 bg-white"
+											<Popover>
+												<PopoverTrigger asChild>
+													<Button
+														variant="outline"
+														role="combobox"
+														className={cn(
+															'justify-between font-normal',
+															!field.value &&
+																'text-muted-foreground'
+														)}
 													>
-														<SelectValue placeholder="Select a gender" />
-													</SelectTrigger>
-												</FormControl>
-												<SelectContent>
-													<SelectItem value="M">
-														Male
-													</SelectItem>
-													<SelectItem value="F">
-														Female
-													</SelectItem>
-												</SelectContent>
-											</Select>
+														{field.value
+															? genders.find(
+																	(item) =>
+																		item.value ===
+																		field.value
+																)?.label
+															: 'Select a gender'}
+														<ChevronDown className="ml-2 size-16 shrink-0 opacity-50" />
+													</Button>
+												</PopoverTrigger>
+												<PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
+													{genders.map((item) => (
+														<Button
+															key={item.value}
+															variant="ghost"
+															className="w-full justify-start"
+															onClick={() =>
+																field.onChange(
+																	item.value
+																)
+															}
+														>
+															{item.label}
+														</Button>
+													))}
+												</PopoverContent>
+											</Popover>
 											<FormMessage />
 										</FormItem>
 									);
