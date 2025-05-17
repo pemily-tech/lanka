@@ -14,6 +14,7 @@ import {
 import AddressForm from './address';
 import BusinessForm from './business-details';
 import Contact from './contact';
+import Doctors from './doctors';
 import PersonalDetailsForm from './personal-details';
 
 export default function UserTabs() {
@@ -52,6 +53,12 @@ export default function UserTabs() {
 			label: 'Business Details',
 			value: 'business',
 			component: <BusinessForm />,
+			role: [Roles.Clinic],
+		},
+		{
+			label: 'Doctors',
+			value: 'doctors',
+			component: <Doctors />,
 			role: [Roles.Clinic],
 		},
 		{
