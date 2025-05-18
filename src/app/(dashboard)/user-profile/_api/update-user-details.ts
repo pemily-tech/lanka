@@ -1,28 +1,22 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { ApiEndpoints } from '../../../../helpers/primitives';
 import { HttpService } from '../../../../services/http-service';
 import { type IApiResponse } from '../../../../types/common';
 import { type IUserDetails } from '../../../../types/user';
 
-import { env } from '@/env.mjs';
-
 interface IPayload {
 	name: string;
-	email?: string;
-	gender?: string;
-	dob?: string;
+	email: string;
+	gender: string;
+	dob: string;
 }
 
 const updateUserDetails = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.patch<
 			IApiResponse<{ user: IUserDetails }>
-		>(
-			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UpdateUserBasic}`,
-			payload
-		);
+		>('user/basicDetail', payload);
 		return data;
 	} catch (err) {
 		console.error(err);
