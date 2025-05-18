@@ -133,7 +133,7 @@ export default function Page() {
 					</div>
 				</TooltipTrigger>
 				<TooltipContent className="border-purple rounded-2xl border bg-white px-12 py-6">
-					<p className="text-black-1">Create Prescription</p>
+					<p className="text-black-1">Create New Rx</p>
 				</TooltipContent>
 			</Tooltip>
 			<PetSelectModal open={open} setOpen={setOpen} />

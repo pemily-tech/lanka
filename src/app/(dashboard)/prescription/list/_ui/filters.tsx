@@ -88,7 +88,7 @@ function Filters({
 							transition={{ duration: 0.25 }}
 							className="text-[10px] font-bold text-white"
 						>
-							Create Prescription
+							Create New Rx
 						</motion.span>
 					) : (
 						<Plus className="size-18 text-white" />
