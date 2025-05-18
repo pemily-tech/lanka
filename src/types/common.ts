@@ -92,6 +92,7 @@ export interface IDoctor {
 	speciality: string;
 	experience: number;
 	mobile?: string;
+	regNo?: string;
 }
 export interface IParent {
 	parentId: string;

@@ -51,7 +51,8 @@
 		"pemilyy",
 		"Pincode",
 		"precription",
-		"sonner"
+		"sonner",
+		"speciality"
 	], // Custom words for spell checker
 	"tailwindCSS.experimental.classRegex": [
 		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]

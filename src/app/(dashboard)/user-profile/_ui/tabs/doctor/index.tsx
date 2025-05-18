@@ -1,6 +1,8 @@
 import { ChevronDown } from 'lucide-react';
 
-import useGetDoctors from '../../_api/use-get-doctors';
+import useGetDoctors from '../../../_api/use-get-doctors';
+import DoctorForm from './form';
+import Signature from './signature';
 
 import { type IClinicDoctor } from '@/types/clinic';
 import UserProfileImage from '@/ui/components/user-profile';
@@ -47,8 +49,8 @@ export default function Doctors() {
 							</div>
 						</CollapsibleTrigger>
 						<CollapsibleContent className="text-muted-foreground px-16 py-12 text-sm">
-							Yes. Free to use for personal and commercial
-							projects. No attribution required.
+							<Signature doctor={doctor.doctor} />
+							<DoctorForm doctor={doctor.doctor} />
 						</CollapsibleContent>
 					</div>
 				</Collapsible>

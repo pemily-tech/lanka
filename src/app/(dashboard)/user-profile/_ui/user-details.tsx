@@ -25,6 +25,7 @@ export default function UserDetails() {
 			uploadUserProfile(formData);
 		}
 	};
+
 	return (
 		<div className="gap-54 flex flex-row items-start justify-start rounded-[16px]">
 			<div className="flex gap-16">

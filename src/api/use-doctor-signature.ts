@@ -3,8 +3,6 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 import { HttpService } from '../services/http-service';
 import { type IApiResponse, type IGetPetsResponse } from '../types/common';
 
-import { env } from '@/env.mjs';
-
 const getSignature = async ({
 	queryKey,
 }: QueryFunctionContext<[string, string]>) => {

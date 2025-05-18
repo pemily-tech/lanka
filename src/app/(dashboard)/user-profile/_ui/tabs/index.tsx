@@ -14,7 +14,7 @@ import {
 import AddressForm from './address';
 import BusinessForm from './business-details';
 import Contact from './contact';
-import Doctors from './doctors';
+import Doctors from './doctor';
 import PersonalDetailsForm from './personal-details';
 
 export default function UserTabs() {
