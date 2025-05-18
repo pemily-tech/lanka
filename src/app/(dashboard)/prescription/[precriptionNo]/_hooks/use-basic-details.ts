@@ -9,6 +9,8 @@ import {
 import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useGetPrescriptionBasicDetails } from '../_api/use-get-details';
 
+import useDocumentDownload from '@/hooks/use-download-document';
+
 export function useBasicDetails() {
 	const params = useParams();
 	const prescriptionNo = params?.precriptionNo as string;
@@ -55,6 +57,10 @@ export function useBasicDetails() {
 
 	const { data: logoData } = useGetClinicLogo();
 	const clinicLogo = logoData?.data?.logoUrl;
+	const { url } = useDocumentDownload(
+		prescription?.clinicDetails?.logoUrl,
+		true
+	);
 
 	return {
 		isPending,
@@ -63,7 +69,7 @@ export function useBasicDetails() {
 		clinicAddress,
 		patientDetails,
 		parentOrPatientAddress,
-		clinicLogo,
+		clinicLogo: isPrescriptionSaved ? url : clinicLogo,
 		parentName,
 		parentMobile,
 	};

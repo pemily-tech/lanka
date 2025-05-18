@@ -1,5 +1,6 @@
 'use client';
 
+import { url } from 'inspector';
 import { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
@@ -11,6 +12,8 @@ import {
 } from '../../../../../types/prescription';
 import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useGetPrescriptionBasicDetails } from '../_api/use-get-details';
+
+import useDocumentDownload from '@/hooks/use-download-document';
 
 export default function Signature() {
 	const params = useParams();
@@ -34,11 +37,18 @@ export default function Signature() {
 	const { data: signatureData } = useGetDoctorSignature({
 		doctorId: prescription?.doctorId,
 	});
+	const { url } = useDocumentDownload(
+		prescription?.doctorDetails?.signatureUrl
+	);
 
 	return (
 		<div className="flex flex-col items-end justify-center gap-12 pb-24">
 			<img
-				src={signatureData?.data?.signatureUrl}
+				src={
+					isPrescriptionSaved
+						? url || signatureData?.data?.signatureUrl
+						: signatureData?.data?.signatureUrl
+				}
 				className="h-[42px] w-[120px]"
 			/>
 			<div className="flex flex-col items-end justify-end">

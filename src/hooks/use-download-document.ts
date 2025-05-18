@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import useDownloadDocument from '../api/download-document';
 
-const useDocumentDownload = (url: string) => {
+const useDocumentDownload = (url: string, publicDoc = false) => {
 	const { mutateAsync: downloadDocument } = useDownloadDocument();
 	const [imageUrl, setImageUrl] = useState<string | null>(null);
 
@@ -18,7 +18,7 @@ const useDocumentDownload = (url: string) => {
 		if (!url) return;
 
 		try {
-			const payload = { key: url };
+			const payload = { key: url, publicDoc };
 			const response = await downloadDocument(payload);
 			if (response?.data?.signedUrl) {
 				setImageUrl(response.data.signedUrl);
