@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { PencilLine } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
@@ -40,12 +40,13 @@ export default function Medicines() {
 		[data]
 	);
 
-	const selectedMedicinesData: IMedicine[] = useMemo(() => {
-		if (isPrescriptionSaved) {
-			return prescription?.medicines || [];
+	useEffect(() => {
+		if (prescription?.medicines?.length > 0) {
+			useMedicineStore.setState({
+				selectedMedicines: prescription.medicines,
+			});
 		}
-		return selectedMedicines || [];
-	}, [isPrescriptionSaved, selectedMedicines, prescription?.medicines]);
+	}, [isPrescriptionSaved, prescription?.medicines]);
 
 	return (
 		<div className="px-16">
@@ -68,7 +69,7 @@ export default function Medicines() {
 				<Search medicines={medicinesData} isPending={isPending} />
 			)}
 			<SelectedMedicines
-				selectedMedicines={selectedMedicinesData}
+				selectedMedicines={selectedMedicines}
 				isPrescriptionSaved={isPrescriptionSaved}
 			/>
 		</div>
