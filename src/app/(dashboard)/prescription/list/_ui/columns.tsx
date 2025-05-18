@@ -19,8 +19,17 @@ import {
 } from '../../../../../ui/shared';
 import { useRemovePrescription } from '../_api/use-remove-prescription';
 
-export function useColumns(): ColumnDef<IPrescription>[] {
-	const { mutate: removePrescription } = useRemovePrescription();
+export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
+	const { mutateAsync: removePrescription } = useRemovePrescription();
+
+	const handleDelete = async (prescriptionNo: string) => {
+		const response = await removePrescription({
+			id: prescriptionNo,
+		});
+		if (response.status === 'SUCCESS') {
+			refetch();
+		}
+	};
 
 	return [
 		{
@@ -105,9 +114,9 @@ export function useColumns(): ColumnDef<IPrescription>[] {
 								<AlertDialogFooter className="!pt-32">
 									<AlertDialogAction
 										onClick={() =>
-											removePrescription({
-												id: row.original.prescriptionNo,
-											})
+											handleDelete(
+												row.original.prescriptionNo
+											)
 										}
 										className="px-24"
 									>

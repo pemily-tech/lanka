@@ -51,10 +51,9 @@ export default function Page() {
 		updateQueryParams,
 	} = useUpdateUrl();
 	const [open, setOpen] = useState(false);
-	const columns = useColumns();
 	const [input, setInput] = useState('');
 	const [searchTerm, setSearchTerm] = useState('');
-	const { data, isPending } = useGetPrescriptions({
+	const { data, isPending, refetch } = useGetPrescriptions({
 		count: 1,
 		startDate: selectedDateRange.from
 			? format(selectedDateRange.from, DEFAULT_DATE_FORMAT)
@@ -66,6 +65,8 @@ export default function Page() {
 		page,
 		searchTerm,
 	});
+	const columns = useColumns(refetch);
+
 	const medicineData = data?.data?.prescriptions || ([] as IPrescription[]);
 	const totalCount = data?.data?.totalCount || 0;
 
