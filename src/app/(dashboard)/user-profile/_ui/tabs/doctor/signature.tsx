@@ -48,7 +48,7 @@ export default function Signature({ doctor }: { doctor: IDoctor }) {
 	return (
 		<div className="mb-16 border-b pb-16">
 			<h4 className="text-black-1/80 mb-12 font-semibold">
-				Doctor Signature:
+				Doctor eSignature:
 			</h4>
 			<div className="flex items-center justify-between">
 				{signatureData?.data?.signatureUrl ? (
@@ -65,7 +65,7 @@ export default function Signature({ doctor }: { doctor: IDoctor }) {
 						className="bg-secondary flex cursor-pointer items-center gap-6 rounded-xl px-16 py-12 text-white"
 					>
 						<Plus className="size-16" />
-						<span>Upload Signature</span>
+						<span>Upload eSignature</span>
 						<input {...getInputProps()} />
 					</div>
 				)}
