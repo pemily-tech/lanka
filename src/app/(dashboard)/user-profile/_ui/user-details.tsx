@@ -26,39 +26,45 @@ export default function UserDetails() {
 		}
 	};
 	return (
-		<div className="flex flex-row items-center justify-start gap-32 rounded-[16px]">
-			<div>
-				<label className="relative size-[62px] cursor-pointer rounded-full">
-					<input type="file" onChange={onChange} className="hidden" />
-					{isUrlExists ? (
-						<ImagePlaceholder
-							src={profileUrl as string}
-							containerClasses="size-[62px]"
-							imageClasses="rounded-full object-cover"
+		<div className="gap-54 flex flex-row items-start justify-start rounded-[16px]">
+			<div className="flex gap-16">
+				<div>
+					<label className="relative block size-[62px] cursor-pointer rounded-full">
+						<input
+							type="file"
+							onChange={onChange}
+							className="hidden"
 						/>
-					) : (
-						<div className="flex size-[62px] items-center justify-center rounded-full bg-gray-100">
-							<UserIcon
-								width={48}
-								height={48}
-								className="text-gray-400"
-							/>
-						</div>
-					)}
-					<div className="bg-primary absolute bottom-0 right-10 rounded-full p-[2px] ring-2 ring-white">
 						{isUrlExists ? (
-							<Check className="size-12 text-white" />
+							<ImagePlaceholder
+								src={profileUrl as string}
+								containerClasses="size-[62px]"
+								imageClasses="rounded-full object-cover"
+							/>
 						) : (
-							<Camera className="size-18 p-1 text-white" />
+							<div className="flex size-[62px] items-center justify-center rounded-full bg-gray-100">
+								<UserIcon
+									width={48}
+									height={48}
+									className="text-gray-400"
+								/>
+							</div>
 						)}
+						<div className="bg-primary absolute bottom-0 right-10 rounded-full p-[2px] ring-2 ring-white">
+							{isUrlExists ? (
+								<Check className="size-12 text-white" />
+							) : (
+								<Camera className="size-18 p-1 text-white" />
+							)}
+						</div>
+					</label>
+				</div>
+				<div>
+					<h3 className="text-24 font-semibold">{name}</h3>
+					<div className="flex flex-row items-center gap-4">
+						<span className="bg-primary size-6 rounded-full" />
+						<span className="text-12">Online</span>
 					</div>
-				</label>
-			</div>
-			<div>
-				<h3 className="text-24 font-semibold">{name}</h3>
-				<div className="flex flex-row items-center gap-4">
-					<span className="bg-primary size-6 rounded-full" />
-					<span className="text-12">Online</span>
 				</div>
 			</div>
 			<div>
