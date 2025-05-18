@@ -23,7 +23,7 @@ export default function BasicDetails() {
 
 	return (
 		<div>
-			<div className="flex flex-row justify-between gap-16  pb-16">
+			<div className="flex flex-row justify-between gap-16 pb-16">
 				<div className="flex flex-1 gap-24">
 					<div className="flex size-[152px] items-center justify-center">
 						<div className="border-purple-1/20 size-[142px] rounded-full border-2 p-4">
@@ -38,10 +38,9 @@ export default function BasicDetails() {
 					</div>
 					<div className="flex flex-1 flex-col gap-6">
 						<div className="flex flex-row gap-6">
-							<span className="text-black-1/60">
-								Clinic Name:{' '}
+							<span className="text-black-1/60 font-semibold">
+								{clinicDetails.name}
 							</span>
-							<span>{clinicDetails.name}</span>
 						</div>
 						{clinicDetails.email && (
 							<div className="flex flex-row gap-6">
@@ -89,21 +88,19 @@ export default function BasicDetails() {
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-1 flex-col items-end gap-2 overflow-hidden">
-					<span className="text-black-1/60">
-						Doctor Name:{' '}
-						<span className="text-black">{doctorDetails.name}</span>
-					</span>
-					<span className="text-black-1/60">
-						Reg No:{' '}
-						<span className="text-black">
-							{doctorDetails.regNo}
-						</span>
-					</span>
-					<span className="text-black">
-						{doctorDetails.degree},{doctorDetails.speciality},
-						{doctorDetails.experience}
-					</span>
+				<div className="flex flex-1 flex-col items-end gap-6 text-right">
+					<div className="text-black-1/60 font-semibold">
+						{doctorDetails.name}
+					</div>
+					<div>
+						{doctorDetails.degree}, {doctorDetails.speciality}
+					</div>
+					{doctorDetails.regNo && (
+						<div>
+							<span className="text-black-1/60">Reg No: </span>
+							<span>{doctorDetails.regNo}</span>
+						</div>
+					)}
 				</div>
 			</div>
 			<div className="flex flex-1 flex-col gap-12 border-y py-12">
