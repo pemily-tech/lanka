@@ -180,3 +180,5 @@ export const DATE_TIME_FORMAT = 'dd/MM/yyyy HH:mm:ss';
 export const TIME_FORMAT = 'HH:mm:ss';
 export const DEFAULT_DATE_FORMAT = 'yyyy-MM-dd';
 export const DATE_BE_FORMAT = 'dd-MM-yyyy';
+
+export const MAX_SIZE_500 = 500 * 1024;

@@ -1,19 +1,15 @@
-import { type } from 'os';
 import { useCallback } from 'react';
-import { useDropzone } from 'react-dropzone';
-import { FileIcon, Plus } from 'lucide-react';
+import { type FileRejection, useDropzone } from 'react-dropzone';
+import { Plus } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { useUploadDoctorSignature } from '../../../_api/use-upload-doctor-signature';
 
-import uploadUserProfile from '@/api/upload-user-profile/upload-user-profile';
 import { useGetDoctorSignature } from '@/api/use-doctor-signature';
-import {
-	createFormDataForDocument,
-	createFormDataForImage,
-} from '@/helpers/utils';
+import { MAX_SIZE_500 } from '@/helpers/constant';
+import { createFormDataForImage } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IDoctor } from '@/types/common';
-import { Button } from '@/ui/shared';
 
 export default function Signature({ doctor }: { doctor: IDoctor }) {
 	const { data: signatureData } = useGetDoctorSignature({
@@ -23,26 +19,42 @@ export default function Signature({ doctor }: { doctor: IDoctor }) {
 		doctor?.doctorId
 	);
 
-	const onDrop = useCallback((acceptedFiles: File[]) => {
-		acceptedFiles.map(async (acceptedFile) => {
-			const formData = createFormDataForImage(
-				acceptedFile as File,
-				'file'
-			);
-			const response = await uploadSignature(formData);
-			if (response.status === 'SUCCESS') {
-				queryClient.invalidateQueries({
-					queryKey: ['clinic/signatureUrl', doctor.doctorId],
+	const onDrop = useCallback(
+		(acceptedFiles: File[], fileRejections: FileRejection[]) => {
+			acceptedFiles.map(async (acceptedFile) => {
+				const formData = createFormDataForImage(
+					acceptedFile as File,
+					'file'
+				);
+				const response = await uploadSignature(formData);
+				if (response.status === 'SUCCESS') {
+					queryClient.invalidateQueries({
+						queryKey: ['clinic/signatureUrl', doctor.doctorId],
+					});
+				}
+			});
+
+			fileRejections.forEach((rejection) => {
+				rejection.errors.forEach((error) => {
+					if (error.code === 'file-too-large') {
+						toast.error(
+							'File is too large. Maximum size allowed is 500KB.'
+						);
+					} else {
+						toast.error(error.message);
+					}
 				});
-			}
-		});
-	}, []);
+			});
+		},
+		[]
+	);
 
 	const { getRootProps, getInputProps } = useDropzone({
 		onDrop,
 		accept: {
 			'image/*': [],
 		},
+		maxSize: MAX_SIZE_500,
 	});
 
 	return (
