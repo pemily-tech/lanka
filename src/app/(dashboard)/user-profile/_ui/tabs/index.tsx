@@ -12,7 +12,7 @@ import {
 	TabsTrigger,
 } from '../../../../../ui/shared/tabs';
 import AddressForm from './address';
-import BusinessForm from './business-details';
+import BusinessDetails from './business-details';
 import Contact from './contact';
 import Doctors from './doctor';
 import PersonalDetailsForm from './personal-details';
@@ -52,7 +52,7 @@ export default function UserTabs() {
 		{
 			label: 'Business Details',
 			value: 'business',
-			component: <BusinessForm />,
+			component: <BusinessDetails />,
 			role: [Roles.Clinic],
 		},
 		{

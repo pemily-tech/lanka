@@ -52,7 +52,8 @@ export default function Signature({ doctor }: { doctor: IDoctor }) {
 	const { getRootProps, getInputProps } = useDropzone({
 		onDrop,
 		accept: {
-			'image/*': [],
+			'image/jpeg': [],
+			'image/png': [],
 		},
 		maxSize: MAX_SIZE_500,
 	});

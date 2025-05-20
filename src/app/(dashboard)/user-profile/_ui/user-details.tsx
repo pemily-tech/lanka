@@ -1,6 +1,9 @@
 'use client';
 
+import { useCallback } from 'react';
+import { type FileRejection, useDropzone } from 'react-dropzone';
 import { Camera, Check, UserIcon } from 'lucide-react';
+import { toast } from 'sonner';
 
 import { useGetUserProfileUrl } from '../../../../api/profile-image';
 import useUploadUserProfile from '../../../../api/upload-user-profile/upload-user-profile';
@@ -8,6 +11,8 @@ import { useGetUser } from '../../../../api/user-details/user-details';
 import { createFormDataForImage } from '../../../../helpers/utils';
 import { useAuthStore } from '../../../../store/user-auth';
 import { ImagePlaceholder } from '../../../../ui/shared';
+
+import { MAX_SIZE_500 } from '@/helpers/constant';
 
 export default function UserDetails() {
 	const { userId } = useAuthStore();
@@ -18,24 +23,46 @@ export default function UserDetails() {
 	const { name, mobile, email, address } = userData?.data?.user || {};
 	const isUrlExists = profileUrl && profileUrl !== '';
 
-	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const file = e.target.files?.[0];
-		if (file) {
-			const formData = createFormDataForImage(file, 'file');
-			uploadUserProfile(formData);
-		}
-	};
+	const onDrop = useCallback(
+		(acceptedFiles: File[], fileRejections: FileRejection[]) => {
+			acceptedFiles.map(async (acceptedFile) => {
+				const formData = createFormDataForImage(
+					acceptedFile as File,
+					'file'
+				);
+				uploadUserProfile(formData);
+			});
+
+			fileRejections.forEach((rejection) => {
+				rejection.errors.forEach((error) => {
+					if (error.code === 'file-too-large') {
+						toast.error(
+							'File is too large. Maximum size allowed is 500KB.'
+						);
+					} else {
+						toast.error(error.message);
+					}
+				});
+			});
+		},
+		[]
+	);
+
+	const { getInputProps } = useDropzone({
+		onDrop,
+		accept: {
+			'image/jpeg': [],
+			'image/png': [],
+		},
+		maxSize: MAX_SIZE_500,
+	});
 
 	return (
 		<div className="gap-54 flex flex-row items-start justify-start rounded-[16px]">
 			<div className="flex gap-16">
 				<div>
 					<label className="relative block size-[62px] cursor-pointer rounded-full">
-						<input
-							type="file"
-							onChange={onChange}
-							className="hidden"
-						/>
+						<input {...getInputProps()} />
 						{isUrlExists ? (
 							<ImagePlaceholder
 								src={profileUrl as string}
