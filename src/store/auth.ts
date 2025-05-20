@@ -5,6 +5,8 @@ import {
 } from '@reduxjs/toolkit';
 import { jwtDecode } from 'jwt-decode';
 
+import { type ISubscription } from '../types/auth';
+
 type AuthState = {
 	loading: boolean;
 	loggedIn: boolean;
@@ -21,7 +23,7 @@ type AuthState = {
 	updatedAt?: string;
 	iat?: number;
 	exp?: number;
-	subscription?: null | IAuthTypes.ISubscription;
+	subscription?: null | ISubscription;
 };
 
 const initialState: AuthState = {

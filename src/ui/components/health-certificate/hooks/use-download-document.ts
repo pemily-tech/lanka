@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 import useDownloadDocument from '../../../../api/use-download-document/download-document';
 
-const useDocumentDownlaod = ({ url }: { url: string }) => {
+const useDocumentDownload = ({ url }: { url: string }) => {
 	const { mutateAsync: downloadDocument } = useDownloadDocument();
 	const [imageUrl, setImageUrl] = useState<string | null>();
 	const urlType = url?.split('.'),
@@ -32,4 +32,4 @@ const useDocumentDownlaod = ({ url }: { url: string }) => {
 	};
 };
 
-export default useDocumentDownlaod;
+export default useDocumentDownload;

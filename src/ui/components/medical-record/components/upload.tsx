@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { Image, Trash2Icon } from 'lucide-react';
 
+import { type IUploadType } from '../../../../types/common';
 import { PdfIcon } from '../../../icons/pdf-icon';
 import { Button } from '../../../shared/button';
 import { ImagePlaceholder } from '../../../shared/image';
@@ -15,14 +16,11 @@ const Upload = ({
 	headingTxt,
 }: {
 	btnTxt: string;
-	handleClick: (
-		file: ICommonTypes.IUploadType,
-		setFiles: (files: []) => void
-	) => void;
+	handleClick: (file: IUploadType, setFiles: (files: []) => void) => void;
 	isLoading: boolean;
 	headingTxt: string;
 }) => {
-	const [files, setFiles] = useState<ICommonTypes.IUploadType[]>([]);
+	const [files, setFiles] = useState<IUploadType[]>([]);
 	const { getRootProps, getInputProps } = useDropzone({
 		accept: {
 			'image/*': [],

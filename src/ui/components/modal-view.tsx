@@ -9,7 +9,6 @@ import { ModalTypes } from '../../helpers/primitives';
 import useRouterQuery from '../../hooks/use-router-query';
 import { useAppDispatch, useAppSelector } from '../../store';
 import { closeModal, type MODAL_VIEW } from '../../store/modal';
-import { LoadingModal } from './spinner';
 
 const ConfirmationModal = dynamic(
 	() => import('../components/confirmation-modal/confirmation-modal'),
@@ -47,8 +46,6 @@ function renderModalContent(view: MODAL_VIEW | string) {
 			return <AddEditParentModal />;
 		case ModalTypes.ADD_EDIT_PET:
 			return <AddEditPetModal />;
-		case ModalTypes.LOADING_MODAL:
-			return <LoadingModal />;
 		case ModalTypes.SEARCH_PARENTS:
 			return <SearchParent />;
 		default:

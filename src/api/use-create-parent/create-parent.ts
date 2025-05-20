@@ -6,6 +6,8 @@ import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
 import { closeModal } from '../../store/modal';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	mobileNumber: string;
 	name?: string;
@@ -14,7 +16,7 @@ interface IPayload {
 const createParent = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.AddParent}/${payload?.mobileNumber}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.AddParent}/${payload?.mobileNumber}`,
 			{ name: payload.name }
 		);
 		return data;

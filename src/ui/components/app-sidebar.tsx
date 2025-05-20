@@ -5,6 +5,7 @@ import {
 	House,
 	LogOutIcon,
 	PackageSearch,
+	Pill,
 	ReceiptIndianRupee,
 	UserCircleIcon,
 	UserRoundCheck,
@@ -14,7 +15,8 @@ import { usePathname } from 'next/navigation';
 
 import { useGetNavigation } from '../../api/layout/use-get-navigation';
 import { logout } from '../../helpers/utils';
-import { useAppSelector } from '../../store';
+import { useAuthStore } from '../../store/user-auth';
+import { type INavigationItem } from '../../types/common';
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -52,12 +54,17 @@ const IconMap: Record<string, React.ElementType> = {
 	UserCircleIcon,
 	ReceiptIndianRupee,
 	PackageSearch,
+	Pill,
 };
 
 export const AppSidebar = () => {
-	const { name, mobile } = useAppSelector((state) => state.auth);
+	const { name, mobile, role } = useAuthStore();
 	const { data } = useGetNavigation();
-	const navMenu: ICommonTypes.INavigationItem[] = data?.data || [];
+	const navMenu: INavigationItem[] = data?.data || [];
+	const filteredNavMenu = navMenu.filter((item) => {
+		if (!item.roles) return true;
+		return item.roles.includes(role);
+	});
 
 	const handleLogout = () => {
 		logout();
@@ -77,7 +84,7 @@ export const AppSidebar = () => {
 			</SidebarHeader>
 			<SidebarContent className="py-24">
 				<SidebarGroup>
-					<Menu navMenu={navMenu} />
+					<Menu navMenu={filteredNavMenu} role={role} />
 				</SidebarGroup>
 			</SidebarContent>
 			<SidebarFooter className="px-8">
@@ -124,12 +131,18 @@ export const AppSidebar = () => {
 	);
 };
 
-const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
+const Menu = ({
+	navMenu,
+	role,
+}: {
+	navMenu: INavigationItem[];
+	role: string;
+}) => {
 	const pathname = usePathname();
 
 	return (
-		<SidebarMenu className="gap-16 px-8">
-			{navMenu.map((item) => {
+		<SidebarMenu className="gap-24 px-8">
+			{navMenu.map((item, index) => {
 				const Icon =
 					item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
 				const active =
@@ -137,7 +150,7 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 					pathname.split('/')[1] === item.path.split('/')[1];
 
 				if (item.type === 'menu') {
-					return <MenuItem key={item.id} item={item} />;
+					return <MenuItem key={index} item={item} role={role} />;
 				} else {
 					return (
 						<SidebarMenuButton
@@ -146,15 +159,17 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 									? 'bg-grey-bg3 text-accent-foreground hover:bg-greyBg hover:text-accent-foreground py-12 hover:opacity-80'
 									: 'px-0'
 							}`}
-							key={item.id}
+							key={index}
 							asChild
 						>
 							<Link href={item.path}>
 								{item.isIcon && Icon ? (
-									<Icon className="!size-18" />
+									<div className="flex size-32 items-center justify-center">
+										<Icon className="!size-24" />
+									</div>
 								) : (
 									<ImagePlaceholder
-										containerClasses="w-24 h-24"
+										containerClasses="w-32 h-32"
 										src={item.icon as string}
 									/>
 								)}
@@ -168,11 +183,14 @@ const Menu = ({ navMenu }: { navMenu: ICommonTypes.INavigationItem[] }) => {
 	);
 };
 
-const MenuItem = ({ item }: { item: ICommonTypes.INavigationItem }) => {
+const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 	const Icon = item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
 	const pathname = usePathname();
 	const activeItem = pathname.split('/').filter(Boolean)[0];
 	const activeCollapse = `/${activeItem}` === item.path;
+	const visibleItems = (item.items || []).filter(
+		(subItem) => !subItem.roles || subItem.roles.includes(role)
+	);
 
 	return (
 		<Collapsible
@@ -189,15 +207,15 @@ const MenuItem = ({ item }: { item: ICommonTypes.INavigationItem }) => {
 					</SidebarMenuButton>
 				</CollapsibleTrigger>
 				<CollapsibleContent>
-					<SidebarMenuSub className="mx-0 mt-8 gap-12 px-0">
-						{item.items?.map((ite) => {
+					<SidebarMenuSub className="mx-0 ml-24 mt-8 gap-12 px-0">
+						{visibleItems?.map((ite, index) => {
 							const active = pathname === ite.path;
 							return (
-								<SidebarMenuSubItem key={ite.id}>
+								<SidebarMenuSubItem key={index}>
 									<SidebarMenuSubButton
 										className={`${
 											active
-												? 'text-accent-foreground hover:bg-greyBg hover:text-accent-foreground bg-white p-12 hover:opacity-80'
+												? 'text-accent-foreground hover:bg-greyBg hover:text-accent-foreground bg-grey-bg3 p-12 hover:opacity-80'
 												: ''
 										}`}
 										asChild

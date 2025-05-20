@@ -1,51 +1,63 @@
 {
-  "editor.tabSize": 4, // Set tab size to 4 spaces
-  "editor.insertSpaces": false, // Use tabs instead of spaces
-  "editor.detectIndentation": false, // Ensure consistent tab settings
-  "editor.defaultFormatter": "esbenp.prettier-vscode", // Default formatter as Prettier
-  "editor.formatOnSave": true, // Format code on save
-  "typescript.tsdk": "node_modules/typescript/lib", // Specify TypeScript SDK
-  "eslint.format.enable": true, // Enable ESLint formatting
+	"editor.tabSize": 4, // Set tab size to 4 spaces
+	"editor.insertSpaces": false, // Use tabs instead of spaces
+	"editor.detectIndentation": false, // Ensure consistent tab settings
+	"editor.defaultFormatter": "esbenp.prettier-vscode", // Default formatter as Prettier
+	"editor.formatOnSave": true, // Format code on save
+	"typescript.tsdk": "node_modules/typescript/lib", // Specify TypeScript SDK
+	"eslint.format.enable": true, // Enable ESLint formatting
 
-  // Separate configurations for each language
-  "[javascript]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint", // Use ESLint as the formatter
-    "editor.codeActionsOnSave": {
-      "source.addMissingImports": "explicit",
-      "source.fixAll.eslint": "explicit"
-    }
-  },
-  "[typescript]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint", // Use ESLint as the formatter
-    "editor.codeActionsOnSave": {
-      "source.addMissingImports": "explicit",
-      "source.fixAll.eslint": "explicit"
-    }
-  },
-  "[typescriptreact]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint", // Use ESLint as the formatter
-    "editor.codeActionsOnSave": {
-      "source.addMissingImports": "explicit",
-      "source.fixAll.eslint": "explicit"
-    }
-  },
+	// Separate configurations for each language
+	"[javascript]": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint", // Use ESLint as the formatter
+		"editor.codeActionsOnSave": {
+			"source.addMissingImports": "explicit",
+			"source.fixAll.eslint": "explicit"
+		}
+	},
+	"[typescript]": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint", // Use ESLint as the formatter
+		"editor.codeActionsOnSave": {
+			"source.addMissingImports": "explicit",
+			"source.fixAll.eslint": "explicit"
+		}
+	},
+	"[typescriptreact]": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "dbaeumer.vscode-eslint", // Use ESLint as the formatter
+		"editor.codeActionsOnSave": {
+			"source.addMissingImports": "explicit",
+			"source.fixAll.eslint": "explicit"
+		}
+	},
 
-  // JSON and JSONC configurations
-  "[json]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode" // Use Prettier for JSON files
-  },
-  "[jsonc]": {
-    "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
+	// JSON and JSONC configurations
+	"[json]": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "esbenp.prettier-vscode" // Use Prettier for JSON files
+	},
+	"[jsonc]": {
+		"editor.formatOnSave": true,
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
 
-  // Custom settings
-  "cSpell.words": ["Flashlist", "Lato"], // Custom words for spell checker
-  "tailwindCSS.experimental.classRegex": [
-    ["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ]
+	// Custom settings
+	"cSpell.words": [
+		"Flashlist",
+		"follwup",
+		"Lato",
+		"nuqs",
+		"pemilyy",
+		"Pincode",
+		"precription",
+		"sonner",
+		"speciality"
+	], // Custom words for spell checker
+	"tailwindCSS.experimental.classRegex": [
+		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+	],
+	"editor.wordWrap": "on",
+	"editor.wordWrapColumn": 100
 }

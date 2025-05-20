@@ -1,3 +1,4 @@
+import { type IMedicalRecord } from '../../../../types/clinic';
 import { ImagePlaceholder } from '../../../shared/image';
 import Spinner from '../../../shared/spinner';
 import useCertificate from '../hooks/use-certificate';
@@ -33,7 +34,7 @@ export default function Certificate({
 
 	return (
 		<div className="mt-12 min-h-[360px]">
-			{records?.map((record: IClinicTypes.IMedicalRecord) => {
+			{records?.map((record: IMedicalRecord) => {
 				return (
 					<RecordItem
 						key={record._id}

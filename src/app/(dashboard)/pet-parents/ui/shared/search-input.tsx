@@ -2,6 +2,7 @@
 
 import { memo } from 'react';
 
+import { type IPetParent } from '../../../../../types/clinic';
 import PetParent from '../../../../../ui/components/pet-parent';
 import Search from '../../../../../ui/components/search';
 import { Button } from '../../../../../ui/shared/button';
@@ -20,8 +21,8 @@ function SearchInput({
 	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	handleClear: () => void;
 	isPending: boolean;
-	parents: IClinicTypes.IPetParent[] | undefined;
-	handlePetParent: (parent: IClinicTypes.IPetParent) => void;
+	parents: IPetParent[] | undefined;
+	handlePetParent: (parent: IPetParent) => void;
 	handleAddParent: () => void;
 }) {
 	return (

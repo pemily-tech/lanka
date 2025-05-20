@@ -7,6 +7,8 @@ import { HttpService } from '../../services/http-service';
 import { closeModal } from '../../store/modal';
 import useGetParentById from '../use-get-parent-by-id/get-parent-by-id';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	name?: string;
 	comment?: string;
@@ -16,7 +18,7 @@ interface IPayload {
 const updateParent = async (payload: IPayload, parentId: string) => {
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UpdateParent}/${parentId}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UpdateParent}/${parentId}`,
 			payload
 		);
 		return data;

@@ -3,12 +3,15 @@ import { toast } from 'sonner';
 
 import { ApiEndpoints } from '../helpers/primitives';
 import { HttpService } from '../services/http-service';
+import { queryClient } from '../services/providers';
 import useGetClinicLogo from './get-clinic-logo';
+
+import { env } from '@/env.mjs';
 
 const uploadLogo = async (payload: FormData) => {
 	try {
 		const { data } = await HttpService.post(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadLogo}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadLogo}`,
 			payload,
 			{
 				headers: {
@@ -25,14 +28,14 @@ const uploadLogo = async (payload: FormData) => {
 };
 
 export function useUploadClinicLogo() {
-	const { refetch } = useGetClinicLogo();
-
 	return useMutation({
 		mutationFn: uploadLogo,
 		onSuccess: (data) => {
 			if (data?.status === 'SUCCESS') {
+				queryClient.invalidateQueries({
+					queryKey: ['clinic/logoUrl'],
+				});
 				toast.success('Profile updated!');
-				refetch();
 			} else {
 				toast.error('Unable to upload');
 			}

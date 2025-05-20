@@ -1,61 +1,82 @@
 import { NextResponse } from 'next/server';
 
-const data: ICommonTypes.INavigationItem[] = [
+import { Routes } from '../../../helpers/routes';
+import { type INavigationItem } from '../../../types/common';
+
+import { Roles } from '@/helpers/primitives';
+
+const data: INavigationItem[] = [
 	{
 		id: 1,
 		type: 'link',
-		path: '/home',
+		path: Routes.HOME,
 		title: 'Home',
 		isIcon: true,
 		icon: 'House',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
 		id: 12,
 		type: 'link',
-		path: '/medical-records',
+		path: Routes.MEDICAL_RECORDS,
 		title: 'Medical Records',
 		isIcon: false,
 		icon: '/images/medical-records.png',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
 		id: 12,
 		type: 'link',
-		path: '/vaccination-records',
+		path: Routes.VACCINATION_RECORDS,
 		title: 'Vaccination Records',
 		isIcon: false,
 		icon: '/images/vaccination-records.png',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
 		id: 2,
 		type: 'link',
-		path: '/follow-up',
+		path: Routes.FOLLOW_UP,
 		title: 'Follow Up',
 		isIcon: false,
 		icon: '/images/follow-ups.png',
-	},
-	{
-		id: 3,
-		type: 'link',
-		path: '/billing',
-		title: 'Billing',
-		isIcon: true,
-		icon: 'ReceiptIndianRupee',
-	},
-	{
-		id: 3,
-		type: 'link',
-		path: '/items',
-		title: 'Products',
-		isIcon: true,
-		icon: 'PackageSearch',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
 		id: 19,
 		type: 'link',
 		path: '/pet-parents',
 		title: 'Pet Parents',
+		isIcon: false,
+		icon: '/images/Pet-Parent.svg',
+		roles: [Roles.Clinic, Roles.Staff],
+	},
+	{
+		id: 3,
+		type: 'menu',
+		path: '/items/list',
+		title: 'ePrescription',
 		isIcon: true,
-		icon: 'UserCircleIcon',
+		icon: 'Pill',
+		roles: [Roles.Clinic],
+		items: [
+			{
+				id: 3,
+				type: 'link',
+				path: Routes.PRESCRIPTION_LIST,
+				title: 'Rx & SOAP',
+				isIcon: false,
+				roles: [Roles.Clinic],
+			},
+			{
+				id: 4,
+				type: 'link',
+				path: Routes.MEDICINES_LIST,
+				title: 'Medicines',
+				isIcon: false,
+				roles: [Roles.Clinic],
+			},
+		],
 	},
 	{
 		id: 9,
@@ -64,6 +85,7 @@ const data: ICommonTypes.INavigationItem[] = [
 		title: 'Profile',
 		isIcon: true,
 		icon: 'UserCircleIcon',
+		roles: [Roles.Clinic, Roles.Staff],
 	},
 ];
 

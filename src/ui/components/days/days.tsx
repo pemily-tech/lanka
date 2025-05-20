@@ -6,6 +6,7 @@ import DatePicker from 'react-datepicker';
 import { addDays, format, isToday, isTomorrow } from 'date-fns';
 import { Calendar } from 'lucide-react';
 
+import { type IDayItem } from '../../../types/common';
 import { Button } from '../../shared/button';
 
 export function DaysItem({
@@ -18,7 +19,7 @@ export function DaysItem({
 	handleDate: (d: string) => void;
 }) {
 	const daysArray = Array.from({ length: defaultDays }, (_, i) => i);
-	const [daysHeader, setDaysData] = useState<ICommonTypes.IDayItem[]>([]);
+	const [daysHeader, setDaysData] = useState<IDayItem[]>([]);
 
 	useEffect(() => {
 		setDaysHeaderData(selectedDate);

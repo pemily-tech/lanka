@@ -3,7 +3,9 @@ import { toast } from 'sonner';
 
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
-import { useGetUserProfileUrl } from '../profile-image/profile-image';
+import { useGetUserProfileUrl } from '../profile-image';
+
+import { env } from '@/env.mjs';
 
 const uploadClinicMemberProfile = async (
 	payload: FormData,
@@ -11,7 +13,7 @@ const uploadClinicMemberProfile = async (
 ) => {
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadClinicMemberProfile}/${clinicMemberUserId}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.UploadClinicMemberProfile}/${clinicMemberUserId}`,
 			payload,
 			{
 				headers: {

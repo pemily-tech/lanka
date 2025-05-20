@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable indent */
 /* eslint-disable prettier/prettier */
 'use client';
@@ -13,6 +14,7 @@ import useUpdateFollowUpRecord from '../../../../api/use-update-follow-up-record
 import Loading from '../../../../app/loading';
 import { ModalTypes } from '../../../../helpers/primitives';
 import { openModal } from '../../../../store/modal';
+import { type IFollowUpRecord } from '../../../../types/clinic';
 import { Button } from '../../../shared/button';
 import { ImagePlaceholder } from '../../../shared/image';
 
@@ -21,7 +23,7 @@ const UpdateFollowup = dynamic(() => import('./update-folllowup'), {
 });
 
 interface IRecordItem {
-	record: IClinicTypes.IFollowUpRecord;
+	record: IFollowUpRecord;
 	refetch: () => void;
 	activeFilter: string;
 }

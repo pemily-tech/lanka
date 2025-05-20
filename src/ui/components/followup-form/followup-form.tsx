@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
@@ -10,6 +11,8 @@ import { X } from 'lucide-react';
 import useCreateFollowUpRecords from '../../../api/use-create-follow-records/create-follow-records';
 import useGetFollowupList from '../../../api/use-get-followup-list/get-followup-list';
 import { convertDates, customSelectBoxStyles } from '../../../helpers/utils';
+import { type IFollowUpRecord } from '../../../types/clinic';
+import { type IApiResponse } from '../../../types/common';
 import { Button } from '../../shared/button';
 
 interface OptionType {
@@ -59,7 +62,7 @@ const FollowupForm = ({
 		};
 		const response = (await createFollowup(
 			data
-		)) as ICommonTypes.IApiResponse<IClinicTypes.IFollowUpRecord>;
+		)) as IApiResponse<IFollowUpRecord>;
 		if (response.status === 'SUCCESS') {
 			refetch();
 			handleClose();

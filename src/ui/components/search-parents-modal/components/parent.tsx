@@ -1,5 +1,6 @@
 import { memo } from 'react';
 
+import { type IPetParent } from '../../../../types/clinic';
 import EnterIcon from '../../../icons/enter-icon';
 import { RadioFilledIcon } from '../../../icons/radio-filled-icon';
 import { RadioUnfilledIcon } from '../../../icons/radio-unfilled-icon';
@@ -12,7 +13,7 @@ function Parent({
 	focusedIndex,
 	activeClinic,
 }: {
-	data: IClinicTypes.IPetParent[];
+	data: IPetParent[];
 	handleParent: (e: React.MouseEvent<HTMLDivElement>) => void;
 	activeParent: string;
 	focusedIndex: number;

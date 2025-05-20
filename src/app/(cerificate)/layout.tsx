@@ -6,18 +6,19 @@ import { Routes } from '../../helpers/routes';
 import { useIsMobile } from '../../hooks/use-is-mobile';
 import useRouterQuery from '../../hooks/use-router-query';
 import { useAppSelector } from '../../store';
+import { useAuthStore } from '../../store/user-auth';
 import MobileOnly from '../../ui/components/mobile-only';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-	const authState = useAppSelector((state) => state.auth);
+	const { loggedIn } = useAuthStore();
 	const { router } = useRouterQuery();
 	const isMobile = useIsMobile();
 
 	useEffect(() => {
-		if (!authState.loggedIn) {
+		if (!loggedIn) {
 			router.push(Routes.LOGIN);
 		}
-	}, [authState.loggedIn, router]);
+	}, [loggedIn, router]);
 
 	if (isMobile) {
 		return <MobileOnly />;

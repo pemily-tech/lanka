@@ -2,20 +2,24 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../services/http-service';
+import { queryClient } from '../../services/providers';
 import { useAppSelector } from '../../store';
+import { useAuthStore } from '../../store/user-auth';
 import { useGetUser } from '../user-details/user-details';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
-	ownerName: string;
-	pan: string;
-	gstNo: string;
-	businessContact: number;
+	ownerName?: string;
+	pan?: string;
+	gstNo?: string;
+	businessContact?: number;
 }
 
 const updateBusiness = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/user/businessDetail`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/user/businessDetail`,
 			payload
 		);
 		return data;
@@ -26,14 +30,15 @@ const updateBusiness = async (payload: IPayload) => {
 };
 
 export function useUpdateBusiness() {
-	const authState = useAppSelector((state) => state.auth);
-	const { refetch } = useGetUser(authState.userId as string);
+	const { userId } = useAuthStore();
 
 	return useMutation({
 		mutationFn: updateBusiness,
 		onSuccess: (data) => {
 			if (data?.status === 'SUCCESS') {
-				refetch();
+				queryClient.invalidateQueries({
+					queryKey: ['user/userId', userId],
+				});
 				toast.success('Business details updated successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

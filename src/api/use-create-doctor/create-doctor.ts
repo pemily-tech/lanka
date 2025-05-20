@@ -5,6 +5,8 @@ import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
 import useGetDoctors from '../use-get-doctors/get-doctors';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	name: string;
 	degree: string;
@@ -15,7 +17,7 @@ interface IPayload {
 const createDoctor = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.post(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.AddClinicDoctor}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.AddClinicDoctor}`,
 			payload
 		);
 		return data;

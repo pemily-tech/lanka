@@ -6,6 +6,8 @@ import { HttpService } from '../../services/http-service';
 import { closeModal } from '../../store/modal';
 import useGetPetById from '../use-get-pet-by-id/get-pet-by-id';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	name: string;
 	breed: string;
@@ -18,7 +20,7 @@ interface IPayload {
 const updatePet = async (payload: IPayload, petId: string) => {
 	try {
 		const { data } = await HttpService.patch(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/pet/${petId}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/pet/${petId}`,
 			payload
 		);
 		return data;

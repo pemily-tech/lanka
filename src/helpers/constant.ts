@@ -1,3 +1,4 @@
+import { type IMedicalRecords } from '../types/common';
 import PrescriptionIcon from '../ui/icons/prescription-icon';
 
 import { env } from '@/env.mjs';
@@ -51,7 +52,7 @@ export const medicalRecordsFilters = [
 		value: 'OTHER',
 		icon: PrescriptionIcon,
 	},
-] as ICommonTypes.IMedicalRecords[];
+] as unknown as IMedicalRecords[];
 
 export const vaccinationClinicFilters = [
 	{
@@ -69,7 +70,7 @@ export const vaccinationClinicFilters = [
 		icon: PrescriptionIcon,
 	},
 	{ id: 3, name: 'All', label: 'All', value: 'ALL', icon: PrescriptionIcon },
-] as ICommonTypes.IMedicalRecords[];
+] as unknown as IMedicalRecords[];
 
 export const vaccinationPetFilters = [
 	...vaccinationClinicFilters.slice(0, 1),
@@ -81,7 +82,7 @@ export const vaccinationPetFilters = [
 		icon: PrescriptionIcon,
 	},
 	...vaccinationClinicFilters.slice(1),
-] as ICommonTypes.IMedicalRecords[];
+] as IMedicalRecords[];
 
 export const follwupFilters = [
 	{
@@ -92,7 +93,7 @@ export const follwupFilters = [
 		icon: PrescriptionIcon,
 	},
 	{ id: 1, name: 'All', label: 'All', value: 'ALL', icon: PrescriptionIcon },
-] as ICommonTypes.IMedicalRecords[];
+] as unknown as IMedicalRecords[];
 
 export const dogAndCatVaccines = [
 	{ key: 'DHPPi+L', label: 'DHPPi+L' },
@@ -173,3 +174,11 @@ export const certificateData = [
 	},
 	{ value: 'BOARDING_AND_LODGING', label: 'Boarding & Lodging' },
 ];
+
+export const DATE_FORMAT = 'do MMM, yyyy';
+export const DATE_TIME_FORMAT = 'dd/MM/yyyy HH:mm:ss';
+export const TIME_FORMAT = 'HH:mm:ss';
+export const DEFAULT_DATE_FORMAT = 'yyyy-MM-dd';
+export const DATE_BE_FORMAT = 'dd-MM-yyyy';
+
+export const MAX_SIZE_500 = 500 * 1024;

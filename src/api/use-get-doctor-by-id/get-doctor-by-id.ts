@@ -2,19 +2,21 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
+import { type IClinicDoctorResponse } from '../../types/clinic';
+import { type IApiResponse } from '../../types/common';
+
+import { env } from '@/env.mjs';
 
 const getClinicDoctorById = async ({
 	queryKey,
 }: QueryFunctionContext<[string, string]>) => {
 	const [_key, _params] = queryKey;
-	let url = `${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}?`;
+	let url = `${env.NEXT_PUBLIC_BASE_PATH}/${_key}?`;
 	if (_params && _params.length > 0) {
 		url += `doctorId=${_params}`;
 	}
 	const { data } =
-		await HttpService.get<
-			ICommonTypes.IApiResponse<IClinicTypes.IClinicDoctorResponse>
-		>(url);
+		await HttpService.get<IApiResponse<IClinicDoctorResponse>>(url);
 	return data;
 };
 

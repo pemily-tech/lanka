@@ -1,6 +1,6 @@
 import { CircleUserRound } from 'lucide-react';
 
-import { useGetUserProfileUrl } from '../../api/profile-image/profile-image';
+import { useGetUserProfileUrl } from '../../api/profile-image';
 import { ImagePlaceholder } from '../shared/image';
 
 const UserProfileImage = ({

@@ -1,4 +1,5 @@
 import useGetPetProfileImage from '../../api/use-get-pet-profile-image/get-pet-profile-image';
+import { type IPet } from '../../types/common';
 import { ImagePlaceholder } from '../shared/image';
 
 const Pet = ({
@@ -6,8 +7,8 @@ const Pet = ({
 	handlePet,
 	height = 'h-[160px]',
 }: {
-	pet: ICommonTypes.IPet;
-	handlePet: (pet: ICommonTypes.IPet) => void;
+	pet: IPet;
+	handlePet: (pet: IPet) => void;
 	height?: string;
 }) => {
 	const { data } = useGetPetProfileImage(pet?.petId as string);

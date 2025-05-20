@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
@@ -10,6 +11,8 @@ import { Trash2Icon } from 'lucide-react';
 import useCreateVaccinationRecords from '../../../api/use-create-vaccination-records/create-vaccination-records';
 import useGetVaccinationList from '../../../api/use-get-vaccination-list/get-vaccination-list';
 import { convertDates, customSelectBoxStyles } from '../../../helpers/utils';
+import { type IVaccinationRecord } from '../../../types/clinic';
+import { type IApiResponse } from '../../../types/common';
 import { Button } from '../../shared/button';
 
 interface OptionType {
@@ -59,7 +62,7 @@ const VaccinationForm = ({
 		};
 		const response = (await createVaccination(
 			data
-		)) as ICommonTypes.IApiResponse<IClinicTypes.IVaccinationRecord>;
+		)) as IApiResponse<IVaccinationRecord>;
 		if (response.status === 'SUCCESS') {
 			refetch();
 			handleClose();

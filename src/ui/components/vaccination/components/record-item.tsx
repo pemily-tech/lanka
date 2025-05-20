@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable indent */
 'use client';
 
@@ -12,6 +13,7 @@ import useUpdateVaccinationRecord from '../../../../api/use-update-vaccination-r
 import Loading from '../../../../app/loading';
 import { ModalTypes } from '../../../../helpers/primitives';
 import { openModal } from '../../../../store/modal';
+import { type IVaccinationRecord } from '../../../../types/clinic';
 import { Button } from '../../../shared/button';
 import { ImagePlaceholder } from '../../../shared/image';
 
@@ -20,7 +22,7 @@ const UpdateVaccination = dynamic(() => import('./update-vaccination'), {
 });
 
 interface IRecordItem {
-	record: IClinicTypes.IVaccinationRecord;
+	record: IVaccinationRecord;
 	refetch: () => void;
 	activeFilter: string;
 }

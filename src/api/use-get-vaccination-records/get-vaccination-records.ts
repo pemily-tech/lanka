@@ -2,6 +2,10 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
+import { type IClinicVaccinationRecordsApiResponse } from '../../types/clinic';
+import { type IApiResponse } from '../../types/common';
+
+import { env } from '@/env.mjs';
 
 const getVaccinationRecords = async ({
 	queryKey,
@@ -9,7 +13,7 @@ const getVaccinationRecords = async ({
 	[string, string, string | undefined, string | undefined]
 >) => {
 	const [_key, type, petId, date] = queryKey;
-	let url = `${process.env.NEXT_PUBLIC_BASE_PATH}/${_key}?`;
+	let url = `${env.NEXT_PUBLIC_BASE_PATH}/${_key}?`;
 	if (type !== '' && type !== 'ALL') {
 		url += `searchType=${type}`;
 	}
@@ -21,7 +25,7 @@ const getVaccinationRecords = async ({
 	}
 	const { data } =
 		await HttpService.get<
-			ICommonTypes.IApiResponse<IClinicTypes.IClinicVaccinationRecordsApiResponse>
+			IApiResponse<IClinicVaccinationRecordsApiResponse>
 		>(url);
 	return data;
 };

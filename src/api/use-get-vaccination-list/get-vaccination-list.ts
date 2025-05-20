@@ -2,13 +2,14 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
+import { type IApiResponse } from '../../types/common';
 
 const getVaccinationList = async ({
 	queryKey,
 }: QueryFunctionContext<[string]>) => {
 	const [_key] = queryKey;
 	const { data } = await HttpService.get<
-		ICommonTypes.IApiResponse<{
+		IApiResponse<{
 			vaccination: { label: string; value: string }[];
 		}>
 	>(_key);

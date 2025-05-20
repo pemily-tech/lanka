@@ -18,7 +18,7 @@ import {
 	FormMessage,
 } from '../../../ui/shared/form';
 import { FloatingInput } from '../../../ui/shared/input';
-import { getOtpAction } from './get-otp-action';
+import { getOtpAction } from './_actions/get-otp-action';
 
 const schema = z.object({
 	mobileNumber: z
@@ -42,7 +42,6 @@ export default function Page() {
 		if (!result.data) {
 			return;
 		}
-
 		if (result.data.status === 'SUCCESS') {
 			toast.success(result.data.msg);
 			router.push(`otp/${form.getValues('mobileNumber')}`);

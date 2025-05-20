@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
@@ -5,6 +6,8 @@ import useDownloadDocument from '../../../../../api/use-download-document/downlo
 import usePetCertificateVaccination from '../../../../../api/use-pet-certificate-vaccination/use-pet-certificate-vaccination';
 import useUploadMedicalRecord from '../../../../../api/use-upload-medical-record/upload-medical-record';
 import useRouterQuery from '../../../../../hooks/use-router-query';
+import { type IMedicalRecord } from '../../../../../types/clinic';
+import { type IApiResponse } from '../../../../../types/common';
 import useCertificate from '../../../../../ui/components/health-certificate/hooks/use-certificate';
 import { ImagePlaceholder } from '../../../../../ui/shared/image';
 import Loading from '../../../../loading';
@@ -86,7 +89,7 @@ export default function Print() {
 					try {
 						const response: any = (await uploadMedicalRecord(
 							formData
-						)) as ICommonTypes.IApiResponse<IClinicTypes.IMedicalRecord>;
+						)) as IApiResponse<IMedicalRecord>;
 						const payload = {
 							key: response?.data?.medicalRecord?.url as string,
 						};

@@ -5,11 +5,11 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 import { Routes } from '../../helpers/routes';
-import { useAppSelector } from '../../store';
+import { useAuthStore } from '../../store/user-auth';
 import { ImagePlaceholder } from '../../ui/shared/image';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
-	const { loggedIn } = useAppSelector((state) => state.auth);
+	const { loggedIn } = useAuthStore();
 	const router = useRouter();
 
 	useEffect(() => {

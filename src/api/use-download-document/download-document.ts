@@ -4,10 +4,12 @@ import { toast } from 'sonner';
 import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
 
+import { env } from '@/env.mjs';
+
 const downloadDocument = async (payload: { key: string }) => {
 	try {
 		const { data } = await HttpService.post(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.DownloadDocument}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.DownloadDocument}`,
 			payload
 		);
 		return data;

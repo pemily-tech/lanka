@@ -6,15 +6,21 @@ import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 import { Routes } from '../../../../helpers/routes';
-import { useAppDispatch } from '../../../../store';
-import { authenticateUser } from '../../../../store/auth';
-import { closeDialog, openDialog } from '../../../../store/layout';
-import useOtpHook from './use-otp-hook';
+import { useAuthStore } from '../../../../store/user-auth';
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+	Spinner,
+} from '../../../../ui/shared';
+import useOtpHook from './_hooks/use-otp-hook';
 
 export default function Page() {
 	const params = useParams<{ mobileNumber: string }>();
-	const dispatch = useAppDispatch();
 	const router = useRouter();
+	const verifyUser = useAuthStore((state) => state.verifyUser);
 
 	const {
 		otp,
@@ -30,38 +36,41 @@ export default function Page() {
 	});
 
 	useEffect(() => {
-		if (isExecuting) {
-			dispatch(
-				openDialog({
-					view: 'LOADING',
-					loadingText: 'Setting up user...',
-				})
-			);
-		} else {
-			dispatch(closeDialog());
-		}
-	}, [dispatch, isExecuting]);
-
-	useEffect(() => {
 		if (!result.data) {
 			return;
 		}
 
 		if (result.data.status === 'SUCCESS') {
-			dispatch(
-				authenticateUser({
-					token: result.data.data?.accessToken ?? '',
-					refreshToken: result.data.data?.refreshToken ?? '',
-					navigateFunction: () => router.push(Routes.HOME),
-				})
+			verifyUser(
+				result.data.data?.accessToken ?? '',
+				result.data.data?.refreshToken ?? '',
+				() => {
+					router.push(Routes.HOME);
+				}
 			);
 		} else {
 			toast.error(result.data.msg ?? 'An error occurred');
 		}
-	}, [dispatch, result, result.data, router]);
+	}, [result, result.data, router]);
 
 	return (
 		<div>
+			<Dialog open={isExecuting}>
+				<DialogContent
+					onInteractOutside={(event) => event.preventDefault()}
+					showCloseButton={false}
+					className="w-[150px]"
+				>
+					<DialogHeader>
+						<DialogTitle></DialogTitle>
+						<DialogDescription></DialogDescription>
+					</DialogHeader>
+					<Spinner />
+					<span className="text-14 text-center font-medium">
+						Setting up user...
+					</span>
+				</DialogContent>
+			</Dialog>
 			<div onClick={handleBack} className="flex items-center gap-12">
 				<div className="flex size-32 cursor-pointer items-center justify-center">
 					<ArrowLeft width={24} height={24} />

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 /* eslint-disable indent */
 /* eslint-disable prettier/prettier */
 /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -13,6 +14,7 @@ import useGetParentById from '../../../api/use-get-parent-by-id/get-parent-by-id
 import useUpdateParent from '../../../api/use-update-parent/update-parent';
 import { phoneValidator } from '../../../helpers/utils';
 import { useAppSelector } from '../../../store';
+import { type IPetParent } from '../../../types/clinic';
 import { Button } from '../../shared/button';
 import Switch from '../switch';
 import TextInput from '../text-input';
@@ -50,8 +52,7 @@ const AddEditParent = () => {
 	});
 	const [checked, setChecked] = useState(false);
 	const { data } = useGetParentById(parentId as string);
-	const parentData =
-		data?.data?.parents?.[0] || (null as IClinicTypes.IPetParent | null);
+	const parentData = data?.data?.parents?.[0] || (null as IPetParent | null);
 	const { mutate: updateParent, isPending } = useUpdateParent({
 		memberId,
 		parentId,

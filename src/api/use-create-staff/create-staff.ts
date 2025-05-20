@@ -5,6 +5,8 @@ import { ApiEndpoints } from '../../helpers/primitives';
 import { HttpService } from '../../services/http-service';
 import useGetStaff from '../use-get-staff/get-staff';
 
+import { env } from '@/env.mjs';
+
 interface IPayload {
 	name: string;
 }
@@ -12,7 +14,7 @@ interface IPayload {
 const createStaff = async (payload: IPayload) => {
 	try {
 		const { data } = await HttpService.post(
-			`${process.env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.AddStaff}`,
+			`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.AddStaff}`,
 			payload
 		);
 		return data;

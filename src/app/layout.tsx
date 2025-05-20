@@ -4,8 +4,10 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import Providers from '../services/providers';
+import AnalyticsScript from '../ui/shared/analytics-script';
 
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -49,8 +51,11 @@ export const generateMetadata = (): Metadata => ({
 const RootLayout = ({ children }: PropsWithChildren) => {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body className={cn('font-satoshi min-h-screen', fonts)}>
-				<Providers>{children}</Providers>
+			<body className={cn('font-urbanist min-h-screen', fonts)}>
+				<NuqsAdapter>
+					<Providers>{children}</Providers>
+				</NuqsAdapter>
+				<AnalyticsScript />
 			</body>
 		</html>
 	);

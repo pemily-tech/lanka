@@ -3,6 +3,7 @@
 import { useGetUser } from '../../../../api/user-details/user-details';
 import { Roles } from '../../../../helpers/primitives';
 import { useAppSelector } from '../../../../store';
+import { useAuthStore } from '../../../../store/user-auth';
 import Spinner from '../../../shared/spinner';
 
 function StaffName({ id }: { id: string }) {
@@ -12,9 +13,8 @@ function StaffName({ id }: { id: string }) {
 }
 
 export default function ClinicDetails() {
-	const authState = useAppSelector((state) => state.auth);
-	const { role } = authState;
-	const { data, isPending } = useGetUser(authState.userId as string);
+	const { userId, role } = useAuthStore();
+	const { data, isPending } = useGetUser(userId as string);
 	const { name, clinicId } = data?.data?.user || {};
 
 	if (isPending) {

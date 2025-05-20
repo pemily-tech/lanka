@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 import { useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useDispatch } from 'react-redux';
@@ -10,6 +11,8 @@ import {
 	firstCharCapital,
 } from '../../../../helpers/utils';
 import { closeModal } from '../../../../store/modal';
+import { type IMedicalRecord } from '../../../../types/clinic';
+import { type IApiResponse, type IUploadType } from '../../../../types/common';
 import { Button } from '../../../shared/button';
 import { ImagePlaceholder } from '../../../shared/image';
 
@@ -27,7 +30,7 @@ export default function RecordUpload({
 	activeClinic: string;
 }) {
 	const dispatch = useDispatch();
-	const [files, setFiles] = useState<ICommonTypes.IUploadType[]>([]);
+	const [files, setFiles] = useState<IUploadType[]>([]);
 	const { mutateAsync: uploadMedicalRecord, isPending } =
 		useUploadMedicalRecord({
 			petId: petId as string,
@@ -71,7 +74,7 @@ export default function RecordUpload({
 		}
 		const response = (await uploadMedicalRecord(
 			formData
-		)) as ICommonTypes.IApiResponse<IClinicTypes.IMedicalRecord>;
+		)) as IApiResponse<IMedicalRecord>;
 		if (response.status === 'SUCCESS') {
 			dispatch(closeModal());
 			setFiles([]);

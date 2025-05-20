@@ -1,9 +1,11 @@
 import axios, { type AxiosError, type AxiosResponse } from 'axios';
 
 import { logout } from '../helpers/utils';
-import { store } from '../store';
+import { useAuthStore } from '../store/user-auth';
 // eslint-disable-next-line import/no-cycle
 import { ResetTokenAndReattemptRequest } from './reattempt-token.service';
+
+import { env } from '@/env.mjs';
 
 // Interface for the error response data
 interface AxiosErrorResponseData {
@@ -19,15 +21,15 @@ interface CustomAxiosError extends AxiosError {
 
 // Create an instance of axios
 const HttpService = axios.create({
-	baseURL: process.env.NEXT_PUBLIC_BASE_PATH,
+	baseURL: env.NEXT_PUBLIC_BASE_PATH,
 });
 
 HttpService.interceptors.request.use(
 	async (config) => {
 		try {
-			const state = store.getState();
-			if (state?.auth?.loggedIn && state?.auth?.token) {
-				config.headers.Authorization = `Bearer ${state.auth.token}`;
+			const state = useAuthStore.getState();
+			if (state?.loggedIn && state?.token) {
+				config.headers.Authorization = `Bearer ${state.token}`;
 			}
 			return config;
 		} catch (error) {
@@ -54,10 +56,23 @@ HttpService.interceptors.response.use(
 			} else if (error.response.data?.msg === 'Inactive user!') {
 				logout();
 			}
+			const message =
+				error.response?.data?.msg ||
+				error.message ||
+				'Something went wrong. Please try again.';
+			return Promise.reject(new Error(message));
 		} else if (error.request) {
-			// Handle errors that occur during the request but no response was received
+			console.error('No response received:', error.request);
+			return Promise.reject(
+				new Error(
+					'No response from server. Please check your connection.'
+				)
+			);
 		} else {
-			// Handle other types of errors (e.g., configuration issues)
+			console.error('Unexpected error:', error);
+			return Promise.reject(
+				new Error('Unexpected error occurred. Please try again.')
+			);
 		}
 
 		return Promise.reject(error);
