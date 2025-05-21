@@ -6,8 +6,8 @@ import { Slot } from '@radix-ui/react-slot';
 import * as Stepperize from '@stepperize/react';
 import { cva, type VariantProps } from 'class-variance-authority';
 
-import { cn } from '../../../helpers/utils';
-import { Button } from '../button';
+import { cn } from '../../helpers/utils';
+import { Button } from './button';
 
 const StepperContext = React.createContext<Stepper.ConfigProps | null>(null);
 

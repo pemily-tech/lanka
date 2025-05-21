@@ -15,9 +15,10 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-	Button,
-} from '../../../../../ui/shared';
+} from '../../../../../ui/shared/alert';
 import { useRemovePrescription } from '../_api/use-remove-prescription';
+
+import { Button } from '@/ui/shared';
 
 export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 	const { mutateAsync: removePrescription } = useRemovePrescription();

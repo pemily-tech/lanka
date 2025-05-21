@@ -15,15 +15,18 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
+} from '../../../../ui/shared';
+import { useAddItem } from '../_api/add-item';
+import { useUpdateItem } from '../_api/update-item';
+import { useGetItemById } from '../edit/[id]/api/get-item-by-id';
+
+import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../ui/shared';
-import { useAddItem } from '../_api/add-item';
-import { useUpdateItem } from '../_api/update-item';
-import { useGetItemById } from '../edit/[id]/api/get-item-by-id';
+} from '@/ui/shared/select';
 
 const schema = z.object({
 	name: z.string().min(3, { message: 'Title is required' }),

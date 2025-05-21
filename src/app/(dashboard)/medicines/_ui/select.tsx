@@ -5,12 +5,15 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
+} from '../../../../ui/shared';
+
+import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../ui/shared';
+} from '@/ui/shared/select';
 
 export default function SelectField({
 	apiKey,

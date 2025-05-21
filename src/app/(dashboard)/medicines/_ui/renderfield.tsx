@@ -9,13 +9,16 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
+} from '../../../../ui/shared';
+import { type IFormData } from './schema';
+
+import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../ui/shared';
-import { type IFormData } from './schema';
+} from '@/ui/shared/select';
 
 export const renderField = (form: UseFormReturn<IFormData>, field: any) => {
 	if (field.type === 'select') {

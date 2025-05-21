@@ -5,17 +5,16 @@ import { type DateRange } from 'react-day-picker';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
+import { Command, CommandInput, Label } from '../../../../../ui/shared';
+import { DayPicker } from '../../../../../ui/shared/day-picker';
+
 import {
-	Command,
-	CommandInput,
-	Label,
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../../ui/shared';
-import { DayPicker } from '../../../../../ui/shared/day-picker';
+} from '@/ui/shared/select';
 
 interface IProps {
 	selectedDate: DateRange | undefined;

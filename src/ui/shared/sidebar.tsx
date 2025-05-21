@@ -7,11 +7,11 @@ import { Slot } from '@radix-ui/react-slot';
 import { cva, type VariantProps } from 'class-variance-authority';
 import { PanelLeft } from 'lucide-react';
 
-import { cn } from '../../../helpers/utils';
-import { useIsMobile } from '../../../hooks/use-is-mobile';
-import { Button } from '../button';
-import { Separator } from '../separator';
-import { Sheet, SheetContent } from '../sheet';
+import { cn } from '../../helpers/utils';
+import { useIsMobile } from '../../hooks/use-is-mobile';
+import { Button } from './button';
+import { Separator } from './separator';
+import { Sheet, SheetContent } from './sheet';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar:state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;

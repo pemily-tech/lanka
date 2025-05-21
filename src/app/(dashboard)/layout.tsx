@@ -6,7 +6,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Routes } from '../../helpers/routes';
 import { useIsMobile } from '../../hooks/use-is-mobile';
 import useRouterQuery from '../../hooks/use-router-query';
-import { useAppSelector } from '../../store';
 import { useAuthStore } from '../../store/user-auth';
 import { AppSidebar } from '../../ui/components/app-sidebar';
 import DashboardLayoutHeader from '../../ui/components/dashboard-layout-header/dashboard-layout-header';
