@@ -70,7 +70,12 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 						href={`${Routes.MEDICINES_UPDATE}/${row.original.medicineId}`}
 						className="flex size-24 items-center justify-center"
 					>
-						<Button size="icon" variant="ghost">
+						<Button
+							size="icon"
+							variant="ghost"
+							data-umami-event="medicine_edit_button"
+							data-umami-event-id={row.original.medicineId}
+						>
 							<Edit2 className="size-18" />
 						</Button>
 					</Link>
@@ -80,6 +85,8 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 								disabled={!row.original.active}
 								size="icon"
 								variant="ghost"
+								data-umami-event="medicine_delete"
+								data-umami-event-id={row.original.medicineId}
 							>
 								<Trash2 className="size-18 text-destructive" />
 							</Button>

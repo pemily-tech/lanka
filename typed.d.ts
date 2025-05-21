@@ -13,3 +13,12 @@ declare module 'next-auth' {
 		isActive: boolean;
 	}
 }
+
+declare global {
+	interface Window {
+		umami?: {
+			track: (event: string, data?: Record<string, any>) => void;
+			identify: (id: string) => void;
+		};
+	}
+}

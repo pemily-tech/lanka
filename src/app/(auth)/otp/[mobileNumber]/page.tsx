@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 import { ArrowLeft } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
@@ -40,7 +41,11 @@ export default function Page() {
 			return;
 		}
 
-		if (result.data.status === 'SUCCESS') {
+		if (
+			result.data &&
+			result.data.status === 'SUCCESS' &&
+			result.data.data?.accessToken
+		) {
 			verifyUser(
 				result.data.data?.accessToken ?? '',
 				result.data.data?.refreshToken ?? '',
