@@ -72,7 +72,7 @@ const data: INavigationItem[] = [
 				id: 4,
 				type: 'link',
 				path: Routes.MEDICINES_LIST,
-				title: 'Medicines',
+				title: 'My Medications',
 				isIcon: false,
 				roles: [Roles.Clinic],
 			},
