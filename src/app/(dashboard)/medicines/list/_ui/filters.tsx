@@ -48,7 +48,14 @@ export default function Filters({
 				<div>
 					<Select
 						value={String(active)}
-						onValueChange={(val) => setActive(Number(val))}
+						onValueChange={(val) => {
+							setActive(Number(val));
+							if (typeof window !== 'undefined' && window.umami) {
+								window.umami.track('create_medicine_active', {
+									active: val,
+								});
+							}
+						}}
 					>
 						<Label>Active / Inactive</Label>
 						<SelectTrigger className="mt-3 w-[120px]">
@@ -63,7 +70,17 @@ export default function Filters({
 				<div>
 					<Select
 						value={limit.toString()}
-						onValueChange={(val) => setLimit(Number(val))}
+						onValueChange={(val) => {
+							setLimit(Number(val));
+							if (typeof window !== 'undefined' && window.umami) {
+								window.umami.track(
+									'create_medicine_limit_changed',
+									{
+										limit: val,
+									}
+								);
+							}
+						}}
 					>
 						<Label>Rows per Page</Label>
 						<SelectTrigger className="mt-3 w-[120px]">
@@ -90,6 +107,7 @@ export default function Filters({
 						}}
 						onMouseEnter={() => setHovered(!hovered)}
 						onMouseLeave={() => setHovered(!hovered)}
+						data-umami-event="create_medicine_button"
 					>
 						{hovered ? (
 							<motion.div

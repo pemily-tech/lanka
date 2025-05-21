@@ -53,7 +53,8 @@
 		"Pincode",
 		"precription",
 		"sonner",
-		"speciality"
+		"speciality",
+		"umami"
 	], // Custom words for spell checker
 	"tailwindCSS.experimental.classRegex": [
 		["tv\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]

@@ -8,6 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { persistor, store } from '../store';
 import ModalView from '../ui/components/modal-view';
 import { TooltipProvider } from '../ui/shared/tooltip';
+import { UmamiIdentify } from './umami-identity';
 
 import { Toaster } from '@/ui/shared/toast';
 
@@ -19,6 +20,7 @@ export default function Providers({ children }: { children: ReactNode }) {
 			<PersistGate loading={null} persistor={persistor}>
 				<QueryClientProvider client={queryClient}>
 					<TooltipProvider>
+						<UmamiIdentify />
 						{children}
 						<Toaster
 							closeButton

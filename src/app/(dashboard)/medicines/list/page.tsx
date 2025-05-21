@@ -76,6 +76,7 @@ export default function Page() {
 					<Link
 						className="bg-purple shadow-card1 fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white transition-transform duration-200 hover:scale-110"
 						href={Routes.MEDICINES_CREATE}
+						data-umami-event="create_medicine_sticky_button"
 					>
 						<Pill className="text-white" />
 					</Link>
