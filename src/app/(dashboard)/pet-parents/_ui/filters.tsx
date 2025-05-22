@@ -3,8 +3,11 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
+import Link from 'next/link';
 
 import { Button, Command, CommandInput } from '../../../../ui/shared';
+
+import { Routes } from '@/helpers/routes';
 
 const MotionButton = motion.create(Button);
 
@@ -32,24 +35,31 @@ export default function Filters({
 				</div>
 			</div>
 			<div className="col-span-2 flex justify-end">
-				<MotionButton
-					variant="secondary"
-					size={hovered ? 'icon' : 'default'}
-					onMouseEnter={() => setHovered(true)}
-					onMouseLeave={() => setHovered(false)}
-					animate={{ width: hovered ? 120 : 48 }}
-					transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-					className="h-48"
-				>
-					{hovered ? (
-						<span className="flex items-center gap-6 font-normal">
+				<Link href={Routes.PARENTS_CREATE}>
+					<MotionButton
+						variant="secondary"
+						size={hovered ? 'icon' : 'default'}
+						onMouseEnter={() => setHovered(true)}
+						onMouseLeave={() => setHovered(false)}
+						animate={{ width: hovered ? 120 : 48 }}
+						transition={{
+							type: 'spring',
+							stiffness: 300,
+							damping: 20,
+						}}
+						className="h-48"
+						data-umami-event="parents_create_button"
+					>
+						{hovered ? (
+							<span className="flex items-center gap-6 font-normal">
+								<Plus className="size-18 text-white" />
+								Add Parent
+							</span>
+						) : (
 							<Plus className="size-18 text-white" />
-							Add Parent
-						</span>
-					) : (
-						<Plus className="size-18 text-white" />
-					)}
-				</MotionButton>
+						)}
+					</MotionButton>
+				</Link>
 			</div>
 		</div>
 	);
