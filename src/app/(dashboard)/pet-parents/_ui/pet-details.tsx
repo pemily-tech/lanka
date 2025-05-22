@@ -1,6 +1,11 @@
+import { Plus } from 'lucide-react';
+import Link from 'next/link';
+
 import { useGetPetProfileImage } from '@/api/use-get-pet-profile';
 import { useGetPets } from '@/api/use-get-pets';
+import { Routes } from '@/helpers/routes';
 import { type IPetItem } from '@/types/common';
+import { Button } from '@/ui/shared/button';
 import { LazyImage } from '@/ui/shared/lazy-image';
 import Spinner from '@/ui/shared/spinner';
 
@@ -21,6 +26,15 @@ export default function PetDetails({ parentId }: { parentId: string }) {
 			{petsData?.map((pet) => {
 				return <Pet key={pet.petId} pet={pet} />;
 			})}
+			<Link
+				href={Routes.PETS_CREATE}
+				className="flex flex-col items-center justify-center gap-12"
+			>
+				<Button variant="outline" className="size-[120px] rounded-full">
+					<Plus />
+				</Button>
+				<span>Add Pet</span>
+			</Link>
 		</div>
 	);
 }
