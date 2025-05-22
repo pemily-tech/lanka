@@ -6,9 +6,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
 import useUpdateMedicalRecord from '../../../../api/use-update-medical-record/update-medical-record';
-import { Button } from '../../../shared/button';
 import Modal from '../../modal/modal';
 import Textarea from '../../textarea';
+
+import { Button } from '@/ui/shared/button';
 
 const validationSchema = yup.object().shape({
 	comment: yup.string().required('Comment is required'),

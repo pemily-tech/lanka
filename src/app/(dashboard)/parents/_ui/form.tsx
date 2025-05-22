@@ -7,9 +7,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useParams } from 'next/navigation';
 import { z } from 'zod';
 
+import { FloatingInput, Switch } from '../../../../ui/shared';
 import {
-	Button,
-	FloatingInput,
 	Form,
 	FormControl,
 	FormDescription,
@@ -17,14 +16,14 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-	Switch,
-} from '../../../../ui/shared';
+} from '../../../../ui/shared/form';
 import { useGetParentById } from '../_api/use-get-parent-byid';
 import useCreateParent from '../create/_api/use-create-parent';
 import useUpdateParent from '../update/[id]/_api/use-update-parent';
 
 import { phoneValidator } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
+import { Button } from '@/ui/shared/button';
 
 const getValidationSchema = (type: 'add' | 'edit') =>
 	z.object({

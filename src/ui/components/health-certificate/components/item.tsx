@@ -12,8 +12,9 @@ import { ModalTypes } from '../../../../helpers/primitives';
 import { closeModal, openModal } from '../../../../store/modal';
 import { type IMedicalRecord } from '../../../../types/clinic';
 import { PdfIcon } from '../../../icons/pdf-icon';
-import { Button } from '../../../shared/button';
 import useDocumentDownlaod from '../hooks/use-download-document';
+
+import { Button } from '@/ui/shared/button';
 
 interface IRecordItem {
 	record: IMedicalRecord;

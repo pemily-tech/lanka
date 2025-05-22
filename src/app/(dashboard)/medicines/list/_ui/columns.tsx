@@ -18,7 +18,7 @@ import {
 } from '../../../../../ui/shared/alert';
 import { useRemoveMedicine } from '../../_api/use-remove-medicine';
 
-import { Button } from '@/ui/shared';
+import { Button } from '@/ui/shared/button';
 
 export function useColumns(): ColumnDef<IMedicine>[] {
 	const { mutate: removeMedicine } = useRemoveMedicine();

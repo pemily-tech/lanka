@@ -6,8 +6,9 @@ import { Image, Trash2Icon } from 'lucide-react';
 
 import { type IUploadType } from '../../../../types/common';
 import { PdfIcon } from '../../../icons/pdf-icon';
-import { Button } from '../../../shared/button';
 import { ImagePlaceholder } from '../../../shared/image';
+
+import { Button } from '@/ui/shared/button';
 
 const Upload = ({
 	btnTxt,

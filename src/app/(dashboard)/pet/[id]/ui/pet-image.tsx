@@ -11,10 +11,11 @@ import { ModalTypes } from '../../../../../helpers/primitives';
 import { createFormDataForImage } from '../../../../../helpers/utils';
 import useRouterQuery from '../../../../../hooks/use-router-query';
 import { openModal } from '../../../../../store/modal';
-import { Button } from '../../../../../ui/shared/button';
 import { ImagePlaceholder } from '../../../../../ui/shared/image';
 import Spinner from '../../../../../ui/shared/spinner';
 import PetBasicDetails from './shared/pet-basic-details';
+
+import { Button } from '@/ui/shared/button';
 
 const PetImage = () => {
 	const { query } = useRouterQuery();

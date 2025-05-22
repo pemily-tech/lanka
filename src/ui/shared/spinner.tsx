@@ -1,5 +1,5 @@
-import { cn } from '../../../helpers/utils';
-import { ImagePlaceholder } from '../image';
+import { cn } from '../../helpers/utils';
+import { ImagePlaceholder } from './image';
 
 export function Spinner({ className }: { className?: string }) {
 	return (

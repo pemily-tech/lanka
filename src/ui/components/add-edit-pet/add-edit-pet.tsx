@@ -17,9 +17,10 @@ import usePetBreed from '../../../api/use-pet-breed/pet-breed';
 import useUpdatePet from '../../../api/use-update-pet/update-pet';
 import { customSelectBoxStyles } from '../../../helpers/utils';
 import { useAppSelector } from '../../../store';
-import { Button } from '../../shared/button';
 import Radio from '../radio';
 import TextInput from '../text-input';
+
+import { Button } from '@/ui/shared/button';
 
 interface OptionType {
 	value: string;

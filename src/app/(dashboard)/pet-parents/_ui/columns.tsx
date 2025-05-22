@@ -13,7 +13,7 @@ import { Routes } from '@/helpers/routes';
 import { cn, createFormDataForImage } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IPetParent } from '@/types/clinic';
-import { Button } from '@/ui/shared';
+import { Button } from '@/ui/shared/button';
 import { LazyImage } from '@/ui/shared/lazy-image';
 
 export function useColumns(): ColumnDef<IPetParent>[] {

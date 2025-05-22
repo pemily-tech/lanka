@@ -5,7 +5,7 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../../../../ui/shared';
+} from '../../../../ui/shared/form';
 
 import {
 	Select,

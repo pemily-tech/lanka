@@ -15,20 +15,22 @@ import { useGetUser } from '../../../../../api/user-details/user-details';
 import { useAuthStore } from '../../../../../store/user-auth';
 import { type IAddress } from '../../../../../types/common';
 import {
-	Button,
 	FloatingInput,
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
+} from '../../../../../ui/shared';
+import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '../../../../../ui/shared';
+} from '../../../../../ui/shared/form';
 
 import { cn } from '@/helpers/utils';
+import { Button } from '@/ui/shared/button';
 
 const schema = z.object({
 	line1: z.string().min(1, 'Line1 is required'),

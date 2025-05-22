@@ -13,8 +13,8 @@ import {
 } from '@tanstack/react-table';
 import Lottie from 'lottie-react';
 
-import Loader from '../../../../public/lottie/loader-dog.json';
-import NothingFound from '../../../../public/lottie/nothing-found.json';
+import Loader from '../../../public/lottie/loader-dog.json';
+import NothingFound from '../../../public/lottie/nothing-found.json';
 import {
 	Table,
 	TableBody,
@@ -22,7 +22,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from '../table';
+} from './table';
 
 interface IDataTableProps<TData> {
 	data: TData[];

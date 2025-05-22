@@ -5,9 +5,10 @@ import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
-import { Button, Command, CommandInput } from '../../../../ui/shared';
+import { Command, CommandInput } from '../../../../ui/shared';
 
 import { Routes } from '@/helpers/routes';
+import { Button } from '@/ui/shared/button';
 
 const MotionButton = motion.create(Button);
 

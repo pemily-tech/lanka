@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
 import { ArrowLeft } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
@@ -14,9 +13,10 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-	Spinner,
-} from '../../../../ui/shared';
+} from '../../../../ui/shared/dialog';
 import useOtpHook from './_hooks/use-otp-hook';
+
+import { Spinner } from '@/ui/shared/spinner';
 
 export default function Page() {
 	const params = useParams<{ mobileNumber: string }>();

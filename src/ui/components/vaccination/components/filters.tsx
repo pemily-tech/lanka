@@ -8,12 +8,13 @@ import {
 } from '../../../../helpers/constant';
 import { ModalTypes } from '../../../../helpers/primitives';
 import { openModal } from '../../../../store/modal';
-import { Button } from '../../../shared/button';
 import FilterItem, {
 	FilterIcon,
 	FilterLabel,
 } from '../../filter-item/filter-item';
 import Tooltip from '../../tooltip/tooltip';
+
+import { Button } from '@/ui/shared/button';
 
 export default function Filters({
 	activeFilter,

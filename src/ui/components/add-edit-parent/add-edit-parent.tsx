@@ -15,9 +15,10 @@ import useUpdateParent from '../../../api/use-update-parent/update-parent';
 import { phoneValidator } from '../../../helpers/utils';
 import { useAppSelector } from '../../../store';
 import { type IPetParent } from '../../../types/clinic';
-import { Button } from '../../shared/button';
 import Switch from '../switch';
 import TextInput from '../text-input';
+
+import { Button } from '@/ui/shared/button';
 
 const getValidationSchema = (type: 'add' | 'edit') =>
 	yup.object().shape({

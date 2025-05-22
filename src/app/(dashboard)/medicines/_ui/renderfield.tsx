@@ -1,15 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type UseFormReturn } from 'react-hook-form';
 
+import { FloatingInput, FloatingTextArea } from '../../../../ui/shared';
 import {
-	FloatingInput,
-	FloatingTextArea,
 	FormControl,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../../../../ui/shared';
+} from '../../../../ui/shared/form';
 import { type IFormData } from './schema';
 
 import {

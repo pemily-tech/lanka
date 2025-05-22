@@ -1,7 +1,7 @@
 import { type ChangeEvent, memo } from 'react';
 import { MoveDown, MoveUp, SearchIcon, X } from 'lucide-react';
 
-import { Button } from '../../../shared/button';
+import { Button } from '@/ui/shared/button';
 
 function Search({
 	value,

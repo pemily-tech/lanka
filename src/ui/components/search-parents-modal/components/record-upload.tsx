@@ -13,8 +13,9 @@ import {
 import { closeModal } from '../../../../store/modal';
 import { type IMedicalRecord } from '../../../../types/clinic';
 import { type IApiResponse, type IUploadType } from '../../../../types/common';
-import { Button } from '../../../shared/button';
 import { ImagePlaceholder } from '../../../shared/image';
+
+import { Button } from '@/ui/shared/button';
 
 export default function RecordUpload({
 	filter,

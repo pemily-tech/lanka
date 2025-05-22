@@ -15,7 +15,7 @@ import {
 } from '../../../../../ui/shared/alert';
 import { useFooterActions } from '../_hooks/use-footer';
 
-import { Button } from '@/ui/shared';
+import { Button } from '@/ui/shared/button';
 
 export default function Footer() {
 	const {

@@ -14,8 +14,9 @@ import Loading from '../../../../app/loading';
 import { ModalTypes } from '../../../../helpers/primitives';
 import { openModal } from '../../../../store/modal';
 import { type IVaccinationRecord } from '../../../../types/clinic';
-import { Button } from '../../../shared/button';
 import { ImagePlaceholder } from '../../../shared/image';
+
+import { Button } from '@/ui/shared/button';
 
 const UpdateVaccination = dynamic(() => import('./update-vaccination'), {
 	loading: () => <Loading />,

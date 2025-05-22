@@ -8,14 +8,7 @@ import { useParams } from 'next/navigation';
 import { DATE_FORMAT } from '../../../../../helpers/constant';
 import { type IPrescription } from '../../../../../types/prescription';
 import {
-	Button,
 	Calendar,
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
 	FloatingTextArea,
 	Popover,
 	PopoverContent,
@@ -23,6 +16,16 @@ import {
 } from '../../../../../ui/shared';
 import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useMedicineStore } from '../_store/medicine-store';
+
+import { Button } from '@/ui/shared/button';
+import {
+	Dialog,
+	DialogClose,
+	DialogContent,
+	DialogFooter,
+	DialogHeader,
+	DialogTitle,
+} from '@/ui/shared/dialog';
 
 type EditableDialogProps = {
 	title: string;

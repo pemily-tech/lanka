@@ -18,7 +18,7 @@ import {
 } from '../../../../../ui/shared/alert';
 import { useRemovePrescription } from '../_api/use-remove-prescription';
 
-import { Button } from '@/ui/shared';
+import { Button } from '@/ui/shared/button';
 
 export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 	const { mutateAsync: removePrescription } = useRemovePrescription();

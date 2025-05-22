@@ -7,8 +7,9 @@ import { format } from 'date-fns';
 import useGetDropdownList from '../../../../api/use-get-dropdown-list/get-dropdown-list';
 import useUpdateFollowUpRecord from '../../../../api/use-update-follow-up-record/update-follow-up-record';
 import { customSelectBoxStyles } from '../../../../helpers/utils';
-import { Button } from '../../../shared/button';
 import Modal from '../../modal/modal';
+
+import { Button } from '@/ui/shared/button';
 
 interface OptionType {
 	value: string;

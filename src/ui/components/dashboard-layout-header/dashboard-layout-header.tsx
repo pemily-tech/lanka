@@ -1,12 +1,12 @@
 'use client';
 
-import { useEffect, useState } from 'react';
 import { ChevronLeft } from 'lucide-react';
 import { usePathname, useRouter } from 'next/navigation';
 
 import { Routes } from '../../../helpers/routes';
-import { Button } from '../../shared';
 import ClinicDetails from './components/clinic-details';
+
+import { Button } from '@/ui/shared/button';
 
 export function DashboardLayoutHeader() {
 	const router = useRouter();
