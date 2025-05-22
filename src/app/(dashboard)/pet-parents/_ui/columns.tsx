@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { type FileRejection, useDropzone } from 'react-dropzone';
 import { type ColumnDef } from '@tanstack/react-table';
-import { CircleUserRound, Edit, Plus } from 'lucide-react';
+import { CircleUserRound, Plus } from 'lucide-react';
 import Link from 'next/link';
 import { toast } from 'sonner';
 
@@ -10,7 +10,7 @@ import { useUploadPetParentProfile } from '../_api/use-upload-profile';
 import { useGetUserProfileUrl } from '@/api/profile-image';
 import { MAX_SIZE_500 } from '@/helpers/constant';
 import { Routes } from '@/helpers/routes';
-import { cn, createFormDataForImage } from '@/helpers/utils';
+import { createFormDataForImage } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IPetParent } from '@/types/clinic';
 import { Button } from '@/ui/shared/button';
@@ -22,7 +22,13 @@ export function useColumns(): ColumnDef<IPetParent>[] {
 			accessorKey: 'name',
 			header: 'Name',
 			cell: ({ row }) => (
-				<div className="flex items-center gap-12">
+				<div
+					onClick={(e) => {
+						e.stopPropagation();
+						row.toggleExpanded();
+					}}
+					className="flex items-center gap-12"
+				>
 					<UserImage id={row.original.parent.parentId} />
 					<span>{row.original.parent.name}</span>
 				</div>
@@ -32,7 +38,14 @@ export function useColumns(): ColumnDef<IPetParent>[] {
 			accessorKey: 'petNames',
 			header: 'Pet Names',
 			cell: ({ row }) => (
-				<div>{row.original.parent.petNames.join(', ')}</div>
+				<div
+					onClick={(e) => {
+						e.stopPropagation();
+						row.toggleExpanded();
+					}}
+				>
+					{row.original.parent.petNames.join(', ')}
+				</div>
 			),
 		},
 		{
@@ -47,17 +60,35 @@ export function useColumns(): ColumnDef<IPetParent>[] {
 				<div className="flex items-center gap-12">
 					<Link
 						href={`${Routes.PARENTS_UPDATE}/${row.original.parent.parentId}`}
-						className="flex size-24 items-center justify-center"
+						className="flex items-center justify-center"
 					>
 						<Button
-							size="icon"
-							variant="ghost"
+							size="sm"
+							variant="secondary"
 							data-umami-event="parents_edit_button"
 							data-umami-event-id={row.original.parent.parentId}
+							className="px-12"
 						>
-							<Edit className="size-18" />
+							<span className="font-normal">Edit Parent</span>
 						</Button>
 					</Link>
+					<Button
+						size="sm"
+						variant="outline"
+						data-umami-event="parents_edit_button"
+						data-umami-event-id={row.original.parent.parentId}
+						className="px-12"
+						onClick={(e) => {
+							e.stopPropagation();
+							row.toggleExpanded();
+						}}
+					>
+						{row.getIsExpanded() ? (
+							<span className="font-normal">Close Pets</span>
+						) : (
+							<span className="font-normal">Edit Pets</span>
+						)}
+					</Button>
 				</div>
 			),
 		},

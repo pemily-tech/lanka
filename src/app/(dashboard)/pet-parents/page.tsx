@@ -6,11 +6,11 @@ import debounce from 'lodash.debounce';
 import { useUpdateUrl } from '../medicines/list/_hooks/use-update-url';
 import { useGetPetParentsList } from './_api/use-get-pet-parent';
 import { useColumns } from './_ui/columns';
+import { DataTable } from './_ui/data-table';
 import Filters from './_ui/filters';
 
 import { type IPetParent } from '@/types/clinic';
 import { PaginationWithLinks } from '@/ui/shared';
-import { DataTable } from '@/ui/shared/data-table';
 
 export default function Page() {
 	const [input, setInput] = useState('');

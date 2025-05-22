@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 'use client';
 
 import { Fragment, useState } from 'react';
@@ -12,8 +11,11 @@ import {
 } from '@tanstack/react-table';
 import Lottie from 'lottie-react';
 
-import Loader from '../../../public/lottie/loader-dog.json';
-import NothingFound from '../../../public/lottie/nothing-found.json';
+import Loader from '../../../../../public/lottie/loader-dog.json';
+import NothingFound from '../../../../../public/lottie/nothing-found.json';
+import PetDetails from './pet-details';
+
+import { type IPetParent } from '@/types/clinic';
 import {
 	Table,
 	TableBody,
@@ -21,23 +23,23 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from './table';
+} from '@/ui/shared/table';
 
-interface IDataTableProps<TData> {
-	data: TData[];
-	columns: ColumnDef<TData, any>[];
+interface IDataTableProps {
+	data: IPetParent[];
+	columns: ColumnDef<IPetParent, any>[];
 	isPending: boolean;
-	getRowId: (row: TData) => string;
+	getRowId: (row: IPetParent) => string;
 	emptyMessage?: string;
 }
 
-export function DataTable<TData>({
+export function DataTable({
 	data,
 	columns,
 	isPending,
 	getRowId,
 	emptyMessage = 'Nothing found.',
-}: IDataTableProps<TData>) {
+}: IDataTableProps) {
 	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>(
 		{}
 	);
@@ -78,7 +80,7 @@ export function DataTable<TData>({
 				{isPending ? (
 					<TableRow>
 						<TableCell
-							colSpan={columns.length}
+							colSpan={columns.length + 1}
 							className="text-center"
 							style={{ height: 320 }}
 						>
@@ -91,7 +93,7 @@ export function DataTable<TData>({
 				) : table.getRowModel().rows.length ? (
 					table.getRowModel().rows.map((row) => (
 						<Fragment key={row.id}>
-							<TableRow>
+							<TableRow className="hover:bg-muted cursor-pointer transition">
 								{row.getVisibleCells().map((cell) => (
 									<TableCell
 										className="text-14"
@@ -104,12 +106,26 @@ export function DataTable<TData>({
 									</TableCell>
 								))}
 							</TableRow>
+							{row.getIsExpanded() && (
+								<TableRow>
+									<TableCell
+										colSpan={columns.length + 1}
+										className="border-none p-0"
+									>
+										<PetDetails
+											parentId={
+												row.original.parent.parentId
+											}
+										/>
+									</TableCell>
+								</TableRow>
+							)}
 						</Fragment>
 					))
 				) : (
 					<TableRow>
 						<TableCell
-							colSpan={columns.length}
+							colSpan={columns.length + 1}
 							className="text-center"
 						>
 							<Lottie
