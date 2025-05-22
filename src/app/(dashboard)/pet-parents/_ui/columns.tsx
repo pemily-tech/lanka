@@ -1,10 +1,17 @@
+import { useCallback } from 'react';
+import { type FileRejection, useDropzone } from 'react-dropzone';
 import { type ColumnDef } from '@tanstack/react-table';
-import { CircleUserRound, Edit, Edit2 } from 'lucide-react';
+import { CircleUserRound, Edit, Plus } from 'lucide-react';
 import Link from 'next/link';
+import { toast } from 'sonner';
+
+import { useUploadPetParentProfile } from '../_api/use-upload-profile';
 
 import { useGetUserProfileUrl } from '@/api/profile-image';
+import { MAX_SIZE_500 } from '@/helpers/constant';
 import { Routes } from '@/helpers/routes';
-import { cn } from '@/helpers/utils';
+import { cn, createFormDataForImage } from '@/helpers/utils';
+import { queryClient } from '@/services/providers';
 import { type IPetParent } from '@/types/clinic';
 import { Button } from '@/ui/shared';
 import { LazyImage } from '@/ui/shared/lazy-image';
@@ -19,6 +26,13 @@ export function useColumns(): ColumnDef<IPetParent>[] {
 					<UserImage id={row.original.parent.parentId} />
 					<span>{row.original.parent.name}</span>
 				</div>
+			),
+		},
+		{
+			accessorKey: 'petNames',
+			header: 'Pet Names',
+			cell: ({ row }) => (
+				<div>{row.original.parent.petNames.join(', ')}</div>
 			),
 		},
 		{
@@ -53,15 +67,61 @@ export function useColumns(): ColumnDef<IPetParent>[] {
 const UserImage = ({ id }: { id: string }) => {
 	const { data } = useGetUserProfileUrl(id as string);
 	const profileUrl = data?.data?.profileUrl;
+	const { mutateAsync: uploadProfile } = useUploadPetParentProfile(id);
 
-	if (profileUrl && profileUrl !== '') {
-		return (
-			<LazyImage
-				src={profileUrl}
-				className="size-[54px] rounded-lg object-cover"
-			/>
-		);
-	} else {
-		return <CircleUserRound color="#cacfd2" width={54} height={54} />;
-	}
+	const onDrop = useCallback(
+		(acceptedFiles: File[], fileRejections: FileRejection[]) => {
+			acceptedFiles.map(async (acceptedFile) => {
+				const formData = createFormDataForImage(
+					acceptedFile as File,
+					'file'
+				);
+				const response = await uploadProfile(formData);
+				if (response.status === 'SUCCESS') {
+					queryClient.invalidateQueries({
+						queryKey: ['user/profileUrl', id],
+					});
+				}
+			});
+
+			fileRejections.forEach((rejection) => {
+				rejection.errors.forEach((error) => {
+					if (error.code === 'file-too-large') {
+						toast.error(
+							'File is too large. Maximum size allowed is 500KB.'
+						);
+					} else {
+						toast.error(error.message);
+					}
+				});
+			});
+		},
+		[]
+	);
+
+	const { getRootProps, getInputProps } = useDropzone({
+		onDrop,
+		accept: {
+			'image/jpeg': [],
+			'image/png': [],
+		},
+		maxSize: MAX_SIZE_500,
+	});
+
+	return (
+		<div className="relative cursor-pointer" {...getRootProps()}>
+			<input {...getInputProps()} />
+			<span className="bg-primary absolute bottom-0 right-0 rounded-full border border-white">
+				<Plus className="size-14 p-2 text-white" />
+			</span>
+			{profileUrl && profileUrl !== '' ? (
+				<LazyImage
+					src={profileUrl}
+					className="size-[54px] rounded-lg object-cover"
+				/>
+			) : (
+				<CircleUserRound color="#cacfd2" width={54} height={54} />
+			)}
+		</div>
+	);
 };

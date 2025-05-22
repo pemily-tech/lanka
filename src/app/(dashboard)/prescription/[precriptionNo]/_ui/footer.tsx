@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Eye, Plus, SendHorizonal, X } from 'lucide-react';
+import { Check, Eye, Plus, SendHorizonal } from 'lucide-react';
 
 import {
 	AlertDialog,

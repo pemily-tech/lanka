@@ -1,7 +1,6 @@
 'use client';
 
 import { useCallback, useState } from 'react';
-import { isPending } from '@reduxjs/toolkit';
 import debounce from 'lodash.debounce';
 
 import { useUpdateUrl } from '../medicines/list/_hooks/use-update-url';
@@ -18,7 +17,7 @@ export default function Page() {
 	const [searchTerm, setSearchTerm] = useState('');
 	const { limit, page, handlePagination } = useUpdateUrl();
 	const columns = useColumns();
-	const { data } = useGetPetParentsList({
+	const { data, isPending } = useGetPetParentsList({
 		searchTerm,
 		limit,
 		page,
@@ -44,7 +43,7 @@ export default function Page() {
 				<DataTable
 					columns={columns}
 					data={parentData}
-					isPending={false}
+					isPending={isPending}
 					getRowId={(row) => row.parent.parentId}
 					emptyMessage="Nothing found."
 				/>
