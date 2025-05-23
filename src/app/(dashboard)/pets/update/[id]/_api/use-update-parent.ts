@@ -4,26 +4,22 @@ import { toast } from 'sonner';
 import { HttpService } from '@/services/http-service';
 
 interface IPayload {
-	name?: string;
-	comment?: string;
-	active: boolean;
+	name: string;
+	breed: string;
+	gender: string;
+	type: string;
+	dob: string;
+	microChipNo?: string;
 }
 
-const updateParent = async (payload: IPayload, parentId: string) => {
-	try {
-		const { data } = await HttpService.patch(
-			`/clinic/updateMember/${parentId}`,
-			payload
-		);
-		return data;
-	} catch (err) {
-		throw new Error('Network Error');
-	}
+const updatePet = async (payload: IPayload, petId: string) => {
+	const { data } = await HttpService.patch(`/pet/${petId}`, payload);
+	return data;
 };
 
-export function useUpdateParent({ memberId }: { memberId: string }) {
+export function useUpdatePet(petId: string) {
 	return useMutation({
-		mutationFn: (payload: IPayload) => updateParent(payload, memberId),
+		mutationFn: (payload: IPayload) => updatePet(payload, petId),
 		onSuccess: (data) => {
 			if (data?.status === 'SUCCESS') {
 				toast.success('Updated Successfully!');
@@ -36,5 +32,3 @@ export function useUpdateParent({ memberId }: { memberId: string }) {
 		},
 	});
 }
-
-export default useUpdateParent;

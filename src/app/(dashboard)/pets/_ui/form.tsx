@@ -1,5 +1,7 @@
+/* eslint-disable max-lines-per-function */
 'use client';
 
+import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
@@ -14,15 +16,18 @@ import {
 	FormMessage,
 } from '../../../../ui/shared/form';
 import { useCreatePet } from '../create/_api/use-create-pet';
+import { useUpdatePet } from '../update/[id]/_api/use-update-parent';
 import { CalendarType } from './calendar';
 import { Combobox } from './combobox';
 import { formFields } from './fields';
 import { type IPetFormData, petSchema } from './schema';
 import { SelectType } from './select';
 
+import { useGetPetById } from '@/api/use-get-pet-byid';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { cn } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
+import { type IPetItem } from '@/types/common';
 import { Button } from '@/ui/shared/button';
 
 export function PetForm({ type }: { type: 'add' | 'edit' }) {
@@ -30,21 +35,41 @@ export function PetForm({ type }: { type: 'add' | 'edit' }) {
 	const searchParams = useSearchParams();
 	const parentId = searchParams.get('parentId');
 	const router = useRouter();
+	const { data } = useGetPetById(params?.id);
+	const petData = useMemo(() => {
+		return data?.data?.pet || ({} as IPetItem);
+	}, [data?.data?.pet]);
 
 	const { mutateAsync: createPet, isPending: createLoading } = useCreatePet();
+	const { mutateAsync: updatePet, isPending: updateLoading } = useUpdatePet(
+		params?.id
+	);
 
 	const form = useForm<IPetFormData>({
 		resolver: zodResolver(petSchema),
 		defaultValues: {
-			name: '',
-			type: '',
-			gender: '',
-			breed: '',
-			dob: '',
-			microChipNo: '',
+			name: petData?.name ?? '',
+			type: petData?.type ?? '',
+			gender: petData?.gender ?? '',
+			breed: petData?.breed ?? '',
+			dob: petData?.dob ?? '',
+			microChipNo: petData?.microChipNo ?? '',
 		},
 	});
 	const selectedType = form.watch('type');
+
+	useEffect(() => {
+		if (type === 'edit' && petData) {
+			form.reset({
+				name: petData?.name ?? '',
+				type: petData?.type ?? '',
+				gender: petData?.gender ?? '',
+				breed: petData?.breed ?? '',
+				dob: petData?.dob ?? '',
+				microChipNo: petData?.microChipNo ?? '',
+			});
+		}
+	}, [type, form, petData]);
 
 	const onSubmit = async (values: IPetFormData) => {
 		const { dob, ...rest } = values;
@@ -55,15 +80,24 @@ export function PetForm({ type }: { type: 'add' | 'edit' }) {
 					{ searchTerm: '', limit: 15, page: 0, count: 1 },
 				],
 			});
-
-		const response = await createPet({
-			...rest,
-			parentId: parentId as string,
-			dob: dob ? format(new Date(dob), DEFAULT_DATE_FORMAT) : '',
-		});
-		if (response.status === 'SUCCESS') {
-			router.back();
-			commonInvalidateQuery();
+		if (type === 'add') {
+			const response = await createPet({
+				...rest,
+				parentId: parentId as string,
+				dob: dob ? format(new Date(dob), DEFAULT_DATE_FORMAT) : '',
+			});
+			if (response.status === 'SUCCESS') {
+				router.back();
+				commonInvalidateQuery();
+			}
+		} else {
+			const response = await updatePet({
+				...rest,
+				dob: dob ? format(new Date(dob), DEFAULT_DATE_FORMAT) : '',
+			});
+			if (response.status === 'SUCCESS') {
+				commonInvalidateQuery();
+			}
 		}
 	};
 
@@ -135,8 +169,8 @@ export function PetForm({ type }: { type: 'add' | 'edit' }) {
 					})}
 					<div className="col-span-2">
 						<Button
-							disabled={createLoading}
-							loading={createLoading}
+							disabled={createLoading || updateLoading}
+							loading={createLoading || updateLoading}
 							loadingText={
 								type === 'edit'
 									? 'Updating pet...'

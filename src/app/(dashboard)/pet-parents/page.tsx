@@ -20,7 +20,7 @@ export default function Page() {
 	const { data, isPending } = useGetPetParentsList({
 		searchTerm,
 		limit,
-		page,
+		page: 0,
 		count: 1,
 	});
 	const parentData = data?.data?.parents || ([] as IPetParent[]);
