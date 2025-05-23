@@ -2,7 +2,6 @@
 
 import { useGetUser } from '../../../../api/user-details/user-details';
 import { Roles } from '../../../../helpers/primitives';
-import { useAppSelector } from '../../../../store';
 import { useAuthStore } from '../../../../store/user-auth';
 import Spinner from '../../../shared/spinner';
 

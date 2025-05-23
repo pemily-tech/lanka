@@ -13,7 +13,8 @@ import useGetFollowupList from '../../../api/use-get-followup-list/get-followup-
 import { convertDates, customSelectBoxStyles } from '../../../helpers/utils';
 import { type IFollowUpRecord } from '../../../types/clinic';
 import { type IApiResponse } from '../../../types/common';
-import { Button } from '../../shared/button';
+
+import { Button } from '@/ui/shared/button';
 
 interface OptionType {
 	value: string;

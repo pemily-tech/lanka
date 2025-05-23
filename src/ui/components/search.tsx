@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { X } from 'lucide-react';
 
-import { Button } from '../shared/button';
+import { Button } from '@/ui/shared/button';
 
 interface SearchProps {
 	handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

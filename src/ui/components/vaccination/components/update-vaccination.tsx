@@ -6,8 +6,9 @@ import { format } from 'date-fns';
 import useGetDropdownList from '../../../../api/use-get-dropdown-list/get-dropdown-list';
 import useUpdateVaccinationRecord from '../../../../api/use-update-vaccination-record/update-vaccination-record';
 import { customSelectBoxStyles } from '../../../../helpers/utils';
-import { Button } from '../../../shared/button';
 import Modal from '../../modal/modal';
+
+import { Button } from '@/ui/shared/button';
 
 interface OptionType {
 	value: string;

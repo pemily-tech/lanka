@@ -7,18 +7,19 @@ import { useParams } from 'next/navigation';
 import { z } from 'zod';
 
 import { type ISoap } from '../../../../../types/prescription';
+import { FloatingTextArea } from '../../../../../ui/shared';
 import {
-	Button,
-	FloatingTextArea,
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-	Spinner,
-} from '../../../../../ui/shared';
+} from '../../../../../ui/shared/form';
 import { useGetPrescriptionSoap } from '../_api/use-get-soap';
 import { useUpdateSoap } from '../_api/use-update.soap';
+
+import { Button } from '@/ui/shared/button';
+import Spinner from '@/ui/shared/spinner';
 
 const schema = z.object({
 	subjective: z.string().optional().or(z.literal('')),

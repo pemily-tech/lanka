@@ -1,34 +1,32 @@
 'use client';
 
-import { useDispatch } from 'react-redux';
 import { format } from 'date-fns';
 import { CameraIcon, EditIcon } from 'lucide-react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 
 import useGetPetById from '../../../../../api/use-get-pet-by-id/get-pet-by-id';
 import useGetPetProfileImage from '../../../../../api/use-get-pet-profile-image/get-pet-profile-image';
 import useUpdatePetImage from '../../../../../api/use-update-pet-image/update-pet-image';
-import { ModalTypes } from '../../../../../helpers/primitives';
 import { createFormDataForImage } from '../../../../../helpers/utils';
 import useRouterQuery from '../../../../../hooks/use-router-query';
-import { openModal } from '../../../../../store/modal';
-import { Button } from '../../../../../ui/shared/button';
 import { ImagePlaceholder } from '../../../../../ui/shared/image';
 import Spinner from '../../../../../ui/shared/spinner';
 import PetBasicDetails from './shared/pet-basic-details';
 
+import { Routes } from '@/helpers/routes';
+import { Button } from '@/ui/shared/button';
+
 const PetImage = () => {
 	const { query } = useRouterQuery();
-	const {
-		data: profileData,
-		refetch,
-		isPending,
-	} = useGetPetById(query?.id as string);
+	const { data: profileData, isPending } = useGetPetById(query?.id as string);
 	const { data: profileImage } = useGetPetProfileImage(query?.id as string);
 	const { profileUrl } = profileImage?.data || {};
 	const { name, breed, microChipNo, gender, type, dob, code } =
 		profileData?.data?.pet || {};
 	const { mutate: updatePetImage } = useUpdatePetImage(query?.id as string);
-	const dispatch = useDispatch();
+	const searchParams = useSearchParams();
+	const parentId = searchParams.get('parentId');
 
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const file = e.target.files?.[0];
@@ -38,34 +36,23 @@ const PetImage = () => {
 		}
 	};
 
-	const handleEditPet = () => {
-		dispatch(
-			openModal({
-				view: ModalTypes.ADD_EDIT_PET,
-				type: 'edit',
-				data: {
-					petId: query?.id,
-				},
-				refetch,
-				center: true,
-			})
-		);
-	};
-
 	if (isPending) {
 		return <Spinner />;
 	}
 
 	return (
 		<div className="shadow-base top-54 sticky col-span-1 flex flex-col items-center justify-center rounded-[16px] bg-white px-16 py-32">
-			<Button
-				onClick={handleEditPet}
-				className="!absolute right-12 top-12"
-				variant="ghost"
-				size="icon"
+			<Link
+				href={`${Routes.PETS_UPDATE}/${query?.id}?parentId=${parentId}`}
 			>
-				<EditIcon width={18} height={18} />
-			</Button>
+				<Button
+					className="!absolute right-12 top-12"
+					variant="ghost"
+					size="icon"
+				>
+					<EditIcon width={18} height={18} />
+				</Button>
+			</Link>
 			<div>
 				<div className=" relative size-[168px] rounded-full bg-white">
 					{profileUrl && profileUrl !== '' ? (

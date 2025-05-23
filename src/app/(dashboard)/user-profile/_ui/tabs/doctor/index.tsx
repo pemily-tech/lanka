@@ -10,8 +10,8 @@ import {
 	Collapsible,
 	CollapsibleContent,
 	CollapsibleTrigger,
-	Spinner,
-} from '@/ui/shared';
+} from '@/ui/shared/collapsible';
+import Spinner from '@/ui/shared/spinner';
 
 export default function Doctors() {
 	const { data, isPending } = useGetDoctors();

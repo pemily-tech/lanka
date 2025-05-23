@@ -1,5 +1,5 @@
 import { type ColumnDef } from '@tanstack/react-table';
-import { Edit2, LogOutIcon, Trash2 } from 'lucide-react';
+import { Edit2, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
 import { Routes } from '../../../../../helpers/routes';
@@ -15,9 +15,10 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-	Button,
-} from '../../../../../ui/shared';
+} from '../../../../../ui/shared/alert';
 import { useRemoveMedicine } from '../../_api/use-remove-medicine';
+
+import { Button } from '@/ui/shared/button';
 
 export function useColumns(): ColumnDef<IMedicine>[] {
 	const { mutate: removeMedicine } = useRemoveMedicine();

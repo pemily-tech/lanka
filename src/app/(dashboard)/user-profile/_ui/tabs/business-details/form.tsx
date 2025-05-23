@@ -13,17 +13,17 @@ import {
 	phoneValidator,
 } from '../../../../../../helpers/utils';
 import { useAuthStore } from '../../../../../../store/user-auth';
+import { FloatingInput } from '../../../../../../ui/shared';
 import {
-	Button,
-	FloatingInput,
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from '../../../../../../ui/shared';
+} from '../../../../../../ui/shared/form';
 
 import { useGetUser } from '@/api/user-details/user-details';
+import { Button } from '@/ui/shared/button';
 
 const schema = z.object({
 	ownerName: z.string().optional().or(z.literal('')),

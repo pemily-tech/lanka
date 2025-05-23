@@ -15,8 +15,9 @@ import Loading from '../../../../app/loading';
 import { ModalTypes } from '../../../../helpers/primitives';
 import { openModal } from '../../../../store/modal';
 import { type IFollowUpRecord } from '../../../../types/clinic';
-import { Button } from '../../../shared/button';
 import { ImagePlaceholder } from '../../../shared/image';
+
+import { Button } from '@/ui/shared/button';
 
 const UpdateFollowup = dynamic(() => import('./update-folllowup'), {
 	loading: () => <Loading />,

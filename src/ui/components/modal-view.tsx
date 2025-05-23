@@ -24,28 +24,10 @@ const SearchParent = dynamic(
 	}
 );
 
-const AddEditParentModal = dynamic(
-	() => import('../components/add-edit-parent/add-edit-parent'),
-	{
-		loading: () => <Loading />,
-	}
-);
-
-const AddEditPetModal = dynamic(
-	() => import('../components/add-edit-pet/add-edit-pet'),
-	{
-		loading: () => <Loading />,
-	}
-);
-
 function renderModalContent(view: MODAL_VIEW | string) {
 	switch (view) {
 		case ModalTypes.CONFIRMATION_MODAL:
 			return <ConfirmationModal />;
-		case ModalTypes.ADD_EDIT_PARENT:
-			return <AddEditParentModal />;
-		case ModalTypes.ADD_EDIT_PET:
-			return <AddEditPetModal />;
 		case ModalTypes.SEARCH_PARENTS:
 			return <SearchParent />;
 		default:

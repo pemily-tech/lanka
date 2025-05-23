@@ -17,4 +17,8 @@ export const Routes = {
 	MEDICINES_CREATE: '/medicines/create',
 	MEDICINES_UPDATE: '/medicines/update',
 	MEDICINES_LIST: '/medicines/list',
+	PARENTS_CREATE: '/parents/create',
+	PARENTS_UPDATE: '/parents/update',
+	PETS_CREATE: '/pets/create',
+	PETS_UPDATE: '/pets/update',
 };

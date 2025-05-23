@@ -1,6 +1,6 @@
 import { type ReactNode } from 'react';
 
-import { Button } from '../../shared/button';
+import { Button } from '@/ui/shared/button';
 
 interface IFilterItemProps {
 	active: boolean;

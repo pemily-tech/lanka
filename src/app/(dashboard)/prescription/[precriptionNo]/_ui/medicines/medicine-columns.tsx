@@ -12,16 +12,19 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-	Button,
+} from '../../../../../../ui/shared/alert';
+import { useMedicineStore } from '../../_store/medicine-store';
+import UpdateMedicine from './update-medicine';
+
+import { Button } from '@/ui/shared/button';
+import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from '../../../../../../ui/shared';
-import { useMedicineStore } from '../../_store/medicine-store';
-import UpdateMedicine from './update-medicine';
+} from '@/ui/shared/dialog';
 
 export function useColumns(
 	isPrescriptionSaved: boolean

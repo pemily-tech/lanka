@@ -5,8 +5,6 @@ import { type ModalTypes } from '../helpers/primitives';
 
 export type MODAL_VIEW =
 	| ModalTypes.CONFIRMATION_MODAL
-	| ModalTypes.SIDEBAR_MENU
-	| ModalTypes.ADD_EDIT_PARENT
 	| ModalTypes.ADD_EDIT_PET
 	| ModalTypes.LOADING_MODAL
 	| ModalTypes.SEARCH_PARENTS

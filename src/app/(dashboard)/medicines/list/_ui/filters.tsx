@@ -3,20 +3,17 @@ import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
+import { Command, CommandInput, Label } from '../../../../../ui/shared';
+import { useUpdateUrl } from '../_hooks/use-update-url';
+
+import { Routes } from '@/helpers/routes';
 import {
-	Button,
-	Command,
-	CommandInput,
-	Label,
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../../ui/shared';
-import { useUpdateUrl } from '../_hooks/use-update-url';
-
-import { Routes } from '@/helpers/routes';
+} from '@/ui/shared/select';
 
 export default function Filters({
 	value,

@@ -1,21 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type UseFormReturn } from 'react-hook-form';
 
+import { FloatingInput, FloatingTextArea } from '../../../../ui/shared';
 import {
-	FloatingInput,
-	FloatingTextArea,
 	FormControl,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
+} from '../../../../ui/shared/form';
+import { type IFormData } from './schema';
+
+import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../ui/shared';
-import { type IFormData } from './schema';
+} from '@/ui/shared/select';
 
 export const renderField = (form: UseFormReturn<IFormData>, field: any) => {
 	if (field.type === 'select') {

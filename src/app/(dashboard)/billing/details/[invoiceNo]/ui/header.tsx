@@ -4,7 +4,7 @@ import { format } from 'date-fns';
 import { useParams } from 'next/navigation';
 
 import { type IInvoice } from '../../../../../../types/invoice';
-import { Spinner } from '../../../../../../ui/shared';
+import { Spinner } from '../../../../../../ui/shared/spinner';
 import { useGetInvoiceById } from '../../../_api/get-invoice-byid';
 
 export default function Header() {

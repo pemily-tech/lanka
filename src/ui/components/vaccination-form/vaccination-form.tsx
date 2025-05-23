@@ -13,7 +13,8 @@ import useGetVaccinationList from '../../../api/use-get-vaccination-list/get-vac
 import { convertDates, customSelectBoxStyles } from '../../../helpers/utils';
 import { type IVaccinationRecord } from '../../../types/clinic';
 import { type IApiResponse } from '../../../types/common';
-import { Button } from '../../shared/button';
+
+import { Button } from '@/ui/shared/button';
 
 interface OptionType {
 	value: string;

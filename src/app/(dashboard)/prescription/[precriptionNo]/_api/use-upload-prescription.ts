@@ -3,7 +3,6 @@ import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../services/http-service';
 import { type IApiResponse } from '../../../../../types/common';
-import { type IPrescription } from '../../../../../types/prescription';
 
 const updatePrescription = async (id: string) => {
 	const { data } = await HttpService.patch<

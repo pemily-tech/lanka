@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 
-import { Button } from '../button';
 import {
 	Dialog,
 	DialogContent,
@@ -14,6 +13,8 @@ import Doctor from './doctor';
 import ErrorMessage from './error-message';
 import Pet from './pet';
 import PetParent from './pet-parent';
+
+import { Button } from '@/ui/shared/button';
 
 export default function PetSelectModal({
 	open,

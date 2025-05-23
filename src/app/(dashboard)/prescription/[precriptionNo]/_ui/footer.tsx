@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Eye, Plus, SendHorizonal, X } from 'lucide-react';
+import { Check, Eye, Plus, SendHorizonal } from 'lucide-react';
 
 import {
 	AlertDialog,
@@ -12,9 +12,10 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-	Button,
-} from '../../../../../ui/shared';
+} from '../../../../../ui/shared/alert';
 import { useFooterActions } from '../_hooks/use-footer';
+
+import { Button } from '@/ui/shared/button';
 
 export default function Footer() {
 	const {

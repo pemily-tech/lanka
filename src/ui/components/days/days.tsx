@@ -7,7 +7,8 @@ import { addDays, format, isToday, isTomorrow } from 'date-fns';
 import { Calendar } from 'lucide-react';
 
 import { type IDayItem } from '../../../types/common';
-import { Button } from '../../shared/button';
+
+import { Button } from '@/ui/shared/button';
 
 export function DaysItem({
 	defaultDays = 6,

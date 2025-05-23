@@ -1,7 +1,6 @@
 import { Search, X } from 'lucide-react';
 
 import { cn } from '../../../../../helpers/utils';
-import { Button } from '../../../../../ui/shared/button';
 import Input from '../../../../../ui/shared/input/input';
 import {
 	Select,
@@ -11,6 +10,8 @@ import {
 	SelectValue,
 } from '../../../../../ui/shared/select';
 import { useProductListingContext } from '../context/context';
+
+import { Button } from '@/ui/shared/button';
 
 export default function Header() {
 	const {

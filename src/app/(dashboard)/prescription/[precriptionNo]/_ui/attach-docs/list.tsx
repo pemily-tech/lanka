@@ -17,11 +17,12 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-	Button,
-} from '../../../../../../ui/shared';
+} from '../../../../../../ui/shared/alert';
 import { useGetAttatchDocs } from '../../_api/use-get-attatch-docs';
 import { useRemoveAttachDoc } from '../../_api/use-remove-docs';
 import { useShareDoc } from '../../_api/use-share-doc';
+
+import { Button } from '@/ui/shared/button';
 
 export default function DocsList({ type }: { type: string }) {
 	const params = useParams();

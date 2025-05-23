@@ -8,12 +8,13 @@ import {
 	type IMedicine,
 	type IPrescription,
 } from '../../../../../../types/prescription';
-import { Button } from '../../../../../../ui/shared';
 import { useGetMedicines } from '../../../../medicines/list/_api/use-get-medicines';
 import { useGetPrescriptionById } from '../../_api/use-get-byid';
 import { useMedicineStore } from '../../_store/medicine-store';
 import { Search } from './search';
 import SelectedMedicines from './selected-medicines';
+
+import { Button } from '@/ui/shared/button';
 
 export default function Medicines() {
 	const params = useParams();

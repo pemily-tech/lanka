@@ -12,9 +12,10 @@ import Loading from '../../../../app/loading';
 import { ModalTypes } from '../../../../helpers/primitives';
 import { closeModal, openModal } from '../../../../store/modal';
 import { type IMedicalRecord } from '../../../../types/clinic';
-import { Button } from '../../../shared/button';
 import useDocumentDownlaod from '../hooks/use-download-document.hook';
 import PreviewImage from './preview-image';
+
+import { Button } from '@/ui/shared/button';
 
 const CommentModal = dynamic(() => import('./comment-modal'), {
 	loading: () => <Loading />,

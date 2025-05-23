@@ -3,7 +3,7 @@ import { type UseFormSetValue } from 'react-hook-form';
 import { Command as CommandPrimitive } from 'cmdk';
 
 import useGetPetProfileImage from '../../../api/use-get-pet-profile-image/get-pet-profile-image';
-import useGetPets from '../../../api/use-get-pets';
+import { useGetPets } from '../../../api/use-get-pets';
 import { cn } from '../../../helpers/utils';
 import { type IPetItem } from '../../../types/common';
 import { CommandEmpty, CommandList } from '../command';
