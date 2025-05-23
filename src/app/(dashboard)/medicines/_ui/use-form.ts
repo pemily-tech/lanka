@@ -27,15 +27,15 @@ export const useMedicineForm = (type: 'UPDATE' | 'CREATE') => {
 		defaultValues: useMemo(
 			() => ({
 				name: medicine?.name ?? '',
-				brand: medicine?.brand ?? '',
+				// brand: medicine?.brand ?? '',
 				dose: medicine?.dose ?? '',
 				duration: medicine?.duration ?? '',
 				frequency: medicine?.frequency ?? '',
 				strength: medicine?.strength ?? '',
 				interval: medicine?.interval ?? '',
 				take: medicine?.take ?? '',
-				diagnosis: medicine?.diagnosis ?? '',
-				active: medicine?.active,
+				// diagnosis: medicine?.diagnosis ?? '',
+				active: medicine?.active ?? true,
 			}),
 			[medicine]
 		),
@@ -45,14 +45,14 @@ export const useMedicineForm = (type: 'UPDATE' | 'CREATE') => {
 		if (medicine && Object.keys(medicine).length > 0) {
 			form.reset({
 				name: medicine?.name ?? '',
-				brand: medicine?.brand ?? '',
+				// brand: medicine?.brand ?? '',
 				dose: medicine?.dose ?? '',
 				duration: medicine?.duration ?? '',
 				frequency: medicine?.frequency ?? '',
 				strength: medicine?.strength ?? '',
 				interval: medicine?.interval ?? '',
 				take: medicine?.take ?? '',
-				diagnosis: medicine?.diagnosis ?? '',
+				// diagnosis: medicine?.diagnosis ?? '',
 				active: medicine?.active ?? false,
 			});
 		}

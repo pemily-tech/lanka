@@ -14,8 +14,8 @@ interface IPayload {
 	frequency: string;
 	duration: string;
 	take: string;
-	brand: string;
-	diagnosis: string;
+	// brand: string;
+	// diagnosis: string;
 	active?: boolean;
 }
 
