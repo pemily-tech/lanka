@@ -1,5 +1,5 @@
-import { ParentForm } from '../_ui/form';
+import { PetForm } from '../_ui/form';
 
 export default function Page() {
-	return <ParentForm type="add" />;
+	return <PetForm type="add" />;
 }

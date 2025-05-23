@@ -22,12 +22,12 @@ export default function PetDetails({ parentId }: { parentId: string }) {
 	}
 
 	return (
-		<div className="bg-muted/40 flex gap-24 rounded-b-md p-16">
+		<div className="bg-muted/40 flex flex-wrap gap-24 rounded-b-md p-16">
 			{petsData?.map((pet) => {
-				return <Pet key={pet.petId} pet={pet} />;
+				return <Pet key={pet.petId} pet={pet} parentId={parentId} />;
 			})}
 			<Link
-				href={Routes.PETS_CREATE}
+				href={`${Routes.PETS_CREATE}?parentId=${parentId}`}
 				className="flex flex-col items-center justify-center gap-12"
 			>
 				<Button variant="outline" className="size-[120px] rounded-full">
@@ -39,17 +39,20 @@ export default function PetDetails({ parentId }: { parentId: string }) {
 	);
 }
 
-const Pet = ({ pet }: { pet: IPetItem }) => {
+const Pet = ({ pet, parentId }: { pet: IPetItem; parentId: string }) => {
 	const { data } = useGetPetProfileImage(pet?.petId as string);
 	const isProfileExists =
 		data?.data?.profileUrl && data?.data?.profileUrl !== '';
 
 	return (
-		<div className="flex flex-col items-center justify-center gap-12">
+		<Link
+			href={`/pet/${pet.petId}?parentId=${parentId}`}
+			className="flex flex-col items-center justify-center gap-12"
+		>
 			{isProfileExists ? (
 				<LazyImage
 					src={data?.data?.profileUrl as string}
-					className="size-[120px] rounded-full"
+					className="size-[120px] rounded-full object-cover"
 				/>
 			) : (
 				<LazyImage
@@ -58,10 +61,10 @@ const Pet = ({ pet }: { pet: IPetItem }) => {
 							? '/images/Cat.png'
 							: '/images/Dog.png'
 					}
-					className="size-[120px] rounded-full"
+					className="size-[120px] rounded-full object-cover"
 				/>
 			)}
 			<div>{pet.name}</div>
-		</div>
+		</Link>
 	);
 };

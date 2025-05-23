@@ -1,82 +1,53 @@
-/* eslint-disable indent */
 'use client';
 
-import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useParams } from 'next/navigation';
-import { z } from 'zod';
+import { format } from 'date-fns';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 
-import { FloatingInput, Switch } from '../../../../ui/shared';
+import { FloatingInput } from '../../../../ui/shared';
 import {
 	Form,
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
-	FormLabel,
 	FormMessage,
 } from '../../../../ui/shared/form';
-import { useGetParentById } from '../_api/use-get-parent-byid';
-import useCreateParent from '../create/_api/use-create-parent';
-import useUpdateParent from '../update/[id]/_api/use-update-parent';
+import { useCreatePet } from '../create/_api/use-create-pet';
+import { CalendarType } from './calendar';
+import { Combobox } from './combobox';
+import { formFields } from './fields';
+import { type IPetFormData, petSchema } from './schema';
+import { SelectType } from './select';
 
-import { phoneValidator } from '@/helpers/utils';
+import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
+import { cn } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { Button } from '@/ui/shared/button';
 
-const getValidationSchema = (type: 'add' | 'edit') =>
-	z.object({
-		mobileNumber:
-			type === 'add'
-				? z
-						.string()
-						.regex(phoneValidator, 'Phone number is not valid')
-						.nonempty('Phone number is required')
-				: z.string().optional(),
-		name:
-			type === 'edit'
-				? z.string().nonempty('Name is required')
-				: z.string().optional(),
-		comment: z.string().optional(),
-		active: z.boolean().optional(),
-	});
-
-type FormSchema = ReturnType<typeof getValidationSchema>;
-type IFormData = z.infer<FormSchema>;
-
-export function ParentForm({ type }: { type: 'add' | 'edit' }) {
+export function PetForm({ type }: { type: 'add' | 'edit' }) {
 	const params = useParams<{ id: string }>();
-	const schema = useMemo(() => getValidationSchema(type), [type]);
-	const { mutateAsync: createParent, isPending: createPending } =
-		useCreateParent();
-	const { data } = useGetParentById(params?.id as string);
-	const parentData = data?.data?.parents?.[0];
-	const { mutateAsync: updateParent, isPending: updatePending } =
-		useUpdateParent({ memberId: parentData?.memberId as string });
+	const searchParams = useSearchParams();
+	const parentId = searchParams.get('parentId');
+	const router = useRouter();
 
-	const form = useForm<IFormData>({
-		resolver: zodResolver(schema),
+	const { mutateAsync: createPet, isPending: createLoading } = useCreatePet();
+
+	const form = useForm<IPetFormData>({
+		resolver: zodResolver(petSchema),
 		defaultValues: {
-			mobileNumber: parentData?.parent?.mobile ?? '',
-			name: parentData?.parent?.name ?? '',
-			comment: parentData?.comment ?? '',
-			active: parentData?.active ?? true,
+			name: '',
+			type: '',
+			gender: '',
+			breed: '',
+			dob: '',
+			microChipNo: '',
 		},
 	});
+	const selectedType = form.watch('type');
 
-	useEffect(() => {
-		if (type === 'edit' && parentData) {
-			form.reset({
-				mobileNumber: parentData?.parent?.mobile ?? '',
-				name: parentData?.parent?.name ?? '',
-				comment: parentData?.comment ?? '',
-				active: parentData?.active ?? true,
-			});
-		}
-	}, [form, parentData, type]);
-
-	const onSubmit = async (values: IFormData) => {
+	const onSubmit = async (values: IPetFormData) => {
+		const { dob, ...rest } = values;
 		const commonInvalidateQuery = () =>
 			queryClient.invalidateQueries({
 				queryKey: [
@@ -85,19 +56,14 @@ export function ParentForm({ type }: { type: 'add' | 'edit' }) {
 				],
 			});
 
-		if (type === 'add') {
-			const res = await createParent({
-				mobileNumber: values.mobileNumber!,
-				name: values.name,
-			});
-			if (res.status === 'SUCCESS') commonInvalidateQuery();
-		} else {
-			const res = await updateParent({
-				name: values.name,
-				comment: values.comment,
-				active: values.active as boolean,
-			});
-			if (res.status === 'SUCCESS') commonInvalidateQuery();
+		const response = await createPet({
+			...rest,
+			parentId: parentId as string,
+			dob: dob ? format(new Date(dob), DEFAULT_DATE_FORMAT) : '',
+		});
+		if (response.status === 'SUCCESS') {
+			router.back();
+			commonInvalidateQuery();
 		}
 	};
 
@@ -106,73 +72,80 @@ export function ParentForm({ type }: { type: 'add' | 'edit' }) {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="mt-24 grid grid-cols-2 gap-24"
+					className="grid grid-cols-2 gap-24"
 				>
-					{[
-						...(type === 'add'
-							? [['mobileNumber', 'Mobile Number'] as const]
-							: []),
-						['name', 'Name'],
-						...(type === 'edit'
-							? [['comment', 'Comment'] as const]
-							: []),
-					].map(([name, label], i) => (
-						<FormField
-							key={i}
-							control={form.control}
-							name={name as keyof IFormData}
-							render={({ field, fieldState }) => (
-								<FormItem className="relative">
-									<FormControl>
-										<FloatingInput
-											label={label}
-											id={name}
-											isError={!!fieldState.error}
-											{...(field as any)}
-										/>
-									</FormControl>
-									<FormMessage />
-								</FormItem>
-							)}
-						/>
-					))}
-					{type === 'edit' && (
-						<FormField
-							control={form.control}
-							name="active"
-							render={({ field: switchField }) => (
-								<FormItem className="flex flex-row items-center gap-12">
-									<div className="space-y-2">
-										<FormLabel className="text-14">
-											Choose Active/InActive
-										</FormLabel>
-										<FormDescription>
-											You have make the field
-											Active/InActive
-										</FormDescription>
-									</div>
-									<FormControl>
-										<Switch
-											checked={switchField.value}
-											onCheckedChange={
-												switchField.onChange
-											}
-										/>
-									</FormControl>
-								</FormItem>
-							)}
-						/>
-					)}
+					{formFields.map(({ name, label, type, options }, i) => {
+						if (type === 'select' && Array.isArray(options)) {
+							return (
+								<SelectType
+									key={i}
+									form={form}
+									options={options}
+									name={name}
+									label={label}
+								/>
+							);
+						} else if (type === 'calendar') {
+							return (
+								<CalendarType
+									key={i}
+									form={form}
+									name={name}
+									label={label}
+								/>
+							);
+						} else if (type === 'combobox') {
+							return (
+								<Combobox
+									key={i}
+									form={form}
+									name={name}
+									label={label}
+									selectedType={selectedType}
+								/>
+							);
+						}
+						return (
+							<FormField
+								key={i}
+								control={form.control}
+								name={name as keyof IPetFormData}
+								render={({ field, fieldState }) => (
+									<FormItem
+										className={cn(
+											'relative',
+											(name === 'name' ||
+												name === 'microChipNo') &&
+												'pt-[26px]'
+										)}
+									>
+										<FormControl>
+											<FloatingInput
+												label={label}
+												id={name}
+												isError={!!fieldState.error}
+												{...field}
+											/>
+										</FormControl>
+										<FormMessage />
+									</FormItem>
+								)}
+							/>
+						);
+					})}
 					<div className="col-span-2">
 						<Button
-							disabled={createPending || updatePending}
-							loading={createPending || updatePending}
+							disabled={createLoading}
+							loading={createLoading}
+							loadingText={
+								type === 'edit'
+									? 'Updating pet...'
+									: 'Adding Pet'
+							}
 							type="submit"
-							className="w-[240px]"
+							className="w-[240px] font-normal"
 						>
-							{type === 'edit'
-								? 'Update Parent'
-								: 'Create Parent'}
+							{type === 'edit' ? 'Update Pet' : 'Add Pet'}
 						</Button>
 					</div>
 				</form>

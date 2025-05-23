@@ -13,7 +13,6 @@ import {
 import SelectField from './select';
 import { useMedicineForm } from './use-form';
 
-import loading from '@/app/loading';
 import { Button } from '@/ui/shared/button';
 
 export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
