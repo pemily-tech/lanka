@@ -7,17 +7,12 @@ import { useParams } from 'next/navigation';
 
 import { DATE_FORMAT } from '../../../../../helpers/constant';
 import { type IPrescription } from '../../../../../types/prescription';
-import {
-	Calendar,
-	FloatingTextArea,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '../../../../../ui/shared';
+import { FloatingTextArea } from '../../../../../ui/shared/text-area';
 import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useMedicineStore } from '../_store/medicine-store';
 
 import { Button } from '@/ui/shared/button';
+import { Calendar } from '@/ui/shared/calendar';
 import {
 	Dialog,
 	DialogClose,
@@ -26,6 +21,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from '@/ui/shared/dialog';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/shared/popover';
 
 type EditableDialogProps = {
 	title: string;

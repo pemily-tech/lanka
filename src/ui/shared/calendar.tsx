@@ -9,8 +9,8 @@ import {
 	ChevronUpIcon,
 } from 'lucide-react';
 
-import { cn } from '../../../helpers/utils';
-import { buttonVariants } from '../button';
+import { cn } from '../../helpers/utils';
+import { buttonVariants } from './button';
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 

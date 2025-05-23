@@ -15,12 +15,6 @@ import { useGetUser } from '../../../../../api/user-details/user-details';
 import { useAuthStore } from '../../../../../store/user-auth';
 import { type IAddress } from '../../../../../types/common';
 import {
-	FloatingInput,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '../../../../../ui/shared';
-import {
 	Form,
 	FormControl,
 	FormField,
@@ -28,9 +22,11 @@ import {
 	FormLabel,
 	FormMessage,
 } from '../../../../../ui/shared/form';
+import { FloatingInput } from '../../../../../ui/shared/input';
 
 import { cn } from '@/helpers/utils';
 import { Button } from '@/ui/shared/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/shared/popover';
 
 const schema = z.object({
 	line1: z.string().min(1, 'Line1 is required'),

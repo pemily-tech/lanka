@@ -13,7 +13,6 @@ import {
 	phoneValidator,
 } from '../../../../../../helpers/utils';
 import { useAuthStore } from '../../../../../../store/user-auth';
-import { FloatingInput } from '../../../../../../ui/shared';
 import {
 	Form,
 	FormControl,
@@ -21,6 +20,7 @@ import {
 	FormItem,
 	FormMessage,
 } from '../../../../../../ui/shared/form';
+import { FloatingInput } from '../../../../../../ui/shared/input';
 
 import { useGetUser } from '@/api/user-details/user-details';
 import { Button } from '@/ui/shared/button';

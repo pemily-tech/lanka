@@ -7,8 +7,8 @@ import Link from 'next/link';
 
 import { Routes } from '../../../../helpers/routes';
 import { type IMedicine } from '../../../../types/prescription';
-import { PaginationWithLinks } from '../../../../ui/shared';
 import { DataTable } from '../../../../ui/shared/data-table';
+import { PaginationWithLinks } from '../../../../ui/shared/pagination-with-links';
 import {
 	Tooltip,
 	TooltipContent,

@@ -4,7 +4,7 @@ import { CalendarIcon } from 'lucide-react';
 
 import { cn } from '@/helpers/utils';
 import { Button } from '@/ui/shared/button';
-import { Calendar } from '@/ui/shared/calender';
+import { Calendar } from '@/ui/shared/calendar';
 import {
 	FormControl,
 	FormDescription,

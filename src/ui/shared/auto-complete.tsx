@@ -7,14 +7,14 @@ import {
 } from 'react';
 import { Command as CommandPrimitive } from 'cmdk';
 
-import { cn } from '../../../helpers/utils';
+import { cn } from '../../helpers/utils';
 import {
 	CommandEmpty,
 	CommandGroup,
 	CommandInput,
 	CommandItem,
 	CommandList,
-} from '../command';
+} from './command';
 
 type IProps<T> = {
 	options: T[];

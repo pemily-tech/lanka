@@ -7,7 +7,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 
-import { FloatingInput } from '../../../../ui/shared';
 import {
 	Form,
 	FormControl,
@@ -15,6 +14,7 @@ import {
 	FormItem,
 	FormMessage,
 } from '../../../../ui/shared/form';
+import { FloatingInput } from '../../../../ui/shared/input';
 import { useCreatePet } from '../create/_api/use-create-pet';
 import { useUpdatePet } from '../update/[id]/_api/use-update-parent';
 import { CalendarType } from './calendar';

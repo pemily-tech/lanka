@@ -5,8 +5,9 @@ import { type DateRange } from 'react-day-picker';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
-import { Command, CommandInput, Label } from '../../../../../ui/shared';
+import { Command, CommandInput } from '../../../../../ui/shared/command';
 import { DayPicker } from '../../../../../ui/shared/day-picker';
+import { Label } from '../../../../../ui/shared/label';
 
 import {
 	Select,

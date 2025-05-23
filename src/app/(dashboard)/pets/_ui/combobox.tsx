@@ -3,6 +3,7 @@ import { Check, ChevronsUpDown } from 'lucide-react';
 
 import { useGetPetBreed } from '@/api/use-get-pet-breed';
 import { cn } from '@/helpers/utils';
+import { Button } from '@/ui/shared/button';
 import {
 	Command,
 	CommandEmpty,
@@ -10,19 +11,15 @@ import {
 	CommandInput,
 	CommandItem,
 	CommandList,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '@/ui/shared';
-import { Button } from '@/ui/shared/button';
+} from '@/ui/shared/command';
 import {
 	FormControl,
-	FormDescription,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
 } from '@/ui/shared/form';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/shared/popover';
 
 export function Combobox({
 	form,

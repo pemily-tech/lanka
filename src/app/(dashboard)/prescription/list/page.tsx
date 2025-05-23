@@ -10,8 +10,8 @@ import { useQueryStates } from 'nuqs';
 
 import { DEFAULT_DATE_FORMAT } from '../../../../helpers/constant';
 import { type IPrescription } from '../../../../types/prescription';
-import { PaginationWithLinks } from '../../../../ui/shared';
 import { DataTable } from '../../../../ui/shared/data-table';
+import { PaginationWithLinks } from '../../../../ui/shared/pagination-with-links';
 import PetSelectModal from '../../../../ui/shared/pet-selection-modal';
 import {
 	Tooltip,

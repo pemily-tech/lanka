@@ -14,13 +14,6 @@ import { cn } from '../../../../../helpers/utils';
 import { useAuthStore } from '../../../../../store/user-auth';
 import { type IUserDetails } from '../../../../../types/user';
 import {
-	Calendar,
-	FloatingInput,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '../../../../../ui/shared';
-import {
 	Form,
 	FormControl,
 	FormDescription,
@@ -29,10 +22,13 @@ import {
 	FormLabel,
 	FormMessage,
 } from '../../../../../ui/shared/form';
+import { FloatingInput } from '../../../../../ui/shared/input';
 import useUpdateUserDetails from '../../_api/update-user-details';
 
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { Button } from '@/ui/shared/button';
+import { Calendar } from '@/ui/shared/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/shared/popover';
 
 const schema = z.object({
 	name: z.string().min(1, 'Name is required'),

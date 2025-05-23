@@ -1,6 +1,5 @@
 'use client';
 
-import { FloatingInput, FloatingTextArea, Switch } from '../../../../ui/shared';
 import {
 	Form,
 	FormControl,
@@ -10,10 +9,13 @@ import {
 	FormLabel,
 	FormMessage,
 } from '../../../../ui/shared/form';
+import { FloatingTextArea } from '../../../../ui/shared/text-area';
 import SelectField from './select';
 import { useMedicineForm } from './use-form';
 
 import { Button } from '@/ui/shared/button';
+import { FloatingInput } from '@/ui/shared/input';
+import { Switch } from '@/ui/shared/switch';
 
 export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 	const { form, onSubmit, isUpdaing, isCreating } = useMedicineForm(type);

@@ -6,8 +6,9 @@ import { CalendarIcon } from 'lucide-react';
 
 import { cn } from '../../../helpers/utils';
 import { Button } from '../button';
-import { Calendar } from '../calender';
 import { Popover, PopoverContent, PopoverTrigger } from '../popover';
+
+import { Calendar } from '@/ui/shared/calendar';
 
 export function DatePicker() {
 	const [date, setDate] = React.useState<Date>();

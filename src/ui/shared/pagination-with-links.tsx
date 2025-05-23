@@ -2,7 +2,7 @@
 
 import { type ReactNode } from 'react';
 
-import { cn } from '../../../helpers/utils';
+import { cn } from '../../helpers/utils';
 import {
 	Pagination,
 	PaginationContent,
@@ -11,7 +11,7 @@ import {
 	PaginationLink,
 	PaginationNext,
 	PaginationPrevious,
-} from '../pagination';
+} from './pagination';
 
 export interface PaginationWithLinksProps {
 	totalCount: number;

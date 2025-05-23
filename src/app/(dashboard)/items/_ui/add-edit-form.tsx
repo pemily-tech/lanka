@@ -5,7 +5,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 import { type IProduct } from '../../../../types/invoice';
-import { FloatingInput, FloatingTextArea } from '../../../../ui/shared';
 import {
 	Form,
 	FormControl,
@@ -14,11 +13,13 @@ import {
 	FormLabel,
 	FormMessage,
 } from '../../../../ui/shared/form';
+import { FloatingTextArea } from '../../../../ui/shared/text-area';
 import { useAddItem } from '../_api/add-item';
 import { useUpdateItem } from '../_api/update-item';
 import { useGetItemById } from '../edit/[id]/api/get-item-by-id';
 
 import { Button } from '@/ui/shared/button';
+import { FloatingInput } from '@/ui/shared/input';
 import {
 	Select,
 	SelectContent,

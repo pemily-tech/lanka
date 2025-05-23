@@ -2,9 +2,10 @@ import { type DateRange, type Matcher } from 'react-day-picker';
 import { addDays, format, isSameDay, parseISO, startOfToday } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 
-import { cn } from '../../../helpers/utils';
-import { Calendar } from '../calender';
-import { Popover, PopoverContent, PopoverTrigger } from '../popover';
+import { cn } from '../../helpers/utils';
+import { Popover, PopoverContent, PopoverTrigger } from './popover';
+
+import { Calendar } from '@/ui/shared/calendar';
 
 export function DayPicker({
 	selectedDate,

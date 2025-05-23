@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { type UseFormReturn } from 'react-hook-form';
 
-import { FloatingInput, FloatingTextArea } from '../../../../ui/shared';
 import {
 	FormControl,
 	FormField,
@@ -9,8 +8,10 @@ import {
 	FormLabel,
 	FormMessage,
 } from '../../../../ui/shared/form';
+import { FloatingTextArea } from '../../../../ui/shared/text-area';
 import { type IFormData } from './schema';
 
+import { FloatingInput } from '@/ui/shared/input';
 import {
 	Select,
 	SelectContent,

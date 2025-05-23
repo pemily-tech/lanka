@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
 import { type IPrescription } from '../../../../../types/prescription';
-import { FloatingTextArea } from '../../../../../ui/shared';
+import { FloatingTextArea } from '../../../../../ui/shared/text-area';
 import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useMedicineStore } from '../_store/medicine-store';
 

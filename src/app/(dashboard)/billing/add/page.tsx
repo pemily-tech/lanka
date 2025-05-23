@@ -4,7 +4,7 @@ import { type MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Routes } from '../../../../helpers/routes';
-import { SearchPetParents } from '../../../../ui/shared';
+import { SearchPetParents } from '../../../../ui/shared/search-pet-parents';
 import { useCreateInvoice } from './_api/create-invoice';
 
 export default function Index() {

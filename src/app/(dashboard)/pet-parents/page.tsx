@@ -10,7 +10,7 @@ import { DataTable } from './_ui/data-table';
 import Filters from './_ui/filters';
 
 import { type IPetParent } from '@/types/clinic';
-import { PaginationWithLinks } from '@/ui/shared';
+import { PaginationWithLinks } from '@/ui/shared/pagination-with-links';
 
 export default function Page() {
 	const [input, setInput] = useState('');

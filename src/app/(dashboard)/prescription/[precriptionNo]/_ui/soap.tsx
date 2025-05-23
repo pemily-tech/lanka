@@ -7,7 +7,6 @@ import { useParams } from 'next/navigation';
 import { z } from 'zod';
 
 import { type ISoap } from '../../../../../types/prescription';
-import { FloatingTextArea } from '../../../../../ui/shared';
 import {
 	Form,
 	FormControl,
@@ -15,6 +14,7 @@ import {
 	FormItem,
 	FormMessage,
 } from '../../../../../ui/shared/form';
+import { FloatingTextArea } from '../../../../../ui/shared/text-area';
 import { useGetPrescriptionSoap } from '../_api/use-get-soap';
 import { useUpdateSoap } from '../_api/use-update.soap';
 
