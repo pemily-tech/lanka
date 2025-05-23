@@ -28,7 +28,7 @@ export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 				>
 					{[
 						['name', 'Name'],
-						['brand', 'Brand'],
+						// ['brand', 'Brand'],
 					].map(([name, label], i) => {
 						return (
 							<FormField
@@ -51,6 +51,28 @@ export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 							/>
 						);
 					})}
+					<FormField
+						control={form.control}
+						name="active"
+						render={({ field: switchField }) => (
+							<FormItem className="flex flex-row items-center gap-12">
+								<div className="space-y-2">
+									<FormLabel className="text-14">
+										Choose Active/InActive
+									</FormLabel>
+									<FormDescription>
+										You have make the field Active/InActive
+									</FormDescription>
+								</div>
+								<FormControl>
+									<Switch
+										checked={switchField.value}
+										onCheckedChange={switchField.onChange}
+									/>
+								</FormControl>
+							</FormItem>
+						)}
+					/>
 					{[
 						['dose', 'Dose', 'MEDICINE_DOSE'],
 						['duration', 'Duration', 'MEDICINE_DURATION'],
@@ -69,7 +91,7 @@ export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 							/>
 						);
 					})}
-					<FormField
+					{/* <FormField
 						control={form.control}
 						name="diagnosis"
 						render={({ field: inputField, fieldState }) => (
@@ -85,34 +107,7 @@ export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 								<FormMessage />
 							</FormItem>
 						)}
-					/>
-					{type === 'UPDATE' && (
-						<FormField
-							control={form.control}
-							name="active"
-							render={({ field: switchField }) => (
-								<FormItem className="flex flex-row items-center gap-12">
-									<div className="space-y-2">
-										<FormLabel className="text-14">
-											Choose Active/InActive
-										</FormLabel>
-										<FormDescription>
-											You have make the field
-											Active/InActive
-										</FormDescription>
-									</div>
-									<FormControl>
-										<Switch
-											checked={switchField.value}
-											onCheckedChange={
-												switchField.onChange
-											}
-										/>
-									</FormControl>
-								</FormItem>
-							)}
-						/>
-					)}
+					/> */}
 					<div className="col-span-2">
 						<Button
 							disabled={isCreating || isUpdaing}
