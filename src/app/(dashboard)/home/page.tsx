@@ -6,7 +6,7 @@ import { Roles } from '../../../helpers/primitives';
 import { useAuthStore } from '../../../store/user-auth';
 import { Button } from '../../../ui/shared/button';
 import { ImagePlaceholder } from '../../../ui/shared/image';
-import { useVaccinationExcel } from './api/analytics';
+import { useVaccinationExcel } from './_api/analytics';
 
 const months = [
 	{ value: 1, label: 'January' },
