@@ -21,7 +21,7 @@ import { useGetParentById } from '../_api/use-get-parent-byid';
 import useCreateParent from '../create/_api/use-create-parent';
 import useUpdateParent from '../update/[id]/_api/use-update-parent';
 
-import { phoneValidator } from '@/helpers/utils';
+import { cn, phoneValidator } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { Button } from '@/ui/shared/button';
 import { Switch } from '@/ui/shared/switch';
@@ -103,7 +103,12 @@ export function ParentForm({ type }: { type: 'add' | 'edit' }) {
 	};
 
 	return (
-		<div className="rounded-8 shadow-card1 col-span-2 max-w-2xl bg-white p-16">
+		<div
+			className={cn(
+				'rounded-8 shadow-card1 col-span-2 bg-white p-16',
+				type === 'add' && 'max-w-2xl'
+			)}
+		>
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
