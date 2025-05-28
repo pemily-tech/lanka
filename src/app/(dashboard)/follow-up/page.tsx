@@ -1,11 +1,8 @@
-/* eslint-disable indent */
 'use client';
 
-import { useState } from 'react';
 import { format, parseISO, startOfToday } from 'date-fns';
 import { useQueryStates } from 'nuqs';
 
-import columns from '../billing/list/ui/columns';
 import { useUpdateUrl } from '../medicines/list/_hooks/use-update-url';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
@@ -14,7 +11,6 @@ import { useGetFollows } from '@/api/use-get-followup';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { type IFollowUpRecord } from '@/types/clinic';
 import { DataTable } from '@/ui/shared/data-table';
-import { PaginationWithLinks } from '@/ui/shared/pagination-with-links';
 
 export default function Page() {
 	const today = startOfToday();
@@ -26,8 +22,7 @@ export default function Page() {
 		},
 	});
 
-	const { limit, page, handlePagination, setCommonFilter, commonFilter } =
-		useUpdateUrl();
+	const { setCommonFilter, commonFilter } = useUpdateUrl();
 
 	const { data, isPending } = useGetFollows({
 		type: commonFilter as 'PENDING' | 'COMPLETE' | 'ALL',
@@ -59,14 +54,6 @@ export default function Page() {
 					emptyMessage="Nothing found for the day."
 				/>
 			</div>
-			<PaginationWithLinks
-				page={page}
-				pageSize={Number(limit)}
-				totalCount={0}
-				handlePagination={handlePagination}
-				className="flex flex-1 items-center justify-end gap-12"
-				limit={limit}
-			/>
 		</div>
 	);
 }
