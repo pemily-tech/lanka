@@ -1,7 +1,7 @@
 import { useQueryStates } from 'nuqs';
 
 export const useUpdateUrl = () => {
-	const [{ page, limit, active }, setQuery] = useQueryStates({
+	const [{ page, limit, active, commonFilter }, setQuery] = useQueryStates({
 		page: {
 			defaultValue: 0,
 			parse: Number,
@@ -17,10 +17,20 @@ export const useUpdateUrl = () => {
 			parse: Number,
 			serialize: String,
 		},
+		commonFilter: {
+			defaultValue: 'PENDING',
+			parse: (val) => val as 'PENDING' | 'COMPLETE' | 'ALL',
+			serialize: (val) => val,
+		},
 	});
 
 	const updateQueryParams = (
-		updates: Partial<{ page: number; limit: number; mop: string | null }>
+		updates: Partial<{
+			page: number;
+			limit: number;
+			mop: string | null;
+			commonFilter: 'PENDING' | 'COMPLETE' | 'ALL';
+		}>
 	) => {
 		setQuery(updates);
 	};
@@ -41,13 +51,19 @@ export const useUpdateUrl = () => {
 		setQuery({ active, page: 0, limit });
 	};
 
+	const setCommonFilter = (filter: 'PENDING' | 'COMPLETE' | 'ALL') => {
+		setQuery({ commonFilter: filter, page: 0 });
+	};
+
 	return {
 		page,
 		limit,
 		active,
+		commonFilter,
 		handlePagination,
 		updateQueryParams,
 		setLimit,
 		setActive,
+		setCommonFilter,
 	};
 };

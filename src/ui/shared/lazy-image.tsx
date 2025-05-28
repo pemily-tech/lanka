@@ -36,7 +36,7 @@ export function LazyImage({ src, alt = 'pemilyy', className }: IProps) {
 	return (
 		<img
 			ref={ref}
-			src={isVisible ? src : '/images/placeholder.svg'}
+			src={isVisible ? src : '/images/placeholder.png'}
 			alt={alt}
 			className={className}
 		/>

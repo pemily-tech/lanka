@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
 import { Command, CommandInput } from '../../../../../ui/shared/command';
-import { DayPicker } from '../../../../../ui/shared/day-picker';
+import { DayPickerRange } from '../../../../../ui/shared/day-picker-range';
 import { Label } from '../../../../../ui/shared/label';
 
 import {
@@ -40,7 +40,7 @@ function Filters({
 
 	return (
 		<div className="flex flex-row items-end justify-between gap-24">
-			<DayPicker
+			<DayPickerRange
 				selectedDate={selectedDate}
 				setDate={setDate}
 				disabled={{ after: new Date() }}

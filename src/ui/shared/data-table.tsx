@@ -62,7 +62,10 @@ export function DataTable<TData>({
 				{table.getHeaderGroups().map((headerGroup) => (
 					<TableRow key={headerGroup.id}>
 						{headerGroup.headers.map((header) => (
-							<TableHead className="text-14 p-16" key={header.id}>
+							<TableHead
+								className="text-14 px-12 py-16"
+								key={header.id}
+							>
 								{header.isPlaceholder
 									? null
 									: flexRender(

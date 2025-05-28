@@ -253,7 +253,6 @@ const PersonalDetailsForm = () => {
 						);
 					}}
 				/>
-
 				<Button
 					disabled={isPending}
 					loading={isPending}

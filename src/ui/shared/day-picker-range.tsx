@@ -7,7 +7,7 @@ import { Popover, PopoverContent, PopoverTrigger } from './popover';
 
 import { Calendar } from '@/ui/shared/calendar';
 
-export function DayPicker({
+export function DayPickerRange({
 	selectedDate,
 	setDate,
 	disabled,
