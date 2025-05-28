@@ -1,0 +1,107 @@
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import { z } from 'zod';
+
+import { RecordTypes } from '@/helpers/primitives';
+import { defineStepper } from '@/ui/shared/stepper';
+
+const FormSchema = z.object({
+	parentId: z.string().optional(),
+	petId: z.string().optional(),
+});
+export type FormValues = z.infer<typeof FormSchema>;
+
+export function useStepperHook({
+	onComplete,
+	type,
+}: {
+	onComplete: () => void;
+	type: string;
+}) {
+	const { useStepper, steps, utils } = defineStepper(
+		{
+			id: 'parent',
+			label: 'Choose Parent',
+			schema: z.object({ parentId: z.string().min(1) }),
+		},
+		{
+			id: 'pet',
+			label: 'Choose Pet',
+			schema: z.object({ petId: z.string().min(1) }),
+		},
+		{
+			id: 'record',
+			label: type === RecordTypes.Followup ? 'Followup' : '',
+			schema:
+				type === RecordTypes.Followup
+					? z.object({
+							followUpCompleteDate: z
+								.string()
+								.min(
+									1,
+									'Please pick a follow-up complete date'
+								),
+							repeatAfter: z
+								.string()
+								.nonempty('Please select a repeat type'),
+						})
+					: z.object({}),
+		}
+	);
+	const stepper = useStepper();
+	const currentIndex = utils.getIndex(stepper.current.id);
+
+	const { register, setValue, getValues, watch } = useForm<FormValues>({
+		defaultValues: {
+			parentId: '',
+			petId: '',
+		},
+		resolver: zodResolver(FormSchema),
+		mode: 'onChange',
+	});
+	const selectedParentId = watch('parentId');
+	const selectedPetId = watch('petId');
+	const router = useRouter();
+
+	const handleNext = async () => {
+		const currentSchema = stepper.current.schema;
+		const currentValues = getValues();
+
+		try {
+			await currentSchema.parseAsync(currentValues);
+
+			if (stepper.isLast) {
+				if (selectedParentId && selectedPetId) {
+					const payload = {
+						parentId: selectedParentId,
+						patientId: selectedPetId,
+					};
+					stepper.reset();
+					onComplete();
+				}
+			} else {
+				stepper.next();
+			}
+		} catch (error) {
+			if (stepper.current.id === 'parent') {
+				toast.error('Please choose a parent to proceed.');
+			}
+			if (stepper.current.id === 'pet') {
+				toast.error('Please choose a pet to proceed.');
+			}
+		}
+	};
+
+	return {
+		stepper,
+		steps,
+		currentIndex,
+		handleNext,
+		register,
+		setValue,
+		selectedParentId,
+		selectedPetId,
+	};
+}

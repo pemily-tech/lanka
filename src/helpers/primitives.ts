@@ -9,6 +9,17 @@ export const enum Roles {
 	PetParents = 'PET_PARENTS',
 }
 
+export const enum RecordTypes {
+	Followup = 'FOLLWUP',
+	Vaccination = 'VACCINATION',
+	Medical = 'Medical',
+}
+
+export const enum AppConstants {
+	Success = 'SUCCESS',
+	Error = 'ERROR',
+}
+
 export const enum ApiEndpoints {
 	IsUserRegistered = 'auth/isUser',
 	Signup = 'auth/signUp',

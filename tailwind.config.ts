@@ -223,6 +223,7 @@ const config = {
 				dropdown: '0px 4px 8px rgba(0, 0, 0, 0.08)',
 				testi: '0px 4px 24px rgba(0, 0, 0, 0.06)',
 				card1: '0 .1875rem .75rem 0 rgba(47,43,61,.14)',
+				top: '-2px -4px 12px 0px rgba(0,0,0,0.1)',
 			},
 		},
 	},

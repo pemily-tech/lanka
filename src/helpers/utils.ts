@@ -9,6 +9,7 @@ import {
 	format,
 } from 'date-fns';
 import { twMerge } from 'tailwind-merge';
+import { date } from 'zod';
 
 import { useAuthStore } from '../store/user-auth';
 
@@ -140,4 +141,17 @@ export const calculateAge = (birthDateString: string) => {
 	}
 
 	return `${years}Y, ${months}M, ${days}D`;
+};
+
+export const dateDisable = (date: Date) => {
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+
+	const minDate = new Date('1900-01-01');
+	minDate.setHours(0, 0, 0, 0);
+
+	const normalizedDate = new Date(date);
+	normalizedDate.setHours(0, 0, 0, 0);
+
+	return normalizedDate < today || normalizedDate < minDate;
 };

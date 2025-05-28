@@ -11,7 +11,7 @@ import { useUpdateFollowUp } from '../_api/use-update-followup';
 
 import { useGetDropdownList } from '@/api/use-get-dropdownlist';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
-import { cn } from '@/helpers/utils';
+import { cn, dateDisable } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IFollowUpRecord } from '@/types/clinic';
 import { Button } from '@/ui/shared/button';
@@ -221,14 +221,13 @@ export default function Status({
 																		: ''
 																);
 															}}
-															disabled={(date) =>
-																date <
-																	new Date() ||
-																date <
-																	new Date(
-																		'1900-01-01'
-																	)
-															}
+															disabled={(
+																date
+															) => {
+																return dateDisable(
+																	date
+																);
+															}}
 														/>
 													</PopoverContent>
 												</Popover>

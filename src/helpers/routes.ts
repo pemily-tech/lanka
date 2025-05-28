@@ -21,4 +21,5 @@ export const Routes = {
 	PARENTS_UPDATE: '/parents/update',
 	PETS_CREATE: '/pets/create',
 	PETS_UPDATE: '/pets/update',
+	SELECT_PET: '/select-pet',
 };
