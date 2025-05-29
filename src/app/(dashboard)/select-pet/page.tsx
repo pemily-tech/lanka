@@ -24,7 +24,7 @@ export default function Page() {
 		selectedParentId,
 		selectedPetId,
 		handleNext,
-	} = useStepperHook({ onComplete: () => {}, type: recordType as string });
+	} = useStepperHook({ type: recordType as string });
 
 	return (
 		<div className="shadow-card1 my-12 rounded-lg bg-white">

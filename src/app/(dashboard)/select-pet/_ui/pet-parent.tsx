@@ -50,47 +50,51 @@ export default function PetParent({
 	};
 
 	return (
-		<Command className="mx-16 mt-16 rounded-lg border md:min-w-[450px]">
-			<CommandInput
-				className="py-24"
-				placeholder="Search for pet parents..."
-				value={value}
-				onValueChange={handleChange}
-			/>
-			<CommandList onClick={handleSelect} className="max-h-full">
-				{isPending && <Spinner />}
-				{petParentData?.map((parent) => {
-					return (
-						<div
-							className={cn(
-								'text-14 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-24 border-b px-12 py-8 outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-16 [&_svg]:shrink-0',
-								selectedParentId === parent.parent.parentId &&
-									'bg-primary/20 data-[selected=true]:bg-primary/20'
-							)}
-							key={parent._id}
-							data-id={parent.parent.parentId}
-						>
-							<UserProfile
-								id={parent?.parent?.parentId}
-								containerClasses="!size-[54px]"
-								imageClasses="!rounded-8"
-								iconClasses="!size-[54px]"
-							/>
-							<div>
-								<p className="text-14 text-left leading-[30px]">
-									Pets: {parent?.parent?.petNames.join(', ')}
-								</p>
-								<p className="text-14 text-left leading-[30px]">
-									{parent?.parent?.mobile}
-								</p>
+		<div className="mx-16 h-full">
+			<Command className="mt-16 rounded-lg border md:min-w-[450px]">
+				<CommandInput
+					className="py-24"
+					placeholder="Search for pet parents..."
+					value={value}
+					onValueChange={handleChange}
+				/>
+				<CommandList onClick={handleSelect} className="max-h-full">
+					{isPending && <Spinner />}
+					{petParentData?.map((parent) => {
+						return (
+							<div
+								className={cn(
+									'text-14 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-24 border-b px-12 py-8 outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-16 [&_svg]:shrink-0',
+									selectedParentId ===
+										parent.parent.parentId &&
+										'bg-primary/20 data-[selected=true]:bg-primary/20'
+								)}
+								key={parent._id}
+								data-id={parent.parent.parentId}
+							>
+								<UserProfile
+									id={parent?.parent?.parentId}
+									containerClasses="!size-[54px]"
+									imageClasses="!rounded-8"
+									iconClasses="!size-[54px]"
+								/>
+								<div>
+									<p className="text-14 text-left leading-[30px]">
+										Pets:{' '}
+										{parent?.parent?.petNames.join(', ')}
+									</p>
+									<p className="text-14 text-left leading-[30px]">
+										{parent?.parent?.mobile}
+									</p>
+								</div>
 							</div>
-						</div>
-					);
-				})}
-				{!isPending && data && data?.data?.parents?.length <= 0 && (
-					<CommandEmpty>No results found.</CommandEmpty>
-				)}
-			</CommandList>
-		</Command>
+						);
+					})}
+					{!isPending && data && data?.data?.parents?.length <= 0 && (
+						<CommandEmpty>No results found.</CommandEmpty>
+					)}
+				</CommandList>
+			</Command>
+		</div>
 	);
 }

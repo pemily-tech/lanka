@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
@@ -13,13 +14,7 @@ const FormSchema = z.object({
 });
 export type FormValues = z.infer<typeof FormSchema>;
 
-export function useStepperHook({
-	onComplete,
-	type,
-}: {
-	onComplete: () => void;
-	type: string;
-}) {
+export function useStepperHook({ type }: { type: string }) {
 	const { useStepper, steps, utils } = defineStepper(
 		{
 			id: 'parent',
@@ -33,21 +28,8 @@ export function useStepperHook({
 		},
 		{
 			id: 'record',
-			label: type === RecordTypes.Followup ? 'Followup' : '',
-			schema:
-				type === RecordTypes.Followup
-					? z.object({
-							followUpCompleteDate: z
-								.string()
-								.min(
-									1,
-									'Please pick a follow-up complete date'
-								),
-							repeatAfter: z
-								.string()
-								.nonempty('Please select a repeat type'),
-						})
-					: z.object({}),
+			label: type === RecordTypes.Followup ? 'Add Followup Details' : '',
+			schema: z.object({}),
 		}
 	);
 	const stepper = useStepper();
@@ -63,7 +45,6 @@ export function useStepperHook({
 	});
 	const selectedParentId = watch('parentId');
 	const selectedPetId = watch('petId');
-	const router = useRouter();
 
 	const handleNext = async () => {
 		const currentSchema = stepper.current.schema;
@@ -71,17 +52,7 @@ export function useStepperHook({
 
 		try {
 			await currentSchema.parseAsync(currentValues);
-
-			if (stepper.isLast) {
-				if (selectedParentId && selectedPetId) {
-					const payload = {
-						parentId: selectedParentId,
-						patientId: selectedPetId,
-					};
-					stepper.reset();
-					onComplete();
-				}
-			} else {
+			if (!stepper.isLast) {
 				stepper.next();
 			}
 		} catch (error) {
