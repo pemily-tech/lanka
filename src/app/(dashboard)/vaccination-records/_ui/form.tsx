@@ -7,8 +7,9 @@ import { CalendarIcon } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 
-import { useCreateFollowUp } from '@/api/use-create-follwup';
-import { useGetFollowupList } from '@/api/use-get-followup-list';
+import { useCreateVaccination } from '../_api/use-create-vaccination';
+import { useGetVaccinationList } from '../_api/use-get-vaccination-list';
+
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import { cn, dateDisable } from '@/helpers/utils';
@@ -32,15 +33,15 @@ import {
 } from '@/ui/shared/select';
 
 const schema = z.object({
-	followUpDates: z
+	vaccinationDates: z
 		.array(z.string().min(1))
-		.min(1, 'Please pick at least one follow-up date'),
-	followUpType: z.string().nonempty('Please select a repeat type'),
+		.min(1, 'Please pick at least one vaccination date'),
+	vaccineName: z.string().nonempty('Please select a vaccine'),
 });
 
 type IFormData = z.infer<typeof schema>;
 
-export default function FollowupForm({
+export default function VaccinationForm({
 	stepper,
 	parentId,
 	petId,
@@ -52,26 +53,27 @@ export default function FollowupForm({
 	const form = useForm<IFormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			followUpDates: [],
-			followUpType: '',
+			vaccinationDates: [],
+			vaccineName: '',
 		},
 	});
-	const { data } = useGetFollowupList();
-	const followupData =
-		data?.data?.followup || ([] as { label: string; value: string }[]);
-	const { mutateAsync: createFollowup, isPending } = useCreateFollowUp();
+	const { data } = useGetVaccinationList();
+	const vaccinationData =
+		data?.data?.vaccination || ([] as { label: string; value: string }[]);
+	const { mutateAsync: createVaccination, isPending } =
+		useCreateVaccination();
 	const router = useRouter();
 
 	const onSubmit = async (values: IFormData) => {
 		const data = {
 			petId,
 			parentId,
-			followUpType: values.followUpType,
-			followUpDates: values.followUpDates.map((d) =>
+			vaccineName: values.vaccineName,
+			vaccinationDates: values.vaccinationDates.map((d) =>
 				format(d, DEFAULT_DATE_FORMAT)
 			),
 		};
-		const response = await createFollowup(data);
+		const response = await createVaccination(data);
 		if (response.status === AppConstants.Success) {
 			router.back();
 		}
@@ -80,10 +82,10 @@ export default function FollowupForm({
 	return (
 		<div className="mb-54 mt-24 flex h-full flex-col">
 			<h2 className="text-24 mx-24 font-semibold">
-				Add Follow-up Details
+				Add Vaccination Details
 			</h2>
 			<h6 className="text-black-1/50 mx-24 mb-24">
-				We will remind you when follow-up is due
+				We will remind you when vaccination is due
 			</h6>
 			<Form {...form}>
 				<form
@@ -93,7 +95,7 @@ export default function FollowupForm({
 					<div className="mx-24 flex max-w-lg flex-1 flex-col gap-24">
 						<FormField
 							control={form.control}
-							name="followUpType"
+							name="vaccineName"
 							render={({ field: selectField, fieldState }) => {
 								return (
 									<FormItem className="col-span-1">
@@ -112,16 +114,20 @@ export default function FollowupForm({
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
-												{followupData.map((item, i) => {
-													return (
-														<SelectItem
-															key={`${i}`}
-															value={item.value}
-														>
-															{item.label}
-														</SelectItem>
-													);
-												})}
+												{vaccinationData.map(
+													(item, i) => {
+														return (
+															<SelectItem
+																key={`${i}`}
+																value={
+																	item.value
+																}
+															>
+																{item.label}
+															</SelectItem>
+														);
+													}
+												)}
 											</SelectContent>
 										</Select>
 										<FormMessage />
@@ -131,7 +137,7 @@ export default function FollowupForm({
 						/>
 						<FormField
 							control={form.control}
-							name="followUpDates"
+							name="vaccinationDates"
 							render={({ field }) => {
 								const dateValue =
 									field.value?.map((d) => new Date(d)) || [];

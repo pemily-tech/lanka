@@ -3,6 +3,8 @@
 import { Fragment } from 'react';
 import { useSearchParams } from 'next/navigation';
 
+import FollowupForm from '../follow-up/_ui/form';
+import VaccinationForm from '../vaccination-records/_ui/form';
 import { useStepperHook } from './_hooks/use-stepper';
 import Pet from './_ui/pet';
 import PetParent from './_ui/pet-parent';
@@ -10,7 +12,6 @@ import PetParent from './_ui/pet-parent';
 import { RecordTypes } from '@/helpers/primitives';
 import { cn } from '@/helpers/utils';
 import { Button } from '@/ui/shared/button';
-import FollowupForm from '@/ui/shared/followup-form';
 import { Separator } from '@/ui/shared/separator';
 
 export default function Page() {
@@ -48,6 +49,15 @@ export default function Page() {
 						if (recordType === RecordTypes.Followup) {
 							return (
 								<FollowupForm
+									stepper={stepper}
+									parentId={selectedParentId as string}
+									petId={selectedPetId as string}
+								/>
+							);
+						}
+						if (recordType === RecordTypes.Vaccination) {
+							return (
+								<VaccinationForm
 									stepper={stepper}
 									parentId={selectedParentId as string}
 									petId={selectedPetId as string}
