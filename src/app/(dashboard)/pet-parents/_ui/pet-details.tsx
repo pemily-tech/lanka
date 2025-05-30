@@ -47,8 +47,6 @@ const Pet = ({ pet, parentId }: { pet: IPetItem; parentId: string }) => {
 	return (
 		<Link
 			href={`${Routes.PET_PROFILE}/${pet.petId}?parentId=${parentId}&type=medical`}
-			// href={`/pet/${pet.petId}?parentId=${parentId}`}
-
 			className="flex flex-col items-center justify-center gap-12"
 		>
 			{isProfileExists ? (
