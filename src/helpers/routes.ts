@@ -22,4 +22,5 @@ export const Routes = {
 	PETS_CREATE: '/pets/create',
 	PETS_UPDATE: '/pets/update',
 	SELECT_PET: '/select-pet',
+	PET_PROFILE: '/pets/profile',
 };
