@@ -4,7 +4,6 @@ import { format, parseISO } from 'date-fns';
 import Actions from './actions';
 import Status from './status';
 
-import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { type IVaccinationRecord } from '@/types/clinic';
 import { LazyImage } from '@/ui/shared/lazy-image';
 
@@ -22,7 +21,7 @@ export function useColumns({
 			cell: ({ row }) => (
 				<div className="flex gap-12">
 					<LazyImage
-						src="/images/follow-up-records.svg"
+						src="/images/vaccination-record.svg"
 						className="h-[72px] w-[85px]"
 					/>
 					<div className="flex flex-col gap-4">

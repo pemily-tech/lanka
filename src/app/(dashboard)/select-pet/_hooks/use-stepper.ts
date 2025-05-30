@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
@@ -32,7 +31,7 @@ export function useStepperHook({ type }: { type: string }) {
 					? 'Add Followup Details'
 					: RecordTypes.Vaccination
 						? 'Add Vaccination Details'
-						: '',
+						: 'Add Medical Record Details',
 			schema: z.object({}),
 		}
 	);

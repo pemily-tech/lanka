@@ -289,3 +289,5 @@ export interface INavigationItem {
 	roles: string[];
 }
 export type IFileWithPreview = File & { preview: string };
+
+export type IMedicalRecordFilter = 'PRESCRIPTION' | 'REPORT' | 'DIET' | 'OTHER';

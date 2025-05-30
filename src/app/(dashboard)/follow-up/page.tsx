@@ -4,10 +4,10 @@ import { format, parseISO, startOfToday } from 'date-fns';
 import { useQueryStates } from 'nuqs';
 
 import { useUpdateUrl } from '../medicines/list/_hooks/use-update-url';
+import { useGetFollows } from './_api/use-get-followup';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
 
-import { useGetFollows } from '@/api/use-get-followup';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { type IFollowUpRecord } from '@/types/clinic';
 import { DataTable } from '@/ui/shared/data-table';

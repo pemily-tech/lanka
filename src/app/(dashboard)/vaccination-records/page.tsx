@@ -4,10 +4,10 @@ import { format, parseISO, startOfToday } from 'date-fns';
 import { useQueryStates } from 'nuqs';
 
 import { useUpdateUrl } from '../medicines/list/_hooks/use-update-url';
+import { useGetVaccinations } from './_api/use-get-vaccination';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
 
-import { useGetVaccinations } from '@/api/use-get-vaccination';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { type IVaccinationRecord } from '@/types/clinic';
 import { DataTable } from '@/ui/shared/data-table';

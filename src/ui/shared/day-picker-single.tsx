@@ -14,15 +14,19 @@ type IProps = {
 	selectedDate: Date | undefined;
 	setSelectedDate: (date: Date | undefined) => void;
 	disabled?: Matcher | Matcher[];
+	numberOfDays?: number;
 };
 
 export function DayPickerSingle({
 	setSelectedDate,
 	selectedDate,
 	disabled = false,
+	numberOfDays = 7,
 }: IProps) {
 	const today = startOfToday();
-	const days = Array.from({ length: 7 }, (_, i) => addDays(today, -i));
+	const days = Array.from({ length: numberOfDays }, (_, i) =>
+		addDays(today, -i)
+	);
 	const displayDate = format(selectedDate as Date, 'dd MMM, yyyy');
 
 	const onDaySelect = (day: Date) => {
