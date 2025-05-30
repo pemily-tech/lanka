@@ -4,6 +4,7 @@ import { Fragment } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import FollowupForm from '../follow-up/_ui/form';
+import MedicalRecordForm from '../medical-records/_ui/form';
 import VaccinationForm from '../vaccination-records/_ui/form';
 import { useStepperHook } from './_hooks/use-stepper';
 import Pet from './_ui/pet';
@@ -11,12 +12,16 @@ import PetParent from './_ui/pet-parent';
 
 import { RecordTypes } from '@/helpers/primitives';
 import { cn } from '@/helpers/utils';
+import { type IMedicalRecordFilter } from '@/types/common';
 import { Button } from '@/ui/shared/button';
 import { Separator } from '@/ui/shared/separator';
 
 export default function Page() {
 	const searchParams = useSearchParams();
 	const recordType = searchParams.get('recordType');
+	const medicalRecordFilterType = searchParams.get(
+		'filter'
+	) as IMedicalRecordFilter | null;
 
 	const {
 		currentIndex,
@@ -61,6 +66,18 @@ export default function Page() {
 									stepper={stepper}
 									parentId={selectedParentId as string}
 									petId={selectedPetId as string}
+								/>
+							);
+						}
+						if (recordType === RecordTypes.Medical) {
+							return (
+								<MedicalRecordForm
+									stepper={stepper}
+									parentId={selectedParentId as string}
+									petId={selectedPetId as string}
+									filterType={
+										medicalRecordFilterType as IMedicalRecordFilter
+									}
 								/>
 							);
 						}
