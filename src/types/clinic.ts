@@ -204,6 +204,7 @@ export interface IPetAndParentDetail {
 	parent: IParent;
 	parentAddress: Record<string, unknown>;
 	microChipNo?: string;
+	oldCode?: string;
 }
 export interface IVaccinationType {
 	lastCompleteDate: string;

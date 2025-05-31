@@ -25,7 +25,7 @@ const PetImage = () => {
 	} = useGetPetById(query?.id as string);
 	const { data: profileImage } = useGetPetProfileImage(query?.id as string);
 	const { profileUrl } = profileImage?.data || {};
-	const { name, breed, microChipNo, gender, type, dob, code } =
+	const { name, breed, microChipNo, oldCode, gender, type, dob, code } =
 		profileData?.data?.pet || {};
 	const { mutate: updatePetImage } = useUpdatePetImage(query?.id as string);
 	const dispatch = useDispatch();
@@ -107,6 +107,7 @@ const PetImage = () => {
 				type={type as string}
 				code={code as string}
 				microChipNo={microChipNo as string}
+				oldCode={oldCode as string}
 			/>
 		</div>
 	);

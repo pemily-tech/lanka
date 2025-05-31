@@ -29,6 +29,7 @@ interface OptionType {
 const validationSchema = yup.object().shape({
 	name: yup.string().required('Name is required'),
 	microChipNo: yup.string(),
+	oldCode: yup.string(),
 });
 
 export function AddEditPet() {
@@ -48,6 +49,7 @@ export function AddEditPet() {
 		name,
 		breed,
 		microChipNo,
+		oldCode,
 		type: petType,
 		dob: petDob,
 		gender: petGender,
@@ -73,6 +75,9 @@ export function AddEditPet() {
 			if (microChipNo) {
 				setValue('microChipNo', microChipNo);
 			}
+			if (oldCode) {
+				setValue('oldCode', oldCode);
+			}
 			if (breed) {
 				setSelectedBreed({ value: breed, label: breed });
 			}
@@ -90,6 +95,9 @@ export function AddEditPet() {
 			reset({
 				microChipNo: '',
 			});
+			reset({
+				oldCode: '',
+			});
 			setType('');
 			setSelectedBreed(null);
 			setGender(petGender || 'M');
@@ -100,6 +108,7 @@ export function AddEditPet() {
 	}, [
 		breed,
 		microChipNo,
+		oldCode,
 		modalState.data?.petId,
 		modalState.type,
 		name,
@@ -247,6 +256,16 @@ export function AddEditPet() {
 							placeholder=""
 							error={errors?.microChipNo}
 							{...register('microChipNo')}
+						/>
+					</div>
+				</div>
+				<div className="grid grid-cols-2 gap-[42px]">
+					<div>
+						<TextInput
+							label="Old Code"
+							placeholder=""
+							error={errors?.oldCode}
+							{...register('oldCode')}
 						/>
 					</div>
 				</div>

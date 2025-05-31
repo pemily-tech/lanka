@@ -88,13 +88,14 @@ function RecordItem({ record, refetch, activeFilter }: IRecordItem) {
 					href={url as string}
 					rel="noreferrer"
 					onClick={handleDownload}
-					className="text-14 text-primary-1 decoration-primary-1 flex items-center justify-center font-bold underline"
+					className="text-14 text-primary decoration-primary-1 flex items-center justify-center font-bold underline"
 				>
 					View/Print
 				</a>
 				<Button
 					onClick={handleDelete}
 					className="flex size-[32px] items-center justify-center"
+					variant="ghost"
 				>
 					<Trash2Icon className="text-red-1" />
 				</Button>
