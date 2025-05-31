@@ -2,10 +2,10 @@ import { ChevronDown } from 'lucide-react';
 
 import useGetDoctors from '../../../_api/use-get-doctors';
 import DoctorForm from './form';
+import ProfileImage from './profile-image';
 import Signature from './signature';
 
 import { type IClinicDoctor } from '@/types/clinic';
-import UserProfileImage from '@/ui/components/user-profile';
 import {
 	Collapsible,
 	CollapsibleContent,
@@ -28,13 +28,7 @@ export default function Doctors() {
 					<div className="rounded-lg border transition-all group-data-[state=open]:shadow-sm">
 						<CollapsibleTrigger className="flex w-full items-center justify-between px-16 py-12 text-left font-medium">
 							<div className="flex items-center gap-12">
-								<UserProfileImage
-									id={doctor?.doctor?.doctorId}
-									containerClasses="!size-[54px]"
-									imageClasses="!rounded-full border"
-									iconHeight={54}
-									iconWidth={54}
-								/>
+								<ProfileImage id={doctor?.doctor?.doctorId} />
 								<div className="flex flex-col gap-4">
 									<span className="text-sm">
 										{doctor.doctor?.name}

@@ -6,13 +6,13 @@ import { Camera, Check, UserIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
 import { useGetUserProfileUrl } from '../../../../api/profile-image';
-import useUploadUserProfile from '../../../../api/upload-user-profile/upload-user-profile';
-import { useGetUser } from '../../../../api/user-details/user-details';
 import { createFormDataForImage } from '../../../../helpers/utils';
 import { useAuthStore } from '../../../../store/user-auth';
-import { ImagePlaceholder } from '../../../../ui/shared';
 
+import { useUploadUserProfile } from '@/api/upload-user-profile';
+import { useGetUser } from '@/api/user-details';
 import { MAX_SIZE_500 } from '@/helpers/constant';
+import { LazyImage } from '@/ui/shared/lazy-image';
 
 export default function UserDetails() {
 	const { userId } = useAuthStore();
@@ -64,10 +64,9 @@ export default function UserDetails() {
 					<label className="relative block size-[62px] cursor-pointer rounded-full">
 						<input {...getInputProps()} />
 						{isUrlExists ? (
-							<ImagePlaceholder
+							<LazyImage
 								src={profileUrl as string}
-								containerClasses="size-[62px]"
-								imageClasses="rounded-full object-cover"
+								className="size-[62px] rounded-full object-cover"
 							/>
 						) : (
 							<div className="flex size-[62px] items-center justify-center rounded-full bg-gray-100">

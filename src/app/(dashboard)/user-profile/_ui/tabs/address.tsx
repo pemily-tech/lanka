@@ -8,10 +8,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronDown } from 'lucide-react';
 import { z } from 'zod';
 
-import useCreateAddress from '../../../../../api/use-create-address/create-address';
-import { usePincode } from '../../../../../api/use-pincode/pincode';
-import useUpdateAddress from '../../../../../api/use-update-address/update-address';
-import { useGetUser } from '../../../../../api/user-details/user-details';
 import { useAuthStore } from '../../../../../store/user-auth';
 import { type IAddress } from '../../../../../types/common';
 import {
@@ -23,7 +19,11 @@ import {
 	FormMessage,
 } from '../../../../../ui/shared/form';
 import { FloatingInput } from '../../../../../ui/shared/input';
+import { useCreateAddress } from '../../_api/create-address';
+import { usePincode } from '../../_api/pincode';
+import { useUpdateAddress } from '../../_api/update-address';
 
+import { useGetUser } from '@/api/user-details';
 import { cn } from '@/helpers/utils';
 import { Button } from '@/ui/shared/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/shared/popover';

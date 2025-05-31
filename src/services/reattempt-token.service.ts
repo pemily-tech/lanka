@@ -1,7 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { type AxiosResponse } from 'axios';
 
-import { ApiEndpoints } from '../helpers/primitives';
 import { logout } from '../helpers/utils';
 import { useAuthStore } from '../store/user-auth';
 // eslint-disable-next-line import/no-cycle
@@ -29,7 +28,7 @@ async function ResetTokenAndReattemptRequest(
 
 		try {
 			const resp = await axios.post(
-				`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.RefreshToken}`,
+				`${env.NEXT_PUBLIC_BASE_PATH}/uth/token`,
 				{
 					refreshToken: authStore.refreshToken,
 				}

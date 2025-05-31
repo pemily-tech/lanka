@@ -6,7 +6,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import useUpdateBusiness from '../../../../../../api/use-update-business/update-business';
 import {
 	gstValidator,
 	panValidator,
@@ -21,8 +20,9 @@ import {
 	FormMessage,
 } from '../../../../../../ui/shared/form';
 import { FloatingInput } from '../../../../../../ui/shared/input';
+import { useUpdateBusiness } from '../../../_api/update-business';
 
-import { useGetUser } from '@/api/user-details/user-details';
+import { useGetUser } from '@/api/user-details';
 import { Button } from '@/ui/shared/button';
 
 const schema = z.object({

@@ -9,7 +9,6 @@ import { format } from 'date-fns';
 import { CalendarIcon, ChevronDown } from 'lucide-react';
 import { z } from 'zod';
 
-import { useGetUser } from '../../../../../api/user-details/user-details';
 import { cn } from '../../../../../helpers/utils';
 import { useAuthStore } from '../../../../../store/user-auth';
 import { type IUserDetails } from '../../../../../types/user';
@@ -25,6 +24,7 @@ import {
 import { FloatingInput } from '../../../../../ui/shared/input';
 import useUpdateUserDetails from '../../_api/update-user-details';
 
+import { useGetUser } from '@/api/user-details';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { Button } from '@/ui/shared/button';
 import { Calendar } from '@/ui/shared/calendar';

@@ -1,9 +1,10 @@
 'use client';
 
-import { useGetUser } from '../../../../api/user-details/user-details';
 import { Roles } from '../../../../helpers/primitives';
 import { useAuthStore } from '../../../../store/user-auth';
 import Spinner from '../../../shared/spinner';
+
+import { useGetUser } from '@/api/user-details';
 
 function StaffName({ id }: { id: string }) {
 	const { data } = useGetUser(id as string);
