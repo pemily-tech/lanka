@@ -2,6 +2,8 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
+import MedicalRecord from '../_ui/medical-record';
+
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/shared/tabs';
 
 export default function RecordTabs() {
@@ -18,7 +20,7 @@ export default function RecordTabs() {
 		{
 			label: 'Medical Records',
 			value: 'medical',
-			component: <div>Medical</div>,
+			component: <MedicalRecord />,
 		},
 		{
 			label: 'Vaccination Records',

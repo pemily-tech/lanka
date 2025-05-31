@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import useDownloadDocument from '../api/download-document';
 
 const useDocumentDownload = (url: string, publicDoc = false) => {
-	const { mutateAsync: downloadDocument } = useDownloadDocument();
+	const { mutateAsync: downloadDocument, isPending } = useDownloadDocument();
 	const [imageUrl, setImageUrl] = useState<string | null>(null);
 
 	const imgType = useMemo(() => {
@@ -35,6 +35,7 @@ const useDocumentDownload = (url: string, publicDoc = false) => {
 	return {
 		url: imageUrl,
 		imgType,
+		isPending,
 	};
 };
 

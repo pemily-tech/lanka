@@ -19,6 +19,7 @@ interface IProps {
 	setSelectedDate: (date: Date | undefined) => void;
 	filter: IFilter;
 	setFilter: (filter: IFilter) => void;
+	showCalendar?: boolean;
 }
 
 export const filters = [
@@ -37,17 +38,25 @@ export const filters = [
 const borderColor = 'hsl(264, 16%, 53%)';
 const backgroundColor = 'hsl(264, 16%, 95%)';
 
-function Filters({ selectedDate, setSelectedDate, filter, setFilter }: IProps) {
+function Filters({
+	selectedDate,
+	setSelectedDate,
+	filter,
+	setFilter,
+	showCalendar = true,
+}: IProps) {
 	const [hovered, setHovered] = useState(false);
 	const btnTxt = filters.find((item) => item.value === filter);
 
 	return (
 		<div className="flex flex-col items-start gap-24">
-			<DayPickerSingle
-				selectedDate={selectedDate}
-				setSelectedDate={setSelectedDate}
-				numberOfDays={12}
-			/>
+			{showCalendar && (
+				<DayPickerSingle
+					selectedDate={selectedDate}
+					setSelectedDate={setSelectedDate}
+					numberOfDays={12}
+				/>
+			)}
 			<div className="flex flex-1 items-end justify-end gap-12">
 				{filters?.map((record) => {
 					const active = filter === record.value;

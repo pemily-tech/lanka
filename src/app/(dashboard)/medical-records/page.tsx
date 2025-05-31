@@ -1,42 +1,13 @@
 'use client';
 
-import { format, parseISO, setDate, startOfToday } from 'date-fns';
-import { useQueryStates } from 'nuqs';
-
-import { useGetMedicalRecord } from './_api/use-get-medical-record';
-import { useColumns } from './_ui/columns';
+import { useMedicalRecord } from './_hooks/use-medical-record';
 import Filters from './_ui/filters';
 
-import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
-import { type IMedicalRecord } from '@/types/clinic';
-import { type IMedicalRecordFilter } from '@/types/common';
 import { DataTable } from '@/ui/shared/data-table';
 
 export default function Page() {
-	const today = startOfToday();
-	const [{ date, filter }, setState] = useQueryStates({
-		date: {
-			defaultValue: format(today, DEFAULT_DATE_FORMAT),
-			parse: parseISO,
-			serialize: (date: Date) => format(date, DEFAULT_DATE_FORMAT),
-		},
-		filter: {
-			defaultValue: 'PRESCRIPTION',
-			parse: (val) => val as IMedicalRecordFilter,
-			serialize: (val) => val,
-		},
-	});
-
-	const { data, isPending } = useGetMedicalRecord({
-		type: filter as IMedicalRecordFilter,
-		date: format(date as Date, DEFAULT_DATE_FORMAT),
-	});
-	const medicalRecords =
-		data?.data?.medicalRecords || ([] as IMedicalRecord[]);
-	const columns = useColumns({
-		type: filter as IMedicalRecordFilter,
-		date: format(date as Date, DEFAULT_DATE_FORMAT),
-	});
+	const { date, filter, setState, columns, medicalRecords, isPending } =
+		useMedicalRecord();
 
 	return (
 		<div className="mb-[54px]">

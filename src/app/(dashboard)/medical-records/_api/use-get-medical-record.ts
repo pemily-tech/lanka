@@ -31,8 +31,8 @@ export function useGetMedicalRecord({
 	date,
 }: {
 	type?: IFilter;
-	petId?: string;
-	date?: string;
+	petId?: string | undefined;
+	date?: string | undefined;
 }) {
 	return useQuery({
 		queryKey: ['clinic/medicalRecords', type, petId, date],

@@ -20,19 +20,23 @@ import {
 	AlertDialogTrigger,
 } from '@/ui/shared/alert';
 import { Button } from '@/ui/shared/button';
+import { Loader } from '@/ui/shared/loader';
+import Spinner from '@/ui/shared/spinner';
 
 export default function Actions({
 	record,
 	type,
 	date,
+	petId,
 }: {
 	record: IMedicalRecord;
 	type: IMedicalRecordFilter;
-	date: string;
+	date?: string | undefined;
+	petId?: string | undefined;
 }) {
 	const { mutateAsync: updateMedicalRecord, isPending } =
 		useUpdateMedicalRecord({ id: record?._id });
-	const { url } = useDocumentDownload(record?.url);
+	const { url, isPending: isLoading } = useDocumentDownload(record?.url);
 
 	const handelRemove = async () => {
 		const payload = {
@@ -42,25 +46,23 @@ export default function Actions({
 		const response = await updateMedicalRecord(payload);
 		if (response.status === AppConstants.Success) {
 			queryClient.invalidateQueries({
-				queryKey: ['clinic/medicalRecords', type, undefined, date],
+				queryKey: ['clinic/medicalRecords', type, petId, date],
 			});
 		}
 	};
 
 	return (
 		<div className="flex items-center justify-end gap-12">
-			{url && (
-				<Link target="_blank" href={url}>
-					<Button
-						data-umami-event="medical_record_download"
-						data-umami-event-id={record._id}
-						size="icon"
-						variant="ghost"
-					>
-						<Download className="size-18" />
-					</Button>
-				</Link>
-			)}
+			<Link target="_blank" href={url ?? ''}>
+				<Button
+					data-umami-event="medical_record_download"
+					data-umami-event-id={record._id}
+					size="icon"
+					variant="ghost"
+				>
+					{isLoading ? <Loader /> : <Download className="size-18" />}
+				</Button>
+			</Link>
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
 					<Button

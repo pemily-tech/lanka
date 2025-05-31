@@ -40,10 +40,12 @@ export default function Status({
 	record,
 	type,
 	date,
+	petId,
 }: {
 	record: IMedicalRecord;
 	type: IMedicalRecordFilter;
-	date: string;
+	date?: string | undefined;
+	petId?: string | undefined;
 }) {
 	const [open, setOpen] = useState(false);
 	const form = useForm<IFormData>({
@@ -63,7 +65,7 @@ export default function Status({
 		const response = await updateMedicalRecord(payload);
 		if (response.status === AppConstants.Success) {
 			queryClient.invalidateQueries({
-				queryKey: ['clinic/medicalRecords', type, undefined, date],
+				queryKey: ['clinic/medicalRecords', type, petId, date],
 			});
 		}
 	};

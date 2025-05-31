@@ -12,9 +12,11 @@ import { type IMedicalRecordFilter } from '@/types/common';
 export function useColumns({
 	type,
 	date,
+	petId,
 }: {
 	type: IMedicalRecordFilter;
-	date: string;
+	date?: string | undefined;
+	petId?: string | undefined;
 }): ColumnDef<IMedicalRecord>[] {
 	return [
 		{
@@ -64,7 +66,12 @@ export function useColumns({
 							<span className="text-black-1/40">Add notes</span>
 						)}
 					</span>
-					<Comment record={row.original} type={type} date={date} />
+					<Comment
+						record={row.original}
+						type={type}
+						date={date}
+						petId={petId}
+					/>
 				</div>
 			),
 		},
@@ -73,7 +80,12 @@ export function useColumns({
 			header: 'Actions',
 			cell: ({ row }) => {
 				return (
-					<Actions record={row.original} type={type} date={date} />
+					<Actions
+						record={row.original}
+						type={type}
+						date={date}
+						petId={petId}
+					/>
 				);
 			},
 		},
