@@ -5,12 +5,12 @@ import { type FileRejection, useDropzone } from 'react-dropzone';
 import { Camera, Check, UserIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
-import { useGetUserProfileUrl } from '../../../../api/profile-image';
+import { useGetUserProfileUrl } from '../../../../api/queries/use-get-user-profile-image';
 import { createFormDataForImage } from '../../../../helpers/utils';
 import { useAuthStore } from '../../../../store/user-auth';
 
-import { useUploadUserProfile } from '@/api/upload-user-profile';
-import { useGetUser } from '@/api/user-details';
+import { useUploadUserProfile } from '@/api/mutations/upload-user-profile';
+import { useGetUser } from '@/api/queries/use-get-user-details';
 import { MAX_SIZE_500 } from '@/helpers/constant';
 import { LazyImage } from '@/ui/shared/lazy-image';
 

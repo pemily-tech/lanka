@@ -2,37 +2,33 @@
 
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { usePathname, useRouter } from 'next/navigation';
 
-import { Routes } from '../../helpers/routes';
-import { useIsMobile } from '../../hooks/use-is-mobile';
-import useRouterQuery from '../../hooks/use-router-query';
-import { useAuthStore } from '../../store/user-auth';
 import { AppSidebar } from '../../ui/components/app-sidebar';
-import DashboardLayoutHeader from '../../ui/components/dashboard-layout-header/dashboard-layout-header';
-import MobileOnly from '../../ui/components/mobile-only';
 import { SidebarInset, SidebarProvider } from '../../ui/shared/sidebar';
 
+import LayoutHeader from '@/components/layout/header';
+import { Routes } from '@/helpers/routes';
+import { useAuthStore } from '@/store/user-auth';
+
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-	const { loggedIn } = useAuthStore();
-	const { router, pathname } = useRouterQuery();
-	const isMobile = useIsMobile();
+	const { loggedIn, hasHydrated } = useAuthStore();
+	const pathname = usePathname();
+	const router = useRouter();
+	console.log(loggedIn, hasHydrated);
 
 	useEffect(() => {
-		if (!loggedIn) {
+		if (hasHydrated && !loggedIn) {
 			router.push(Routes.LOGIN);
 		}
-	}, [loggedIn, router]);
-
-	if (isMobile) {
-		return <MobileOnly />;
-	}
+	}, [hasHydrated, loggedIn]);
 
 	return (
 		<AnimatePresence>
 			<SidebarProvider>
 				<AppSidebar />
 				<SidebarInset>
-					<DashboardLayoutHeader />
+					<LayoutHeader />
 					<motion.div
 						key={pathname}
 						initial="pageInitial"

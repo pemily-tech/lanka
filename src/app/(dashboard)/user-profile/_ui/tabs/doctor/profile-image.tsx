@@ -1,6 +1,6 @@
 import { UserIcon } from 'lucide-react';
 
-import { useGetUserProfileUrl } from '@/api/profile-image';
+import { useGetUserProfileUrl } from '@/api/queries/use-get-user-profile-image';
 import { LazyImage } from '@/ui/shared/lazy-image';
 
 const ProfileImage = ({ id }: { id: string }) => {

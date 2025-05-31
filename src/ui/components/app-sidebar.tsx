@@ -13,7 +13,7 @@ import {
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
-import { useGetNavigation } from '../../api/layout/use-get-navigation';
+import { useGetNavigation } from '../../api/queries/use-get-navigation';
 import { logout } from '../../helpers/utils';
 import { useAuthStore } from '../../store/user-auth';
 import { type INavigationItem } from '../../types/common';

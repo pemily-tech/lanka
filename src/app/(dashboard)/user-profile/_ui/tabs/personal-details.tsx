@@ -24,7 +24,7 @@ import {
 import { FloatingInput } from '../../../../../ui/shared/input';
 import useUpdateUserDetails from '../../_api/update-user-details';
 
-import { useGetUser } from '@/api/user-details';
+import { useGetUser } from '@/api/queries/use-get-user-details';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { Button } from '@/ui/shared/button';
 import { Calendar } from '@/ui/shared/calendar';

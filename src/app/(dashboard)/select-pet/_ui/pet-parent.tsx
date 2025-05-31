@@ -2,7 +2,7 @@ import { type MouseEvent, useCallback, useState } from 'react';
 import { type UseFormSetValue } from 'react-hook-form';
 import debounce from 'lodash.debounce';
 
-import { useGetPetParents } from '@/api/get-pet-parent';
+import { useGetPetParents } from '@/api/queries/use-get-pet-parent';
 import { cn } from '@/helpers/utils';
 import {
 	Command,

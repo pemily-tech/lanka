@@ -11,7 +11,6 @@ import { cn } from '../../helpers/utils';
 import { useIsMobile } from '../../hooks/use-is-mobile';
 import { Button } from './button';
 import { Separator } from './separator';
-import { Sheet, SheetContent } from './sheet';
 
 const SIDEBAR_COOKIE_NAME = 'sidebar:state';
 const SIDEBAR_COOKIE_MAX_AGE = 60 * 60 * 24 * 7;
@@ -194,29 +193,7 @@ export const Sidebar = React.forwardRef<
 		}
 
 		if (isMobile) {
-			return (
-				<Sheet
-					open={openMobile}
-					onOpenChange={setOpenMobile}
-					{...props}
-				>
-					<SheetContent
-						data-sidebar="sidebar"
-						data-mobile="true"
-						className="bg-sidebar text-sidebar-foreground w-[--sidebar-width] p-0 [&>button]:hidden"
-						style={
-							{
-								'--sidebar-width': SIDEBAR_WIDTH_MOBILE,
-							} as React.CSSProperties
-						}
-						side={side}
-					>
-						<div className="flex size-full flex-col">
-							{children}
-						</div>
-					</SheetContent>
-				</Sheet>
-			);
+			return null;
 		}
 
 		return (

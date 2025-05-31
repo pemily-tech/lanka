@@ -5,7 +5,7 @@ import { toast } from 'sonner';
 
 import { useUploadDoctorSignature } from '../../../_api/use-upload-doctor-signature';
 
-import { useGetDoctorSignature } from '@/api/use-doctor-signature';
+import { useGetDoctorSignature } from '@/api/queries/use-doctor-signature';
 import { MAX_SIZE_500 } from '@/helpers/constant';
 import { createFormDataForImage } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';

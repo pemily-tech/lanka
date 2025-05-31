@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { HttpService } from '../services/http-service';
-import { useAuthStore } from '../store/user-auth';
-import { useGetUserProfileUrl } from './profile-image';
+import { useGetUserProfileUrl } from '../queries/use-get-user-profile-image';
+
+import { HttpService } from '@/services/http-service';
+import { useAuthStore } from '@/store/user-auth';
 
 const uploadProfile = async (payload: FormData) => {
 	try {

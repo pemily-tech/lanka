@@ -6,8 +6,6 @@ import { useAuthStore } from '../store/user-auth';
 // eslint-disable-next-line import/no-cycle
 import { HttpService } from './http-service';
 
-import { env } from '@/env.mjs';
-
 let isAlreadyFetchingAccessToken = false;
 type AccessTokenSubscriber = (accessToken: string) => void;
 let subscribers: AccessTokenSubscriber[] = [];
@@ -25,14 +23,13 @@ async function ResetTokenAndReattemptRequest(
 	if (!isAlreadyFetchingAccessToken) {
 		isAlreadyFetchingAccessToken = true;
 		const authStore = useAuthStore.getState();
+		console.log(authStore, 'ssss');
 
 		try {
-			const resp = await axios.post(
-				`${env.NEXT_PUBLIC_BASE_PATH}/uth/token`,
-				{
-					refreshToken: authStore.refreshToken,
-				}
-			);
+			const resp = await axios.post('/auth/token', {
+				refreshToken: authStore.refreshToken,
+			});
+			console.log(resp, '====');
 
 			if (resp?.data?.status === 'SUCCESS') {
 				authStore.updateUser({
@@ -44,7 +41,7 @@ async function ResetTokenAndReattemptRequest(
 				logout();
 			}
 		} catch (err) {
-			console.error(err);
+			console.error(err, '=====');
 			logout();
 			// Handle errors
 		} finally {

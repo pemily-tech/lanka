@@ -1,9 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { HttpService } from '../../../../services/http-service';
-import { type IApiResponse } from '../../../../types/common';
-import { type IPrescription } from '../../../../types/prescription';
+import { HttpService } from '@/services/http-service';
+import { type IApiResponse } from '@/types/common';
+import { type IPrescription } from '@/types/prescription';
 
 interface IPayload {
 	parentId: string;

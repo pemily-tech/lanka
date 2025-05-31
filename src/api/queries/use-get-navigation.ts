@@ -1,6 +1,6 @@
 import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
-import { type INavigationItem } from '../../../types/common';
+import { type INavigationItem } from '../../types/common';
 
 const getNavigation = async ({ queryKey }: QueryFunctionContext<[string]>) => {
 	const [_key] = queryKey;

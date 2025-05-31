@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 'use client';
 
-import { useGetClinicLogo } from '../../../api/get-clinic-logo';
+import { useGetClinicLogo } from '../../../api/queries/use-get-clinic-logo';
 
 export default function Page() {
 	const { data } = useGetClinicLogo();

@@ -1,7 +1,7 @@
 /* eslint-disable indent */
 import { Check, ChevronsUpDown } from 'lucide-react';
 
-import { useGetPetBreed } from '@/api/use-get-pet-breed';
+import { useGetPetBreed } from '@/api/queries/use-get-pet-breed';
 import { cn } from '@/helpers/utils';
 import { Button } from '@/ui/shared/button';
 import {

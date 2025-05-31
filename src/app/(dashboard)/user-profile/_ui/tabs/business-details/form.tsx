@@ -22,7 +22,7 @@ import {
 import { FloatingInput } from '../../../../../../ui/shared/input';
 import { useUpdateBusiness } from '../../../_api/update-business';
 
-import { useGetUser } from '@/api/user-details';
+import { useGetUser } from '@/api/queries/use-get-user-details';
 import { Button } from '@/ui/shared/button';
 
 const schema = z.object({

@@ -1,7 +1,7 @@
 /* eslint-disable max-lines-per-function */
 'use client';
 
-import { ImagePlaceholder } from '../../../../../ui/shared';
+import { ImagePlaceholder } from '../../../../../ui/shared/image';
 import { useBasicDetails } from '../_hooks/use-basic-details';
 
 import Spinner from '@/ui/shared/spinner';

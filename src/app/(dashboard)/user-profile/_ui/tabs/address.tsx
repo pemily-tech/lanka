@@ -23,7 +23,7 @@ import { useCreateAddress } from '../../_api/create-address';
 import { usePincode } from '../../_api/pincode';
 import { useUpdateAddress } from '../../_api/update-address';
 
-import { useGetUser } from '@/api/user-details';
+import { useGetUser } from '@/api/queries/use-get-user-details';
 import { cn } from '@/helpers/utils';
 import { Button } from '@/ui/shared/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/shared/popover';

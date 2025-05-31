@@ -5,8 +5,8 @@ import { type FileRejection, useDropzone } from 'react-dropzone';
 import { Camera, Check, UserIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
-import { useGetClinicLogo } from '@/api/get-clinic-logo';
-import { useUploadClinicLogo } from '@/api/upload-clinic-logo';
+import { useUploadClinicLogo } from '@/api/mutations/upload-clinic-logo';
+import { useGetClinicLogo } from '@/api/queries/use-get-clinic-logo';
 import { MAX_SIZE_500 } from '@/helpers/constant';
 import { createFormDataForImage } from '@/helpers/utils';
 

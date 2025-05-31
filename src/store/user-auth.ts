@@ -23,6 +23,7 @@ type AuthState = {
 	iat?: number;
 	exp?: number;
 	subscription?: ISubscription | null;
+	hasHydrated: boolean;
 };
 
 type AuthActions = {
@@ -41,6 +42,7 @@ const initialState: AuthState = {
 	token: null,
 	refreshToken: null,
 	role: Roles.Clinic,
+	hasHydrated: false,
 };
 
 export const useAuthStore = create<AuthState & AuthActions>()(
@@ -81,6 +83,9 @@ export const useAuthStore = create<AuthState & AuthActions>()(
 				name: state.name,
 				role: state.role,
 			}),
+			onRehydrateStorage: () => (state) => {
+				state?.updateUser({ hasHydrated: true });
+			},
 		}
 	)
 );

@@ -2,7 +2,7 @@ import { type ColumnDef } from '@tanstack/react-table';
 import { CircleUserRound } from 'lucide-react';
 import Link from 'next/link';
 
-import { useGetUserProfileUrl } from '@/api/profile-image';
+import { useGetUserProfileUrl } from '@/api/queries/use-get-user-profile-image';
 import { Routes } from '@/helpers/routes';
 import { type IPetParent } from '@/types/clinic';
 import { Button } from '@/ui/shared/button';

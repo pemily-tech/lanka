@@ -1,12 +1,12 @@
 import { Fragment, type MouseEvent } from 'react';
 import { type UseFormSetValue } from 'react-hook-form';
 
-import { useGetPetProfileImage } from '@/api/use-get-pet-profile';
-import { useGetPets } from '@/api/use-get-pets';
+import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
+import { useGetPets } from '@/api/queries/use-get-pets';
 import { cn } from '@/helpers/utils';
 import { type IPetItem } from '@/types/common';
-import { ImagePlaceholder } from '@/ui/shared';
 import { Command, CommandEmpty, CommandList } from '@/ui/shared/command';
+import { ImagePlaceholder } from '@/ui/shared/image';
 import Spinner from '@/ui/shared/spinner';
 
 export default function Pet({

@@ -2,14 +2,14 @@ import { Fragment, type MouseEvent } from 'react';
 import { type UseFormSetValue } from 'react-hook-form';
 import { Command as CommandPrimitive } from 'cmdk';
 
-import { useGetPets } from '../../../api/use-get-pets';
-import { cn } from '../../../helpers/utils';
-import { type IPetItem } from '../../../types/common';
-import { CommandEmpty, CommandList } from '../command';
-import { ImagePlaceholder } from '../image';
-import Spinner from '../spinner';
+import { CommandEmpty, CommandList } from '../../ui/shared/command';
 
-import { useGetPetProfileImage } from '@/api/use-get-pet-profile';
+import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
+import { useGetPets } from '@/api/queries/use-get-pets';
+import { cn } from '@/helpers/utils';
+import { type IPetItem } from '@/types/common';
+import { ImagePlaceholder } from '@/ui/shared/image';
+import Spinner from '@/ui/shared/spinner';
 
 export default function Pet({
 	setValue,

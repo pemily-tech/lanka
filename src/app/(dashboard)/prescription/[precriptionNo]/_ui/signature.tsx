@@ -4,7 +4,7 @@ import { url } from 'inspector';
 import { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
-import { useGetDoctorSignature } from '../../../../../api/use-doctor-signature';
+import { useGetDoctorSignature } from '../../../../../api/queries/use-doctor-signature';
 import {
 	type IDoctorDetails,
 	type IPrescription,

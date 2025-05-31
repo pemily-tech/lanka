@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { HttpService } from '../services/http-service';
+import { HttpService } from '@/services/http-service';
 
 const downloadDocument = async (payload: { key: string }) => {
 	try {
@@ -26,5 +26,3 @@ export function useDownloadDocument() {
 		},
 	});
 }
-
-export default useDownloadDocument;

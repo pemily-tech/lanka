@@ -10,8 +10,8 @@ import { toast } from 'sonner';
 
 import { useUpdatePetImage } from '../_api/use-update-pet-image';
 
-import { useGetPetById } from '@/api/use-get-pet-byid';
-import { useGetPetProfileImage } from '@/api/use-get-pet-profile';
+import { useGetPetById } from '@/api/queries/use-get-pet-byid';
+import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
 import { DATE_FORMAT, MAX_SIZE_500 } from '@/helpers/constant';
 import { Routes } from '@/helpers/routes';
 import { createFormDataForImage } from '@/helpers/utils';

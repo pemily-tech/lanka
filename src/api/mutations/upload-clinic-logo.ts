@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
-import { HttpService } from '../services/http-service';
-import { queryClient } from '../services/providers';
+import { HttpService } from '@/services/http-service';
+import { queryClient } from '@/services/providers';
 
 const uploadLogo = async (payload: FormData) => {
 	const { data } = await HttpService.post(`/clinic/uploadLogo`, payload, {

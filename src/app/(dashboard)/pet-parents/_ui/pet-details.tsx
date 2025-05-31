@@ -1,8 +1,8 @@
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
-import { useGetPetProfileImage } from '@/api/use-get-pet-profile';
-import { useGetPets } from '@/api/use-get-pets';
+import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
+import { useGetPets } from '@/api/queries/use-get-pets';
 import { Routes } from '@/helpers/routes';
 import { type IPetItem } from '@/types/common';
 import { Button } from '@/ui/shared/button';

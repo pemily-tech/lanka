@@ -13,7 +13,6 @@ import { useUpdateUrl } from '../../../../hooks/use-update-url';
 import { type IPrescription } from '../../../../types/prescription';
 import { DataTable } from '../../../../ui/shared/data-table';
 import { PaginationWithLinks } from '../../../../ui/shared/pagination-with-links';
-import PetSelectModal from '../../../../ui/shared/pet-selection-modal';
 import {
 	Tooltip,
 	TooltipContent,
@@ -22,6 +21,8 @@ import {
 import { useGetPrescriptions } from './_api/use-get-prescription';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
+
+import PetSelectModal from '@/components/pet-selection-modal';
 
 export default function Page() {
 	const today = startOfToday();

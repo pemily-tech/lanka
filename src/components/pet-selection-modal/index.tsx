@@ -6,8 +6,8 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-} from '../dialog';
-import { Separator } from '../separator';
+} from '../../ui/shared/dialog';
+import { Separator } from '../../ui/shared/separator';
 import { usePrescriptionStepper } from './_hooks/use-stepper';
 import Doctor from './doctor';
 import ErrorMessage from './error-message';

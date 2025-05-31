@@ -4,9 +4,9 @@ import {
 	useQuery,
 } from '@tanstack/react-query';
 
-import { HttpService } from '../services/http-service';
-import { type IPetParentsApiResponse } from '../types/clinic';
-import { type IApiResponse } from '../types/common';
+import { HttpService } from '../../services/http-service';
+import { type IPetParentsApiResponse } from '../../types/clinic';
+import { type IApiResponse } from '../../types/common';
 
 import { env } from '@/env.mjs';
 

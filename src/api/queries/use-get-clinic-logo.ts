@@ -1,7 +1,7 @@
 import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
-import { HttpService } from '../services/http-service';
-import { type IApiResponse } from '../types/common';
+import { HttpService } from '../../services/http-service';
+import { type IApiResponse } from '../../types/common';
 
 const getClinicLogo = async ({ queryKey }: QueryFunctionContext<[string]>) => {
 	const [_key] = queryKey;

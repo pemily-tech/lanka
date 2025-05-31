@@ -7,7 +7,7 @@ import { CircleUserRound, Plus } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { toast } from 'sonner';
 
-import { useGetUserProfileUrl } from '@/api/profile-image';
+import { useGetUserProfileUrl } from '@/api/queries/use-get-user-profile-image';
 import { useUploadPetParentProfile } from '@/app/(dashboard)/pet-parents/_api/use-upload-profile';
 import { MAX_SIZE_500 } from '@/helpers/constant';
 import { createFormDataForImage } from '@/helpers/utils';

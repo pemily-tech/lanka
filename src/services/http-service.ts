@@ -74,8 +74,6 @@ HttpService.interceptors.response.use(
 				new Error('Unexpected error occurred. Please try again.')
 			);
 		}
-
-		return Promise.reject(error);
 	}
 );
 

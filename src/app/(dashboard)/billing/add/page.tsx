@@ -4,7 +4,6 @@ import { type MouseEvent } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Routes } from '../../../../helpers/routes';
-import { SearchPetParents } from '../../../../ui/shared/search-pet-parents';
 import { useCreateInvoice } from './_api/create-invoice';
 
 export default function Index() {
@@ -32,7 +31,6 @@ export default function Index() {
 			<h1 className="text-24 mb-12 font-medium">
 				Choose a Parent to proceed:
 			</h1>
-			<SearchPetParents handleParent={handleParent} />
 		</div>
 	);
 }

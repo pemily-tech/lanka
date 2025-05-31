@@ -23,7 +23,7 @@ import { formFields } from './fields';
 import { type IPetFormData, petSchema } from './schema';
 import { SelectType } from './select';
 
-import { useGetPetById } from '@/api/use-get-pet-byid';
+import { useGetPetById } from '@/api/queries/use-get-pet-byid';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { cn } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';

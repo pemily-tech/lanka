@@ -9,7 +9,7 @@ import { z } from 'zod';
 
 import { useUpdateVaccination } from '../_api/use-update-vaccination';
 
-import { useGetDropdownList } from '@/api/use-get-dropdownlist';
+import { useGetDropdownList } from '@/api/queries/use-get-dropdownlist';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { cn, dateDisable } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
