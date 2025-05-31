@@ -1,18 +1,22 @@
 import { type ColumnDef } from '@tanstack/react-table';
 import { format, parseISO } from 'date-fns';
+import { date } from 'zod';
 
 import Actions from './actions';
 import Status from './status';
 
 import { type IVaccinationRecord } from '@/types/clinic';
+import { type IOtherCommonFilter } from '@/types/common';
 import { LazyImage } from '@/ui/shared/lazy-image';
 
 export function useColumns({
 	type,
 	date,
+	petId,
 }: {
-	type: 'PENDING' | 'COMPLETE' | 'ALL';
-	date: string;
+	type: IOtherCommonFilter;
+	date?: string | undefined;
+	petId?: string | undefined;
 }): ColumnDef<IVaccinationRecord>[] {
 	return [
 		{
@@ -76,7 +80,14 @@ export function useColumns({
 			id: 'status',
 			header: 'Status',
 			cell: ({ row }) => {
-				return <Status record={row.original} type={type} date={date} />;
+				return (
+					<Status
+						record={row.original}
+						type={type}
+						date={date}
+						petId={petId}
+					/>
+				);
 			},
 		},
 		{
@@ -89,7 +100,12 @@ export function useColumns({
 			header: 'Actions',
 			cell: ({ row }) => {
 				return (
-					<Actions record={row.original} type={type} date={date} />
+					<Actions
+						record={row.original}
+						type={type}
+						date={date}
+						petId={petId}
+					/>
 				);
 			},
 		},

@@ -3,7 +3,7 @@
 import { format, parseISO, startOfToday } from 'date-fns';
 import { useQueryStates } from 'nuqs';
 
-import { useUpdateUrl } from '../medicines/list/_hooks/use-update-url';
+import { useUpdateUrl } from '../../../hooks/use-update-url';
 import { useGetFollows } from './_api/use-get-followup';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';

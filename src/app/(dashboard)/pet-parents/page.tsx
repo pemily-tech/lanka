@@ -3,7 +3,7 @@
 import { useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
 
-import { useUpdateUrl } from '../medicines/list/_hooks/use-update-url';
+import { useUpdateUrl } from '../../../hooks/use-update-url';
 import { useGetPetParentsList } from './_api/use-get-pet-parent';
 import { useColumns } from './_ui/columns';
 import { DataTable } from './_ui/data-table';

@@ -9,6 +9,7 @@ import { PillBottle } from 'lucide-react';
 import { useQueryStates } from 'nuqs';
 
 import { DEFAULT_DATE_FORMAT } from '../../../../helpers/constant';
+import { useUpdateUrl } from '../../../../hooks/use-update-url';
 import { type IPrescription } from '../../../../types/prescription';
 import { DataTable } from '../../../../ui/shared/data-table';
 import { PaginationWithLinks } from '../../../../ui/shared/pagination-with-links';
@@ -18,7 +19,6 @@ import {
 	TooltipContent,
 	TooltipTrigger,
 } from '../../../../ui/shared/tooltip';
-import { useUpdateUrl } from '../../medicines/list/_hooks/use-update-url';
 import { useGetPrescriptions } from './_api/use-get-prescription';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';

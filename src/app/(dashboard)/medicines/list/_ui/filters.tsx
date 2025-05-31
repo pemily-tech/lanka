@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
+import { useUpdateUrl } from '../../../../../hooks/use-update-url';
 import { Label } from '../../../../../ui/shared/label';
-import { useUpdateUrl } from '../_hooks/use-update-url';
 
 import { Routes } from '@/helpers/routes';
 import { Command, CommandInput } from '@/ui/shared/command';

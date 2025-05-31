@@ -14,6 +14,7 @@ import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { cn, dateDisable } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IVaccinationRecord } from '@/types/clinic';
+import { type IOtherCommonFilter } from '@/types/common';
 import { Button } from '@/ui/shared/button';
 import { Calendar } from '@/ui/shared/calendar';
 import {
@@ -56,10 +57,12 @@ export default function Status({
 	record,
 	type,
 	date,
+	petId,
 }: {
 	record: IVaccinationRecord;
-	type: 'PENDING' | 'COMPLETE' | 'ALL';
-	date: string;
+	type: IOtherCommonFilter;
+	date?: string | undefined;
+	petId?: string | undefined;
 }) {
 	const [open, setOpen] = useState(false);
 	const form = useForm<IFormData>({
@@ -88,7 +91,7 @@ export default function Status({
 		if (response.status === 'SUCCESS') {
 			setOpen(!open);
 			queryClient.invalidateQueries({
-				queryKey: ['clinic/vaccinationRecords', type, undefined, date],
+				queryKey: ['clinic/vaccinationRecords', type, petId, date],
 			});
 		}
 	};

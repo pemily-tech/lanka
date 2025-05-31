@@ -291,3 +291,4 @@ export interface INavigationItem {
 export type IFileWithPreview = File & { preview: string };
 
 export type IMedicalRecordFilter = 'PRESCRIPTION' | 'REPORT' | 'DIET' | 'OTHER';
+export type IOtherCommonFilter = 'PENDING' | 'COMPLETE' | 'ALL' | 'UPCOMING';
