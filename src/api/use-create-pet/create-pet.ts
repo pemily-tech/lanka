@@ -16,6 +16,7 @@ interface IPayload {
 	dob: string;
 	parentId?: string;
 	microChipNo?: string;
+	oldCode?: string;
 }
 
 const createPet = async (payload: IPayload) => {

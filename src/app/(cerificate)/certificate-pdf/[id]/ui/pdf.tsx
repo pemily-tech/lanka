@@ -17,7 +17,6 @@ import {
 import usePetCertificateVaccination from '../../../../../api/use-pet-certificate-vaccination/use-pet-certificate-vaccination';
 import useRouterQuery from '../../../../../hooks/use-router-query';
 import Loading from '../../../../loading';
-
 export default function CertificatePdf() {
 	const { query, params } = useRouterQuery();
 	const petId = query?.id as string;
@@ -39,6 +38,8 @@ export default function CertificatePdf() {
 	const renderTitle = useMemo(() => {
 		if (heading === 'BOARDING_AND_LODGING') {
 			return 'BOARDING AND LODGING CONSENT FORM';
+		} else if (heading === 'STERILIZATION_CERTIFICATE') {
+			return 'SPAY/NEUTER CERTIFICATE';
 		} else {
 			const title = heading?.split('_').join(' ');
 			return title;
@@ -306,6 +307,22 @@ export default function CertificatePdf() {
 						after the procedure.
 					</div>
 				);
+			case 'STERILIZATION_CERTIFICATE':
+				return (
+					<div>
+						This is to certify that the pet described above, owned
+						by{' '}
+						<span className="text-12 font-bold">
+							Mr./Ms. {parentDetails?.name.trim()?.toUpperCase()}
+						</span>{' '}
+						(as detailed above), has been spayed/castrated at{' '}
+						<span className="text-14 font-bold">
+							{clinicData?.name.trim()?.toUpperCase()}
+						</span>{' '}
+						. The information provided is accurate to the best of
+						the undersigned's knowledge.
+					</div>
+				);
 			default:
 				return null;
 		}
@@ -461,7 +478,7 @@ export default function CertificatePdf() {
 								Patient code:
 							</div>
 							<div className="text-12 pl-8 font-medium">
-								{petDetails?.code}
+								{petDetails.code}
 							</div>
 						</div>
 						<div className="flex items-center py-2">

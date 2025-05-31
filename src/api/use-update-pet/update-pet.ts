@@ -15,6 +15,7 @@ interface IPayload {
 	type: string;
 	dob: string;
 	microChipNo?: string;
+	oldCode?: string;
 }
 
 const updatePet = async (payload: IPayload, petId: string) => {

@@ -100,6 +100,9 @@ export default function Print() {
 					} catch (err) {
 						console.error('Error:', err);
 					}
+				})
+				.catch((err: any) => {
+					console.error('Error in htmltopdf:', err);
 				});
 		} catch (err) {
 			console.error('Error generating PDF:', err);
@@ -129,7 +132,7 @@ export default function Print() {
 					</>
 				)}
 			</button>
-			<span className="text-14 text-primary-1 text-center font-bold">
+			<span className="text-14 text-primary text-center font-bold">
 				{disableButton ? 'Saving...' : 'Click to Save/Print'}
 			</span>
 		</div>

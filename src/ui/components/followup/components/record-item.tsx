@@ -132,9 +132,8 @@ function Record({ record, refetch }: IRecordItem) {
 					<Button
 						onClick={handleEdit}
 						className="border-primary-1 flex items-center justify-center border px-12 py-6"
-						variant="outline"
 					>
-						<span className="text-primary-1 font-normal">
+						<span className="text-primary-1 font-bold">
 							Complete
 						</span>
 					</Button>

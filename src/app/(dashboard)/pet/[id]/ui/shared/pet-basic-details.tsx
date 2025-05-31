@@ -6,6 +6,7 @@ function PetBasicDetails({
 	dob,
 	code,
 	microChipNo,
+	oldCode,
 }: {
 	name: string;
 	breed: string;
@@ -14,6 +15,7 @@ function PetBasicDetails({
 	dob: string;
 	code: string;
 	microChipNo?: string;
+	oldCode?: string;
 }) {
 	return (
 		<div className="mt-24 flex w-full flex-col gap-16">
@@ -47,6 +49,12 @@ function PetBasicDetails({
 				<span className="text-14 text-grey-text3">Microchip No.: </span>
 				<span className="text-14 font-medium">
 					{microChipNo ? microChipNo : ''}
+				</span>
+			</div>
+			<div className="border-grey-border1 rounded-8 flex items-center gap-12 border p-12">
+				<span className="text-14 text-grey-text3">Old Code: </span>
+				<span className="text-14 font-medium">
+					{oldCode ? oldCode : ''}
 				</span>
 			</div>
 		</div>
