@@ -4,8 +4,8 @@ import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { usePathname, useRouter } from 'next/navigation';
 
-import { AppSidebar } from '../../ui/components/app-sidebar';
-import { SidebarInset, SidebarProvider } from '../../ui/shared/sidebar';
+import { AppSidebar } from '../../components/app-sidebar';
+import { SidebarInset, SidebarProvider } from '../../ui/sidebar';
 
 import LayoutHeader from '@/components/layout/header';
 import { Routes } from '@/helpers/routes';

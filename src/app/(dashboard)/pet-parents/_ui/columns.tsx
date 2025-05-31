@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { useGetUserProfileUrl } from '@/api/queries/use-get-user-profile-image';
 import { Routes } from '@/helpers/routes';
 import { type IPetParent } from '@/types/clinic';
-import { Button } from '@/ui/shared/button';
-import { LazyImage } from '@/ui/shared/lazy-image';
+import { Button } from '@/ui/button';
+import { LazyImage } from '@/ui/lazy-image';
 
 export function useColumns(): ColumnDef<IPetParent>[] {
 	return [

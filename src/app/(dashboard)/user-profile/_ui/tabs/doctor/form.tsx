@@ -6,15 +6,9 @@ import { useUpdateDoctor } from '../../../_api/use-update-doctor';
 
 import { queryClient } from '@/services/providers';
 import { type IDoctor } from '@/types/common';
-import { Button } from '@/ui/shared/button';
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormMessage,
-} from '@/ui/shared/form';
-import { FloatingInput } from '@/ui/shared/input';
+import { Button } from '@/ui/button';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form';
+import { FloatingInput } from '@/ui/input';
 
 const schema = z.object({
 	name: z.string().nonempty('Name is required'),

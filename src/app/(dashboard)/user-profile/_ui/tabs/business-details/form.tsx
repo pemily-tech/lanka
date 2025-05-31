@@ -18,12 +18,12 @@ import {
 	FormField,
 	FormItem,
 	FormMessage,
-} from '../../../../../../ui/shared/form';
-import { FloatingInput } from '../../../../../../ui/shared/input';
+} from '../../../../../../ui/form';
+import { FloatingInput } from '../../../../../../ui/input';
 import { useUpdateBusiness } from '../../../_api/update-business';
 
 import { useGetUser } from '@/api/queries/use-get-user-details';
-import { Button } from '@/ui/shared/button';
+import { Button } from '@/ui/button';
 
 const schema = z.object({
 	ownerName: z.string().optional().or(z.literal('')),

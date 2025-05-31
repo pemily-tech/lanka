@@ -14,7 +14,7 @@ import { useMedicineStore } from '../../_store/medicine-store';
 import { Search } from './search';
 import SelectedMedicines from './selected-medicines';
 
-import { Button } from '@/ui/shared/button';
+import { Button } from '@/ui/button';
 
 export default function Medicines() {
 	const params = useParams();

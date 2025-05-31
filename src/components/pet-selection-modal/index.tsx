@@ -6,15 +6,15 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-} from '../../ui/shared/dialog';
-import { Separator } from '../../ui/shared/separator';
+} from '../../ui/dialog';
+import { Separator } from '../../ui/separator';
 import { usePrescriptionStepper } from './_hooks/use-stepper';
 import Doctor from './doctor';
 import ErrorMessage from './error-message';
 import Pet from './pet';
 import PetParent from './pet-parent';
 
-import { Button } from '@/ui/shared/button';
+import { Button } from '@/ui/button';
 
 export default function PetSelectModal({
 	open,

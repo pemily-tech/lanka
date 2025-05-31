@@ -20,15 +20,15 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../../../../../ui/shared/form';
-import { FloatingInput } from '../../../../../ui/shared/input';
+} from '../../../../../ui/form';
+import { FloatingInput } from '../../../../../ui/input';
 import useUpdateUserDetails from '../../_api/update-user-details';
 
 import { useGetUser } from '@/api/queries/use-get-user-details';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
-import { Button } from '@/ui/shared/button';
-import { Calendar } from '@/ui/shared/calendar';
-import { Popover, PopoverContent, PopoverTrigger } from '@/ui/shared/popover';
+import { Button } from '@/ui/button';
+import { Calendar } from '@/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
 
 const schema = z.object({
 	name: z.string().min(1, 'Name is required'),

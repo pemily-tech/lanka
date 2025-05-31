@@ -1,10 +1,10 @@
 /* eslint-disable max-lines-per-function */
 'use client';
 
-import { ImagePlaceholder } from '../../../../../ui/shared/image';
+import { ImagePlaceholder } from '../../../../../ui/image';
 import { useBasicDetails } from '../_hooks/use-basic-details';
 
-import Spinner from '@/ui/shared/spinner';
+import Spinner from '@/ui/spinner';
 
 export default function BasicDetails() {
 	const {

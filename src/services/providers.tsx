@@ -3,10 +3,10 @@
 import React, { type ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import { TooltipProvider } from '../ui/shared/tooltip';
+import { TooltipProvider } from '../ui/tooltip';
 import { UmamiIdentify } from './umami-identity';
 
-import { Toaster } from '@/ui/shared/toast';
+import { Toaster } from '@/ui/toast';
 
 export const queryClient = new QueryClient();
 

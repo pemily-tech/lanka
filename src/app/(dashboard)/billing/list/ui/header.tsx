@@ -3,15 +3,15 @@ import Link from 'next/link';
 
 import { Routes } from '../../../../../helpers/routes';
 import { cn } from '../../../../../helpers/utils';
-import { Button } from '../../../../../ui/shared/button';
-import Input from '../../../../../ui/shared/input/input';
+import { Button } from '../../../../../ui/button';
+import Input from '../../../../../ui/input/input';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../../ui/shared/select';
+} from '../../../../../ui/select';
 import { useInvoiceListingContext } from '../context/context';
 
 export default function Header() {

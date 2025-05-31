@@ -3,7 +3,7 @@
 import { useVaccination } from '../../../../../vaccination-records/_hooks/use-vaccination';
 import Filters from '../../../../../vaccination-records/_ui/filters';
 
-import { DataTable } from '@/ui/shared/data-table';
+import { DataTable } from '@/ui/data-table';
 
 export default function VaccinationRecord() {
 	const { date, setState, filter, columns, vaccinationRecords, isPending } =

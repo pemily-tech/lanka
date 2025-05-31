@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 
-import { defineStepper } from '../../../ui/shared/stepper';
+import { defineStepper } from '../../../ui/stepper';
 import { useCreatePrescription } from '../_api/use-create-prescription';
 
 const { useStepper, steps, utils } = defineStepper(

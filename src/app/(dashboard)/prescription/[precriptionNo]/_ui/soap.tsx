@@ -13,13 +13,13 @@ import {
 	FormField,
 	FormItem,
 	FormMessage,
-} from '../../../../../ui/shared/form';
-import { FloatingTextArea } from '../../../../../ui/shared/text-area';
+} from '../../../../../ui/form';
+import { FloatingTextArea } from '../../../../../ui/text-area';
 import { useGetPrescriptionSoap } from '../_api/use-get-soap';
 import { useUpdateSoap } from '../_api/use-update.soap';
 
-import { Button } from '@/ui/shared/button';
-import Spinner from '@/ui/shared/spinner';
+import { Button } from '@/ui/button';
+import Spinner from '@/ui/spinner';
 
 const schema = z.object({
 	subjective: z.string().optional().or(z.literal('')),

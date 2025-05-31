@@ -3,8 +3,8 @@ import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 
 import { cn } from '@/helpers/utils';
-import { Button } from '@/ui/shared/button';
-import { Calendar } from '@/ui/shared/calendar';
+import { Button } from '@/ui/button';
+import { Calendar } from '@/ui/calendar';
 import {
 	FormControl,
 	FormDescription,
@@ -12,8 +12,8 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/ui/shared/form';
-import { Popover, PopoverContent, PopoverTrigger } from '@/ui/shared/popover';
+} from '@/ui/form';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
 
 export function CalendarType({
 	form,

@@ -5,9 +5,9 @@ import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
 import { useGetPets } from '@/api/queries/use-get-pets';
 import { Routes } from '@/helpers/routes';
 import { type IPetItem } from '@/types/common';
-import { Button } from '@/ui/shared/button';
-import { LazyImage } from '@/ui/shared/lazy-image';
-import Spinner from '@/ui/shared/spinner';
+import { Button } from '@/ui/button';
+import { LazyImage } from '@/ui/lazy-image';
+import Spinner from '@/ui/spinner';
 
 export default function PetDetails({ parentId }: { parentId: string }) {
 	const { data, isPending } = useGetPets({ parentId });

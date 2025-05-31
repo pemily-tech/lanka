@@ -1,8 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 
-import { Button } from '../ui/shared/button';
-import { ImagePlaceholder } from '../ui/shared/image';
+import { Button } from '../ui/button';
+import { ImagePlaceholder } from '../ui/image';
 
 const PageNotFound = () => {
 	return (

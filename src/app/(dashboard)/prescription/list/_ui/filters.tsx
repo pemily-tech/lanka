@@ -5,9 +5,9 @@ import { type DateRange } from 'react-day-picker';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
-import { Command, CommandInput } from '../../../../../ui/shared/command';
-import { DayPickerRange } from '../../../../../ui/shared/day-picker-range';
-import { Label } from '../../../../../ui/shared/label';
+import { Command, CommandInput } from '../../../../../ui/command';
+import { DayPickerRange } from '../../../../../ui/day-picker-range';
+import { Label } from '../../../../../ui/label';
 
 import {
 	Select,
@@ -15,7 +15,7 @@ import {
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '@/ui/shared/select';
+} from '@/ui/select';
 
 interface IProps {
 	selectedDate: DateRange | undefined;

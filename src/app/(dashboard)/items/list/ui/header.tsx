@@ -1,17 +1,17 @@
 import { Search, X } from 'lucide-react';
 
 import { cn } from '../../../../../helpers/utils';
-import Input from '../../../../../ui/shared/input/input';
+import Input from '../../../../../ui/input/input';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../../ui/shared/select';
+} from '../../../../../ui/select';
 import { useProductListingContext } from '../context/context';
 
-import { Button } from '@/ui/shared/button';
+import { Button } from '@/ui/button';
 
 export default function Header() {
 	const {

@@ -11,13 +11,13 @@ import { useQueryStates } from 'nuqs';
 import { DEFAULT_DATE_FORMAT } from '../../../../helpers/constant';
 import { useUpdateUrl } from '../../../../hooks/use-update-url';
 import { type IPrescription } from '../../../../types/prescription';
-import { DataTable } from '../../../../ui/shared/data-table';
-import { PaginationWithLinks } from '../../../../ui/shared/pagination-with-links';
+import { DataTable } from '../../../../ui/data-table';
+import { PaginationWithLinks } from '../../../../ui/pagination-with-links';
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
-} from '../../../../ui/shared/tooltip';
+} from '../../../../ui/tooltip';
 import { useGetPrescriptions } from './_api/use-get-prescription';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';

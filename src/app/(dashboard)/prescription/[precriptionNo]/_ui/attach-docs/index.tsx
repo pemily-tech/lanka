@@ -7,7 +7,7 @@ import {
 	TabsContent,
 	TabsList,
 	TabsTrigger,
-} from '../../../../../../ui/shared/tabs';
+} from '../../../../../../ui/tabs';
 import DocsList from './list';
 import UploadCard from './upload-card';
 

@@ -1,19 +1,19 @@
-import useGetDropdownList from '../../../../api/use-get-dropdown-list/get-dropdown-list';
 import {
 	FormControl,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../../../../ui/shared/form';
+} from '../../../../ui/form';
 
+import { useGetDropdownList } from '@/api/queries/use-get-dropdownlist';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '@/ui/shared/select';
+} from '@/ui/select';
 
 export default function SelectField({
 	apiKey,

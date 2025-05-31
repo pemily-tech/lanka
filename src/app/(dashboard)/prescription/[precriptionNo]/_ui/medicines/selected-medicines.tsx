@@ -1,5 +1,5 @@
 import { type IMedicine } from '../../../../../../types/prescription';
-import { DataTable } from '../../../../../../ui/shared/data-table';
+import { DataTable } from '../../../../../../ui/data-table';
 import { useColumns } from './medicine-columns';
 
 export default function SelectedMedicines({

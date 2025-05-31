@@ -2,12 +2,12 @@
 
 import { useEffect } from 'react';
 
+import MobileOnly from '../../components/mobile-only';
 import { Routes } from '../../helpers/routes';
 import { useIsMobile } from '../../hooks/use-is-mobile';
 import useRouterQuery from '../../hooks/use-router-query';
 import { useAppSelector } from '../../store';
 import { useAuthStore } from '../../store/user-auth';
-import MobileOnly from '../../ui/components/mobile-only';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 	const { loggedIn } = useAuthStore();

@@ -11,7 +11,7 @@ import { RecordTypes } from '@/helpers/primitives';
 import { Routes } from '@/helpers/routes';
 import { cn } from '@/helpers/utils';
 import { type IOtherCommonFilter } from '@/types/common';
-import { DayPickerSingle } from '@/ui/shared/day-picker-single';
+import { DayPickerSingle } from '@/ui/day-picker-single';
 
 interface IProps {
 	selectedDate: Date | undefined;

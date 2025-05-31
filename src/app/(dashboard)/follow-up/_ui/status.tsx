@@ -15,8 +15,8 @@ import { cn, dateDisable } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IFollowUpRecord } from '@/types/clinic';
 import { type IOtherCommonFilter } from '@/types/common';
-import { Button } from '@/ui/shared/button';
-import { Calendar } from '@/ui/shared/calendar';
+import { Button } from '@/ui/button';
+import { Calendar } from '@/ui/calendar';
 import {
 	Dialog,
 	DialogClose,
@@ -26,7 +26,7 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from '@/ui/shared/dialog';
+} from '@/ui/dialog';
 import {
 	Form,
 	FormControl,
@@ -34,15 +34,15 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/ui/shared/form';
-import { Popover, PopoverContent, PopoverTrigger } from '@/ui/shared/popover';
+} from '@/ui/form';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '@/ui/shared/select';
+} from '@/ui/select';
 
 const schema = z.object({
 	followUpCompleteDate: z

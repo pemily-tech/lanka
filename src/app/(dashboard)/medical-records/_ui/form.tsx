@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 
 import { useUploadMedicalRecord } from '../_api/use-create-medical-record';
 
+import { PdfIcon } from '@/components/icons/pdf-icon';
 import { MAX_SIZE_2MB } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import {
@@ -15,9 +16,8 @@ import {
 } from '@/helpers/utils';
 import { type IMedicalRecord } from '@/types/clinic';
 import { type IApiResponse, type IMedicalRecordFilter } from '@/types/common';
-import { PdfIcon } from '@/ui/icons/pdf-icon';
-import { Button } from '@/ui/shared/button';
-import { LazyImage } from '@/ui/shared/lazy-image';
+import { Button } from '@/ui/button';
+import { LazyImage } from '@/ui/lazy-image';
 
 export default function MedicalRecordForm({
 	stepper,

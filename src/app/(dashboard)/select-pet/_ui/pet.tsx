@@ -5,9 +5,9 @@ import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
 import { useGetPets } from '@/api/queries/use-get-pets';
 import { cn } from '@/helpers/utils';
 import { type IPetItem } from '@/types/common';
-import { Command, CommandEmpty, CommandList } from '@/ui/shared/command';
-import { ImagePlaceholder } from '@/ui/shared/image';
-import Spinner from '@/ui/shared/spinner';
+import { Command, CommandEmpty, CommandList } from '@/ui/command';
+import { ImagePlaceholder } from '@/ui/image';
+import Spinner from '@/ui/spinner';
 
 export default function Pet({
 	setValue,

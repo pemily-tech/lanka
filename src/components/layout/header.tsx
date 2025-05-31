@@ -7,8 +7,8 @@ import { useGetUser } from '@/api/queries/use-get-user-details';
 import { Roles } from '@/helpers/primitives';
 import { Routes } from '@/helpers/routes';
 import { useAuthStore } from '@/store/user-auth';
-import { Button } from '@/ui/shared/button';
-import { Loader } from '@/ui/shared/loader';
+import { Button } from '@/ui/button';
+import { Loader } from '@/ui/loader';
 
 export function LayoutHeader() {
 	const router = useRouter();

@@ -1,11 +1,12 @@
-import useGetDropdownList from '../../../../../../api/use-get-dropdown-list/get-dropdown-list';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../../../ui/shared/select';
+} from '../../../../../../ui/select';
+
+import { useGetDropdownList } from '@/api/queries/use-get-dropdownlist';
 
 export default function SelectMedicineType({
 	value,

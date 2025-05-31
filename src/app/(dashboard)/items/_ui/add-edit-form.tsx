@@ -12,21 +12,21 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../../../../ui/shared/form';
-import { FloatingTextArea } from '../../../../ui/shared/text-area';
+} from '../../../../ui/form';
+import { FloatingTextArea } from '../../../../ui/text-area';
 import { useAddItem } from '../_api/add-item';
 import { useUpdateItem } from '../_api/update-item';
 import { useGetItemById } from '../edit/[id]/api/get-item-by-id';
 
-import { Button } from '@/ui/shared/button';
-import { FloatingInput } from '@/ui/shared/input';
+import { Button } from '@/ui/button';
+import { FloatingInput } from '@/ui/input';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '@/ui/shared/select';
+} from '@/ui/select';
 
 const schema = z.object({
 	name: z.string().min(3, { message: 'Title is required' }),

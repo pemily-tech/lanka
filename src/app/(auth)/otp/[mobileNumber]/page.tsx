@@ -13,10 +13,10 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-} from '../../../../ui/shared/dialog';
+} from '../../../../ui/dialog';
 import useOtpHook from './_hooks/use-otp-hook';
 
-import { Spinner } from '@/ui/shared/spinner';
+import { Spinner } from '@/ui/spinner';
 
 export default function Page() {
 	const params = useParams<{ mobileNumber: string }>();

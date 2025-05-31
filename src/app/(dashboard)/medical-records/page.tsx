@@ -3,7 +3,7 @@
 import { useMedicalRecord } from './_hooks/use-medical-record';
 import Filters from './_ui/filters';
 
-import { DataTable } from '@/ui/shared/data-table';
+import { DataTable } from '@/ui/data-table';
 
 export default function Page() {
 	const { date, filter, setState, columns, medicalRecords, isPending } =

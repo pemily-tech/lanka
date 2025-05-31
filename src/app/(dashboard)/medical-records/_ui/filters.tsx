@@ -10,7 +10,7 @@ import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { RecordTypes } from '@/helpers/primitives';
 import { Routes } from '@/helpers/routes';
 import { cn } from '@/helpers/utils';
-import { DayPickerSingle } from '@/ui/shared/day-picker-single';
+import { DayPickerSingle } from '@/ui/day-picker-single';
 
 type IFilter = 'PRESCRIPTION' | 'REPORT' | 'DIET' | 'OTHER' | null;
 

@@ -2,7 +2,6 @@
 
 import { useCallback } from 'react';
 import { type FileRejection, useDropzone } from 'react-dropzone';
-import { id } from 'date-fns/locale';
 import { CircleUserRound, Plus } from 'lucide-react';
 import { useParams } from 'next/navigation';
 import { toast } from 'sonner';
@@ -11,9 +10,8 @@ import { useGetUserProfileUrl } from '@/api/queries/use-get-user-profile-image';
 import { useUploadPetParentProfile } from '@/app/(dashboard)/pet-parents/_api/use-upload-profile';
 import { MAX_SIZE_500 } from '@/helpers/constant';
 import { createFormDataForImage } from '@/helpers/utils';
-import { queryClient } from '@/services/providers';
-import { Button } from '@/ui/shared/button';
-import { LazyImage } from '@/ui/shared/lazy-image';
+import { Button } from '@/ui/button';
+import { LazyImage } from '@/ui/lazy-image';
 
 const ImageUpload = () => {
 	const params = useParams<{ id: string }>();

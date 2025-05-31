@@ -5,7 +5,7 @@ import { type Metadata } from 'next';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import Providers from '../services/providers';
-import AnalyticsScript from '../ui/shared/analytics-script';
+import AnalyticsScript from '../ui/analytics-script';
 
 import { siteConfig } from '@/helpers/constant';
 import { fonts } from '@/helpers/fonts';

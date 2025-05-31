@@ -8,13 +8,13 @@ import Link from 'next/link';
 import { Routes } from '../../../../helpers/routes';
 import { useUpdateUrl } from '../../../../hooks/use-update-url';
 import { type IMedicine } from '../../../../types/prescription';
-import { DataTable } from '../../../../ui/shared/data-table';
-import { PaginationWithLinks } from '../../../../ui/shared/pagination-with-links';
+import { DataTable } from '../../../../ui/data-table';
+import { PaginationWithLinks } from '../../../../ui/pagination-with-links';
 import {
 	Tooltip,
 	TooltipContent,
 	TooltipTrigger,
-} from '../../../../ui/shared/tooltip';
+} from '../../../../ui/tooltip';
 import { useGetMedicines } from './_api/use-get-medicines';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';

@@ -1,6 +1,6 @@
+import { PdfIcon } from '@/components/icons/pdf-icon';
 import useDocumentDownload from '@/hooks/use-download-document';
-import { PdfIcon } from '@/ui/icons/pdf-icon';
-import { LazyImage } from '@/ui/shared/lazy-image';
+import { LazyImage } from '@/ui/lazy-image';
 
 export default function PreviewImage({ url }: { url: string }) {
 	const { imgType, url: imgUrl, isPending } = useDocumentDownload(url);

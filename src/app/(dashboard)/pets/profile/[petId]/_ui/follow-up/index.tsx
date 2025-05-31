@@ -3,7 +3,7 @@
 import { useFollowup } from '../../../../../follow-up/_hooks/use-follwups';
 import Filters from '../../../../../follow-up/_ui/filters';
 
-import { DataTable } from '@/ui/shared/data-table';
+import { DataTable } from '@/ui/data-table';
 
 export default function Followups() {
 	const { date, filter, setState, columns, followupData, isPending } =

@@ -13,8 +13,8 @@ import PetParent from './_ui/pet-parent';
 import { RecordTypes } from '@/helpers/primitives';
 import { cn } from '@/helpers/utils';
 import { type IMedicalRecordFilter } from '@/types/common';
-import { Button } from '@/ui/shared/button';
-import { Separator } from '@/ui/shared/separator';
+import { Button } from '@/ui/button';
+import { Separator } from '@/ui/separator';
 
 export default function Page() {
 	const searchParams = useSearchParams();

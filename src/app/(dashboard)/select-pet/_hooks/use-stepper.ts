@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { RecordTypes } from '@/helpers/primitives';
-import { defineStepper } from '@/ui/shared/stepper';
+import { defineStepper } from '@/ui/stepper';
 
 const FormSchema = z.object({
 	parentId: z.string().optional(),

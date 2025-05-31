@@ -9,15 +9,15 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { phoneValidator } from '../../../helpers/utils';
-import { Button } from '../../../ui/shared/button';
+import { Button } from '../../../ui/button';
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from '../../../ui/shared/form';
-import { FloatingInput } from '../../../ui/shared/input/';
+} from '../../../ui/form';
+import { FloatingInput } from '../../../ui/input/';
 import { getOtpAction } from './_actions/get-otp-action';
 
 const schema = z.object({

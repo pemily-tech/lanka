@@ -13,8 +13,8 @@ import {
 	FormField,
 	FormItem,
 	FormMessage,
-} from '../../../../ui/shared/form';
-import { FloatingInput } from '../../../../ui/shared/input';
+} from '../../../../ui/form';
+import { FloatingInput } from '../../../../ui/input';
 import { useCreatePet } from '../create/_api/use-create-pet';
 import { useUpdatePet } from '../update/[id]/_api/use-update-parent';
 import { CalendarType } from './calendar';
@@ -28,7 +28,7 @@ import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { cn } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IPetItem } from '@/types/common';
-import { Button } from '@/ui/shared/button';
+import { Button } from '@/ui/button';
 
 export function PetForm({ type }: { type: 'add' | 'edit' }) {
 	const params = useParams<{ id: string }>();

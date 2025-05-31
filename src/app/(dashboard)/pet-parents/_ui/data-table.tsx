@@ -24,7 +24,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from '@/ui/shared/table';
+} from '@/ui/table';
 
 interface IDataTableProps {
 	data: IPetParent[];

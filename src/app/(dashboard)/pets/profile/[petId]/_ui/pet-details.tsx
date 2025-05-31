@@ -15,8 +15,8 @@ import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
 import { DATE_FORMAT, MAX_SIZE_500 } from '@/helpers/constant';
 import { Routes } from '@/helpers/routes';
 import { createFormDataForImage } from '@/helpers/utils';
-import { Button } from '@/ui/shared/button';
-import { LazyImage } from '@/ui/shared/lazy-image';
+import { Button } from '@/ui/button';
+import { LazyImage } from '@/ui/lazy-image';
 
 export default function PetDetails() {
 	const params = useParams();

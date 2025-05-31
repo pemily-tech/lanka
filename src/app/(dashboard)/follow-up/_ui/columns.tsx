@@ -7,7 +7,7 @@ import Status from './status';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { type IFollowUpRecord } from '@/types/clinic';
 import { type IOtherCommonFilter } from '@/types/common';
-import { LazyImage } from '@/ui/shared/lazy-image';
+import { LazyImage } from '@/ui/lazy-image';
 
 export function useColumns({
 	type,

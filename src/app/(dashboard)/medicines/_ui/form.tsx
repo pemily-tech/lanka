@@ -8,14 +8,14 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../../../../ui/shared/form';
-import { FloatingTextArea } from '../../../../ui/shared/text-area';
+} from '../../../../ui/form';
+import { FloatingTextArea } from '../../../../ui/text-area';
 import SelectField from './select';
 import { useMedicineForm } from './use-form';
 
-import { Button } from '@/ui/shared/button';
-import { FloatingInput } from '@/ui/shared/input';
-import { Switch } from '@/ui/shared/switch';
+import { Button } from '@/ui/button';
+import { FloatingInput } from '@/ui/input';
+import { Switch } from '@/ui/switch';
 
 export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 	const { form, onSubmit, isUpdaing, isCreating } = useMedicineForm(type);

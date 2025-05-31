@@ -18,10 +18,9 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-} from '@/ui/shared/alert';
-import { Button } from '@/ui/shared/button';
-import { Loader } from '@/ui/shared/loader';
-import Spinner from '@/ui/shared/spinner';
+} from '@/ui/alert';
+import { Button } from '@/ui/button';
+import { Loader } from '@/ui/loader';
 
 export default function Actions({
 	record,

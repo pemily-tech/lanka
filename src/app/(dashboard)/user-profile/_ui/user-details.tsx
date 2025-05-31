@@ -12,7 +12,7 @@ import { useAuthStore } from '../../../../store/user-auth';
 import { useUploadUserProfile } from '@/api/mutations/upload-user-profile';
 import { useGetUser } from '@/api/queries/use-get-user-details';
 import { MAX_SIZE_500 } from '@/helpers/constant';
-import { LazyImage } from '@/ui/shared/lazy-image';
+import { LazyImage } from '@/ui/lazy-image';
 
 export default function UserDetails() {
 	const { userId } = useAuthStore();

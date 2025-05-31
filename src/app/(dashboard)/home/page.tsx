@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 import { Roles } from '../../../helpers/primitives';
 import { useAuthStore } from '../../../store/user-auth';
-import { Button } from '../../../ui/shared/button';
-import { ImagePlaceholder } from '../../../ui/shared/image';
+import { Button } from '../../../ui/button';
+import { ImagePlaceholder } from '../../../ui/image';
 import { useVaccinationExcel } from './_api/analytics';
 
 const months = [

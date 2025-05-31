@@ -6,14 +6,14 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '@/ui/shared/form';
+} from '@/ui/form';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '@/ui/shared/select';
+} from '@/ui/select';
 
 export function SelectType({
 	form,

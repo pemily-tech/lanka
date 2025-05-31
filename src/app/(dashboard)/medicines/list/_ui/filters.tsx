@@ -4,17 +4,17 @@ import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
 import { useUpdateUrl } from '../../../../../hooks/use-update-url';
-import { Label } from '../../../../../ui/shared/label';
+import { Label } from '../../../../../ui/label';
 
 import { Routes } from '@/helpers/routes';
-import { Command, CommandInput } from '@/ui/shared/command';
+import { Command, CommandInput } from '@/ui/command';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '@/ui/shared/select';
+} from '@/ui/select';
 
 export default function Filters({
 	value,

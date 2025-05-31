@@ -6,7 +6,7 @@ import MedicalRecord from '../_ui/medical-record';
 import FollowUps from './follow-up';
 import VaccinationRecord from './vaccination-records';
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/shared/tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/tabs';
 
 export default function RecordTabs() {
 	const router = useRouter();

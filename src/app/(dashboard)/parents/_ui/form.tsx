@@ -15,16 +15,16 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../../../../ui/shared/form';
-import { FloatingInput } from '../../../../ui/shared/input';
+} from '../../../../ui/form';
+import { FloatingInput } from '../../../../ui/input';
 import { useGetParentById } from '../_api/use-get-parent-byid';
 import useCreateParent from '../create/_api/use-create-parent';
 import useUpdateParent from '../update/[id]/_api/use-update-parent';
 
 import { cn, phoneValidator } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
-import { Button } from '@/ui/shared/button';
-import { Switch } from '@/ui/shared/switch';
+import { Button } from '@/ui/button';
+import { Switch } from '@/ui/switch';
 
 const getValidationSchema = (type: 'add' | 'edit') =>
 	z.object({

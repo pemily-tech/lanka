@@ -10,7 +10,7 @@ import { AppConstants } from '@/helpers/primitives';
 import { queryClient } from '@/services/providers';
 import { type IMedicalRecord } from '@/types/clinic';
 import { type IMedicalRecordFilter } from '@/types/common';
-import { Button } from '@/ui/shared/button';
+import { Button } from '@/ui/button';
 import {
 	Dialog,
 	DialogClose,
@@ -20,15 +20,9 @@ import {
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from '@/ui/shared/dialog';
-import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormMessage,
-} from '@/ui/shared/form';
-import { FloatingTextArea } from '@/ui/shared/text-area';
+} from '@/ui/dialog';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form';
+import { FloatingTextArea } from '@/ui/text-area';
 
 const schema = z.object({
 	comment: z.string().nonempty('Comment is required'),

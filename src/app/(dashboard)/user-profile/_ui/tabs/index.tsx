@@ -10,7 +10,7 @@ import {
 	TabsContent,
 	TabsList,
 	TabsTrigger,
-} from '../../../../../ui/shared/tabs';
+} from '../../../../../ui/tabs';
 import AddressForm from './address';
 import BusinessDetails from './business-details';
 import Contact from './contact';

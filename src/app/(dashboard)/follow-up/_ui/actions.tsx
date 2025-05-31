@@ -16,8 +16,8 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-} from '@/ui/shared/alert';
-import { Button } from '@/ui/shared/button';
+} from '@/ui/alert';
+import { Button } from '@/ui/button';
 
 export default function Actions({
 	record,

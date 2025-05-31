@@ -19,8 +19,8 @@ import {
 	PaginationItem,
 	PaginationNext,
 	PaginationPrevious,
-} from '../../../../../ui/shared/pagination';
-import Spinner from '../../../../../ui/shared/spinner';
+} from '../../../../../ui/pagination';
+import Spinner from '../../../../../ui/spinner';
 import {
 	Table,
 	TableBody,
@@ -28,7 +28,7 @@ import {
 	TableHead,
 	TableHeader,
 	TableRow,
-} from '../../../../../ui/shared/table';
+} from '../../../../../ui/table';
 import { useInvoiceListingContext } from '../context/context';
 
 export default function Columns() {

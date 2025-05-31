@@ -7,12 +7,12 @@ import {
 	CommandEmpty,
 	CommandInput,
 	CommandList,
-} from '../../ui/shared/command';
+} from '../../ui/command';
 
 import { useGetPetParents } from '@/api/queries/use-get-pet-parent';
 import { cn } from '@/helpers/utils';
-import { UserProfile } from '@/ui/shared/profile-image/user';
-import Spinner from '@/ui/shared/spinner';
+import { UserProfile } from '@/ui/profile-image/user';
+import Spinner from '@/ui/spinner';
 
 export default function PetParent({
 	setValue,

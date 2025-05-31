@@ -7,18 +7,18 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../../../../ui/shared/form';
-import { FloatingTextArea } from '../../../../ui/shared/text-area';
+} from '../../../../ui/form';
+import { FloatingTextArea } from '../../../../ui/text-area';
 import { type IFormData } from './schema';
 
-import { FloatingInput } from '@/ui/shared/input';
+import { FloatingInput } from '@/ui/input';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '@/ui/shared/select';
+} from '@/ui/select';
 
 export const renderField = (form: UseFormReturn<IFormData>, field: any) => {
 	if (field.type === 'select') {

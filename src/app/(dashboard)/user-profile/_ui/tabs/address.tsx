@@ -17,16 +17,16 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-} from '../../../../../ui/shared/form';
-import { FloatingInput } from '../../../../../ui/shared/input';
+} from '../../../../../ui/form';
+import { FloatingInput } from '../../../../../ui/input';
 import { useCreateAddress } from '../../_api/create-address';
 import { usePincode } from '../../_api/pincode';
 import { useUpdateAddress } from '../../_api/update-address';
 
 import { useGetUser } from '@/api/queries/use-get-user-details';
 import { cn } from '@/helpers/utils';
-import { Button } from '@/ui/shared/button';
-import { Popover, PopoverContent, PopoverTrigger } from '@/ui/shared/popover';
+import { Button } from '@/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
 
 const schema = z.object({
 	line1: z.string().min(1, 'Line1 is required'),

@@ -12,10 +12,10 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-} from '../../../../../ui/shared/alert';
+} from '../../../../../ui/alert';
 import { useFooterActions } from '../_hooks/use-footer';
 
-import { Button } from '@/ui/shared/button';
+import { Button } from '@/ui/button';
 
 export default function Footer() {
 	const {

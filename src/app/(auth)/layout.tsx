@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import { Routes } from '../../helpers/routes';
 import { useAuthStore } from '../../store/user-auth';
-import { ImagePlaceholder } from '../../ui/shared/image';
+import { ImagePlaceholder } from '../../ui/image';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
 	const { loggedIn } = useAuthStore();

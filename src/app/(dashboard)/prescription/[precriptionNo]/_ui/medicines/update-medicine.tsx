@@ -4,8 +4,8 @@ import { type IMedicine } from '../../../../../../types/prescription';
 import { useMedicineStore } from '../../_store/medicine-store';
 import SelectMedicineType from './select';
 
-import { Button } from '@/ui/shared/button';
-import { DialogClose } from '@/ui/shared/dialog';
+import { Button } from '@/ui/button';
+import { DialogClose } from '@/ui/dialog';
 
 export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 	const [localData, setLocalData] = useState<IMedicine>(medicine);
