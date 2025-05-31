@@ -3,6 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import MedicalRecord from '../_ui/medical-record';
+import FollowUps from './follow-up';
 import VaccinationRecord from './vaccination-records';
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/shared/tabs';
@@ -31,7 +32,7 @@ export default function RecordTabs() {
 		{
 			label: 'Follow Ups',
 			value: 'followups',
-			component: <div>Follow Ups</div>,
+			component: <FollowUps />,
 		},
 		{
 			label: 'Health Certificate',

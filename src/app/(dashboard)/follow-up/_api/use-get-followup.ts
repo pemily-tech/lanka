@@ -2,7 +2,7 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { HttpService } from '@/services/http-service';
 import { type IFollowUpRecord } from '@/types/clinic';
-import { type IApiResponse } from '@/types/common';
+import { type IApiResponse, type IOtherCommonFilter } from '@/types/common';
 
 const getFollowups = async ({
 	queryKey,
@@ -28,7 +28,7 @@ export function useGetFollows({
 	petId,
 	date,
 }: {
-	type?: 'PENDING' | 'COMPLETE' | 'ALL';
+	type?: IOtherCommonFilter;
 	petId?: string;
 	date?: string;
 }) {

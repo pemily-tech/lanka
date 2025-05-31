@@ -1,6 +1,6 @@
 'use client';
 
-import { memo, useState } from 'react';
+import { memo, useMemo, useState } from 'react';
 import { format } from 'date-fns';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
@@ -10,13 +10,16 @@ import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { RecordTypes } from '@/helpers/primitives';
 import { Routes } from '@/helpers/routes';
 import { cn } from '@/helpers/utils';
+import { type IOtherCommonFilter } from '@/types/common';
 import { DayPickerSingle } from '@/ui/shared/day-picker-single';
 
 interface IProps {
 	selectedDate: Date | undefined;
 	setSelectedDate: (date: Date | undefined) => void;
-	commonFilter: 'PENDING' | 'COMPLETE' | 'ALL' | null;
-	setCommonFilter: (filter: 'PENDING' | 'COMPLETE' | 'ALL') => void;
+	filter: IOtherCommonFilter | null;
+	setFilter: (filter: IOtherCommonFilter) => void;
+	showCalendar?: boolean;
+	isPet?: boolean;
 }
 
 export const filters = [
@@ -37,20 +40,45 @@ const backgroundColor = 'hsl(264, 16%, 95%)';
 function Filters({
 	selectedDate,
 	setSelectedDate,
-	commonFilter,
-	setCommonFilter,
+	filter,
+	setFilter,
+	showCalendar = true,
+	isPet,
 }: IProps) {
 	const [hovered, setHovered] = useState(false);
+	const localFilters = useMemo(() => {
+		if (isPet) {
+			return [
+				filters[0],
+				{ label: 'Upcoming', value: 'UPCOMING' },
+				...filters.slice(1),
+			];
+		} else {
+			return filters;
+		}
+	}, [isPet]);
 
 	return (
-		<div className="flex flex-row items-end justify-between gap-24">
-			<DayPickerSingle
-				selectedDate={selectedDate}
-				setSelectedDate={setSelectedDate}
-			/>
-			<div className="flex flex-1 items-end justify-end gap-12">
-				{filters?.map((record) => {
-					const active = commonFilter === record.value;
+		<div
+			className={cn(
+				'flex flex-row items-end justify-between gap-24',
+				!showCalendar && 'items-center justify-start'
+			)}
+		>
+			{showCalendar && (
+				<DayPickerSingle
+					selectedDate={selectedDate}
+					setSelectedDate={setSelectedDate}
+				/>
+			)}
+			<div
+				className={cn(
+					'flex flex-1 items-end justify-end gap-12',
+					!showCalendar && 'items-center justify-start'
+				)}
+			>
+				{localFilters?.map((record) => {
+					const active = filter === record.value;
 					return (
 						<motion.div
 							layout
@@ -73,12 +101,7 @@ function Filters({
 									: 'border-transparent'
 							)}
 							onClick={() =>
-								setCommonFilter(
-									record.value as
-										| 'PENDING'
-										| 'COMPLETE'
-										| 'ALL'
-								)
+								setFilter(record.value as IOtherCommonFilter)
 							}
 							key={record.value}
 						>
@@ -89,7 +112,7 @@ function Filters({
 					);
 				})}
 				<Link
-					href={`${Routes.SELECT_PET}?recordType=${RecordTypes.Followup}&filter=${commonFilter}&date=${format(selectedDate as Date, DEFAULT_DATE_FORMAT)}`}
+					href={`${Routes.SELECT_PET}?recordType=${RecordTypes.Followup}&filter=${filter}&date=${format(selectedDate as Date, DEFAULT_DATE_FORMAT)}`}
 				>
 					<motion.button
 						className="bg-secondary flex size-[48px] cursor-pointer items-center justify-center rounded-xl"

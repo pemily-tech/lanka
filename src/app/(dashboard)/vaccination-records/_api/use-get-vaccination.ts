@@ -2,7 +2,7 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { HttpService } from '@/services/http-service';
 import { type IVaccinationRecord } from '@/types/clinic';
-import { type IApiResponse } from '@/types/common';
+import { type IApiResponse, type IOtherCommonFilter } from '@/types/common';
 
 const getVaccinations = async ({
 	queryKey,
@@ -28,7 +28,7 @@ export function useGetVaccinations({
 	petId,
 	date,
 }: {
-	type: string;
+	type: IOtherCommonFilter;
 	petId?: string;
 	date?: string | undefined;
 }) {

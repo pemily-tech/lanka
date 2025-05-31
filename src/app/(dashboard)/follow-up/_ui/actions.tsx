@@ -5,6 +5,7 @@ import { useUpdateNotification } from '../_api/use-update-notification';
 
 import { queryClient } from '@/services/providers';
 import { type IFollowUpRecord } from '@/types/clinic';
+import { type IOtherCommonFilter } from '@/types/common';
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -22,10 +23,12 @@ export default function Actions({
 	record,
 	type,
 	date,
+	petId,
 }: {
 	record: IFollowUpRecord;
-	type: 'PENDING' | 'COMPLETE' | 'ALL';
-	date: string;
+	type: IOtherCommonFilter;
+	date?: string | undefined;
+	petId?: string | undefined;
 }) {
 	const { mutateAsync: updateNotification, isPending } =
 		useUpdateNotification();
@@ -45,7 +48,7 @@ export default function Actions({
 		const response = await updateFollowup(payload);
 		if (response.status === 'SUCCESS') {
 			queryClient.invalidateQueries({
-				queryKey: ['clinic/followUpRecords', type, undefined, date],
+				queryKey: ['clinic/followUpRecords', type, petId, date],
 			});
 		}
 	};
@@ -65,7 +68,7 @@ export default function Actions({
 		const response = await updateNotification(payload);
 		if (response.status === 'SUCCESS') {
 			queryClient.invalidateQueries({
-				queryKey: ['clinic/followUpRecords', type, undefined, date],
+				queryKey: ['clinic/followUpRecords', type, petId, date],
 			});
 		}
 	};
