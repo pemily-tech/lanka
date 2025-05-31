@@ -16,15 +16,10 @@ const useDocumentDownload = (url: string, publicDoc = false) => {
 
 	const getImageUrl = useCallback(async () => {
 		if (!url) return;
-
-		try {
-			const payload = { key: url, publicDoc };
-			const response = await downloadDocument(payload);
-			if (response?.data?.signedUrl) {
-				setImageUrl(response.data.signedUrl);
-			}
-		} catch (err) {
-			console.error('Error downloading document:', err);
+		const payload = { key: url, publicDoc };
+		const response = await downloadDocument(payload);
+		if (response?.data?.signedUrl) {
+			setImageUrl(response.data.signedUrl);
 		}
 	}, [url]);
 

@@ -7,10 +7,10 @@ import { toast } from 'sonner';
 
 import { useUploadMedicalRecord } from '../_api/use-create-medical-record';
 
-import { PdfIcon } from '@/components/icons/pdf-icon';
 import { MAX_SIZE_2MB } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import {
+	cn,
 	createFormDataForDocument,
 	createFormDataForImage,
 } from '@/helpers/utils';
@@ -93,7 +93,6 @@ export default function MedicalRecordForm({
 			router.back();
 		}
 	};
-	console.log(previewUrl);
 
 	return (
 		<div className="mb-54 mt-24 flex h-full flex-col">
@@ -120,15 +119,20 @@ export default function MedicalRecordForm({
 							</p>
 						</div>
 					)}
-					{previewUrl &&
-						(acceptedFile?.type === 'application/pdf' ? (
-							<PdfIcon className="size-full p-16" />
-						) : (
-							<LazyImage
-								src={previewUrl as string}
-								className="size-full rounded-xl object-cover"
-							/>
-						))}
+					{previewUrl && (
+						<LazyImage
+							src={
+								acceptedFile?.type === 'application/pdf'
+									? '/images/pdf.png'
+									: (previewUrl as string)
+							}
+							className={cn(
+								'size-full rounded-xl object-cover',
+								acceptedFile?.type === 'application/pdf' &&
+									'object-contain p-16'
+							)}
+						/>
+					)}
 					{previewUrl && (
 						<div
 							onClick={(e) => {

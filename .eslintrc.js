@@ -1,4 +1,5 @@
 module.exports = {
+	parser: '@typescript-eslint/parser',
 	extends: [
 		'next/core-web-vitals',
 		'prettier',
@@ -83,38 +84,21 @@ module.exports = {
 		'simple-import-sort/exports': 'error',
 		'@typescript-eslint/no-unused-vars': 'off',
 		'tailwindcss/no-custom-classname': 'off',
-		'unused-imports/no-unused-imports': 'off',
-		'unused-imports/no-unused-vars': 'off',
+		'unused-imports/no-unused-imports': 'error',
+		'unused-imports/no-unused-vars': [
+			'error',
+			{
+				argsIgnorePattern: '^_',
+				varsIgnorePattern: '^_',
+				caughtErrorsIgnorePattern: '^_',
+			},
+		],
 		'no-tabs': 'off',
 		indent: ['error', 'tab', { SwitchCase: 1 }],
 		'sort-imports': 'off',
 		'@typescript-eslint/no-var-requires': 'off',
 		'@typescript-eslint/no-require-imports': 'off',
 	},
-
-	overrides: [
-		// Override for Prettier tab settings (optional, if targeting specific files)
-		{
-			files: ['*.js', '*.ts', '*.tsx'], // Add specific file patterns here
-			rules: {
-				'prettier/prettier': [
-					'warn',
-					{
-						useTabs: true,
-						tabWidth: 4,
-					},
-				],
-			},
-		},
-		{
-			// Configuration for testing files
-			files: [
-				'**/__tests__/**/*.[jt]s?(x)',
-				'**/?(*.)+(spec|test).[jt]s?(x)',
-			],
-			extends: ['plugin:testing-library/react'],
-		},
-	],
 	settings: {
 		tailwindcss: {
 			callees: ['cn'],

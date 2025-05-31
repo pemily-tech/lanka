@@ -15,7 +15,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 	const { loggedIn, hasHydrated } = useAuthStore();
 	const pathname = usePathname();
 	const router = useRouter();
-	console.log(loggedIn, hasHydrated);
 
 	useEffect(() => {
 		if (hasHydrated && !loggedIn) {

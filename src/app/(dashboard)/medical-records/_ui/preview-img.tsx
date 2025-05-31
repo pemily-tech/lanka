@@ -1,8 +1,10 @@
-import { PdfIcon } from '@/components/icons/pdf-icon';
+import { memo } from 'react';
+
+import { cn } from '@/helpers/utils';
 import useDocumentDownload from '@/hooks/use-download-document';
 import { LazyImage } from '@/ui/lazy-image';
 
-export default function PreviewImage({ url }: { url: string }) {
+function PreviewImage({ url }: { url: string }) {
 	const { imgType, url: imgUrl, isPending } = useDocumentDownload(url);
 
 	if (isPending) {
@@ -15,9 +17,15 @@ export default function PreviewImage({ url }: { url: string }) {
 		return;
 	}
 
-	if (imgType === 'pdf') {
-		return <PdfIcon className="h-[72px] w-[85px] rounded-lg" />;
-	}
-
-	return <LazyImage src={imgUrl} className="h-[72px] w-[85px] rounded-lg" />;
+	return (
+		<LazyImage
+			src={imgType === 'pdf' ? '/images/pdf.png' : imgUrl}
+			className={cn(
+				'h-[72px] w-[85px] rounded-lg',
+				imgType === 'pdf' && 'object-contain'
+			)}
+		/>
+	);
 }
+
+export default memo(PreviewImage);

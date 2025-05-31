@@ -1,4 +1,3 @@
-import { type StylesConfig } from 'react-select';
 import { type ClassValue, clsx } from 'clsx';
 import {
 	addMonths,
@@ -9,7 +8,6 @@ import {
 	format,
 } from 'date-fns';
 import { twMerge } from 'tailwind-merge';
-import { date } from 'zod';
 
 import { useAuthStore } from '../store/user-auth';
 
@@ -75,23 +73,6 @@ export const createFormDataForDocument = (
 	}
 
 	return data;
-};
-
-export const customSelectBoxStyles: StylesConfig<
-	{ value: string; label: string },
-	false
-> = {
-	control: (provided, state) => ({
-		...provided,
-		borderColor: state.isFocused ? '#007A65' : '#D3DADD',
-		boxShadow: 'none',
-	}),
-	option: (provided, state) => ({
-		...provided,
-		backgroundColor: state.isFocused ? '#007A65' : undefined,
-		color: state.isFocused ? '#fff' : '#000',
-		fontSize: '14px',
-	}),
 };
 
 export const convertDates = (dates: Date[] | Date) => {

@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
 			'pemily-test-docs.s3.ap-south-1.amazonaws.com',
 		],
 	},
+	reactStrictMode: false,
 };
 
 export default nextConfig;
