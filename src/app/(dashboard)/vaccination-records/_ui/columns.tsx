@@ -1,6 +1,5 @@
 import { type ColumnDef } from '@tanstack/react-table';
 import { format, parseISO } from 'date-fns';
-import { date } from 'zod';
 
 import Actions from './actions';
 import Status from './status';
