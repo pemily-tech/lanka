@@ -37,7 +37,7 @@ export function Switch({
           `}
 				>
 					<span
-						className={`inline-block size-20 rounded-full bg-white transition-all duration-150${value ? 'translate-x-[22px]' : 'translate-x-[4px]'}
+						className={`inline-block size-20 rounded-full bg-white transition-all duration-150 ${value ? 'translate-x-[22px]' : 'translate-x-[4px]'}
           `}
 					></span>
 				</section>

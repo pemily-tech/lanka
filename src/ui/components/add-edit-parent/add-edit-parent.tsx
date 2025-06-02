@@ -21,13 +21,10 @@ import TextInput from '../text-input';
 
 const getValidationSchema = (type: 'add' | 'edit') =>
 	yup.object().shape({
-		mobileNumber:
-			type === 'add'
-				? yup
-						.string()
-						.required('Phone number is required')
-						.matches(phoneValidator, 'Phone number is not valid')
-				: yup.string().notRequired(),
+		mobileNumber: yup
+			.string()
+			.required('Phone number is required')
+			.matches(phoneValidator, 'Phone number is not valid'),
 		name:
 			type === 'edit'
 				? yup.string().required('Name is required')
@@ -61,11 +58,13 @@ const AddEditParent = () => {
 	const { mutate: createParent, isPending: isLoading } = useCreateParent({
 		refetch: modalState.refetch as () => void,
 	});
+	console.log(parentData);
 
 	useEffect(() => {
 		if (modalState.type === 'edit' && parentData && parentId) {
 			setValue('name', parentData?.parent?.name);
 			setValue('comment', parentData?.comment);
+			setValue('mobileNumber', parentData?.parent?.mobile);
 			setChecked(parentData?.active);
 		} else {
 			reset({
@@ -80,6 +79,7 @@ const AddEditParent = () => {
 			const updateData = {
 				name: values.name,
 				active: checked,
+				mobile: Number(values.mobileNumber),
 				...(values.comment.length > 0 && { comment: values.comment }),
 			};
 			updateParent(updateData);
@@ -123,7 +123,7 @@ const AddEditParent = () => {
 				)}
 				{modalState.type === 'edit' && (
 					<>
-						<section className="grid grid-cols-2 gap-[42px]">
+						<section className="grid grid-cols-2 gap-[24px]">
 							<TextInput
 								label="Name"
 								placeholder=""
@@ -131,18 +131,24 @@ const AddEditParent = () => {
 								{...register('name')}
 							/>
 							<TextInput
+								label="Mobile Number"
+								placeholder=""
+								error={errors?.mobileNumber}
+								{...register('mobileNumber')}
+							/>
+							<TextInput
 								label="Comment"
 								placeholder=""
 								error={errors?.name}
 								{...register('comment')}
 							/>
-						</section>
-						<section>
-							<Switch
-								label="Is parent active?"
-								value={checked}
-								onChange={() => setChecked(!checked)}
-							/>
+							<div className="mt-24">
+								<Switch
+									label="Is parent active?"
+									value={checked}
+									onChange={() => setChecked(!checked)}
+								/>
+							</div>
 						</section>
 					</>
 				)}

@@ -13,6 +13,7 @@ interface IPayload {
 	name?: string;
 	comment?: string;
 	active: boolean;
+	mobile: number;
 }
 
 const updateParent = async (payload: IPayload, parentId: string) => {

@@ -181,7 +181,6 @@ const PersonalDetailsForm = () => {
 											id={name}
 											isError={!!fieldState.error}
 											type={type || 'text'}
-											disabled={name === 'mobile'}
 											{...field}
 										/>
 									</FormControl>
