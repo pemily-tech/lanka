@@ -3,14 +3,22 @@
 import { useEffect, useState } from 'react';
 import Script from 'next/script';
 
+import { useAuthStore } from '@/store/user-auth';
+
 export default function AnalyticsScript() {
 	const [showScript, setShowScript] = useState(false);
+	const { loggedIn, mobile } = useAuthStore();
 
 	useEffect(() => {
-		if (window.location.hostname === 'clinic.pemilyy.com') {
+		if (
+			window.location.hostname === 'clinic.pemilyy.com' &&
+			loggedIn &&
+			mobile !== '9888888888' &&
+			mobile !== '9666666666'
+		) {
 			setShowScript(true);
 		}
-	}, []);
+	}, [loggedIn, mobile]);
 
 	if (!showScript) return null;
 

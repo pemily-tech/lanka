@@ -130,6 +130,7 @@ export interface IPet {
 	breed: string;
 	type: string;
 	microChipNo?: string;
+	oldCode?: string;
 }
 export interface ISlotDetail {
 	scheduleId: string;
@@ -241,6 +242,7 @@ export interface IPetItem {
 	profileUrl: string;
 	code: string;
 	microChipNo?: string;
+	oldCode?: string;
 }
 export interface IGetPetsResponse {
 	pets: IPetItem[];

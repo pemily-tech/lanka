@@ -21,6 +21,12 @@ export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 					</div>
 					<div className="flex-1">{localData.name}</div>
 				</div>
+				<div className="flex flex-row">
+					<div className="text-black-1/60 w-[120px] font-semibold">
+						Strength:
+					</div>
+					<div className="flex-1">{localData.strength}</div>
+				</div>
 				{(
 					[
 						['dose', 'Dose', 'MEDICINE_DOSE'],
@@ -47,12 +53,6 @@ export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 						/>
 					</div>
 				))}
-				<div className="flex flex-row">
-					<div className="text-black-1/60 w-[120px] font-semibold">
-						Strength:
-					</div>
-					<div className="flex-1">{localData.strength}</div>
-				</div>
 			</div>
 			<div className="mt-16 flex flex-row justify-end gap-16 border-t pt-16">
 				<Button

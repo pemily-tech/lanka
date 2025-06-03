@@ -38,6 +38,11 @@ export function useColumns(
 			cell: ({ row }) => <span>{row.original.name}</span>,
 		},
 		{
+			accessorKey: 'strength',
+			header: 'Strength',
+			cell: ({ row }) => <span>{row.original.strength}</span>,
+		},
+		{
 			accessorKey: 'dose',
 			header: 'Dose',
 			cell: ({ row }) => <span>{row.original.dose}</span>,
@@ -61,11 +66,6 @@ export function useColumns(
 			accessorKey: 'duration',
 			header: 'Duration',
 			cell: ({ row }) => <span>{row.original.duration}</span>,
-		},
-		{
-			accessorKey: 'strength',
-			header: 'Strength',
-			cell: ({ row }) => <span>{row.original.strength}</span>,
 		},
 		{
 			id: 'buttons',

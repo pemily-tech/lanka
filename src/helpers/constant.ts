@@ -32,6 +32,7 @@ export const certificateData = [
 	},
 	{ value: 'EUTHANASIA_CERTIFICATE', label: 'Euthanasia Certificate' },
 	{ value: 'SURGICAL_RISK_NOTE', label: 'Surgical Risk Note' },
+	{ value: 'STERILIZATION_CERTIFICATE', label: 'Sterilization Certificate' },
 	{ value: 'DEATH_CERTIFICATE', label: 'Death Certificate' },
 	{
 		value: 'MICROCHIP_IMPLANTATION_CERTIFICATE',

@@ -10,7 +10,9 @@ export function UmamiIdentify() {
 	useEffect(() => {
 		if (
 			loggedIn &&
-			mobile &&
+			!!mobile &&
+			mobile !== '9888888888' &&
+			mobile !== '9666666666' &&
 			typeof window !== 'undefined' &&
 			window.location.hostname === 'clinic.pemilyy.com' &&
 			window.umami
