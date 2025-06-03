@@ -60,7 +60,9 @@ export const useMedicineForm = (type: 'UPDATE' | 'CREATE') => {
 		if (type === 'UPDATE') {
 			updateMedicine(values);
 		} else {
-			const response = await createMedicine(values);
+			const { active, ...tempPayload } = values;
+			void active;
+			const response = await createMedicine(tempPayload);
 			if (response.status === AppConstants.Success) {
 				router.back();
 			}
