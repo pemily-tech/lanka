@@ -12,6 +12,7 @@ export function UmamiIdentify() {
 			loggedIn &&
 			!!mobile &&
 			mobile !== '9888888888' &&
+			mobile !== '9666666666' &&
 			typeof window !== 'undefined' &&
 			window.location.hostname === 'clinic.pemilyy.com' &&
 			window.umami

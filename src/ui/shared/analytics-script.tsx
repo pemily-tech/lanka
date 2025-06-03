@@ -13,7 +13,8 @@ export default function AnalyticsScript() {
 		if (
 			window.location.hostname === 'clinic.pemilyy.com' &&
 			loggedIn &&
-			mobile !== '9888888888'
+			mobile !== '9888888888' &&
+			mobile !== '9666666666'
 		) {
 			setShowScript(true);
 		}
