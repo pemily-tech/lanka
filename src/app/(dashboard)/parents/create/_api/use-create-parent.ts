@@ -9,16 +9,11 @@ interface IPayload {
 }
 
 const createParent = async (payload: IPayload) => {
-	try {
-		const { data } = await HttpService.patch(
-			`/clinic/addParent/${payload?.mobileNumber}`,
-			{ name: payload.name }
-		);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch(
+		`/clinic/addParent/${payload?.mobileNumber}`,
+		{ name: payload.name }
+	);
+	return data;
 };
 
 export function useCreateParent() {
@@ -36,5 +31,3 @@ export function useCreateParent() {
 		},
 	});
 }
-
-export default useCreateParent;

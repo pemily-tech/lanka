@@ -18,9 +18,10 @@ import {
 } from '../../../../ui/form';
 import { FloatingInput } from '../../../../ui/input';
 import { useGetParentById } from '../_api/use-get-parent-byid';
-import useCreateParent from '../create/_api/use-create-parent';
-import useUpdateParent from '../update/[id]/_api/use-update-parent';
+import { useCreateParent } from '../create/_api/use-create-parent';
+import { useUpdateParent } from '../update/[id]/_api/use-update-parent';
 
+import { AppConstants } from '@/helpers/primitives';
 import { cn, phoneValidator } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { Button } from '@/ui/button';
@@ -28,13 +29,10 @@ import { Switch } from '@/ui/switch';
 
 const getValidationSchema = (type: 'add' | 'edit') =>
 	z.object({
-		mobileNumber:
-			type === 'add'
-				? z
-						.string()
-						.regex(phoneValidator, 'Phone number is not valid')
-						.nonempty('Phone number is required')
-				: z.string().optional(),
+		mobileNumber: z
+			.string()
+			.regex(phoneValidator, 'Phone number is not valid')
+			.nonempty('Phone number is required'),
 		name:
 			type === 'edit'
 				? z.string().nonempty('Name is required')
@@ -91,14 +89,15 @@ export function ParentForm({ type }: { type: 'add' | 'edit' }) {
 				mobileNumber: values.mobileNumber!,
 				name: values.name,
 			});
-			if (res.status === 'SUCCESS') commonInvalidateQuery();
+			if (res.status === AppConstants.Success) commonInvalidateQuery();
 		} else {
 			const res = await updateParent({
 				name: values.name,
 				comment: values.comment,
 				active: values.active as boolean,
+				mobile: Number(values.mobileNumber),
 			});
-			if (res.status === 'SUCCESS') commonInvalidateQuery();
+			if (res.status === AppConstants.Success) commonInvalidateQuery();
 		}
 	};
 
@@ -115,9 +114,7 @@ export function ParentForm({ type }: { type: 'add' | 'edit' }) {
 					className="mt-24 grid grid-cols-2 gap-24"
 				>
 					{[
-						...(type === 'add'
-							? [['mobileNumber', 'Mobile Number'] as const]
-							: []),
+						['mobileNumber', 'Mobile Number'],
 						['name', 'Name'],
 						...(type === 'edit'
 							? [['comment', 'Comment'] as const]

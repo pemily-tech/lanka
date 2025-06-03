@@ -7,18 +7,15 @@ interface IPayload {
 	name?: string;
 	comment?: string;
 	active: boolean;
+	mobile: number;
 }
 
 const updateParent = async (payload: IPayload, parentId: string) => {
-	try {
-		const { data } = await HttpService.patch(
-			`/clinic/updateMember/${parentId}`,
-			payload
-		);
-		return data;
-	} catch (err) {
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch(
+		`/clinic/updateMember/${parentId}`,
+		payload
+	);
+	return data;
 };
 
 export function useUpdateParent({ memberId }: { memberId: string }) {
@@ -36,5 +33,3 @@ export function useUpdateParent({ memberId }: { memberId: string }) {
 		},
 	});
 }
-
-export default useUpdateParent;
