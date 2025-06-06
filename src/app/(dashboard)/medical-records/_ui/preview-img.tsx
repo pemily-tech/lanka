@@ -21,7 +21,7 @@ function PreviewImage({ url }: { url: string }) {
 		<LazyImage
 			src={imgType === 'pdf' ? '/images/pdf.png' : imgUrl}
 			className={cn(
-				'h-[72px] w-[85px] rounded-lg',
+				'h-[72px] w-[85px] rounded-lg object-cover',
 				imgType === 'pdf' && 'object-contain'
 			)}
 		/>

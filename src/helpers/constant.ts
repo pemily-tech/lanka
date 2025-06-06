@@ -53,3 +53,16 @@ export const DATE_BE_FORMAT = 'dd-MM-yyyy';
 
 export const MAX_SIZE_500 = 500 * 1024;
 export const MAX_SIZE_2MB = 2 * 1024 * 1024;
+
+export const medicalRecordFilters = [
+	{
+		label: 'Prescription',
+		value: 'PRESCRIPTION',
+	},
+	{
+		label: 'Report',
+		value: 'REPORT',
+	},
+	{ label: 'Diet', value: 'DIET' },
+	{ label: 'Other Documents', value: 'OTHER' },
+];

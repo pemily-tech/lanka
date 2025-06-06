@@ -4,12 +4,12 @@ import { Fragment } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 import FollowupForm from '../follow-up/_ui/form';
-import MedicalRecordForm from '../medical-records/_ui/form';
 import VaccinationForm from '../vaccination-records/_ui/form';
 import { useStepperHook } from './_hooks/use-stepper';
 import Pet from './_ui/pet';
 import PetParent from './_ui/pet-parent';
 
+import MedicalRecordForm from '@/components/medical-records/form';
 import { RecordTypes } from '@/helpers/primitives';
 import { cn } from '@/helpers/utils';
 import { type IMedicalRecordFilter } from '@/types/common';
@@ -30,6 +30,7 @@ export default function Page() {
 		selectedParentId,
 		selectedPetId,
 		handleNext,
+		onFinish,
 	} = useStepperHook({ type: recordType as string });
 
 	return (
@@ -51,37 +52,38 @@ export default function Page() {
 						/>
 					),
 					record: () => {
-						if (recordType === RecordTypes.Followup) {
-							return (
-								<FollowupForm
-									stepper={stepper}
-									parentId={selectedParentId as string}
-									petId={selectedPetId as string}
-								/>
-							);
+						switch (recordType) {
+							case RecordTypes.Followup:
+								return (
+									<FollowupForm
+										stepper={stepper}
+										parentId={selectedParentId as string}
+										petId={selectedPetId as string}
+									/>
+								);
+							case RecordTypes.Vaccination:
+								return (
+									<VaccinationForm
+										stepper={stepper}
+										parentId={selectedParentId as string}
+										petId={selectedPetId as string}
+									/>
+								);
+							case RecordTypes.Medical:
+								return (
+									<MedicalRecordForm
+										stepper={stepper}
+										parentId={selectedParentId as string}
+										petId={selectedPetId as string}
+										filterType={
+											medicalRecordFilterType as IMedicalRecordFilter
+										}
+										onFinish={onFinish}
+									/>
+								);
+							default:
+								return <div>Unknown record type</div>;
 						}
-						if (recordType === RecordTypes.Vaccination) {
-							return (
-								<VaccinationForm
-									stepper={stepper}
-									parentId={selectedParentId as string}
-									petId={selectedPetId as string}
-								/>
-							);
-						}
-						if (recordType === RecordTypes.Medical) {
-							return (
-								<MedicalRecordForm
-									stepper={stepper}
-									parentId={selectedParentId as string}
-									petId={selectedPetId as string}
-									filterType={
-										medicalRecordFilterType as IMedicalRecordFilter
-									}
-								/>
-							);
-						}
-						return <div>Unknown record type</div>;
 					},
 				})}
 			</div>

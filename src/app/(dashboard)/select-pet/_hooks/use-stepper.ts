@@ -1,16 +1,17 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { RecordTypes } from '@/helpers/primitives';
 import { defineStepper } from '@/ui/stepper';
 
-const FormSchema = z.object({
+const schema = z.object({
 	parentId: z.string().optional(),
 	petId: z.string().optional(),
 });
-export type FormValues = z.infer<typeof FormSchema>;
+type IFormdata = z.infer<typeof schema>;
 
 export function useStepperHook({ type }: { type: string }) {
 	const { useStepper, steps, utils } = defineStepper(
@@ -37,13 +38,14 @@ export function useStepperHook({ type }: { type: string }) {
 	);
 	const stepper = useStepper();
 	const currentIndex = utils.getIndex(stepper.current.id);
+	const router = useRouter();
 
-	const { register, setValue, getValues, watch } = useForm<FormValues>({
+	const { register, setValue, getValues, watch } = useForm<IFormdata>({
 		defaultValues: {
 			parentId: '',
 			petId: '',
 		},
-		resolver: zodResolver(FormSchema),
+		resolver: zodResolver(schema),
 		mode: 'onChange',
 	});
 	const selectedParentId = watch('parentId');
@@ -59,6 +61,7 @@ export function useStepperHook({ type }: { type: string }) {
 				stepper.next();
 			}
 		} catch (error) {
+			void error;
 			if (stepper.current.id === 'parent') {
 				toast.error('Please choose a parent to proceed.');
 			}
@@ -66,6 +69,10 @@ export function useStepperHook({ type }: { type: string }) {
 				toast.error('Please choose a pet to proceed.');
 			}
 		}
+	};
+
+	const onFinish = () => {
+		router.back();
 	};
 
 	return {
@@ -77,5 +84,6 @@ export function useStepperHook({ type }: { type: string }) {
 		setValue,
 		selectedParentId,
 		selectedPetId,
+		onFinish,
 	};
 }

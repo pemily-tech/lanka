@@ -1,18 +1,14 @@
 'use client';
 
-import { memo, useState } from 'react';
-import { format } from 'date-fns';
+import { memo, type ReactNode } from 'react';
 import { motion } from 'framer-motion';
-import { Plus } from 'lucide-react';
-import Link from 'next/link';
 
-import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
-import { RecordTypes } from '@/helpers/primitives';
-import { Routes } from '@/helpers/routes';
+import { medicalRecordFilters } from '@/helpers/constant';
 import { cn } from '@/helpers/utils';
+import { type IMedicalRecordFilter } from '@/types/common';
 import { DayPickerSingle } from '@/ui/day-picker-single';
 
-type IFilter = 'PRESCRIPTION' | 'REPORT' | 'DIET' | 'OTHER' | null;
+type IFilter = IMedicalRecordFilter | null;
 
 interface IProps {
 	selectedDate: Date | undefined;
@@ -20,20 +16,8 @@ interface IProps {
 	filter: IFilter;
 	setFilter: (filter: IFilter) => void;
 	showCalendar?: boolean;
+	children: ReactNode;
 }
-
-export const filters = [
-	{
-		label: 'Prescription',
-		value: 'PRESCRIPTION',
-	},
-	{
-		label: 'Report',
-		value: 'REPORT',
-	},
-	{ label: 'Diet', value: 'DIET' },
-	{ label: 'Other Documents', value: 'OTHER' },
-];
 
 const borderColor = 'hsl(264, 16%, 53%)';
 const backgroundColor = 'hsl(264, 16%, 95%)';
@@ -44,10 +28,8 @@ function Filters({
 	filter,
 	setFilter,
 	showCalendar = true,
+	children,
 }: IProps) {
-	const [hovered, setHovered] = useState(false);
-	const btnTxt = filters.find((item) => item.value === filter);
-
 	return (
 		<div className="flex flex-col items-start gap-24">
 			{showCalendar && (
@@ -58,7 +40,7 @@ function Filters({
 				/>
 			)}
 			<div className="flex flex-1 items-end justify-end gap-12">
-				{filters?.map((record) => {
+				{medicalRecordFilters?.map((record) => {
 					const active = filter === record.value;
 					return (
 						<motion.div
@@ -90,36 +72,7 @@ function Filters({
 						</motion.div>
 					);
 				})}
-				<Link
-					href={`${Routes.SELECT_PET}?recordType=${RecordTypes.Medical}&filter=${filter}&date=${format(selectedDate as Date, DEFAULT_DATE_FORMAT)}`}
-				>
-					<motion.button
-						className="bg-secondary flex size-[48px] cursor-pointer items-center justify-center rounded-xl"
-						initial={{ width: 48 }}
-						whileHover={{ width: 220 }}
-						transition={{
-							type: 'spring',
-							stiffness: 300,
-							damping: 20,
-						}}
-						onMouseEnter={() => setHovered(!hovered)}
-						onMouseLeave={() => setHovered(!hovered)}
-					>
-						{hovered ? (
-							<motion.span
-								initial={{ opacity: 0, y: 10 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -10 }}
-								transition={{ duration: 0.25 }}
-								className="font-bold text-white"
-							>
-								Upload {btnTxt?.label}
-							</motion.span>
-						) : (
-							<Plus className="size-18 text-white" />
-						)}
-					</motion.button>
-				</Link>
+				{children}
 			</div>
 		</div>
 	);
