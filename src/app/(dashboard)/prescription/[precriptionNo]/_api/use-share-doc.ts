@@ -3,7 +3,6 @@ import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../services/http-service';
 import { type IApiResponse } from '../../../../../types/common';
-import { type IPrescription } from '../../../../../types/prescription';
 
 interface IPayload {
 	attachedDocumentId?: string;
@@ -11,15 +10,10 @@ interface IPayload {
 }
 
 const shareDoc = async (payload: IPayload, id: string) => {
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ success: boolean }>
-		>(`prescription/shareDocument/${id}`, payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<
+		IApiResponse<{ success: boolean }>
+	>(`prescription/shareDocument/${id}`, payload);
+	return data;
 };
 
 export const useShareDoc = (id: string) => {

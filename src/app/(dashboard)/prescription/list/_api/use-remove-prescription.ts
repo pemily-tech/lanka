@@ -7,14 +7,10 @@ import { type IPrescription } from '../../../../../types/prescription';
 
 const removePrescription = async (payload: { id: string }) => {
 	const { id } = payload;
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ prescription: IPrescription }>
-		>(`/prescription/remove/${id}`);
-		return data;
-	} catch (err) {
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<
+		IApiResponse<{ prescription: IPrescription }>
+	>(`/prescription/remove/${id}`);
+	return data;
 };
 
 export const useRemovePrescription = () => {

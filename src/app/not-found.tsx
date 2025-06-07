@@ -2,15 +2,13 @@ import React from 'react';
 import Link from 'next/link';
 
 import { Button } from '../ui/button';
-import { ImagePlaceholder } from '../ui/image';
+
+import { LazyImage } from '@/ui/lazy-image';
 
 const PageNotFound = () => {
 	return (
 		<div className="flex min-h-screen flex-col items-center justify-center space-y-16 bg-white py-20 text-center">
-			<ImagePlaceholder
-				containerClasses="w-[400px] h-[400px]"
-				src="/images/404.svg"
-			/>
+			<LazyImage className="size-[400px]" src="/images/404.svg" />
 			<div className="mx-auto w-full max-w-[546px]">
 				<h4 className="text-32 mb-12 font-semibold">Page not found</h4>
 				<p className="mb-10">

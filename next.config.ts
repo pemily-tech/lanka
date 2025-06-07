@@ -1,4 +1,9 @@
+import withBundleAnalyzer from '@next/bundle-analyzer';
 import type { NextConfig } from 'next';
+
+const withAnalyzer = withBundleAnalyzer({
+	enabled: process.env.ANALYZE === 'true',
+});
 
 const nextConfig: NextConfig = {
 	images: {
@@ -11,4 +16,4 @@ const nextConfig: NextConfig = {
 	reactStrictMode: false,
 };
 
-export default nextConfig;
+export default withAnalyzer(nextConfig);

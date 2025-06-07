@@ -69,8 +69,7 @@ export default function PetParent({
 							>
 								<UserProfile
 									id={parent?.parent?.parentId}
-									containerClasses="!size-[54px]"
-									imageClasses="!rounded-8"
+									imageClasses="!rounded-8 !size-[54px]"
 									iconClasses="!size-[54px]"
 								/>
 								<div>

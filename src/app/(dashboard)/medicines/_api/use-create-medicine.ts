@@ -20,15 +20,10 @@ interface IPayload {
 }
 
 const createMedicine = async (payload: IPayload) => {
-	try {
-		const { data } = await HttpService.post<
-			IApiResponse<{ medicine: IMedicine }>
-		>(`${env.NEXT_PUBLIC_BASE_PATH}/medicine/create`, payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.post<
+		IApiResponse<{ medicine: IMedicine }>
+	>(`${env.NEXT_PUBLIC_BASE_PATH}/medicine/create`, payload);
+	return data;
 };
 
 export const useCreateMedicine = () => {

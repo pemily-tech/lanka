@@ -1,4 +1,4 @@
-import { ImagePlaceholder } from './image';
+import { LazyImage } from './lazy-image';
 
 import { cn } from '@/helpers/utils';
 
@@ -10,10 +10,9 @@ export function Spinner({ className }: { className?: string }) {
 				className
 			)}
 		>
-			<ImagePlaceholder
+			<LazyImage
 				src="/images/logo.jpg"
-				containerClasses="h-[18px] w-[18px] rounded-full"
-				imageClasses="object-contain"
+				className="size-[18px] rounded-full object-contain"
 			/>
 			<div className="border-t-brand absolute inset-0 animate-spin rounded-full border-[3px] border-transparent"></div>
 		</div>

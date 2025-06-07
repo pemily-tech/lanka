@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 'use client';
 
 import { useCallback, useState } from 'react';
@@ -6,13 +5,12 @@ import { type DateRange } from 'react-day-picker';
 import { format, parseISO, startOfToday } from 'date-fns';
 import debounce from 'lodash.debounce';
 import { PillBottle } from 'lucide-react';
+import dynamic from 'next/dynamic';
 import { useQueryStates } from 'nuqs';
 
 import { DEFAULT_DATE_FORMAT } from '../../../../helpers/constant';
 import { useUpdateUrl } from '../../../../hooks/use-update-url';
 import { type IPrescription } from '../../../../types/prescription';
-import { DataTable } from '../../../../ui/data-table';
-import { PaginationWithLinks } from '../../../../ui/pagination-with-links';
 import {
 	Tooltip,
 	TooltipContent,
@@ -20,9 +18,43 @@ import {
 } from '../../../../ui/tooltip';
 import { useGetPrescriptions } from './_api/use-get-prescription';
 import { useColumns } from './_ui/columns';
-import Filters from './_ui/filters';
 
-import PetSelectModal from '@/components/pet-selection-modal';
+import { Loader } from '@/ui/loader';
+
+const Filters = dynamic(() => import('./_ui/filters'), {
+	loading: () => <Loader />,
+	ssr: false,
+});
+
+const DataTable = dynamic(
+	() =>
+		import('../../../../ui/data-table').then((mod) => ({
+			default: mod.DataTable,
+		})),
+	{
+		loading: () => <Loader />,
+		ssr: false,
+	}
+);
+
+const PaginationWithLinks = dynamic(
+	() =>
+		import('../../../../ui/pagination-with-links').then((mod) => ({
+			default: mod.PaginationWithLinks,
+		})),
+	{
+		loading: () => <Loader />,
+		ssr: false,
+	}
+);
+
+const PetSelectModal = dynamic(
+	() => import('@/components/pet-selection-modal'),
+	{
+		loading: () => <Loader />,
+		ssr: false,
+	}
+);
 
 export default function Page() {
 	const today = startOfToday();
@@ -109,10 +141,10 @@ export default function Page() {
 			</div>
 			<div className="shadow-card1 rounded-8 relative my-12 bg-white">
 				<DataTable
-					columns={columns}
+					columns={columns as any}
 					data={medicineData}
 					isPending={isPending}
-					getRowId={(row) => row._id}
+					getRowId={(row: IPrescription) => row._id}
 					emptyMessage="Nothing found for the day."
 				/>
 			</div>

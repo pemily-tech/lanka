@@ -10,14 +10,10 @@ import { env } from '@/env.mjs';
 
 const removeMedicine = async (payload: { id: string }) => {
 	const { id } = payload;
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ medicine: IMedicine }>
-		>(`${env.NEXT_PUBLIC_BASE_PATH}/medicine/remove/${id}`);
-		return data;
-	} catch (err) {
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<
+		IApiResponse<{ medicine: IMedicine }>
+	>(`${env.NEXT_PUBLIC_BASE_PATH}/medicine/remove/${id}`);
+	return data;
 };
 
 export const useRemoveMedicine = () => {

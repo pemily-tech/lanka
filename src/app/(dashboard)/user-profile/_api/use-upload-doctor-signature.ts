@@ -4,22 +4,17 @@ import { toast } from 'sonner';
 import { HttpService } from '@/services/http-service';
 
 const uploadDoctorSignature = async (payload: FormData, id: string) => {
-	try {
-		const { data } = await HttpService.post(
-			`clinic/uploadDoctorSignature/${id}`,
-			payload,
-			{
-				headers: {
-					'Content-Type': 'multipart/form-data',
-					'cache-control': 'no-cache',
-				},
-			}
-		);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.post(
+		`clinic/uploadDoctorSignature/${id}`,
+		payload,
+		{
+			headers: {
+				'Content-Type': 'multipart/form-data',
+				'cache-control': 'no-cache',
+			},
+		}
+	);
+	return data;
 };
 
 export function useUploadDoctorSignature(id: string) {

@@ -13,15 +13,10 @@ interface IPayload {
 }
 
 const updateUserDetails = async (payload: IPayload) => {
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ user: IUserDetails }>
-		>('user/basicDetail', payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<
+		IApiResponse<{ user: IUserDetails }>
+	>('user/basicDetail', payload);
+	return data;
 };
 
 export function useUpdateUserDetails() {

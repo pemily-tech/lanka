@@ -20,16 +20,11 @@ interface IPayload {
 }
 
 const updateMedicine = async (payload: IPayload, medicineId: string) => {
-	try {
-		const { data } = await HttpService.patch(
-			`${env.NEXT_PUBLIC_BASE_PATH}/medicine/update/${medicineId}`,
-			payload
-		);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch(
+		`${env.NEXT_PUBLIC_BASE_PATH}/medicine/update/${medicineId}`,
+		payload
+	);
+	return data;
 };
 
 export const useUpdateMedicine = (medicineId: string) => {

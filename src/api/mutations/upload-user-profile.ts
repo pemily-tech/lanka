@@ -7,22 +7,13 @@ import { HttpService } from '@/services/http-service';
 import { useAuthStore } from '@/store/user-auth';
 
 const uploadProfile = async (payload: FormData) => {
-	try {
-		const { data } = await HttpService.post(
-			`/user/uploadProfile`,
-			payload,
-			{
-				headers: {
-					'Content-Type': 'multipart/form-data',
-					'cache-control': 'no-cache',
-				},
-			}
-		);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.post(`/user/uploadProfile`, payload, {
+		headers: {
+			'Content-Type': 'multipart/form-data',
+			'cache-control': 'no-cache',
+		},
+	});
+	return data;
 };
 
 export function useUploadUserProfile(id?: string) {

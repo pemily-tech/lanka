@@ -10,11 +10,13 @@ import {
 	useReactTable,
 	type VisibilityState,
 } from '@tanstack/react-table';
-import Lottie from 'lottie-react';
+import dynamic from 'next/dynamic';
 
 import Loader from '../../../../../public/lottie/loader-dog.json';
 import NothingFound from '../../../../../public/lottie/nothing-found.json';
 import PetDetails from './pet-details';
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 import { type IPetParent } from '@/types/clinic';
 import {

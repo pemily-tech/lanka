@@ -10,7 +10,7 @@ import {
 	useReactTable,
 	type VisibilityState,
 } from '@tanstack/react-table';
-import Lottie from 'lottie-react';
+import dynamic from 'next/dynamic';
 
 import Loader from '../../public/lottie/loader-dog.json';
 import NothingFound from '../../public/lottie/nothing-found.json';
@@ -23,11 +23,13 @@ import {
 	TableRow,
 } from './table';
 
-interface IDataTableProps<TData> {
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
+
+export interface IDataTableProps<TData> {
 	data: TData[];
 	columns: ColumnDef<TData, any>[];
 	isPending: boolean;
-	getRowId: (row: TData) => string;
+	getRowId: (row: any) => string;
 	emptyMessage?: string;
 }
 

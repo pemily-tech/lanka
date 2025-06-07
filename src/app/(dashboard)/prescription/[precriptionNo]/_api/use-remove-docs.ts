@@ -10,15 +10,10 @@ interface IPayload {
 }
 
 const removeAttachDoc = async (payload: IPayload, id: string) => {
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ prescription: IPrescription }>
-		>(`prescription/removeAttachDocuments/${id}`, payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<
+		IApiResponse<{ prescription: IPrescription }>
+	>(`prescription/removeAttachDocuments/${id}`, payload);
+	return data;
 };
 
 export const useRemoveAttachDoc = (id: string) => {

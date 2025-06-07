@@ -33,7 +33,6 @@ import {
 	CollapsibleContent,
 	CollapsibleTrigger,
 } from '../ui/collapsible';
-import { ImagePlaceholder } from '../ui/image';
 import {
 	Sidebar,
 	SidebarContent,
@@ -48,6 +47,8 @@ import {
 	SidebarMenuSubItem,
 	SidebarRail,
 } from '../ui/sidebar';
+
+import { LazyImage } from '@/ui/lazy-image';
 
 const IconMap: Record<string, React.ElementType> = {
 	House,
@@ -168,8 +169,8 @@ const Menu = ({
 										<Icon className="!size-24" />
 									</div>
 								) : (
-									<ImagePlaceholder
-										containerClasses="w-32 h-32"
+									<LazyImage
+										className="size-32"
 										src={item.icon as string}
 									/>
 								)}

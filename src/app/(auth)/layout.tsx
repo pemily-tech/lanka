@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation';
 
 import { Routes } from '../../helpers/routes';
 import { useAuthStore } from '../../store/user-auth';
-import { ImagePlaceholder } from '../../ui/image';
+
+import { LazyImage } from '@/ui/lazy-image';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
 	const { loggedIn } = useAuthStore();
@@ -22,10 +23,9 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 		<section className="min-h-screen w-full overflow-hidden">
 			<div className="grid min-h-screen grid-cols-3 overflow-hidden">
 				<div className="bg-grey-4 col-span-2 flex items-center justify-center">
-					<ImagePlaceholder
+					<LazyImage
 						src="/images/bg.png"
-						imageClasses="object-cover"
-						containerClasses="w-full h-full"
+						className="size-full object-cover"
 					/>
 				</div>
 				<div className="col-span-1 flex flex-col bg-white">

@@ -1,9 +1,9 @@
 /* eslint-disable max-lines-per-function */
 'use client';
 
-import { ImagePlaceholder } from '../../../../../ui/image';
 import { useBasicDetails } from '../_hooks/use-basic-details';
 
+import { LazyImage } from '@/ui/lazy-image';
 import Spinner from '@/ui/spinner';
 
 export default function BasicDetails() {
@@ -30,10 +30,9 @@ export default function BasicDetails() {
 					<div className="flex size-[152px] items-center justify-center">
 						<div className="border-purple-1/20 size-[142px] rounded-full border-2 p-4">
 							{clinicLogo && (
-								<ImagePlaceholder
+								<LazyImage
 									src={clinicLogo}
-									containerClasses="size-full"
-									imageClasses="rounded-full object-cover"
+									className="size-full rounded-full object-cover"
 								/>
 							)}
 						</div>

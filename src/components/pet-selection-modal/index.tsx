@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import dynamic from 'next/dynamic';
 
 import {
 	Dialog,
@@ -9,12 +10,29 @@ import {
 } from '../../ui/dialog';
 import { Separator } from '../../ui/separator';
 import { usePrescriptionStepper } from './_hooks/use-stepper';
-import Doctor from './doctor';
-import ErrorMessage from './error-message';
-import Pet from './pet';
-import PetParent from './pet-parent';
 
 import { Button } from '@/ui/button';
+import { Loader } from '@/ui/loader';
+
+const Doctor = dynamic(() => import('./doctor'), {
+	loading: () => <Loader />,
+	ssr: false,
+});
+
+const ErrorMessage = dynamic(() => import('./error-message'), {
+	loading: () => <Loader />,
+	ssr: false,
+});
+
+const Pet = dynamic(() => import('./pet'), {
+	loading: () => <Loader />,
+	ssr: false,
+});
+
+const PetParent = dynamic(() => import('./pet-parent'), {
+	loading: () => <Loader />,
+	ssr: false,
+});
 
 export default function PetSelectModal({
 	open,

@@ -1,11 +1,7 @@
 import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { HttpService } from '@/services/http-service';
-import {
-	type IApiResponse,
-	type IGetPetByIdResponse,
-	type IPetItem,
-} from '@/types/common';
+import { type IApiResponse, type IPetItem } from '@/types/common';
 
 const getPetById = async ({
 	queryKey,

@@ -1,18 +1,16 @@
 import { CircleUserRound } from 'lucide-react';
 
-import { ImagePlaceholder } from '../image';
+import { LazyImage } from '../lazy-image';
 
 import { useGetUserProfileUrl } from '@/api/queries/use-get-user-profile-image';
 import { cn } from '@/helpers/utils';
 
 export const UserProfile = ({
 	id,
-	containerClasses,
 	imageClasses,
 	iconClasses,
 }: {
 	id: string;
-	containerClasses?: string;
 	imageClasses?: string;
 	iconClasses?: string;
 }) => {
@@ -20,10 +18,12 @@ export const UserProfile = ({
 	return (
 		<>
 			{data?.data?.profileUrl && data?.data?.profileUrl !== '' ? (
-				<ImagePlaceholder
+				<LazyImage
 					src={data?.data?.profileUrl as string}
-					containerClasses={cn('size-[160px]', containerClasses)}
-					imageClasses={cn('rounded-full', imageClasses)}
+					className={cn(
+						'size-[160px] rounded-full object-cover',
+						imageClasses
+					)}
 				/>
 			) : (
 				<CircleUserRound

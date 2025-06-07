@@ -5,8 +5,9 @@ import { useState } from 'react';
 import { Roles } from '../../../helpers/primitives';
 import { useAuthStore } from '../../../store/user-auth';
 import { Button } from '../../../ui/button';
-import { ImagePlaceholder } from '../../../ui/image';
 import { useVaccinationExcel } from './_api/analytics';
+
+import { LazyImage } from '@/ui/lazy-image';
 
 const months = [
 	{ value: 1, label: 'January' },
@@ -154,9 +155,8 @@ export default function Page() {
 					</div>
 				</div>
 				<div className="col-span-3">
-					<ImagePlaceholder
-						containerClasses="w-full h-full"
-						imageClasses="object-cover"
+					<LazyImage
+						className="size-full object-cover"
 						src="/images/home-bg.jpg"
 					/>
 				</div>

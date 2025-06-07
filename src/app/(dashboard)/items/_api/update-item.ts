@@ -17,15 +17,11 @@ interface IPayload {
 }
 
 const updateItem = async (payload: IPayload, itemId: string) => {
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ item: IProduct }>
-		>(`${env.NEXT_PUBLIC_BASE_PATH}/item/update/${itemId}`, payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<IApiResponse<{ item: IProduct }>>(
+		`${env.NEXT_PUBLIC_BASE_PATH}/item/update/${itemId}`,
+		payload
+	);
+	return data;
 };
 
 export function useUpdateItem(itemId: string) {

@@ -5,20 +5,15 @@ import { HttpService } from '../../../../../services/http-service';
 import { type IApiResponse } from '../../../../../types/common';
 
 const uploadAttachDocs = async (payload: FormData, id: string) => {
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ prescription: string }>
-		>(`prescription/attachDocuments/${id}`, payload, {
-			headers: {
-				'Content-Type': 'multipart/form-data',
-				'cache-control': 'no-cache',
-			},
-		});
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<
+		IApiResponse<{ prescription: string }>
+	>(`prescription/attachDocuments/${id}`, payload, {
+		headers: {
+			'Content-Type': 'multipart/form-data',
+			'cache-control': 'no-cache',
+		},
+	});
+	return data;
 };
 
 export const useUploadAttachDocs = (id: string) => {

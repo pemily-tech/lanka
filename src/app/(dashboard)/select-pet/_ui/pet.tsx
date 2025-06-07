@@ -6,7 +6,7 @@ import { useGetPets } from '@/api/queries/use-get-pets';
 import { cn } from '@/helpers/utils';
 import { type IPetItem } from '@/types/common';
 import { Command, CommandEmpty, CommandList } from '@/ui/command';
-import { ImagePlaceholder } from '@/ui/image';
+import { LazyImage } from '@/ui/lazy-image';
 import Spinner from '@/ui/spinner';
 
 export default function Pet({
@@ -71,20 +71,18 @@ export function PetDetails({ pet }: { pet: IPetItem }) {
 	return (
 		<Fragment>
 			{petImage && petImage !== '' ? (
-				<ImagePlaceholder
+				<LazyImage
 					src={petImage as string}
-					containerClasses="size-[54px]"
-					imageClasses={`rounded-10 object-cover`}
+					className="rounded-10 size-[54px] object-cover"
 				/>
 			) : (
-				<ImagePlaceholder
+				<LazyImage
 					src={
 						pet?.type === 'CAT'
 							? '/images/Cat.png'
 							: '/images/Dog.png'
 					}
-					containerClasses="size-[54px]"
-					imageClasses="rounded-10 object-cover"
+					className="rounded-10 size-[54px] object-cover"
 				/>
 			)}
 			<div>

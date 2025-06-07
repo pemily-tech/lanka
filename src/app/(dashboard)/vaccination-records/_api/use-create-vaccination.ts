@@ -11,16 +11,8 @@ interface IPayload {
 }
 
 const createVaccination = async (payload: IPayload) => {
-	try {
-		const { data } = await HttpService.post(
-			`/clinic/addVaccination`,
-			payload
-		);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.post(`/clinic/addVaccination`, payload);
+	return data;
 };
 
 export function useCreateVaccination() {

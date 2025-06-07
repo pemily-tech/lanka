@@ -10,16 +10,11 @@ interface IPayload {
 }
 
 const updateMedicalRecord = async (payload: IPayload, id: string) => {
-	try {
-		const { data } = await HttpService.patch(
-			`/clinic/updateMedicalRecord/${id}`,
-			payload
-		);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch(
+		`/clinic/updateMedicalRecord/${id}`,
+		payload
+	);
+	return data;
 };
 
 export function useUpdateMedicalRecord({ id }: { id: string }) {

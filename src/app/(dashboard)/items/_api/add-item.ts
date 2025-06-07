@@ -17,15 +17,11 @@ interface IPayload {
 }
 
 const addItem = async (payload: IPayload) => {
-	try {
-		const { data } = await HttpService.post<
-			IApiResponse<{ item: IProduct }>
-		>(`${env.NEXT_PUBLIC_BASE_PATH}/item/create`, payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.post<IApiResponse<{ item: IProduct }>>(
+		`${env.NEXT_PUBLIC_BASE_PATH}/item/create`,
+		payload
+	);
+	return data;
 };
 
 export function useAddItem() {

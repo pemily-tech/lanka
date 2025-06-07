@@ -12,15 +12,10 @@ interface IPayload {
 }
 
 const createPrescription = async (payload: IPayload) => {
-	try {
-		const { data } = await HttpService.post<
-			IApiResponse<{ prescription: IPrescription }>
-		>('/prescription/create', payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.post<
+		IApiResponse<{ prescription: IPrescription }>
+	>('/prescription/create', payload);
+	return data;
 };
 
 export function useCreatePrescription() {

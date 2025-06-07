@@ -68,8 +68,7 @@ export default function Doctor({
 						>
 							<UserProfile
 								id={doctor.doctor.doctorId}
-								containerClasses="!size-[54px]"
-								imageClasses="!rounded-8"
+								imageClasses="!rounded-8 !size-[54px]"
 								iconClasses="!size-[54px]"
 							/>
 							<div>
