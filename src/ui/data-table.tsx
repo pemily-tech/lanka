@@ -65,7 +65,7 @@ export function DataTable<TData>({
 					<TableRow key={headerGroup.id}>
 						{headerGroup.headers.map((header) => (
 							<TableHead
-								className="px-3 py-16 text-sm"
+								className="px-3 py-4 text-sm"
 								key={header.id}
 							>
 								{header.isPlaceholder

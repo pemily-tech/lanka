@@ -324,7 +324,7 @@ export const SidebarHeader = React.forwardRef<
 		<div
 			ref={ref}
 			data-sidebar="header"
-			className={cn('flex flex-col gap-2 px-3 py-16', className)}
+			className={cn('flex flex-col gap-2 px-3 py-4', className)}
 			{...props}
 		/>
 	);
@@ -339,7 +339,7 @@ export const SidebarFooter = React.forwardRef<
 		<div
 			ref={ref}
 			data-sidebar="footer"
-			className={cn('flex flex-col gap-3  px-3 py-16', className)}
+			className={cn('flex flex-col gap-3  px-3 py-4', className)}
 			{...props}
 		/>
 	);
@@ -602,7 +602,7 @@ export const SidebarMenuSub = React.forwardRef<
 		ref={ref}
 		data-sidebar="menu-sub"
 		className={cn(
-			'mx-12 flex min-w-0 translate-x-px flex-col gap-1 p-8',
+			'mx-12 flex min-w-0 translate-x-px flex-col gap-1 p-2',
 			'group-data-[collapsible=icon]:hidden',
 			className
 		)}

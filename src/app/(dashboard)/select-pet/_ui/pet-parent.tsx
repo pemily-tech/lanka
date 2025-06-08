@@ -48,7 +48,7 @@ export default function PetParent({
 		<div className="mx-16 h-full">
 			<Command className="mt-16 rounded-lg border md:min-w-[450px]">
 				<CommandInput
-					className="py-24"
+					className="py-6"
 					placeholder="Search for pet parents..."
 					value={value}
 					onValueChange={handleChange}

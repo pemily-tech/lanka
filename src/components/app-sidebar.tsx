@@ -73,7 +73,7 @@ export const AppSidebar = () => {
 
 	return (
 		<Sidebar collapsible="icon" className="bg-white">
-			<SidebarHeader className="px-8">
+			<SidebarHeader className="px-2">
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton>
@@ -83,7 +83,7 @@ export const AppSidebar = () => {
 					</SidebarMenuItem>
 				</SidebarMenu>
 			</SidebarHeader>
-			<SidebarContent className="py-24">
+			<SidebarContent className="py-6">
 				<SidebarGroup>
 					<Menu navMenu={filteredNavMenu} role={role} />
 				</SidebarGroup>
@@ -100,21 +100,21 @@ export const AppSidebar = () => {
 									</AlertDialogTrigger>
 									<AlertDialogContent className="gap-6">
 										<AlertDialogHeader>
-											<AlertDialogTitle className="text-24">
+											<AlertDialogTitle className="text-xl font-semibold">
 												Logout
 											</AlertDialogTitle>
 											<AlertDialogDescription>
 												Are you sure you want to logout?
 											</AlertDialogDescription>
 										</AlertDialogHeader>
-										<AlertDialogFooter className="!pt-32">
+										<AlertDialogFooter className="!pt-2">
 											<AlertDialogAction
 												onClick={handleLogout}
-												className="px-24"
+												className="px-6"
 											>
 												Logout
 											</AlertDialogAction>
-											<AlertDialogCancel>
+											<AlertDialogCancel className="px-4">
 												<span className="text-sm">
 													Cancel
 												</span>
@@ -142,7 +142,7 @@ const Menu = ({
 	const pathname = usePathname();
 
 	return (
-		<SidebarMenu className="gap-6 px-8">
+		<SidebarMenu className="gap-6 px-2">
 			{navMenu.map((item, index) => {
 				const Icon =
 					item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
@@ -157,7 +157,7 @@ const Menu = ({
 						<SidebarMenuButton
 							className={`${
 								active
-									? 'bg-grey-bg3 text-accent-foreground hover:bg-greyBg hover:text-accent-foreground py-3 hover:opacity-80'
+									? 'text-accent-foreground hover:text-accent-foreground bg-gray-200 py-3 hover:bg-gray-300 hover:opacity-80'
 									: 'px-0'
 							}`}
 							key={index}
@@ -199,16 +199,16 @@ const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 			key={item.id}
 			className="group/collapsible"
 		>
-			<SidebarMenuItem className="py-6">
+			<SidebarMenuItem className="py-1">
 				<CollapsibleTrigger asChild>
 					<SidebarMenuButton className="px-0">
-						{Icon && <Icon className="!size-18" />}
+						{Icon && <Icon className="!size-5" />}
 						<span className="text-sm">{item.title}</span>
-						<ChevronRight className="!size-18 ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+						<ChevronRight className="ml-auto !size-5 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
 					</SidebarMenuButton>
 				</CollapsibleTrigger>
 				<CollapsibleContent>
-					<SidebarMenuSub className="mx-0 ml-24 mt-8 gap-3 px-0">
+					<SidebarMenuSub className="mx-0 ml-6 mt-2 gap-3 px-0">
 						{visibleItems?.map((ite, index) => {
 							const active = pathname === ite.path;
 							return (
@@ -216,7 +216,7 @@ const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 									<SidebarMenuSubButton
 										className={`${
 											active
-												? 'text-accent-foreground hover:bg-greyBg hover:text-accent-foreground bg-grey-bg3 p-12 hover:opacity-80'
+												? 'text-accent-foreground hover:text-accent-foreground bg-gray-200 p-3 hover:bg-gray-300 hover:opacity-80'
 												: ''
 										}`}
 										asChild

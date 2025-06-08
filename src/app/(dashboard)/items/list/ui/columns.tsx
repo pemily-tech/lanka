@@ -178,7 +178,7 @@ export default function Columns() {
 							<TableRow>
 								<TableCell
 									colSpan={columns.length}
-									className="h-24 py-24 text-center"
+									className="h-24 py-6 text-center"
 								>
 									<span>No results found.</span>
 								</TableCell>

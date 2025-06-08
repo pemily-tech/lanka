@@ -15,7 +15,7 @@ export default function PetDetails({ parentId }: { parentId: string }) {
 
 	if (isPending) {
 		return (
-			<div className="py-16">
+			<div className="py-4">
 				<Spinner />
 			</div>
 		);

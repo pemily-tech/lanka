@@ -27,7 +27,7 @@ export default function Filters({
 				<div className="max-w-316  h-[48px] w-full flex-1">
 					<Command className="rounded-lg border">
 						<CommandInput
-							className="py-24"
+							className="py-6"
 							placeholder="Search by name, pet name etc..."
 							value={value}
 							onValueChange={handleChange}

@@ -79,7 +79,7 @@ export default function Page() {
 					<h1 className="text-[30px] font-semibold">
 						Data For Your Growth & Trust
 					</h1>
-					<ul className="space-y-2 py-16 pl-6 text-gray-800">
+					<ul className="space-y-2 py-4 pl-6 text-gray-800">
 						{lists.map((list, i) => (
 							<li
 								key={i}

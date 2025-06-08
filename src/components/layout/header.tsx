@@ -17,8 +17,8 @@ export function LayoutHeader() {
 	const isHome = pathname === Routes.HOME;
 
 	return (
-		<header className="flex h-[72px] shrink-0 items-center justify-between gap-3 border-b bg-white px-16">
-			<div className="flex items-center justify-between gap-3 py-24">
+		<header className="flex h-[72px] shrink-0 items-center justify-between gap-3 border-b bg-white px-4">
+			<div className="flex items-center justify-between gap-3 py-6">
 				<div className="flex flex-row items-center gap-3">
 					{!isHome && (
 						<Button
@@ -39,7 +39,7 @@ export function LayoutHeader() {
 function StaffName({ id }: { id: string }) {
 	const { data } = useGetUser(id as string);
 	const { name } = data?.data?.user || {};
-	return <p className="text-24 font-semibold">{name}</p>;
+	return <p className="text-lg font-semibold">{name}</p>;
 }
 
 function ClinicDetails() {
@@ -56,7 +56,7 @@ function ClinicDetails() {
 			{role === Roles.Staff ? (
 				<StaffName id={clinicId as string} />
 			) : (
-				<p className="text-18 font-medium">{name}</p>
+				<p className="text-lg font-medium">{name}</p>
 			)}
 		</div>
 	);

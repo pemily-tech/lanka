@@ -49,7 +49,7 @@ function Filters({
 				<div className="h-[48px] max-w-[220px] flex-1 ">
 					<Command className="rounded-lg border">
 						<CommandInput
-							className="py-24"
+							className="py-6"
 							placeholder="Search..."
 							value={searchTerm}
 							onValueChange={setSearchTerm}

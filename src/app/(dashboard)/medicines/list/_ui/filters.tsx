@@ -35,7 +35,7 @@ export default function Filters({
 			<div className="flex-1">
 				<Command className="max-w-[450px] rounded-lg border">
 					<CommandInput
-						className="py-24"
+						className="py-6"
 						placeholder="Search for medicines..."
 						value={value}
 						onValueChange={setValue}

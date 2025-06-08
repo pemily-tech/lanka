@@ -109,7 +109,7 @@ export default function MedicalRecordForm({
 			) : (
 				<>
 					{stepper.isLast && (
-						<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-24 py-16">
+						<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-24 py-4">
 							<Button
 								type="button"
 								variant="secondary"
