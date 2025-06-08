@@ -23,7 +23,7 @@ export default function SelectMedicineType({
 
 	return (
 		<Select value={value} onValueChange={onChange}>
-			<SelectTrigger className="h-8 w-[280px]">
+			<SelectTrigger className="h-12 w-[280px]">
 				<SelectValue placeholder={label} />
 			</SelectTrigger>
 			<SelectContent>

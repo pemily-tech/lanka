@@ -74,7 +74,7 @@ export default function Soap() {
 	}
 
 	return (
-		<div className="my-24 pr-16">
+		<div className="my-6 pr-4">
 			<h3 className="mb-3 font-semibold">SOAP</h3>
 			<Form {...form}>
 				<form

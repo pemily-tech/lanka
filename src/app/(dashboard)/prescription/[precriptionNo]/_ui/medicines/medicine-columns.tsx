@@ -105,7 +105,7 @@ export function useColumns(
 										Are you sure you want to delete?
 									</AlertDialogDescription>
 								</AlertDialogHeader>
-								<AlertDialogFooter className="!pt-8">
+								<AlertDialogFooter className="!pt-2">
 									<AlertDialogAction
 										onClick={() =>
 											removeMedicine(

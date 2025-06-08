@@ -54,22 +54,17 @@ export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 					</div>
 				))}
 			</div>
-			<div className="mt-4 flex flex-row justify-end gap-4 border-t pt-16">
+			<div className="mt-4 flex flex-row justify-end gap-4 border-t pt-4">
 				<Button
 					onClick={() =>
 						updateFullMedicine(localData.medicineId, localData)
 					}
-					size="lg"
 					className="px-6 font-normal"
 				>
 					Update
 				</Button>
 				<DialogClose asChild>
-					<Button
-						size="lg"
-						variant="outline"
-						className="px-6 font-normal"
-					>
+					<Button variant="outline" className="px-6 font-normal">
 						Cancel
 					</Button>
 				</DialogClose>

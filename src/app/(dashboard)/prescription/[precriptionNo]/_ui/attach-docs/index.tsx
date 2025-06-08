@@ -15,7 +15,7 @@ export default function AttachDocs() {
 	const [value, setValue] = useState('PRESCRIPTION');
 
 	return (
-		<div className="pr-16">
+		<div className="pr-4">
 			<h3 className="font-semibold">Attach Documents</h3>
 			<Tabs
 				value={value}

@@ -118,14 +118,14 @@ function Doc({
 								through WhatsApp and Pemilyy app.
 							</AlertDialogDescription>
 						</AlertDialogHeader>
-						<AlertDialogFooter className="!pt-8">
+						<AlertDialogFooter className="!pt-2">
 							<AlertDialogAction
 								onClick={() => handelShare(doc._id)}
 								className="bg-secondary hover:bg-secondary/90 px-6 text-white hover:text-white"
 							>
 								Confirm
 							</AlertDialogAction>
-							<AlertDialogCancel className="bg-transparent hover:bg-transparent">
+							<AlertDialogCancel className="bg-transparent px-6 hover:bg-transparent">
 								<span className="text-sm font-normal text-black">
 									Cancel
 								</span>
@@ -133,7 +133,6 @@ function Doc({
 						</AlertDialogFooter>
 					</AlertDialogContent>
 				</AlertDialog>
-
 				<AlertDialog>
 					<AlertDialogTrigger asChild>
 						<Button size="icon" variant="ghost">
@@ -149,7 +148,7 @@ function Doc({
 								Are you sure you want to delete?
 							</AlertDialogDescription>
 						</AlertDialogHeader>
-						<AlertDialogFooter className="!pt-8">
+						<AlertDialogFooter className="!pt-2">
 							<AlertDialogAction
 								onClick={() => handelRemove(doc._id)}
 								className="px-6"
@@ -157,7 +156,7 @@ function Doc({
 								Confirm
 							</AlertDialogAction>
 							<AlertDialogCancel>
-								<span className="text-sm">Cancel</span>
+								<span className="px-6 text-sm">Cancel</span>
 							</AlertDialogCancel>
 						</AlertDialogFooter>
 					</AlertDialogContent>

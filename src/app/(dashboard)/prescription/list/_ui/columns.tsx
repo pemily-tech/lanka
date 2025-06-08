@@ -72,7 +72,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 				<div
 					className={cn(
 						row.original.active ? 'bg-primary' : 'bg-destructive',
-						'!text-12 inline-flex rounded-full px-3 py-4 text-white'
+						'inline-flex rounded-full px-3 py-1 !text-xs text-white'
 					)}
 				>
 					{row.original.active ? 'Active' : 'InActive'}
@@ -112,7 +112,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 										Are you sure you want to delete?
 									</AlertDialogDescription>
 								</AlertDialogHeader>
-								<AlertDialogFooter className="!pt-8">
+								<AlertDialogFooter className="!pt-2">
 									<AlertDialogAction
 										onClick={() =>
 											handleDelete(
@@ -124,7 +124,9 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 										Confirm
 									</AlertDialogAction>
 									<AlertDialogCancel>
-										<span className="text-sm">Cancel</span>
+										<span className="px-6 text-sm">
+											Cancel
+										</span>
 									</AlertDialogCancel>
 								</AlertDialogFooter>
 							</AlertDialogContent>

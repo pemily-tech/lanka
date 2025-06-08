@@ -45,7 +45,7 @@ function EditableDialog({
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
 			<DialogContent>
-				<DialogHeader className="mb-6">
+				<DialogHeader className="mb-2">
 					<DialogTitle>{title}</DialogTitle>
 				</DialogHeader>
 				<FloatingTextArea
@@ -56,7 +56,7 @@ function EditableDialog({
 				/>
 				<DialogFooter className="mt-1 gap-6">
 					<DialogClose>Close</DialogClose>
-					<Button size="lg" onClick={onConfirm}>
+					<Button className="px-6" onClick={onConfirm}>
 						Confirm
 					</Button>
 				</DialogFooter>
@@ -94,9 +94,8 @@ export default function AdviceFollowup() {
 							? () => null
 							: () => setOpenAdvice(true)
 					}
-					className="flex cursor-pointer flex-row items-center gap-4 px-4"
+					className="flex cursor-pointer flex-row items-center gap-1 px-4"
 					variant="ghost"
-					size="lg"
 				>
 					<Plus className="text-primary size-4" />
 					<span className="text-primary font-medium">Advice: </span>

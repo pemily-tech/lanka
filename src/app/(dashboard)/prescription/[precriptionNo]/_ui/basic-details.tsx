@@ -37,14 +37,14 @@ export default function BasicDetails() {
 							)}
 						</div>
 					</div>
-					<div className="flex flex-1 flex-col gap-6">
-						<div className="flex flex-row gap-6">
+					<div className="flex flex-1 flex-col gap-1">
+						<div className="flex flex-row gap-1">
 							<span className="font-semibold text-black/60">
 								{clinicDetails.name}
 							</span>
 						</div>
 						{clinicDetails.email && (
-							<div className="flex flex-row gap-6">
+							<div className="flex flex-row gap-1">
 								<span className="text-black/60">Email: </span>
 								<a
 									className="hover:text-purple"
@@ -54,10 +54,8 @@ export default function BasicDetails() {
 								</a>
 							</div>
 						)}
-						<div className="flex flex-row">
-							<span className="pr-6 text-black/60">
-								Contact:{' '}
-							</span>
+						<div className="flex flex-row gap-1">
+							<span className="text-black/60">Contact: </span>
 							{(clinicDetails.primaryContact ||
 								clinicDetails.businessContact) && (
 								<a
@@ -73,7 +71,7 @@ export default function BasicDetails() {
 								</a>
 							)}
 						</div>
-						<div className="flex flex-row gap-6">
+						<div className="flex flex-row gap-1">
 							<span className="text-black/60">Address: </span>
 							<span>
 								{[
@@ -89,7 +87,7 @@ export default function BasicDetails() {
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-1 flex-col items-end gap-6 text-right">
+				<div className="flex flex-1 flex-col items-end gap-1 text-right">
 					<div className="font-semibold text-black/60">
 						{doctorDetails.name}
 					</div>
@@ -106,15 +104,15 @@ export default function BasicDetails() {
 			</div>
 			<div className="flex flex-1 flex-col gap-3 border-y py-3">
 				<div className="flex gap-4">
-					<div className="flex flex-row gap-6">
+					<div className="flex flex-row gap-1">
 						<span className="text-black/60">Owner Name: </span>
 						<span>{parentName}</span>
 					</div>
-					<div className="flex flex-row gap-6">
+					<div className="flex flex-row gap-1">
 						<span className="text-black/60">Owner Phone: </span>
 						<span>{parentMobile}</span>
 					</div>
-					<div className="flex flex-row gap-6">
+					<div className="flex flex-row gap-1">
 						<span className="text-black/60">Owner Address: </span>
 						<span>
 							{[
@@ -130,40 +128,40 @@ export default function BasicDetails() {
 					</div>
 				</div>
 				<div className="flex gap-4">
-					<div className="flex flex-row gap-6">
+					<div className="flex flex-row gap-1">
 						<span className="text-black/60">Patient: </span>
 						<span>{patientDetails.name}</span>
 					</div>
-					<div className="flex flex-row gap-6">
+					<div className="flex flex-row gap-1">
 						<span className="text-black/60">Type: </span>
 						<span>{patientDetails.type}</span>
 					</div>
-					<div className="flex flex-row gap-6">
+					<div className="flex flex-row gap-1">
 						<span className="text-black/60">Sex: </span>
 						<span>{patientDetails.gender}</span>
 					</div>
-					<div className="flex flex-row gap-6">
+					<div className="flex flex-row gap-1">
 						<span className="text-black/60">Breed: </span>
 						<span>{patientDetails.breed}</span>
 					</div>
-					<div className="flex flex-row gap-6">
+					<div className="flex flex-row gap-1">
 						<span className="text-black/60">Code: </span>
 						<span>{patientDetails.code}</span>
 					</div>
 					{patientDetails.dob && (
-						<div className="flex flex-row gap-6">
+						<div className="flex flex-row gap-1">
 							<span className="text-black/60">DOB: </span>
 							<span>{patientDetails.dob}</span>
 						</div>
 					)}
 					{patientDetails?.age && (
-						<div className="flex flex-row gap-6">
+						<div className="flex flex-row gap-1">
 							<span className="text-black/60">Age: </span>
 							<span>{patientDetails.age}</span>
 						</div>
 					)}
 					{patientDetails.microChipNo && (
-						<div className="flex flex-row gap-6">
+						<div className="flex flex-row gap-1">
 							<span className="text-black/60">
 								MicroChip No:{' '}
 							</span>

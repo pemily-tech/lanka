@@ -51,7 +51,7 @@ export default function Footer() {
 							prescription.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
-					<AlertDialogFooter className="!pt-8">
+					<AlertDialogFooter className="!pt-2">
 						<AlertDialogAction
 							onClick={handleSave}
 							className="px-6"
@@ -59,7 +59,7 @@ export default function Footer() {
 							Confirm
 						</AlertDialogAction>
 						<AlertDialogCancel>
-							<span className="text-sm">Cancel</span>
+							<span className="px-6 text-sm">Cancel</span>
 						</AlertDialogCancel>
 					</AlertDialogFooter>
 				</AlertDialogContent>
@@ -95,14 +95,14 @@ export default function Footer() {
 							WhatsApp and Pemilyy app.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
-					<AlertDialogFooter className="!pt-8">
+					<AlertDialogFooter className="!pt-2">
 						<AlertDialogAction
 							onClick={handleShare}
 							className="bg-secondary hover:bg-secondary/90 px-6 text-white hover:text-white"
 						>
 							Confirm
 						</AlertDialogAction>
-						<AlertDialogCancel className="bg-transparent hover:bg-transparent">
+						<AlertDialogCancel className="bg-transparent px-6 hover:bg-transparent">
 							<span className="text-sm font-normal text-black">
 								Cancel
 							</span>
