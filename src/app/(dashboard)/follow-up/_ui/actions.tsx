@@ -74,7 +74,7 @@ export default function Actions({
 	};
 
 	return (
-		<div className="flex items-center gap-12">
+		<div className="flex items-center gap-3">
 			<Button
 				data-umami-event="followup_notification"
 				data-umami-event-id={record._id}
@@ -97,7 +97,7 @@ export default function Actions({
 						<Trash2 className="size-18 text-destructive" />
 					</Button>
 				</AlertDialogTrigger>
-				<AlertDialogContent className="gap-24">
+				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
 						<AlertDialogTitle className="text-24">
 							Delete
@@ -116,7 +116,7 @@ export default function Actions({
 							Confirm
 						</AlertDialogAction>
 						<AlertDialogCancel>
-							<span className="text-14 font-normal">Cancel</span>
+							<span className="text-sm font-normal">Cancel</span>
 						</AlertDialogCancel>
 					</AlertDialogFooter>
 				</AlertDialogContent>

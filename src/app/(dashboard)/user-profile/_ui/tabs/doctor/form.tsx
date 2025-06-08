@@ -49,7 +49,7 @@ export default function DoctorForm({ doctor }: { doctor: IDoctor }) {
 			</h4>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="rounded-12 grid flex-1 grid-cols-2 gap-24 bg-white"
+				className="grid flex-1 grid-cols-2 gap-6 rounded-xl bg-white"
 			>
 				{[
 					['name', 'Name', 'text'],

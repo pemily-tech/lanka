@@ -18,7 +18,7 @@ export default function Page() {
 
 	return (
 		<div className="mb-[54px]">
-			<div className="rounded-8 shadow-card1 sticky top-0 z-20 bg-white p-16">
+			<div className="shadow-card sticky top-0 z-20 rounded-lg bg-white p-4">
 				<Filters
 					selectedDate={date as Date}
 					setSelectedDate={(date) => setState({ date })}
@@ -35,7 +35,7 @@ export default function Page() {
 					</Link>
 				</Filters>
 			</div>
-			<div className="shadow-card1 rounded-8 relative my-12 bg-white">
+			<div className="shadow-card relative my-3 rounded-lg bg-white">
 				<DataTable
 					columns={columns}
 					data={medicalRecords}

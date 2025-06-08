@@ -43,10 +43,7 @@ export default function MedicalRecordForm({
 
 	return (
 		<div
-			className={cn(
-				'mb-54 mt-24 flex h-full flex-col',
-				isModal && 'my-0'
-			)}
+			className={cn('mb-54 mt-1 flex h-full flex-col', isModal && 'my-0')}
 		>
 			<h2 className="text-24 mx-24 font-semibold">
 				Upload a photo of your Prescription
@@ -81,7 +78,7 @@ export default function MedicalRecordForm({
 							className={cn(
 								'size-full rounded-xl object-cover',
 								acceptedFile?.type === 'application/pdf' &&
-									'object-contain p-16'
+									'object-contain p-4'
 							)}
 						/>
 					)}
@@ -91,7 +88,7 @@ export default function MedicalRecordForm({
 								e.stopPropagation();
 								clear();
 							}}
-							className="border-destructive absolute -right-10 -top-10 z-10 flex size-24 cursor-pointer items-center justify-center rounded-full border bg-white"
+							className="border-destructive absolute -right-10 -top-10 z-10 flex size-6 cursor-pointer items-center justify-center rounded-full border bg-white"
 						>
 							<X className="text-destructive size-16" />
 						</div>

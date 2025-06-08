@@ -40,12 +40,12 @@ export const CommandInput = React.forwardRef<
 	React.ElementRef<typeof CommandPrimitive.Input>,
 	React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
-	<div className="flex items-center border-b px-12" cmdk-input-wrapper="">
+	<div className="flex items-center border-b px-3" cmdk-input-wrapper="">
 		<Search className="mr-12 size-16 shrink-0 opacity-50" />
 		<CommandPrimitive.Input
 			ref={ref}
 			className={cn(
-				'text-14 placeholder:text-muted-foreground flex h-32 w-full rounded-md bg-transparent py-12 font-medium outline-none disabled:cursor-not-allowed disabled:opacity-50',
+				'placeholder:text-muted-foreground flex h-8 w-full rounded-md bg-transparent py-3 text-sm font-medium outline-none disabled:cursor-not-allowed disabled:opacity-50',
 				className
 			)}
 			{...props}
@@ -77,7 +77,7 @@ export const CommandEmpty = React.forwardRef<
 >((props, ref) => (
 	<CommandPrimitive.Empty
 		ref={ref}
-		className="text-14 py-12 text-center"
+		className="py-3 text-center text-sm"
 		{...props}
 	/>
 ));
@@ -119,7 +119,7 @@ export const CommandItem = React.forwardRef<
 	<CommandPrimitive.Item
 		ref={ref}
 		className={cn(
-			'text-14 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-2 px-12 py-8 outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-16 [&_svg]:shrink-0',
+			'data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-2 px-3 py-8 text-sm outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-16 [&_svg]:shrink-0',
 			className
 		)}
 		{...props}

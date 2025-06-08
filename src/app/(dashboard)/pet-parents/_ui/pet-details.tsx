@@ -22,13 +22,13 @@ export default function PetDetails({ parentId }: { parentId: string }) {
 	}
 
 	return (
-		<div className="bg-muted/40 flex flex-wrap gap-24 rounded-b-md p-16">
+		<div className="bg-muted/40 flex flex-wrap gap-6 rounded-b-md p-4">
 			{petsData?.map((pet) => {
 				return <Pet key={pet.petId} pet={pet} parentId={parentId} />;
 			})}
 			<Link
 				href={`${Routes.PETS_CREATE}?parentId=${parentId}`}
-				className="flex flex-col items-center justify-center gap-12"
+				className="flex flex-col items-center justify-center gap-3"
 			>
 				<Button variant="outline" className="size-[120px] rounded-full">
 					<Plus />
@@ -47,7 +47,7 @@ const Pet = ({ pet, parentId }: { pet: IPetItem; parentId: string }) => {
 	return (
 		<Link
 			href={`${Routes.PET_PROFILE}/${pet.petId}?parentId=${parentId}&type=medical`}
-			className="flex flex-col items-center justify-center gap-12"
+			className="flex flex-col items-center justify-center gap-3"
 		>
 			{isProfileExists ? (
 				<LazyImage

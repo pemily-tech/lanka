@@ -82,7 +82,7 @@ export const AutoComplete = <T,>({
 				onBlur={onBlur}
 				onFocus={() => setOpen(true)}
 				placeholder={placeholder}
-				className="text-14"
+				className="text-sm"
 			/>
 			<div className="relative w-full">
 				<div
@@ -113,7 +113,7 @@ export const AutoComplete = <T,>({
 							</CommandGroup>
 						)}
 						{!isLoading && options.length === 0 && (
-							<CommandEmpty className="text-14 select-none rounded-sm px-2 py-12 text-center">
+							<CommandEmpty className="select-none rounded-sm px-2 py-3 text-center text-sm">
 								{emptyMessage}
 							</CommandEmpty>
 						)}

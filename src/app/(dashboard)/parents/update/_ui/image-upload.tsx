@@ -60,7 +60,7 @@ const ImageUpload = () => {
 	});
 
 	return (
-		<div className="rounded-8 shadow-card1 bg-white p-16">
+		<div className="shadow-card rounded-lg bg-white p-4">
 			<span className="font-medium">Change profile image</span>
 			<div className="mt-16 flex justify-between">
 				<div

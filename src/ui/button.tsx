@@ -6,14 +6,14 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '@/helpers/utils';
 
 const buttonVariants = cva(
-	'inline-flex items-center justify-center gap-8 whitespace-nowrap rounded-8 text-14 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0',
+	'inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0',
 	{
 		variants: {
 			variant: {
 				default:
 					'bg-primary text-primary-foreground shadow hover:bg-primary/90 font-bold',
 				destructive:
-					'bg-red-1 text-destructive-foreground shadow-md hover:bg-red-1/90 font-bold',
+					'bg-destructive text-destructive-foreground shadow-md hover:bg-red-1/90 font-bold',
 				outline:
 					'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground font-bold',
 				secondary:
@@ -22,10 +22,10 @@ const buttonVariants = cva(
 				link: 'text-brand underline-offset-4 hover:underline font-bold',
 			},
 			size: {
-				default: 'h-54 px-12',
-				sm: 'h-32 rounded-12 px-6',
-				lg: 'h-42 rounded-12 px-12',
-				icon: 'h-24 w-24',
+				default: 'h-12 px-3',
+				sm: 'h-8 rounded-xl px-1',
+				lg: 'h-14 rounded-xl px-3',
+				icon: 'h-6 w-6',
 			},
 		},
 		defaultVariants: {
@@ -69,9 +69,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 				{...props}
 			>
 				{loading ? (
-					<div className="flex items-center gap-8">
+					<div className="flex items-center gap-2">
 						<Loader2 className="animate-spin" />
-						<span className="text-14 font-medium">
+						<span className="text-sm font-medium">
 							{loadingText}
 						</span>
 					</div>

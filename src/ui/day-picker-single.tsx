@@ -34,11 +34,11 @@ export function DayPickerSingle({
 	};
 
 	return (
-		<div className="flex flex-col gap-12">
+		<div className="flex flex-col gap-3">
 			<div className="flex items-center justify-between">
 				<div className="text-24 font-medium">{displayDate}</div>
 			</div>
-			<div className="inline-flex flex-row flex-wrap gap-12 rounded-lg">
+			<div className="inline-flex flex-row flex-wrap gap-3 rounded-lg">
 				{days.reverse().map((day) => {
 					const formattedDay = format(day, 'dd EEE');
 					const isSelected = selectedDate
@@ -48,7 +48,7 @@ export function DayPickerSingle({
 					return (
 						<div
 							className={cn(
-								'border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center gap-6 rounded-lg border bg-white py-12',
+								'border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center gap-6 rounded-lg border bg-white py-3',
 								isSelected && 'bg-primary text-white'
 							)}
 							key={day.toISOString()}
@@ -65,7 +65,7 @@ export function DayPickerSingle({
 				})}
 				<Popover>
 					<PopoverTrigger asChild>
-						<div className="border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-12">
+						<div className="border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-3">
 							<CalendarIcon />
 						</div>
 					</PopoverTrigger>

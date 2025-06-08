@@ -134,7 +134,7 @@ const AddressForm = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="rounded-12 mt-12 grid max-w-3xl grid-cols-2 gap-24 bg-white px-16 py-24"
+				className="mt-12 grid max-w-3xl grid-cols-2 gap-6 rounded-xl bg-white px-16 py-24"
 			>
 				{[
 					['line1', 'Line1', 'text'],

@@ -72,7 +72,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 				<div
 					className={cn(
 						row.original.active ? 'bg-primary' : 'bg-destructive',
-						'!text-12 inline-flex rounded-full px-12 py-4 text-white'
+						'!text-12 inline-flex rounded-full px-3 py-4 text-white'
 					)}
 				>
 					{row.original.active ? 'Active' : 'InActive'}
@@ -84,10 +84,10 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 			header: '',
 			cell: ({ row }) => {
 				return (
-					<div className="flex items-center gap-12">
+					<div className="flex items-center gap-3">
 						<Link
 							href={`/prescription/${row.original.prescriptionNo}`}
-							className="flex size-24 items-center justify-center"
+							className="flex size-6 items-center justify-center"
 						>
 							<Button size="icon" variant="ghost">
 								<Edit2 className="size-18" />
@@ -103,7 +103,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 									<Trash2 className="size-18 text-destructive" />
 								</Button>
 							</AlertDialogTrigger>
-							<AlertDialogContent className="gap-24">
+							<AlertDialogContent className="gap-6">
 								<AlertDialogHeader>
 									<AlertDialogTitle className="text-24">
 										Delete
@@ -124,7 +124,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 										Confirm
 									</AlertDialogAction>
 									<AlertDialogCancel>
-										<span className="text-14">Cancel</span>
+										<span className="text-sm">Cancel</span>
 									</AlertDialogCancel>
 								</AlertDialogFooter>
 							</AlertDialogContent>

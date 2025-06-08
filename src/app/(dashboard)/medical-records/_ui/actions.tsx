@@ -51,7 +51,7 @@ export default function Actions({
 	};
 
 	return (
-		<div className="flex items-center justify-end gap-12">
+		<div className="flex items-center justify-end gap-3">
 			<Link target="_blank" href={url ?? ''}>
 				<Button
 					data-umami-event="medical_record_download"
@@ -74,7 +74,7 @@ export default function Actions({
 						<Trash2 className="size-18 text-destructive" />
 					</Button>
 				</AlertDialogTrigger>
-				<AlertDialogContent className="gap-24">
+				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
 						<AlertDialogTitle className="text-24">
 							Delete
@@ -93,7 +93,7 @@ export default function Actions({
 							Confirm
 						</AlertDialogAction>
 						<AlertDialogCancel>
-							<span className="text-14 font-normal">Cancel</span>
+							<span className="text-sm font-normal">Cancel</span>
 						</AlertDialogCancel>
 					</AlertDialogFooter>
 				</AlertDialogContent>

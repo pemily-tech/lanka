@@ -23,7 +23,7 @@ export function useColumns({
 			accessorKey: 'name',
 			header: 'Details',
 			cell: ({ row }) => (
-				<div className="flex gap-12">
+				<div className="flex gap-3">
 					<LazyImage
 						src="/images/follow-up-records.svg"
 						className="h-[72px] w-[85px]"

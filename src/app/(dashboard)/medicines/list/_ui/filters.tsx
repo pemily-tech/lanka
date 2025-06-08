@@ -31,7 +31,7 @@ export default function Filters({
 	const [hovered, setHovered] = useState(false);
 
 	return (
-		<div className="flex w-full flex-wrap items-end justify-between gap-12">
+		<div className="flex w-full flex-wrap items-end justify-between gap-3">
 			<div className="flex-1">
 				<Command className="max-w-[450px] rounded-lg border">
 					<CommandInput
@@ -42,7 +42,7 @@ export default function Filters({
 					/>
 				</Command>
 			</div>
-			<div className="flex flex-1 items-end justify-end gap-12">
+			<div className="flex flex-1 items-end justify-end gap-3">
 				<div>
 					<Select
 						value={String(active)}

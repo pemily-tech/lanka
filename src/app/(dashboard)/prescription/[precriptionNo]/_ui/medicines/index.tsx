@@ -51,7 +51,7 @@ export default function Medicines() {
 
 	return (
 		<div className="px-16">
-			<div className="flex flex-row items-center gap-8">
+			<div className="flex flex-row items-center gap-2">
 				<h4 className="text-16 text-primary font-semibold">
 					Medicine (RX)
 				</h4>

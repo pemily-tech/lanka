@@ -1,6 +1,5 @@
 'use client';
 
-import { url } from 'inspector';
 import { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
@@ -42,7 +41,7 @@ export default function Signature() {
 	);
 
 	return (
-		<div className="flex flex-col items-end justify-center gap-12 pb-24">
+		<div className="flex flex-col items-end justify-center gap-3 pb-24">
 			<img
 				src={
 					isPrescriptionSaved

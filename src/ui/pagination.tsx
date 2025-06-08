@@ -24,7 +24,7 @@ export const PaginationContent = React.forwardRef<
 >(({ className, ...props }, ref) => (
 	<ul
 		ref={ref}
-		className={cn('flex flex-row items-center gap-12', className)}
+		className={cn('flex flex-row items-center gap-3', className)}
 		{...props}
 	/>
 ));
@@ -54,7 +54,7 @@ export const PaginationLink = ({
 		size={size}
 		className={cn(
 			className,
-			'rounded-8 flex size-32 items-center justify-center gap-4 p-12'
+			'flex size-8 items-center justify-center gap-4 rounded-lg p-12'
 		)}
 		{...props}
 	/>
@@ -67,7 +67,7 @@ export const PaginationPrevious = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
 	<PaginationLink
 		size="default"
-		className={cn('rounded-8 !size-auto', className)}
+		className={cn('!size-auto rounded-lg', className)}
 		{...props}
 	>
 		<ChevronLeft className="size-16" />
@@ -82,7 +82,7 @@ export const PaginationNext = ({
 }: React.ComponentProps<typeof PaginationLink>) => (
 	<PaginationLink
 		size="default"
-		className={cn('rounded-8 !size-auto', className)}
+		className={cn('!size-auto rounded-lg', className)}
 		{...props}
 	>
 		<span>Next</span>

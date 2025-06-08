@@ -79,7 +79,7 @@ export default function Soap() {
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="grid grid-cols-1 gap-24"
+					className="grid grid-cols-1 gap-6"
 				>
 					{[
 						['subjective', 'Subjective'],

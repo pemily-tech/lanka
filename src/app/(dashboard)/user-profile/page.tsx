@@ -3,7 +3,7 @@ import UserDetails from './_ui/user-details';
 
 const Page = () => {
 	return (
-		<div className="shadow-card1 flex flex-col gap-32 rounded-[16px] bg-white p-16">
+		<div className="shadow-card flex flex-col gap-32 rounded-[16px] bg-white p-4">
 			<UserDetails />
 			<UserTabs />
 		</div>

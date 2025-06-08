@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 'use client';
 
 import { useCallback, useState } from 'react';
@@ -115,7 +116,7 @@ export default function Page() {
 
 	return (
 		<div className="mb-[54px]">
-			<div className="rounded-8 shadow-card1 sticky top-0 z-20 bg-white p-16">
+			<div className="shadow-card sticky top-0 z-20 rounded-lg bg-white p-4">
 				<Filters
 					selectedDate={selectedDateRange}
 					setDate={({ date }) => {
@@ -139,7 +140,7 @@ export default function Page() {
 					setOpenPrescription={() => setOpen(!open)}
 				/>
 			</div>
-			<div className="shadow-card1 rounded-8 relative my-12 bg-white">
+			<div className="shadow-card relative my-3 rounded-lg bg-white">
 				<DataTable
 					columns={columns as any}
 					data={medicineData}
@@ -153,19 +154,19 @@ export default function Page() {
 				pageSize={Number(limit)}
 				totalCount={totalCount ?? 0}
 				handlePagination={handlePagination}
-				className="flex flex-1 items-center justify-end gap-12"
+				className="flex flex-1 items-center justify-end gap-3"
 				limit={limit}
 			/>
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<div
-						className="bg-purple shadow-card1 fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white transition-transform duration-200 hover:scale-110"
+						className="bg-purple shadow-card fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white transition-transform duration-200 hover:scale-110"
 						onClick={() => setOpen(!open)}
 					>
 						<PillBottle className="text-white" />
 					</div>
 				</TooltipTrigger>
-				<TooltipContent className="border-purple rounded-2xl border bg-white px-12 py-6">
+				<TooltipContent className="border-purple rounded-2xl border bg-white px-3 py-6">
 					<p className="text-black-1">Create New Rx</p>
 				</TooltipContent>
 			</Tooltip>

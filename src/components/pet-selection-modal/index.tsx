@@ -63,13 +63,13 @@ export default function PetSelectModal({
 				<DialogHeader>
 					<DialogTitle>
 						Create a New Prescription{' '}
-						<span className="text-14 text-black-1/60 font-normal">
+						<span className="text-black-1/60 text-sm font-normal">
 							(Step {currentIndex + 1} of {steps.length})
 						</span>
 					</DialogTitle>
 				</DialogHeader>
 				<DialogDescription />
-				<div className="my-12">
+				<div className="my-3">
 					<StepperNavigation
 						stepper={stepper}
 						currentIndex={currentIndex}
@@ -153,7 +153,7 @@ function StepperNavigation({
 										: 'secondary'
 								}
 								onClick={() => stepper.goTo(step.id)}
-								className="flex size-32 items-center justify-center rounded-full"
+								className="flex size-8 items-center justify-center rounded-full"
 							>
 								{index + 1}
 							</Button>

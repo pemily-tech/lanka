@@ -31,14 +31,14 @@ export default function Header() {
 	};
 
 	return (
-		<div className="shadow-card1 rounded-8 mb-12 bg-white">
+		<div className="shadow-card mb-12 rounded-lg bg-white">
 			<div className={cn('flex items-center justify-between p-12')}>
 				<div className="flex-1">
-					<div className="relative flex w-[320px] items-center border-b px-12">
+					<div className="relative flex w-[320px] items-center border-b px-3">
 						<Search className="mr-12 size-16 shrink-0 opacity-50" />
 						<Input
 							className={cn(
-								'text-14 placeholder:text-muted-foreground flex h-32 w-full rounded-md border-none bg-transparent py-12 pl-0 font-medium outline-none disabled:cursor-not-allowed disabled:opacity-50'
+								'placeholder:text-muted-foreground flex h-8 w-full rounded-md border-none bg-transparent py-3 pl-0 text-sm font-medium outline-none disabled:cursor-not-allowed disabled:opacity-50'
 							)}
 							type="search"
 							placeholder="Search for products..."
@@ -59,7 +59,7 @@ export default function Header() {
 						)}
 					</div>
 				</div>
-				<div className="flex flex-1 justify-end gap-24">
+				<div className="flex flex-1 justify-end gap-6">
 					<div className="flex items-center gap-4">
 						<span className="whitespace-nowrap text-sm">
 							Product Type:
@@ -73,7 +73,7 @@ export default function Header() {
 							variant="secondary"
 							size="sm"
 						>
-							<span className="text-14 font-normal">
+							<span className="text-sm font-normal">
 								{type === 'PRODUCT' ? 'Service' : 'Product'}
 							</span>
 						</Button>

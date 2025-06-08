@@ -102,11 +102,11 @@ export function PetForm({ type }: { type: 'add' | 'edit' }) {
 	};
 
 	return (
-		<div className="rounded-8 shadow-card1 col-span-2 max-w-2xl bg-white p-16">
+		<div className="shadow-card col-span-2 max-w-2xl rounded-lg bg-white p-4">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="grid grid-cols-2 gap-24"
+					className="grid grid-cols-2 gap-6"
 				>
 					{formFields.map(({ name, label, type, options }, i) => {
 						if (type === 'select' && Array.isArray(options)) {

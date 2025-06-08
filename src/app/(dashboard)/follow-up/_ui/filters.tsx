@@ -61,7 +61,7 @@ function Filters({
 	return (
 		<div
 			className={cn(
-				'flex flex-row items-end justify-between gap-24',
+				'flex flex-row items-end justify-between gap-6',
 				!showCalendar && 'items-center justify-start'
 			)}
 		>
@@ -73,7 +73,7 @@ function Filters({
 			)}
 			<div
 				className={cn(
-					'flex flex-1 items-end justify-end gap-12',
+					'flex flex-1 items-end justify-end gap-3',
 					!showCalendar && 'items-center justify-start'
 				)}
 			>
@@ -95,7 +95,7 @@ function Filters({
 							}}
 							transition={{ duration: 0.25, ease: 'easeOut' }}
 							className={cn(
-								'rounded-12 flex h-48 cursor-pointer items-center justify-center gap-4 border',
+								'flex h-12 cursor-pointer items-center justify-center gap-4 rounded-xl border',
 								active
 									? 'border-secondary'
 									: 'border-transparent'

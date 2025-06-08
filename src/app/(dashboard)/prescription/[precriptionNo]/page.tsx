@@ -12,7 +12,7 @@ export default async function Page() {
 	return (
 		<div>
 			<Header />
-			<div className="shadow-card1 rounded-lg bg-white p-16">
+			<div className="shadow-card rounded-lg bg-white p-4">
 				<BasicDetails />
 				<div className="grid grid-cols-6">
 					<div className="col-span-2">

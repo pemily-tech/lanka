@@ -81,7 +81,7 @@ export default function UserTabs() {
 					{filteredTabs.map((tab) => (
 						<TabsTrigger
 							key={tab.value}
-							className="flex-1 py-12"
+							className="flex-1 py-3"
 							value={tab.value}
 						>
 							{tab.label}

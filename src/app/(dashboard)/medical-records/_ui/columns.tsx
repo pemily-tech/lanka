@@ -23,7 +23,7 @@ export function useColumns({
 			accessorKey: 'name',
 			header: 'Details',
 			cell: ({ row }) => (
-				<div className="flex gap-12">
+				<div className="flex gap-3">
 					<PreviewImage url={row.original.url} />
 					<div className="flex flex-col gap-4">
 						<div className="flex items-end gap-6">

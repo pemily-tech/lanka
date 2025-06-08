@@ -17,9 +17,9 @@ export function LayoutHeader() {
 	const isHome = pathname === Routes.HOME;
 
 	return (
-		<header className="flex h-[72px] shrink-0 items-center justify-between gap-12 border-b bg-white px-16">
-			<div className="flex items-center justify-between gap-12 py-24">
-				<div className="flex flex-row items-center gap-12">
+		<header className="flex h-[72px] shrink-0 items-center justify-between gap-3 border-b bg-white px-16">
+			<div className="flex items-center justify-between gap-3 py-24">
+				<div className="flex flex-row items-center gap-3">
 					{!isHome && (
 						<Button
 							onClick={() => router.back()}

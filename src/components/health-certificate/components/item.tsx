@@ -61,16 +61,16 @@
 // 	};
 
 // 	return (
-// 		<div className="rounded-8 shadow-base mb-12 grid grid-cols-2 gap-12 bg-white px-16 py-12">
+// 		<div className="rounded-lg shadow-base mb-12 grid grid-cols-2 gap-3 bg-white px-16 py-3">
 // 			<div className="col-span-1 w-[500px]">
-// 				<div className="flex gap-12 ">
+// 				<div className="flex gap-3 ">
 // 					<PdfIcon width={85} height={72} />
 // 					<div className="flex flex-col gap-6">
 // 						<p className="text-16 font-semibold">
 // 							{record.pet.name} (
 // 							{getCertificateLabel(record?.type)})
 // 						</p>
-// 						<p className="text-14">{record?.parent?.name}</p>
+// 						<p className="text-sm">{record?.parent?.name}</p>
 // 					</div>
 // 				</div>
 // 				<p className="text-12 mt-8">
@@ -81,13 +81,13 @@
 // 					)}
 // 				</p>
 // 			</div>
-// 			<div className="col-span-1 flex items-center justify-end gap-24">
+// 			<div className="col-span-1 flex items-center justify-end gap-6">
 // 				<a
 // 					target="_blank"
 // 					href={url as string}
 // 					rel="noreferrer"
 // 					onClick={handleDownload}
-// 					className="text-14 text-primary-1 decoration-primary-1 flex items-center justify-center font-bold underline"
+// 					className="text-sm text-primary-1 decoration-primary-1 flex items-center justify-center font-bold underline"
 // 				>
 // 					View/Print
 // 				</a>

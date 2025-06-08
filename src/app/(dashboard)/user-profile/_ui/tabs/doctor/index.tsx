@@ -26,8 +26,8 @@ export default function Doctors() {
 			{doctorsData.map((doctor) => (
 				<Collapsible key={doctor._id} className="group">
 					<div className="rounded-lg border transition-all group-data-[state=open]:shadow-sm">
-						<CollapsibleTrigger className="flex w-full items-center justify-between px-16 py-12 text-left font-medium">
-							<div className="flex items-center gap-12">
+						<CollapsibleTrigger className="flex w-full items-center justify-between px-16 py-3 text-left font-medium">
+							<div className="flex items-center gap-3">
 								<ProfileImage id={doctor?.doctor?.doctorId} />
 								<div className="flex flex-col gap-4">
 									<span className="text-sm">
@@ -42,7 +42,7 @@ export default function Doctors() {
 								<ChevronDown className="size-16" />
 							</div>
 						</CollapsibleTrigger>
-						<CollapsibleContent className="text-muted-foreground px-16 py-12 text-sm">
+						<CollapsibleContent className="text-muted-foreground px-16 py-3 text-sm">
 							<Signature doctor={doctor.doctor} />
 							<DoctorForm doctor={doctor.doctor} />
 						</CollapsibleContent>

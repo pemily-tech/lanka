@@ -114,7 +114,7 @@ export default function Status({
 						<Form {...form}>
 							<form
 								onSubmit={form.handleSubmit(onSubmit)}
-								className="grid grid-cols-2 gap-24"
+								className="grid grid-cols-2 gap-6"
 							>
 								<FormField
 									control={form.control}
@@ -140,7 +140,7 @@ export default function Status({
 															isError={
 																!!fieldState.error
 															}
-															className="!mt-6 bg-white"
+															className="!mt-1 bg-white"
 														>
 															<SelectValue placeholder="Select a type" />
 														</SelectTrigger>
@@ -191,7 +191,7 @@ export default function Status({
 																	'outline'
 																}
 																className={cn(
-																	'!mt-6 h-48 text-left font-normal',
+																	'!mt-1 h-12 text-left font-normal',
 																	!field.value &&
 																		'text-muted-foreground'
 																)}
@@ -204,7 +204,7 @@ export default function Status({
 																			'PPP'
 																		)
 																	: 'Pick a date'}
-																<CalendarIcon className="ml-auto size-24 opacity-50" />
+																<CalendarIcon className="ml-auto size-6 opacity-50" />
 															</Button>
 														</FormControl>
 													</PopoverTrigger>
@@ -239,7 +239,7 @@ export default function Status({
 										);
 									}}
 								/>
-								<DialogFooter className="col-span-2 mt-24 flex gap-24">
+								<DialogFooter className="col-span-2 mt-1 flex gap-6">
 									<DialogClose>Cancel</DialogClose>
 									<Button
 										type="submit"

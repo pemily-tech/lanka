@@ -90,14 +90,14 @@ const BusinessForm = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="rounded-12 mt-12 grid flex-1 grid-cols-2 gap-24 bg-white px-16 py-24"
+				className="mt-12 grid flex-1 grid-cols-2 gap-6 rounded-xl bg-white px-16 py-24"
 			>
 				{[
 					['businessContact', 'Business Contact Number', 'numeric'],
 					['ownerName', 'Owner Name', 'text'],
 					['pan', 'PAN', 'text'],
 					['gstNo', 'GST No', 'text'],
-				].map(([name, label, type, placeholder]) => {
+				].map(([name, label, type]) => {
 					return (
 						<FormField
 							key={name}

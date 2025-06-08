@@ -26,7 +26,7 @@ export default function BasicDetails() {
 	return (
 		<div>
 			<div className="flex flex-row justify-between gap-16 pb-16">
-				<div className="flex flex-1 gap-24">
+				<div className="flex flex-1 gap-6">
 					<div className="flex size-[152px] items-center justify-center">
 						<div className="border-purple-1/20 size-[142px] rounded-full border-2 p-4">
 							{clinicLogo && (
@@ -104,7 +104,7 @@ export default function BasicDetails() {
 					)}
 				</div>
 			</div>
-			<div className="flex flex-1 flex-col gap-12 border-y py-12">
+			<div className="flex flex-1 flex-col gap-3 border-y py-3">
 				<div className="flex gap-16">
 					<div className="flex flex-row gap-6">
 						<span className="text-black-1/60">Owner Name: </span>

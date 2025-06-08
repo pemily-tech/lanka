@@ -22,7 +22,7 @@
 
 // 	if (records && records?.length <= 0) {
 // 		return (
-// 			<div className="flex flex-col items-center justify-center gap-24 py-[82px]">
+// 			<div className="flex flex-col items-center justify-center gap-6 py-[82px]">
 // 				<ImagePlaceholder
 // 					containerClasses="w-[120px] h-[150px]"
 // 					src="/images/no-records.svg"

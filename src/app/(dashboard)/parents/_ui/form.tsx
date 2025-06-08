@@ -104,14 +104,14 @@ export function ParentForm({ type }: { type: 'add' | 'edit' }) {
 	return (
 		<div
 			className={cn(
-				'rounded-8 shadow-card1 col-span-2 bg-white p-16',
+				'shadow-card col-span-2 rounded-lg bg-white p-4',
 				type === 'add' && 'max-w-2xl'
 			)}
 		>
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="mt-24 grid grid-cols-2 gap-24"
+					className="mt-1 grid grid-cols-2 gap-6"
 				>
 					{[
 						['mobileNumber', 'Mobile Number'],
@@ -144,9 +144,9 @@ export function ParentForm({ type }: { type: 'add' | 'edit' }) {
 							control={form.control}
 							name="active"
 							render={({ field: switchField }) => (
-								<FormItem className="flex flex-row items-center gap-12">
+								<FormItem className="flex flex-row items-center gap-3">
 									<div className="space-y-2">
-										<FormLabel className="text-14">
+										<FormLabel className="text-sm">
 											Choose Active/InActive
 										</FormLabel>
 										<FormDescription>

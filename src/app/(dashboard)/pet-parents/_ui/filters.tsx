@@ -22,7 +22,7 @@ export default function Filters({
 	const [hovered, setHovered] = useState(false);
 
 	return (
-		<div className="rounded-8 shadow-card1 sticky top-0 z-20 grid grid-cols-5 gap-24 bg-white p-16">
+		<div className="shadow-card sticky top-0 z-20 grid grid-cols-5 gap-6 rounded-lg bg-white p-4">
 			<div className="col-span-3 flex">
 				<div className="max-w-316  h-[48px] w-full flex-1">
 					<Command className="rounded-lg border">
@@ -48,7 +48,7 @@ export default function Filters({
 							stiffness: 300,
 							damping: 20,
 						}}
-						className="h-48"
+						className="h-12"
 						data-umami-event="parents_create_button"
 					>
 						{hovered ? (

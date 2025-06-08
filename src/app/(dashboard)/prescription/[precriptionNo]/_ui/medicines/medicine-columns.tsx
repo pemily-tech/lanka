@@ -75,7 +75,7 @@ export function useColumns(
 					return null;
 				}
 				return (
-					<div className="flex items-center gap-12">
+					<div className="flex items-center gap-3">
 						<Dialog>
 							<DialogTrigger asChild>
 								<Button size="icon" variant="ghost">
@@ -96,7 +96,7 @@ export function useColumns(
 									<Trash2 className="size-18 text-destructive" />
 								</Button>
 							</AlertDialogTrigger>
-							<AlertDialogContent className="gap-24">
+							<AlertDialogContent className="gap-6">
 								<AlertDialogHeader>
 									<AlertDialogTitle className="text-24">
 										Delete
@@ -117,7 +117,7 @@ export function useColumns(
 										Confirm
 									</AlertDialogAction>
 									<AlertDialogCancel>
-										<span className="text-14">Cancel</span>
+										<span className="text-sm">Cancel</span>
 									</AlertDialogCancel>
 								</AlertDialogFooter>
 							</AlertDialogContent>

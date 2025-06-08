@@ -70,7 +70,7 @@ export default function PetDetails() {
 	});
 
 	return (
-		<div className="flex items-center justify-between gap-24">
+		<div className="flex items-center justify-between gap-6">
 			<div className="gap-54 flex flex-row items-center justify-start rounded-[16px]">
 				<div className="flex gap-16">
 					<div>

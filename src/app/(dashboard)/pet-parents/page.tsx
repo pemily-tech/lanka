@@ -39,7 +39,7 @@ export default function Page() {
 	return (
 		<div className="">
 			<Filters value={input} handleChange={handleChange} />
-			<div className="shadow-card1 rounded-8 relative my-12 bg-white">
+			<div className="shadow-card relative my-3 rounded-lg bg-white">
 				<DataTable
 					columns={columns}
 					data={parentData}
@@ -53,7 +53,7 @@ export default function Page() {
 				pageSize={Number(limit)}
 				totalCount={totalCount}
 				handlePagination={handlePagination}
-				className="flex flex-1 items-center justify-end gap-12"
+				className="flex flex-1 items-center justify-end gap-3"
 				limit={limit}
 			/>
 		</div>

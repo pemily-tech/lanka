@@ -14,7 +14,7 @@ export function useColumns(): ColumnDef<IPetParent>[] {
 			accessorKey: 'name',
 			header: 'Name',
 			cell: ({ row }) => (
-				<div className="flex items-center gap-12">
+				<div className="flex items-center gap-3">
 					<UserImage id={row.original.parent.parentId} />
 					<span>{row.original.parent.name}</span>
 				</div>
@@ -36,7 +36,7 @@ export function useColumns(): ColumnDef<IPetParent>[] {
 			id: 'buttons',
 			header: 'Actions',
 			cell: ({ row }) => (
-				<div className="flex items-center gap-12">
+				<div className="flex items-center gap-3">
 					<Link
 						href={`${Routes.PARENTS_UPDATE}/${row.original.parent.parentId}`}
 						className="flex items-center justify-center"
@@ -46,7 +46,7 @@ export function useColumns(): ColumnDef<IPetParent>[] {
 							variant="secondary"
 							data-umami-event="parents_edit_button"
 							data-umami-event-id={row.original.parent.parentId}
-							className="px-12"
+							className="px-3"
 						>
 							<span className="font-normal">Edit Parent</span>
 						</Button>
@@ -56,7 +56,7 @@ export function useColumns(): ColumnDef<IPetParent>[] {
 						variant="outline"
 						data-umami-event="parents_edit_button"
 						data-umami-event-id={row.original.parent.parentId}
-						className="px-12"
+						className="px-3"
 						onClick={(e) => {
 							e.stopPropagation();
 							row.toggleExpanded();

@@ -70,7 +70,7 @@ const Logo = () => {
 					{isUrlExists ? (
 						<Check className="size-18 text-white" />
 					) : (
-						<Camera className="size-24 p-2 text-white" />
+						<Camera className="size-6 p-2 text-white" />
 					)}
 				</div>
 			</div>

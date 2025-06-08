@@ -54,7 +54,7 @@ function EditableDialog({
 					value={value}
 					onChange={(e) => onChange(e.target.value)}
 				/>
-				<DialogFooter className="mt-24 gap-24">
+				<DialogFooter className="mt-1 gap-6">
 					<DialogClose>Close</DialogClose>
 					<Button size="lg" onClick={onConfirm}>
 						Confirm
@@ -87,7 +87,7 @@ export default function AdviceFollowup() {
 
 	return (
 		<div className="flex flex-col gap-16 px-16 py-24">
-			<div className="flex flex-row items-center gap-8">
+			<div className="flex flex-row items-center gap-2">
 				<Button
 					onClick={
 						isPrescriptionSaved
@@ -109,7 +109,7 @@ export default function AdviceFollowup() {
 				<Popover>
 					<PopoverTrigger asChild>
 						<Button
-							className="flex cursor-pointer flex-row items-center gap-8 px-4"
+							className="flex cursor-pointer flex-row items-center gap-2 px-4"
 							variant="ghost"
 							size="lg"
 						>

@@ -42,7 +42,7 @@ export function CalendarType({
 									<Button
 										variant={'outline'}
 										className={cn(
-											'h-48 text-left font-normal',
+											'h-12 text-left font-normal',
 											!field.value &&
 												'text-muted-foreground'
 										)}
@@ -53,7 +53,7 @@ export function CalendarType({
 													'PPP'
 												)
 											: 'Pick a date'}
-										<CalendarIcon className="ml-auto size-24 opacity-50" />
+										<CalendarIcon className="ml-auto size-6 opacity-50" />
 									</Button>
 								</FormControl>
 							</PopoverTrigger>

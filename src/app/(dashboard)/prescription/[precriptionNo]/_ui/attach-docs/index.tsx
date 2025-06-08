@@ -24,30 +24,30 @@ export default function AttachDocs() {
 				className="w-full"
 			>
 				<TabsList className="w-full justify-start rounded-none border-b bg-white">
-					<TabsTrigger className="flex-1 py-12" value="PRESCRIPTION">
+					<TabsTrigger className="flex-1 py-3" value="PRESCRIPTION">
 						Prescription
 					</TabsTrigger>
-					<TabsTrigger className="flex-1 py-12" value="REPORT">
+					<TabsTrigger className="flex-1 py-3" value="REPORT">
 						Report
 					</TabsTrigger>
-					<TabsTrigger className="flex-1 py-12" value="OTHER">
+					<TabsTrigger className="flex-1 py-3" value="OTHER">
 						Other
 					</TabsTrigger>
 				</TabsList>
 				<TabsContent className="mt-0" value="PRESCRIPTION">
-					<div className="flex flex-col gap-12">
+					<div className="flex flex-col gap-3">
 						<DocsList type="PRESCRIPTION" />
 						<UploadCard type="PRESCRIPTION" />
 					</div>
 				</TabsContent>
 				<TabsContent className="mt-0" value="REPORT">
-					<div className="flex flex-col gap-12">
+					<div className="flex flex-col gap-3">
 						<DocsList type="REPORT" />
 						<UploadCard type="REPORT" />
 					</div>
 				</TabsContent>
 				<TabsContent className="mt-0" value="OTHER">
-					<div className="flex flex-col gap-12">
+					<div className="flex flex-col gap-3">
 						<DocsList type="OTHER" />
 						<UploadCard type="OTHER" />
 					</div>

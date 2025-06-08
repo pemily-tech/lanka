@@ -78,7 +78,7 @@ export const AppSidebar = () => {
 					<SidebarMenuItem>
 						<SidebarMenuButton>
 							<UserRoundCheck className="text-primary" />
-							<span className="text-14">{name || mobile}</span>
+							<span className="text-sm">{name || mobile}</span>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>
@@ -94,11 +94,11 @@ export const AppSidebar = () => {
 						<SidebarMenuButton className="p-0" asChild>
 							<div>
 								<AlertDialog>
-									<AlertDialogTrigger className="flex w-full items-center gap-12 py-12">
+									<AlertDialogTrigger className="flex w-full items-center gap-3 py-3">
 										<LogOutIcon width={16} height={16} />
-										<span className="text-14">Logout</span>
+										<span className="text-sm">Logout</span>
 									</AlertDialogTrigger>
-									<AlertDialogContent className="gap-24">
+									<AlertDialogContent className="gap-6">
 										<AlertDialogHeader>
 											<AlertDialogTitle className="text-24">
 												Logout
@@ -115,7 +115,7 @@ export const AppSidebar = () => {
 												Logout
 											</AlertDialogAction>
 											<AlertDialogCancel>
-												<span className="text-14">
+												<span className="text-sm">
 													Cancel
 												</span>
 											</AlertDialogCancel>
@@ -142,7 +142,7 @@ const Menu = ({
 	const pathname = usePathname();
 
 	return (
-		<SidebarMenu className="gap-24 px-8">
+		<SidebarMenu className="gap-6 px-8">
 			{navMenu.map((item, index) => {
 				const Icon =
 					item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
@@ -157,7 +157,7 @@ const Menu = ({
 						<SidebarMenuButton
 							className={`${
 								active
-									? 'bg-grey-bg3 text-accent-foreground hover:bg-greyBg hover:text-accent-foreground py-12 hover:opacity-80'
+									? 'bg-grey-bg3 text-accent-foreground hover:bg-greyBg hover:text-accent-foreground py-3 hover:opacity-80'
 									: 'px-0'
 							}`}
 							key={index}
@@ -165,16 +165,16 @@ const Menu = ({
 						>
 							<Link href={item.path}>
 								{item.isIcon && Icon ? (
-									<div className="flex size-32 items-center justify-center">
-										<Icon className="!size-24" />
+									<div className="flex size-8 items-center justify-center">
+										<Icon className="!size-6" />
 									</div>
 								) : (
 									<LazyImage
-										className="size-32"
+										className="size-8"
 										src={item.icon as string}
 									/>
 								)}
-								<span className="text-14">{item.title}</span>
+								<span className="text-sm">{item.title}</span>
 							</Link>
 						</SidebarMenuButton>
 					);
@@ -203,12 +203,12 @@ const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 				<CollapsibleTrigger asChild>
 					<SidebarMenuButton className="px-0">
 						{Icon && <Icon className="!size-18" />}
-						<span className="text-14">{item.title}</span>
+						<span className="text-sm">{item.title}</span>
 						<ChevronRight className="!size-18 ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
 					</SidebarMenuButton>
 				</CollapsibleTrigger>
 				<CollapsibleContent>
-					<SidebarMenuSub className="mx-0 ml-24 mt-8 gap-12 px-0">
+					<SidebarMenuSub className="mx-0 ml-24 mt-8 gap-3 px-0">
 						{visibleItems?.map((ite, index) => {
 							const active = pathname === ite.path;
 							return (
@@ -222,7 +222,7 @@ const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 										asChild
 									>
 										<Link href={ite.path}>
-											<span className="text-14">
+											<span className="text-sm">
 												{ite.title}
 											</span>
 										</Link>

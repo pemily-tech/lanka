@@ -73,9 +73,9 @@ export default function Page() {
 	};
 
 	return (
-		<section className="rounded-8 bg-white">
+		<section className="rounded-lg bg-white">
 			<div className="grid grid-cols-5">
-				<div className="col-span-2 p-16">
+				<div className="col-span-2 p-4">
 					<h1 className="text-[30px] font-semibold">
 						Data For Your Growth & Trust
 					</h1>
@@ -93,8 +93,8 @@ export default function Page() {
 							</li>
 						))}
 					</ul>
-					<div className="mt-24">
-						<div className="grid grid-cols-2 gap-24">
+					<div className="mt-1">
+						<div className="grid grid-cols-2 gap-6">
 							<div className="col-span-1 flex flex-col gap-6">
 								<label className="text-12 font-medium">
 									Select Year
@@ -104,7 +104,7 @@ export default function Page() {
 									onChange={(e) =>
 										setYear(Number(e.target.value))
 									}
-									className="border-grey-light rounded-8 text-14 border px-6 py-8 outline-none"
+									className="border-grey-light rounded-lg border px-1 py-8 text-sm outline-none"
 								>
 									{years.map((year) => {
 										return (
@@ -127,7 +127,7 @@ export default function Page() {
 									onChange={(e) =>
 										setMonth(Number(e.target.value))
 									}
-									className="border-grey-light rounded-8 text-14 border px-6 py-8 outline-none"
+									className="border-grey-light rounded-lg border px-1 py-8 text-sm outline-none"
 								>
 									{months.map((month) => {
 										return (
@@ -146,7 +146,7 @@ export default function Page() {
 							disabled={isPending || role === Roles.Staff}
 							loading={isPending}
 							onClick={handleSubmit}
-							className="mt-24 w-full"
+							className="mt-1 w-full"
 						>
 							<span className="text-[20px] font-semibold">
 								Download

@@ -41,7 +41,7 @@ export default function Footer() {
 						<span className="font-normal">Save</span>
 					</Button>
 				</AlertDialogTrigger>
-				<AlertDialogContent className="gap-24">
+				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
 						<AlertDialogTitle className="text-24">
 							Are you sure you want to save this prescription?
@@ -59,7 +59,7 @@ export default function Footer() {
 							Confirm
 						</AlertDialogAction>
 						<AlertDialogCancel>
-							<span className="text-14">Cancel</span>
+							<span className="text-sm">Cancel</span>
 						</AlertDialogCancel>
 					</AlertDialogFooter>
 				</AlertDialogContent>
@@ -85,7 +85,7 @@ export default function Footer() {
 						<span className="font-normal">Share PDF</span>
 					</Button>
 				</AlertDialogTrigger>
-				<AlertDialogContent className="gap-24">
+				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
 						<AlertDialogTitle className="text-24">
 							Share Prescription
@@ -103,7 +103,7 @@ export default function Footer() {
 							Confirm
 						</AlertDialogAction>
 						<AlertDialogCancel className="bg-transparent hover:bg-transparent">
-							<span className="text-14 text-black-1 font-normal">
+							<span className="text-black-1 text-sm font-normal">
 								Cancel
 							</span>
 						</AlertDialogCancel>

@@ -50,7 +50,7 @@ export function Combobox({
 									variant="outline"
 									role="combobox"
 									className={cn(
-										'!mt-6 h-48 justify-between font-normal',
+										'!mt-1 h-12 justify-between font-normal',
 										!field.value && 'text-muted-foreground'
 									)}
 									disabled={!selectedType}

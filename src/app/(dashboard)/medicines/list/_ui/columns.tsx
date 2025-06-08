@@ -55,7 +55,7 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 				<div
 					className={cn(
 						row.original.active ? 'bg-primary' : 'bg-destructive',
-						'!text-12 inline-flex rounded-full px-12 py-4 text-white'
+						'!text-12 inline-flex rounded-full px-3 py-4 text-white'
 					)}
 				>
 					{row.original.active ? 'Active' : 'InActive'}
@@ -66,10 +66,10 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 			id: 'buttons',
 			header: '',
 			cell: ({ row }) => (
-				<div className="flex items-center gap-12">
+				<div className="flex items-center gap-3">
 					<Link
 						href={`${Routes.MEDICINES_UPDATE}/${row.original.medicineId}`}
-						className="flex size-24 items-center justify-center"
+						className="flex size-6 items-center justify-center"
 					>
 						<Button
 							size="icon"
@@ -92,7 +92,7 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 								<Trash2 className="size-18 text-destructive" />
 							</Button>
 						</AlertDialogTrigger>
-						<AlertDialogContent className="gap-24">
+						<AlertDialogContent className="gap-6">
 							<AlertDialogHeader>
 								<AlertDialogTitle className="text-24">
 									Delete
@@ -111,7 +111,7 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 									Confirm
 								</AlertDialogAction>
 								<AlertDialogCancel>
-									<span className="text-14">Cancel</span>
+									<span className="text-sm">Cancel</span>
 								</AlertDialogCancel>
 							</AlertDialogFooter>
 						</AlertDialogContent>

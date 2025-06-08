@@ -79,7 +79,7 @@ export default function FollowupForm({
 	};
 
 	return (
-		<div className="mb-54 mt-24 flex h-full flex-col">
+		<div className="mb-54 mt-1 flex h-full flex-col">
 			<h2 className="text-24 mx-24 font-semibold">
 				Add Follow-up Details
 			</h2>
@@ -91,7 +91,7 @@ export default function FollowupForm({
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="flex flex-1 flex-col"
 				>
-					<div className="mx-24 flex max-w-lg flex-1 flex-col gap-24">
+					<div className="mx-24 flex max-w-lg flex-1 flex-col gap-6">
 						<FormField
 							control={form.control}
 							name="followUpType"
@@ -107,7 +107,7 @@ export default function FollowupForm({
 											<FormControl>
 												<SelectTrigger
 													isError={!!fieldState.error}
-													className="!mt-6 bg-white"
+													className="!mt-1 bg-white"
 												>
 													<SelectValue placeholder="Select a type" />
 												</SelectTrigger>
@@ -148,7 +148,7 @@ export default function FollowupForm({
 													<Button
 														variant="outline"
 														className={cn(
-															'!mt-6 h-48 text-left font-normal',
+															'!mt-1 h-12 text-left font-normal',
 															'flex flex-row truncate',
 															!field.value &&
 																'text-muted-foreground'
@@ -173,7 +173,7 @@ export default function FollowupForm({
 																		)
 																: 'Pick a date'}
 														</span>
-														<CalendarIcon className="ml-auto size-24 opacity-50" />
+														<CalendarIcon className="ml-auto size-6 opacity-50" />
 													</Button>
 												</FormControl>
 											</PopoverTrigger>

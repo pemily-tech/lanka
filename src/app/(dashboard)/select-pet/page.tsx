@@ -34,7 +34,7 @@ export default function Page() {
 	} = useStepperHook({ type: recordType as string });
 
 	return (
-		<div className="shadow-card1 my-12 rounded-lg bg-white">
+		<div className="shadow-card my-3 rounded-lg bg-white">
 			<StepperNavigation stepper={stepper} currentIndex={currentIndex} />
 			<div className="mb-12 h-[calc(100vh-240px)] space-y-4">
 				{stepper.switch({
@@ -123,7 +123,7 @@ function StepperNavigation({
 						<li className="flex shrink-0 items-center gap-4">
 							<div
 								className={cn(
-									'flex size-32 items-center justify-center rounded-full',
+									'flex size-8 items-center justify-center rounded-full',
 									index <= currentIndex
 										? 'bg-primary text-white'
 										: 'bg-black-1/30'

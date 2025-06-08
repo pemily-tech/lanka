@@ -29,18 +29,18 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 					/>
 				</div>
 				<div className="col-span-1 flex flex-col bg-white">
-					<div className="flex flex-1 flex-col  justify-center px-24">
-						<div className="mb-24 flex items-center">
-							<p className=" text-grey-text3 text-14 mb-16 mt-24">
+					<div className="flex flex-1 flex-col justify-center px-4">
+						<div className="flex items-center">
+							<p className="mb-4 mt-1 text-lg">
 								Welcome to{' '}
-								<span className="font-semibold text-black">
+								<span className="text-primary font-bold">
 									Pemilyy
 								</span>
 							</p>
 						</div>
 						{children}
 					</div>
-					<p className="text-12 px-16 py-24 text-center">
+					<p className="px-4 py-6 text-center text-xs">
 						By clicking you agree to our{' '}
 						<Link
 							href="/"

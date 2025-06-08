@@ -75,7 +75,7 @@ export default function Signature({ doctor }: { doctor: IDoctor }) {
 				) : (
 					<div
 						{...getRootProps()}
-						className="bg-secondary flex cursor-pointer items-center gap-6 rounded-xl px-16 py-12 text-white"
+						className="bg-secondary flex cursor-pointer items-center gap-6 rounded-xl px-16 py-3 text-white"
 					>
 						<Plus className="size-16" />
 						<span>Upload eSignature</span>

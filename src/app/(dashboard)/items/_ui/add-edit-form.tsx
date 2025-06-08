@@ -119,7 +119,7 @@ export default function AddEditForm({
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="grid grid-cols-2 gap-24"
+				className="grid grid-cols-2 gap-6"
 			>
 				{[
 					['name', 'Name', 'text'],
@@ -175,7 +175,7 @@ export default function AddEditForm({
 														isError={
 															!!fieldState.error
 														}
-														className="!mt-6 bg-white"
+														className="!mt-1 bg-white"
 													>
 														<SelectValue placeholder="Select a type" />
 													</SelectTrigger>

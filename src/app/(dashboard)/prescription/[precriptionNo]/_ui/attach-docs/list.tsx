@@ -32,7 +32,7 @@ export default function DocsList({ type }: { type: string }) {
 		data?.data?.attachedDocuments || ({} as IAttachedDocuments);
 
 	return (
-		<div className="mt-4 flex flex-col gap-12">
+		<div className="mt-4 flex flex-col gap-3">
 			{attachDocs.attachedDocuments?.map((doc) => {
 				return (
 					<Doc
@@ -83,13 +83,13 @@ function Doc({
 
 	return (
 		<div
-			className="flex flex-row items-center gap-12 rounded-lg border p-12"
+			className="flex flex-row items-center gap-3 rounded-lg border p-12"
 			key={doc?._id}
 		>
 			<a href={url} target="_blank" className="size-[54px]">
 				<img src="/images/pdf.png" />
 			</a>
-			<div className="flex flex-1 flex-row items-center justify-end gap-8">
+			<div className="flex flex-1 flex-row items-center justify-end gap-2">
 				<Button
 					onClick={() => window.open(url)}
 					size="icon"
@@ -108,7 +108,7 @@ function Doc({
 							<Share className="size-18" />
 						</Button>
 					</AlertDialogTrigger>
-					<AlertDialogContent className="gap-24">
+					<AlertDialogContent className="gap-6">
 						<AlertDialogHeader>
 							<AlertDialogTitle className="text-24">
 								Share Prescription
@@ -126,7 +126,7 @@ function Doc({
 								Confirm
 							</AlertDialogAction>
 							<AlertDialogCancel className="bg-transparent hover:bg-transparent">
-								<span className="text-14 text-black-1 font-normal">
+								<span className="text-black-1 text-sm font-normal">
 									Cancel
 								</span>
 							</AlertDialogCancel>
@@ -140,7 +140,7 @@ function Doc({
 							<Trash2 className="size-18 text-destructive" />
 						</Button>
 					</AlertDialogTrigger>
-					<AlertDialogContent className="gap-24">
+					<AlertDialogContent className="gap-6">
 						<AlertDialogHeader>
 							<AlertDialogTitle className="text-24">
 								Delete
@@ -157,7 +157,7 @@ function Doc({
 								Confirm
 							</AlertDialogAction>
 							<AlertDialogCancel>
-								<span className="text-14">Cancel</span>
+								<span className="text-sm">Cancel</span>
 							</AlertDialogCancel>
 						</AlertDialogFooter>
 					</AlertDialogContent>
