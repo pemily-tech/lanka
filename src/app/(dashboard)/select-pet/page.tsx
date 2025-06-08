@@ -36,7 +36,7 @@ export default function Page() {
 	return (
 		<div className="shadow-card my-3 rounded-lg bg-white">
 			<StepperNavigation stepper={stepper} currentIndex={currentIndex} />
-			<div className="mb-12 h-[calc(100vh-240px)] space-y-4">
+			<div className="mb-3 h-[calc(100vh-240px)] space-y-4">
 				{stepper.switch({
 					parent: () => (
 						<PetParent
@@ -89,7 +89,7 @@ export default function Page() {
 				})}
 			</div>
 			{!stepper.isLast && (
-				<div className="shadow-top sticky bottom-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-24 py-4">
+				<div className="shadow-top sticky bottom-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-6 py-4">
 					<Button
 						type="button"
 						variant="secondary"
@@ -116,7 +116,7 @@ function StepperNavigation({
 	stepper: any;
 }) {
 	return (
-		<nav className="group my-4 px-16 pt-24">
+		<nav className="group my-4 px-4 pt-24">
 			<ol className="flex items-center justify-between gap-2">
 				{stepper.all.map((step: any, index: number, array: any[]) => (
 					<Fragment key={step.id}>

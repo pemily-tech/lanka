@@ -104,7 +104,7 @@ const PersonalDetailsForm = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="rounded-xl mt-12 grid max-w-3xl grid-cols-2 gap-6 bg-white px-16 py-6"
+				className="rounded-xl grid max-w-3xl grid-cols-2 gap-6 bg-white py-6"
 			>
 				{[
 					['name', 'Name', 'text'],
@@ -119,7 +119,7 @@ const PersonalDetailsForm = () => {
 								control={form.control}
 								name={name as keyof IFormData}
 								render={({ field }) => (
-									<FormItem className="flex flex-col space-y-6">
+									<FormItem className="flex flex-col space-y-1">
 										<FormLabel>Choose Gender</FormLabel>
 										<Popover>
 											<PopoverTrigger asChild>
@@ -139,7 +139,7 @@ const PersonalDetailsForm = () => {
 																	field.value
 															)?.label
 														: 'Select a gender'}
-													<ChevronDown className="ml-2 size-16 shrink-0 opacity-50" />
+													<ChevronDown className="ml-2 size-4 shrink-0 opacity-50" />
 												</Button>
 											</PopoverTrigger>
 											<PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">

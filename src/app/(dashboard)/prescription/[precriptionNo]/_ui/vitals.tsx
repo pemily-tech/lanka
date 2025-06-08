@@ -28,7 +28,7 @@ export default function Vitals() {
 	}, [prescriptionData]);
 
 	return (
-		<div className="flex flex-1 flex-row gap-16 px-16 py-6">
+		<div className="flex flex-1 flex-row gap-16 px-4 py-6">
 			<div className="flex-1">
 				{isPrescriptionSaved ? (
 					<div>

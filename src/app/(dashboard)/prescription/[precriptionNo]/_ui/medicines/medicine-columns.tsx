@@ -112,7 +112,7 @@ export function useColumns(
 												row.original.medicineId
 											)
 										}
-										className="px-24"
+										className="px-6"
 									>
 										Confirm
 									</AlertDialogAction>

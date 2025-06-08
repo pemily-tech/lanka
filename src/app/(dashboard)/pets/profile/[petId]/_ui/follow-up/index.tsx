@@ -11,7 +11,7 @@ export default function Followups() {
 
 	return (
 		<div className="mb-[54px]">
-			<div className="mb-16">
+			<div className="mb-4">
 				<Filters
 					selectedDate={date as Date}
 					setSelectedDate={(date) => setState({ date })}

@@ -17,7 +17,7 @@ export default function Header() {
 	}, [prescriptionData]);
 
 	return (
-		<div className="mb-16 flex items-center justify-between">
+		<div className="mb-4 flex items-center justify-between">
 			<div className="flex items-center gap-6">
 				<span className="text-black-1/60">RX No: </span>
 				<span className="text-lg font-medium">{prescriptionNo}</span>

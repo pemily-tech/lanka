@@ -25,7 +25,7 @@ export default function BasicDetails() {
 
 	return (
 		<div>
-			<div className="flex flex-row justify-between gap-16 pb-16">
+			<div className="flex flex-row justify-between gap-16 pb-4">
 				<div className="flex flex-1 gap-6">
 					<div className="flex size-[152px] items-center justify-center">
 						<div className="border-purple-1/20 size-[142px] rounded-full border-2 p-4">

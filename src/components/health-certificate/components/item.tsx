@@ -61,7 +61,7 @@
 // 	};
 
 // 	return (
-// 		<div className="rounded-lg shadow-base mb-12 grid grid-cols-2 gap-3 bg-white px-16 py-3">
+// 		<div className="rounded-lg shadow-base mb-3 grid grid-cols-2 gap-3 bg-white px-4 py-3">
 // 			<div className="col-span-1 w-[500px]">
 // 				<div className="flex gap-3 ">
 // 					<PdfIcon width={85} height={72} />

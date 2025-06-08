@@ -31,11 +31,11 @@ export default function Header() {
 	};
 
 	return (
-		<div className="shadow-card mb-12 rounded-lg bg-white">
+		<div className="shadow-card mb-3 rounded-lg bg-white">
 			<div className={cn('flex items-center justify-between p-12')}>
 				<div className="flex-1">
 					<div className="relative flex w-[320px] items-center border-b px-3">
-						<Search className="mr-12 size-16 shrink-0 opacity-50" />
+						<Search className="mr-12 size-4 shrink-0 opacity-50" />
 						<Input
 							className={cn(
 								'placeholder:text-muted-foreground flex h-8 w-full rounded-md border-none bg-transparent py-3 pl-0 text-sm font-medium outline-none disabled:cursor-not-allowed disabled:opacity-50'
@@ -54,7 +54,7 @@ export default function Header() {
 								className="absolute right-6 top-1/2 -translate-y-1/2 cursor-pointer"
 								onClick={() => handleSearchChange('')}
 							>
-								<X className="text-red-1 !size-16" />
+								<X className="text-red-1 !size-4" />
 							</Button>
 						)}
 					</div>

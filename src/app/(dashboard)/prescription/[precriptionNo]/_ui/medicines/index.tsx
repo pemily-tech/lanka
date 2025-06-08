@@ -50,7 +50,7 @@ export default function Medicines() {
 	}, [isPrescriptionSaved, prescription?.medicines]);
 
 	return (
-		<div className="px-16">
+		<div className="px-4">
 			<div className="flex flex-row items-center gap-2">
 				<h4 className="text-16 text-primary font-semibold">
 					Medicine (RX)
@@ -62,7 +62,7 @@ export default function Medicines() {
 						size="icon"
 						variant="ghost"
 					>
-						<PencilLine className="text-primary size-16" />
+						<PencilLine className="text-primary size-4" />
 					</Button>
 				)}
 			</div>

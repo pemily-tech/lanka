@@ -106,7 +106,7 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 									onClick={() =>
 										handelRemove(row.original.medicineId)
 									}
-									className="px-24"
+									className="px-6"
 								>
 									Confirm
 								</AlertDialogAction>

@@ -136,7 +136,7 @@ export default function PetDetails() {
 				className="flex gap-6"
 			>
 				<Button variant="link">
-					<Pencil className="size-16" />
+					<Pencil className="size-4" />
 					<span>Edit Pet</span>
 				</Button>
 			</Link>

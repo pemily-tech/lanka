@@ -119,7 +119,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 												row.original.prescriptionNo
 											)
 										}
-										className="px-24"
+										className="px-6"
 									>
 										Confirm
 									</AlertDialogAction>

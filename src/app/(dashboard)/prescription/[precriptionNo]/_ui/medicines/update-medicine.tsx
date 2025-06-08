@@ -60,7 +60,7 @@ export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 						updateFullMedicine(localData.medicineId, localData)
 					}
 					size="lg"
-					className="px-24 font-normal"
+					className="px-6 font-normal"
 				>
 					Update
 				</Button>
@@ -68,7 +68,7 @@ export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 					<Button
 						size="lg"
 						variant="outline"
-						className="px-24 font-normal"
+						className="px-6 font-normal"
 					>
 						Cancel
 					</Button>

@@ -70,7 +70,7 @@ export const PaginationPrevious = ({
 		className={cn('!size-auto rounded-lg', className)}
 		{...props}
 	>
-		<ChevronLeft className="size-16" />
+		<ChevronLeft className="size-4" />
 		<span>Previous</span>
 	</PaginationLink>
 );
@@ -86,7 +86,7 @@ export const PaginationNext = ({
 		{...props}
 	>
 		<span>Next</span>
-		<ChevronRight className="size-16" />
+		<ChevronRight className="size-4" />
 	</PaginationLink>
 );
 PaginationNext.displayName = 'PaginationNext';
@@ -97,10 +97,10 @@ export const PaginationEllipsis = ({
 }: React.ComponentProps<'span'>) => (
 	<span
 		aria-hidden
-		className={cn('flex size-16 items-center justify-center', className)}
+		className={cn('flex size-4 items-center justify-center', className)}
 		{...props}
 	>
-		<MoreHorizontal className="size-16" />
+		<MoreHorizontal className="size-4" />
 		<span className="sr-only">More pages</span>
 	</span>
 );

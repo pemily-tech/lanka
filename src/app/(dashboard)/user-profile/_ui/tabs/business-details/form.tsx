@@ -90,7 +90,7 @@ const BusinessForm = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="mt-12 grid flex-1 grid-cols-2 gap-6 rounded-xl bg-white px-16 py-6"
+				className="grid flex-1 grid-cols-2 gap-6 rounded-xl bg-white px-4 py-2"
 			>
 				{[
 					['businessContact', 'Business Contact Number', 'numeric'],

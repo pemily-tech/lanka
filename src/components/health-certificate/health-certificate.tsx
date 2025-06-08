@@ -52,7 +52,7 @@
 // 					/>
 // 				</div>
 // 				<Link
-// 					className="bg-primary rounded-lg px-16 py-3"
+// 					className="bg-primary rounded-lg px-4 py-3"
 // 					href={`/certificate-pdf/${petId}?type=${selectedRecord?.value}`}
 // 				>
 // 					<span className="text-sm font-bold text-white">

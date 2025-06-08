@@ -48,10 +48,10 @@ export default function MedicalRecordForm({
 			<h2 className="text-24 mx-24 font-semibold">
 				Upload a photo of your Prescription
 			</h2>
-			<h6 className="text-black-1/50 mx-24 mb-24">
+			<h6 className="text-black-1/50 mx-24 mb-6">
 				You can upload JPEG or PNG up to 2MB
 			</h6>
-			<div className="mb-24 h-full px-24">
+			<div className="mb-6 h-full px-6">
 				<div
 					{...getRootProps()}
 					className="border-black-1/20 relative z-10 flex h-[240px] w-[420px] cursor-pointer items-center justify-center rounded-xl border"
@@ -90,13 +90,13 @@ export default function MedicalRecordForm({
 							}}
 							className="border-destructive absolute -right-10 -top-10 z-10 flex size-6 cursor-pointer items-center justify-center rounded-full border bg-white"
 						>
-							<X className="text-destructive size-16" />
+							<X className="text-destructive size-4" />
 						</div>
 					)}
 				</div>
 			</div>
 			{isModal ? (
-				<div className="px-24">
+				<div className="px-6">
 					<Button
 						disabled={isPending || !acceptedFile}
 						type="submit"
@@ -109,7 +109,7 @@ export default function MedicalRecordForm({
 			) : (
 				<>
 					{stepper.isLast && (
-						<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-24 py-4">
+						<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-6 py-4">
 							<Button
 								type="button"
 								variant="secondary"

@@ -24,27 +24,27 @@ export const Calendar = ({
 	return (
 		<DayPicker
 			showOutsideDays={showOutsideDays}
-			className={cn('p-6', className)}
+			className={cn(className)}
 			classNames={{
 				[UI.Months]: 'relative',
-				[UI.Month]: 'space-y-12 ml-0',
-				[UI.MonthCaption]: 'flex justify-center items-center h-24',
+				[UI.Month]: 'space-y-3 ml-0',
+				[UI.MonthCaption]: 'flex justify-center items-center h-6',
 				[UI.CaptionLabel]: 'text-sm font-medium',
 				[UI.PreviousMonthButton]: cn(
 					buttonVariants({ variant: 'outline', size: 'icon' }),
-					'absolute left-1 top-0 size-[32px] bg-transparent p-0 opacity-50 hover:opacity-100'
+					'absolute left-1 top-0 size-8 bg-transparent p-0 opacity-50 hover:opacity-100'
 				),
 				[UI.NextMonthButton]: cn(
 					buttonVariants({ variant: 'outline', size: 'icon' }),
-					'absolute right-1 top-0 size-[32px] bg-transparent p-0 opacity-50 hover:opacity-100'
+					'absolute right-1 top-0 size-8 bg-transparent p-0 opacity-50 hover:opacity-100'
 				),
-				[UI.MonthGrid]: 'w-full border-collapse space-y-6',
+				[UI.MonthGrid]: 'w-full border-collapse space-y-[6px]',
 				[UI.Weekdays]: 'flex',
 				[UI.Weekday]:
-					'text-muted-foreground rounded-md flex-1 font-normal text-sm flex justify-center items-center size-[38px]',
-				[UI.Week]: 'flex w-full mt-8 gap-6',
+					'text-muted-foreground rounded-md flex-1 font-normal text-sm flex justify-center items-center size-9',
+				[UI.Week]: 'flex w-full mt-2 gap-1',
 				[UI.Day]:
-					'size-[38px] flex-1 text-center rounded-md text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
+					'size-9 flex-1 text-center rounded-md text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-accent/50 [&:has([aria-selected])]:bg-accent first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20',
 				[UI.DayButton]: cn(
 					buttonVariants({ variant: 'ghost' }),
 					'hover:bg-primary hover:text-primary-foreground size-full p-0 font-normal aria-selected:opacity-100'

@@ -66,11 +66,11 @@ const Logo = () => {
 				) : (
 					<UserIcon width={120} height={120} />
 				)}
-				<div className="bg-primary absolute bottom-14 right-24 rounded-full p-[2px] ring-2 ring-white">
+				<div className="bg-primary absolute bottom-3 right-6 rounded-full p-[2px] ring-2 ring-white">
 					{isUrlExists ? (
-						<Check className="size-18 text-white" />
+						<Check className="size-4 text-white" />
 					) : (
-						<Camera className="size-6 p-2 text-white" />
+						<Camera className="size-6 p-1 text-white" />
 					)}
 				</div>
 			</div>

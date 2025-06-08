@@ -86,7 +86,7 @@ export default function Actions({
 					<AlertDialogFooter className="!pt-32">
 						<AlertDialogAction
 							onClick={handelRemove}
-							className="px-24 font-normal"
+							className="px-6 font-normal"
 							data-umami-event="medical_record_confirm"
 							data-umami-event-id={record._id}
 						>

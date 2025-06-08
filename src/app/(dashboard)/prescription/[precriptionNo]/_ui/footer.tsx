@@ -37,7 +37,7 @@ export default function Footer() {
 						disabled={isPrescriptionSaved || isUpdating}
 						className="min-w-[120px] !rounded-2xl"
 					>
-						<Check className="size-16" />
+						<Check className="size-4" />
 						<span className="font-normal">Save</span>
 					</Button>
 				</AlertDialogTrigger>
@@ -54,7 +54,7 @@ export default function Footer() {
 					<AlertDialogFooter className="!pt-32">
 						<AlertDialogAction
 							onClick={handleSave}
-							className="px-24"
+							className="px-6"
 						>
 							Confirm
 						</AlertDialogAction>
@@ -71,7 +71,7 @@ export default function Footer() {
 				variant="secondary"
 				className="min-w-[120px] !rounded-2xl"
 			>
-				<Plus className="size-16" />
+				<Plus className="size-4" />
 				<span className="font-normal">Create PDF</span>
 			</Button>
 			<AlertDialog>
@@ -81,7 +81,7 @@ export default function Footer() {
 						className="min-w-[120px] !rounded-2xl"
 						variant="outline"
 					>
-						<SendHorizonal className="size-16" />
+						<SendHorizonal className="size-4" />
 						<span className="font-normal">Share PDF</span>
 					</Button>
 				</AlertDialogTrigger>
@@ -98,7 +98,7 @@ export default function Footer() {
 					<AlertDialogFooter className="!pt-32">
 						<AlertDialogAction
 							onClick={handleShare}
-							className="bg-secondary hover:bg-secondary/90 px-24 text-white hover:text-white"
+							className="bg-secondary hover:bg-secondary/90 px-6 text-white hover:text-white"
 						>
 							Confirm
 						</AlertDialogAction>
@@ -116,7 +116,7 @@ export default function Footer() {
 				variant="outline"
 				onClick={() => window.open(prescriptionUrl ?? '')}
 			>
-				<Eye className="size-16" />
+				<Eye className="size-4" />
 				<span className="font-normal">View PDF</span>
 			</Button>
 		</div>

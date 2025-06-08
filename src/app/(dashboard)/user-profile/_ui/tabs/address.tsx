@@ -134,7 +134,7 @@ const AddressForm = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="mt-12 grid max-w-3xl grid-cols-2 gap-6 rounded-xl bg-white px-16 py-6"
+				className="mt-4 grid max-w-3xl grid-cols-2 gap-6 rounded-xl bg-white py-1"
 			>
 				{[
 					['line1', 'Line1', 'text'],
@@ -171,7 +171,7 @@ const AddressForm = () => {
 					control={form.control}
 					name="type"
 					render={({ field }) => (
-						<FormItem className="flex flex-col space-y-6">
+						<FormItem className="flex flex-col space-y-1">
 							<FormLabel>Choose address type</FormLabel>
 							<Popover>
 								<PopoverTrigger asChild>
@@ -191,7 +191,7 @@ const AddressForm = () => {
 														field.value
 												)?.label
 											: 'Choose address type'}
-										<ChevronDown className="ml-2 size-16 shrink-0 opacity-50" />
+										<ChevronDown className="ml-2 size-4 shrink-0 opacity-50" />
 									</Button>
 								</PopoverTrigger>
 								<PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
@@ -199,7 +199,7 @@ const AddressForm = () => {
 										<Button
 											key={type.value}
 											variant="ghost"
-											className="w-full justify-start px-16 text-left"
+											className="w-full justify-start px-4 text-left"
 											onClick={() =>
 												field.onChange(type.value)
 											}

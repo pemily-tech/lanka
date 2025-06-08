@@ -44,7 +44,7 @@ export default function DoctorForm({ doctor }: { doctor: IDoctor }) {
 
 	return (
 		<Form {...form}>
-			<h4 className="text-black-1/80 mb-24 font-semibold">
+			<h4 className="mb-6 font-semibold text-black/80">
 				Doctor Details:
 			</h4>
 			<form

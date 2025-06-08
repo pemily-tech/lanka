@@ -61,7 +61,7 @@ export function Combobox({
 													breed.value === field.value
 											)?.label
 										: 'Select Breed'}
-									<ChevronsUpDown className="size-16 opacity-50" />
+									<ChevronsUpDown className="size-4 opacity-50" />
 								</Button>
 							</FormControl>
 						</PopoverTrigger>

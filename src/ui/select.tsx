@@ -30,7 +30,7 @@ export const SelectTrigger = React.forwardRef<
 	>
 		{children}
 		<SelectPrimitive.Icon asChild>
-			<ChevronDown className="size-16 opacity-50" />
+			<ChevronDown className="size-4 opacity-50" />
 		</SelectPrimitive.Icon>
 	</SelectPrimitive.Trigger>
 ));
@@ -48,7 +48,7 @@ export const SelectScrollUpButton = React.forwardRef<
 		)}
 		{...props}
 	>
-		<ChevronUp className="size-16" />
+		<ChevronUp className="size-4" />
 	</SelectPrimitive.ScrollUpButton>
 ));
 SelectScrollUpButton.displayName = SelectPrimitive.ScrollUpButton.displayName;
@@ -122,12 +122,12 @@ export const SelectItem = React.forwardRef<
 	<SelectPrimitive.Item
 		ref={ref}
 		className={cn(
-			'focus:bg-accent focus:text-accent-foreground relative flex w-full cursor-default select-none items-center rounded-sm px-16 py-8 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
+			'focus:bg-accent focus:text-accent-foreground relative flex w-full cursor-default select-none items-center rounded-sm px-4 py-8 text-sm outline-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50',
 			className
 		)}
 		{...props}
 	>
-		<span className="absolute right-2 flex size-16 items-center justify-center">
+		<span className="absolute right-2 flex size-4 items-center justify-center">
 			<SelectPrimitive.ItemIndicator>
 				<Check className="size-12" />
 			</SelectPrimitive.ItemIndicator>

@@ -45,7 +45,7 @@ function EditableDialog({
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
 			<DialogContent>
-				<DialogHeader className="mb-24">
+				<DialogHeader className="mb-6">
 					<DialogTitle>{title}</DialogTitle>
 				</DialogHeader>
 				<FloatingTextArea
@@ -86,7 +86,7 @@ export default function AdviceFollowup() {
 	}, [prescription]);
 
 	return (
-		<div className="flex flex-col gap-16 px-16 py-6">
+		<div className="flex flex-col gap-16 px-4 py-6">
 			<div className="flex flex-row items-center gap-2">
 				<Button
 					onClick={
@@ -98,7 +98,7 @@ export default function AdviceFollowup() {
 					variant="ghost"
 					size="lg"
 				>
-					<Plus className="text-primary size-16" />
+					<Plus className="text-primary size-4" />
 					<span className="text-primary font-medium">Advice: </span>
 				</Button>
 				<span>
@@ -113,7 +113,7 @@ export default function AdviceFollowup() {
 							variant="ghost"
 							size="lg"
 						>
-							<CalendarIcon className="text-primary size-16" />
+							<CalendarIcon className="text-primary size-4" />
 							<span className="text-primary font-medium">
 								Follow-up On:
 							</span>

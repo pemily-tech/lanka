@@ -121,7 +121,7 @@ function Doc({
 						<AlertDialogFooter className="!pt-32">
 							<AlertDialogAction
 								onClick={() => handelShare(doc._id)}
-								className="bg-secondary hover:bg-secondary/90 px-24 text-white hover:text-white"
+								className="bg-secondary hover:bg-secondary/90 px-6 text-white hover:text-white"
 							>
 								Confirm
 							</AlertDialogAction>
@@ -152,7 +152,7 @@ function Doc({
 						<AlertDialogFooter className="!pt-32">
 							<AlertDialogAction
 								onClick={() => handelRemove(doc._id)}
-								className="px-24"
+								className="px-6"
 							>
 								Confirm
 							</AlertDialogAction>

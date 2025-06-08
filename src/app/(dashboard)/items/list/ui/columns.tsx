@@ -163,7 +163,7 @@ export default function Columns() {
 								<TableRow key={row.id}>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell
-											className="px-16 text-sm"
+											className="px-4 text-sm"
 											key={cell.id}
 										>
 											{flexRender(

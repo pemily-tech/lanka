@@ -100,7 +100,7 @@ export default function VaccinationForm({
 			<h2 className="text-24 mx-24 font-semibold">
 				Add Vaccination Details
 			</h2>
-			<h6 className="text-black-1/50 mx-24 mb-24">
+			<h6 className="text-black-1/50 mx-24 mb-6">
 				We will remind you when vaccination is due
 			</h6>
 			<Form {...form}>
@@ -232,7 +232,7 @@ export default function VaccinationForm({
 						/>
 					</div>
 					{isModal ? (
-						<div className="mt-1 px-24">
+						<div className="mt-1 px-6">
 							<Button
 								disabled={isPending}
 								type="submit"
@@ -244,7 +244,7 @@ export default function VaccinationForm({
 					) : (
 						<>
 							{stepper.isLast && (
-								<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-24 py-4">
+								<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-6 py-4">
 									<Button
 										type="button"
 										variant="secondary"

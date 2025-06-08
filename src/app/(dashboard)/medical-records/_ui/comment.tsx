@@ -68,7 +68,7 @@ export default function Status({
 		<Dialog open={open} onOpenChange={() => setOpen(!open)}>
 			<DialogTrigger asChild>
 				<Button variant="ghost" size="icon">
-					<Pencil className="size-16" />
+					<Pencil className="size-4" />
 				</Button>
 			</DialogTrigger>
 			<DialogContent>

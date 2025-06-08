@@ -37,14 +37,14 @@ export default function Pet({
 
 	return (
 		<CommandPrimitive>
-			<div className="mb-16 mt-32 h-[380px] max-h-[380px] overflow-y-scroll rounded-lg border md:min-w-[450px]">
+			<div className="mb-4 mt-32 h-[380px] max-h-[380px] overflow-y-scroll rounded-lg border md:min-w-[450px]">
 				<CommandList onClick={handleSelect} className="max-h-full">
 					{isPending && <Spinner />}
 					{petData?.map((pet) => {
 						return (
 							<div
 								className={cn(
-									'data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-6 border-b px-3 py-8 text-sm outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-16 [&_svg]:shrink-0',
+									'data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-6 border-b px-3 py-8 text-sm outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
 									selectedPetId === pet.petId &&
 										'bg-primary/20 data-[selected=true]:bg-primary/20'
 								)}
