@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
+import { AppConstants } from '@/helpers/primitives';
 import { HttpService } from '@/services/http-service';
 import { queryClient } from '@/services/providers';
 import { useAuthStore } from '@/store/user-auth';
@@ -25,7 +26,7 @@ export function useUpdateAddress(addressId: string) {
 	return useMutation({
 		mutationFn: (payload: IPayload) => updateAddress(payload, addressId),
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				queryClient.invalidateQueries({
 					queryKey: ['user/userId', userId],
 				});

@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
+import { AppConstants } from '@/helpers/primitives';
 import { HttpService } from '@/services/http-service';
 import { queryClient } from '@/services/providers';
 
@@ -22,7 +23,7 @@ export function useUpdatePetImage(petId: string) {
 	return useMutation({
 		mutationFn: (payload: FormData) => updatePetImage(payload, petId),
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Updated Successfully!');
 				queryClient.invalidateQueries({
 					queryKey: ['pet/profileUrl', petId],

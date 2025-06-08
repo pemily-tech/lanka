@@ -20,6 +20,8 @@ import {
 import { FloatingInput } from '../../../ui/input/';
 import { getOtpAction } from './_actions/get-otp-action';
 
+import { AppConstants } from '@/helpers/primitives';
+
 const schema = z.object({
 	mobileNumber: z
 		.string()
@@ -42,7 +44,7 @@ export default function Page() {
 		if (!result.data) {
 			return;
 		}
-		if (result.data.status === 'SUCCESS') {
+		if (result.data.status === AppConstants.Success) {
 			toast.success(result.data.msg);
 			router.push(`otp/${form.getValues('mobileNumber')}`);
 		} else {

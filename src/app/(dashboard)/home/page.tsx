@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-import { Roles } from '../../../helpers/primitives';
+import { AppConstants, Roles } from '../../../helpers/primitives';
 import { useAuthStore } from '../../../store/user-auth';
 import { Button } from '../../../ui/button';
 import { useVaccinationExcel } from './_api/analytics';
@@ -65,7 +65,10 @@ export default function Page() {
 			month,
 		};
 		const response = await vaccinationExcel(payload);
-		if (response.status === 'SUCCESS' && response?.data?.signedUrl) {
+		if (
+			response.status === AppConstants.Success &&
+			response?.data?.signedUrl
+		) {
 			window.location.href = response.data.signedUrl;
 			setYear(2025);
 			setMonth(1);

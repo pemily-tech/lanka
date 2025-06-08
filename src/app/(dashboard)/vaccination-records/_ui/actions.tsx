@@ -67,7 +67,7 @@ export default function Actions({
 			id: record?._id,
 		};
 		const response = await updateNotification(payload);
-		if (response.status === 'SUCCESS') {
+		if (response.status === AppConstants.Success) {
 			queryClient.invalidateQueries({
 				queryKey: ['clinic/vaccinationRecords', type, petId, date],
 			});

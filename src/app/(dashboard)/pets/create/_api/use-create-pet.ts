@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
+import { AppConstants } from '@/helpers/primitives';
 import { HttpService } from '@/services/http-service';
 
 interface IPayload {
@@ -22,7 +23,7 @@ export function useCreatePet() {
 	return useMutation({
 		mutationFn: createPet,
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Pet added Successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

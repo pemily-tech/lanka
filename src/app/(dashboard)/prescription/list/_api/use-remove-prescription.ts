@@ -5,6 +5,8 @@ import { HttpService } from '../../../../../services/http-service';
 import { type IApiResponse } from '../../../../../types/common';
 import { type IPrescription } from '../../../../../types/prescription';
 
+import { AppConstants } from '@/helpers/primitives';
+
 const removePrescription = async (payload: { id: string }) => {
 	const { id } = payload;
 	const { data } = await HttpService.patch<
@@ -17,7 +19,7 @@ export const useRemovePrescription = () => {
 	return useMutation({
 		mutationFn: (payload: { id: string }) => removePrescription(payload),
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Removed Successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

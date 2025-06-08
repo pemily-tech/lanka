@@ -11,6 +11,7 @@ import { useUpdateVaccination } from '../_api/use-update-vaccination';
 
 import { useGetDropdownList } from '@/api/queries/use-get-dropdownlist';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
+import { AppConstants } from '@/helpers/primitives';
 import { cn, dateDisable } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IVaccinationRecord } from '@/types/clinic';
@@ -88,7 +89,7 @@ export default function Status({
 			repeatAfter: values.repeatAfter,
 		};
 		const response = await updateVaccination(payload);
-		if (response.status === 'SUCCESS') {
+		if (response.status === AppConstants.Success) {
 			setOpen(!open);
 			queryClient.invalidateQueries({
 				queryKey: ['clinic/vaccinationRecords', type, petId, date],

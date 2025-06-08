@@ -1,6 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
+import { AppConstants } from '@/helpers/primitives';
 import { HttpService } from '@/services/http-service';
 
 interface IPayload {
@@ -25,7 +26,7 @@ export function useUpdateNotification() {
 	return useMutation({
 		mutationFn: updateNotification,
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Notification sent Successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

@@ -6,13 +6,13 @@ import { queryClient } from '../../../../services/providers';
 import { type IApiResponse } from '../../../../types/common';
 import { type IMedicine } from '../../../../types/prescription';
 
-import { env } from '@/env.mjs';
+import { AppConstants } from '@/helpers/primitives';
 
 const removeMedicine = async (payload: { id: string }) => {
 	const { id } = payload;
 	const { data } = await HttpService.patch<
 		IApiResponse<{ medicine: IMedicine }>
-	>(`${env.NEXT_PUBLIC_BASE_PATH}/medicine/remove/${id}`);
+	>(`/medicine/remove/${id}`);
 	return data;
 };
 
@@ -20,7 +20,7 @@ export const useRemoveMedicine = () => {
 	return useMutation({
 		mutationFn: (payload: { id: string }) => removeMedicine(payload),
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				queryClient.invalidateQueries({
 					queryKey: [
 						'medicine/list',

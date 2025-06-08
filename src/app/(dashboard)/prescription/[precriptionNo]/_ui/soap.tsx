@@ -18,6 +18,7 @@ import { FloatingTextArea } from '../../../../../ui/text-area';
 import { useGetPrescriptionSoap } from '../_api/use-get-soap';
 import { useUpdateSoap } from '../_api/use-update.soap';
 
+import { AppConstants } from '@/helpers/primitives';
 import { Button } from '@/ui/button';
 import Spinner from '@/ui/spinner';
 
@@ -64,7 +65,7 @@ export default function Soap() {
 
 	const onSubmit = async (values: IFormData) => {
 		const response = await updateSoap(values);
-		if (response.status === 'SUCCESS') {
+		if (response.status === AppConstants.Success) {
 			refetch();
 		}
 	};

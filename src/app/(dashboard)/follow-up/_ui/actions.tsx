@@ -3,6 +3,7 @@ import { Bell, Trash2 } from 'lucide-react';
 import { useUpdateFollowUp } from '../_api/use-update-followup';
 import { useUpdateNotification } from '../_api/use-update-notification';
 
+import { AppConstants } from '@/helpers/primitives';
 import { queryClient } from '@/services/providers';
 import { type IFollowUpRecord } from '@/types/clinic';
 import { type IOtherCommonFilter } from '@/types/common';
@@ -46,7 +47,7 @@ export default function Actions({
 			active: false,
 		};
 		const response = await updateFollowup(payload);
-		if (response.status === 'SUCCESS') {
+		if (response.status === AppConstants.Success) {
 			queryClient.invalidateQueries({
 				queryKey: ['clinic/followUpRecords', type, petId, date],
 			});
@@ -66,7 +67,7 @@ export default function Actions({
 			id: record?._id,
 		};
 		const response = await updateNotification(payload);
-		if (response.status === 'SUCCESS') {
+		if (response.status === AppConstants.Success) {
 			queryClient.invalidateQueries({
 				queryKey: ['clinic/followUpRecords', type, petId, date],
 			});

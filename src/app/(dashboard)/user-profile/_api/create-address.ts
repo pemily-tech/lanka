@@ -5,6 +5,8 @@ import { HttpService } from '../../../../services/http-service';
 import { queryClient } from '../../../../services/providers';
 import { useAuthStore } from '../../../../store/user-auth';
 
+import { AppConstants } from '@/helpers/primitives';
+
 interface IPayload {
 	line1: string;
 	line2?: string;
@@ -26,7 +28,7 @@ export function useCreateAddress() {
 	return useMutation({
 		mutationFn: createAddress,
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				queryClient.invalidateQueries({
 					queryKey: ['user/userId', userId],
 				});

@@ -4,7 +4,7 @@ import { toast } from 'sonner';
 import { HttpService } from '../../../../services/http-service';
 import { useGetMedicineById } from './use-get-medicine-byid';
 
-import { env } from '@/env.mjs';
+import { AppConstants } from '@/helpers/primitives';
 
 interface IPayload {
 	name: string;
@@ -21,7 +21,7 @@ interface IPayload {
 
 const updateMedicine = async (payload: IPayload, medicineId: string) => {
 	const { data } = await HttpService.patch(
-		`${env.NEXT_PUBLIC_BASE_PATH}/medicine/update/${medicineId}`,
+		`/medicine/update/${medicineId}`,
 		payload
 	);
 	return data;
@@ -33,7 +33,7 @@ export const useUpdateMedicine = (medicineId: string) => {
 	return useMutation({
 		mutationFn: (payload: IPayload) => updateMedicine(payload, medicineId),
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				refetch();
 				toast.success('Updated Successfully!');
 			} else {

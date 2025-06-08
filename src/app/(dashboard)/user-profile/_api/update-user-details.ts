@@ -5,6 +5,8 @@ import { HttpService } from '../../../../services/http-service';
 import { type IApiResponse } from '../../../../types/common';
 import { type IUserDetails } from '../../../../types/user';
 
+import { AppConstants } from '@/helpers/primitives';
+
 interface IPayload {
 	name: string;
 	email: string;
@@ -23,7 +25,7 @@ export function useUpdateUserDetails() {
 	return useMutation({
 		mutationFn: updateUserDetails,
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Updated Successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

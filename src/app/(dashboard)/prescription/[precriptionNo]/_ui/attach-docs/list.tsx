@@ -22,6 +22,7 @@ import { useGetAttatchDocs } from '../../_api/use-get-attatch-docs';
 import { useRemoveAttachDoc } from '../../_api/use-remove-docs';
 import { useShareDoc } from '../../_api/use-share-doc';
 
+import { AppConstants } from '@/helpers/primitives';
 import { Button } from '@/ui/button';
 
 export default function DocsList({ type }: { type: string }) {
@@ -66,7 +67,7 @@ function Doc({
 
 	const handelRemove = async (id: string) => {
 		const response = await removeDoc({ attachedDocumentId: id });
-		if (response.status === 'SUCCESS') {
+		if (response.status === AppConstants.Success) {
 			queryClient.invalidateQueries({
 				queryKey: [
 					'prescription/attachedDocuments',

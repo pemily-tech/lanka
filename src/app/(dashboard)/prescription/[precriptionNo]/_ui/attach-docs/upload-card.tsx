@@ -7,6 +7,8 @@ import { createFormDataForDocument } from '../../../../../../helpers/utils';
 import { queryClient } from '../../../../../../services/providers';
 import { useUploadAttachDocs } from '../../_api/use-upload-attach-docs';
 
+import { AppConstants } from '@/helpers/primitives';
+
 export default function UploadCard({ type }: { type: string }) {
 	const params = useParams();
 	const prescriptionNo = params?.precriptionNo as string;
@@ -22,7 +24,7 @@ export default function UploadCard({ type }: { type: string }) {
 				}
 			);
 			const response = await uploadAttachDocs(formData);
-			if (response.status === 'SUCCESS') {
+			if (response.status === AppConstants.Success) {
 				queryClient.invalidateQueries({
 					queryKey: [
 						'prescription/attachedDocuments',

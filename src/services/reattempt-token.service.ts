@@ -7,6 +7,7 @@ import { useAuthStore } from '../store/user-auth';
 import { HttpService } from './http-service';
 
 import { env } from '@/env.mjs';
+import { AppConstants } from '@/helpers/primitives';
 
 let isAlreadyFetchingAccessToken = false;
 type AccessTokenSubscriber = (accessToken: string) => void;
@@ -33,7 +34,7 @@ async function ResetTokenAndReattemptRequest(
 					refreshToken: authStore.refreshToken,
 				}
 			);
-			if (resp?.data?.status === 'SUCCESS') {
+			if (resp?.data?.status === AppConstants.Success) {
 				authStore.updateUser({
 					...useAuthStore.getState(),
 					token: resp?.data?.data?.accessToken,

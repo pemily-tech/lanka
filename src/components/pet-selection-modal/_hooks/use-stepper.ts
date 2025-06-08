@@ -6,6 +6,7 @@ import { z } from 'zod';
 
 import { defineStepper } from '../../../ui/stepper';
 import { useCreatePrescription } from '../_api/use-create-prescription';
+import { AppConstants } from '@/helpers/primitives';
 
 const { useStepper, steps, utils } = defineStepper(
 	{
@@ -76,7 +77,7 @@ export function usePrescriptionStepper({
 						patientId: selectedPetId,
 					};
 					const response = await createPrescription(payload);
-					if (response.status === 'SUCCESS') {
+					if (response.status === AppConstants.Success) {
 						router.push(
 							`/prescription/${response.data.prescription.prescriptionNo}`
 						);

@@ -9,6 +9,7 @@ import { toast } from 'sonner';
 import { useGetUserProfileUrl } from '@/api/queries/use-get-user-profile-image';
 import { useUploadPetParentProfile } from '@/app/(dashboard)/pet-parents/_api/use-upload-profile';
 import { MAX_SIZE_500 } from '@/helpers/constant';
+import { AppConstants } from '@/helpers/primitives';
 import { createFormDataForImage } from '@/helpers/utils';
 import { Button } from '@/ui/button';
 import { LazyImage } from '@/ui/lazy-image';
@@ -30,7 +31,7 @@ const ImageUpload = () => {
 					'file'
 				);
 				const response = await uploadProfile(formData);
-				if (response.status === 'SUCCESS') {
+				if (response.status === AppConstants.Success) {
 					refetch();
 				}
 			});

@@ -10,7 +10,7 @@ const prescriptionSoap = async ({
 	const [_key, id] = queryKey;
 	const { data } = await HttpService.get<
 		IApiResponse<{ soap: { prescriptionNo: string; soap: ISoap } }>
-	>(`/prescription/soap/${id}`);
+	>(`/${_key}/${id}`);
 	return data;
 };
 

@@ -25,6 +25,7 @@ import { SelectType } from './select';
 
 import { useGetPetById } from '@/api/queries/use-get-pet-byid';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
+import { AppConstants } from '@/helpers/primitives';
 import { cn } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IPetItem } from '@/types/common';
@@ -86,7 +87,7 @@ export function PetForm({ type }: { type: 'add' | 'edit' }) {
 				parentId: parentId as string,
 				dob: dob ? format(new Date(dob), DEFAULT_DATE_FORMAT) : '',
 			});
-			if (response.status === 'SUCCESS') {
+			if (response.status === AppConstants.Success) {
 				router.back();
 				commonInvalidateQuery();
 			}
@@ -95,7 +96,7 @@ export function PetForm({ type }: { type: 'add' | 'edit' }) {
 				...rest,
 				dob: dob ? format(new Date(dob), DEFAULT_DATE_FORMAT) : '',
 			});
-			if (response.status === 'SUCCESS') {
+			if (response.status === AppConstants.Success) {
 				commonInvalidateQuery();
 			}
 		}

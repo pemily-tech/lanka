@@ -3,6 +3,7 @@ import { toast } from 'sonner';
 
 import { useGetUserProfileUrl } from '../queries/use-get-user-profile-image';
 
+import { AppConstants } from '@/helpers/primitives';
 import { HttpService } from '@/services/http-service';
 import { useAuthStore } from '@/store/user-auth';
 
@@ -23,7 +24,7 @@ export function useUploadUserProfile(id?: string) {
 	return useMutation({
 		mutationFn: uploadProfile,
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Profile updated!');
 				refetch();
 			} else {

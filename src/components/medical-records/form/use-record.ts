@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useCallback, useState } from 'react';
 import { type FileRejection } from 'react-dropzone';
 import { toast } from 'sonner';

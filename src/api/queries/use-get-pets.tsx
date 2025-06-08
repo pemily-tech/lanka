@@ -3,13 +3,11 @@ import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 import { HttpService } from '../../services/http-service';
 import { type IApiResponse, type IPetItem } from '../../types/common';
 
-import { env } from '@/env.mjs';
-
 const getPets = async ({
 	queryKey,
 }: QueryFunctionContext<[string, string, string?]>) => {
 	const [_key, parentId, search] = queryKey;
-	const url = `${env.NEXT_PUBLIC_BASE_PATH}/${_key}/${parentId}${search ? `?search=${search}` : ''}`;
+	const url = `/${_key}/${parentId}${search ? `?search=${search}` : ''}`;
 	const { data } =
 		await HttpService.get<IApiResponse<{ pets: IPetItem[] }>>(url);
 	return data;

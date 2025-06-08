@@ -16,6 +16,7 @@ import {
 } from '../../../../ui/dialog';
 import useOtpHook from './_hooks/use-otp-hook';
 
+import { AppConstants } from '@/helpers/primitives';
 import { Spinner } from '@/ui/spinner';
 
 export default function Page() {
@@ -43,7 +44,7 @@ export default function Page() {
 
 		if (
 			result.data &&
-			result.data.status === 'SUCCESS' &&
+			result.data.status === AppConstants.Success &&
 			result.data.data?.accessToken
 		) {
 			verifyUser(

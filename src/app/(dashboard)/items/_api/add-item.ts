@@ -5,7 +5,7 @@ import { HttpService } from '../../../../services/http-service';
 import { type IApiResponse } from '../../../../types/common';
 import { type IProduct } from '../../../../types/invoice';
 
-import { env } from '@/env.mjs';
+import { AppConstants } from '@/helpers/primitives';
 
 interface IPayload {
 	name: string;
@@ -18,7 +18,7 @@ interface IPayload {
 
 const addItem = async (payload: IPayload) => {
 	const { data } = await HttpService.post<IApiResponse<{ item: IProduct }>>(
-		`${env.NEXT_PUBLIC_BASE_PATH}/item/create`,
+		`/item/create`,
 		payload
 	);
 	return data;
@@ -28,7 +28,7 @@ export function useAddItem() {
 	return useMutation({
 		mutationFn: addItem,
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Item created successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

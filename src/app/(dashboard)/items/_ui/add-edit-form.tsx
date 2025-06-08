@@ -18,6 +18,7 @@ import { useAddItem } from '../_api/add-item';
 import { useUpdateItem } from '../_api/update-item';
 import { useGetItemById } from '../edit/[id]/api/get-item-by-id';
 
+import { AppConstants } from '@/helpers/primitives';
 import { Button } from '@/ui/button';
 import { FloatingInput } from '@/ui/input';
 import {
@@ -103,12 +104,12 @@ export default function AddEditForm({
 		};
 		if (type === 'ADD') {
 			const response = await addItem(payload);
-			if (response.status === 'SUCCESS') {
+			if (response.status === AppConstants.Success) {
 				form.reset();
 			}
 		} else {
 			const response = await updateItem(payload);
-			if (response.status === 'SUCCESS') {
+			if (response.status === AppConstants.Success) {
 				form.reset();
 				refetch();
 			}

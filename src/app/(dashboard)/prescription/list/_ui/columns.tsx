@@ -18,6 +18,7 @@ import {
 } from '../../../../../ui/alert';
 import { useRemovePrescription } from '../_api/use-remove-prescription';
 
+import { AppConstants } from '@/helpers/primitives';
 import { Button } from '@/ui/button';
 
 export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
@@ -27,7 +28,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 		const response = await removePrescription({
 			id: prescriptionNo,
 		});
-		if (response.status === 'SUCCESS') {
+		if (response.status === AppConstants.Success) {
 			refetch();
 		}
 	};

@@ -7,6 +7,7 @@ import { useUploadDoctorSignature } from '../../../_api/use-upload-doctor-signat
 
 import { useGetDoctorSignature } from '@/api/queries/use-doctor-signature';
 import { MAX_SIZE_500 } from '@/helpers/constant';
+import { AppConstants } from '@/helpers/primitives';
 import { createFormDataForImage } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IDoctor } from '@/types/common';
@@ -27,7 +28,7 @@ export default function Signature({ doctor }: { doctor: IDoctor }) {
 					'file'
 				);
 				const response = await uploadSignature(formData);
-				if (response.status === 'SUCCESS') {
+				if (response.status === AppConstants.Success) {
 					queryClient.invalidateQueries({
 						queryKey: ['clinic/signatureUrl', doctor.doctorId],
 					});

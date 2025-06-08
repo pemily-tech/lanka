@@ -4,6 +4,7 @@ import { z } from 'zod';
 
 import { useUpdateDoctor } from '../../../_api/use-update-doctor';
 
+import { AppConstants } from '@/helpers/primitives';
 import { queryClient } from '@/services/providers';
 import { type IDoctor } from '@/types/common';
 import { Button } from '@/ui/button';
@@ -35,7 +36,7 @@ export default function DoctorForm({ doctor }: { doctor: IDoctor }) {
 
 	const onSubmit = async (values: IFormData) => {
 		const response = await updateDoctor(values);
-		if (response?.status === 'SUCCESS') {
+		if (response?.status === AppConstants.Success) {
 			queryClient.invalidateQueries({
 				queryKey: ['clinic/doctors'],
 			});

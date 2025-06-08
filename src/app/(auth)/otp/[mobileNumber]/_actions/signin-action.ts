@@ -3,6 +3,7 @@
 import { z } from 'zod';
 
 import { env } from '@/env.mjs';
+import { AppConstants } from '@/helpers/primitives';
 import { otpValidator, phoneValidator } from '@/helpers/utils';
 import { safeActionClient } from '@/services/next-safe-actions';
 import { type ILoginInterface } from '@/types/auth';
@@ -42,7 +43,7 @@ const signinAction = safeActionClient
 			);
 			if (!response.ok) {
 				return {
-					status: 'ERROR',
+					status: AppConstants.Error,
 					msg: 'Unable to verify OTP. Please try again.',
 					data: null,
 					statusCode: response.status,
@@ -50,16 +51,16 @@ const signinAction = safeActionClient
 			}
 			const otpData =
 				(await response.json()) as IApiResponse<ILoginInterface>;
-			if (otpData.status === 'SUCCESS') {
+			if (otpData.status === AppConstants.Success) {
 				return {
-					status: 'SUCCESS',
+					status: AppConstants.Success,
 					msg: '',
 					data: otpData?.data,
 					statusCode: response.status,
 				} as IApiResponse<ILoginInterface>;
 			} else {
 				return {
-					status: 'ERROR',
+					status: AppConstants.Error,
 					msg: 'Unable to signin. Please try again.',
 					data: null,
 					statusCode: response.status,
@@ -68,7 +69,7 @@ const signinAction = safeActionClient
 		} catch (err) {
 			console.error(err);
 			return {
-				status: 'ERROR',
+				status: AppConstants.Error,
 				msg: 'A network error occurred. Please check your connection and try again.',
 				data: null,
 				statusCode: 500,

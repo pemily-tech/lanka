@@ -4,6 +4,8 @@ import { toast } from 'sonner';
 import { HttpService } from '../../../../../services/http-service';
 import { type IApiResponse } from '../../../../../types/common';
 
+import { AppConstants } from '@/helpers/primitives';
+
 interface IPayload {
 	attachedDocumentId?: string;
 	type: string;
@@ -20,7 +22,7 @@ export const useShareDoc = (id: string) => {
 	return useMutation({
 		mutationFn: (payload: IPayload) => shareDoc(payload, id),
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Document shared Successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

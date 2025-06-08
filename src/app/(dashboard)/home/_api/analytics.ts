@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 
 import { HttpService } from '../../../../services/http-service';
 
-import { env } from '@/env.mjs';
+import { AppConstants } from '@/helpers/primitives';
 
 interface IPayload {
 	type: string;
@@ -13,7 +13,7 @@ interface IPayload {
 
 const vaccinationExcel = async (payload: IPayload) => {
 	const { data } = await HttpService.post(
-		`${env.NEXT_PUBLIC_BASE_PATH}/clinic/vaccinationDataInExcel`,
+		`/clinic/vaccinationDataInExcel`,
 		payload
 	);
 	return data;
@@ -23,10 +23,13 @@ export function useVaccinationExcel() {
 	return useMutation({
 		mutationFn: vaccinationExcel,
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS' && data?.data?.signedUrl) {
+			if (
+				data?.status === AppConstants.Success &&
+				data?.data?.signedUrl
+			) {
 				toast.success('Data downloaded successfully!');
 			} else if (
-				data?.status === 'SUCCESS' &&
+				data?.status === AppConstants.Success &&
 				data?.data?.signedUrl === '' &&
 				data?.data?.msg
 			) {
