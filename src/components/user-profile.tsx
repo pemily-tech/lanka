@@ -1,6 +1,6 @@
 import { CircleUserRound } from 'lucide-react';
 
-import { LazyImage } from '../lazy-image';
+import { LazyImage } from '../ui/lazy-image';
 
 import { useGetUserProfileUrl } from '@/api/queries/use-get-user-profile-image';
 import { cn } from '@/helpers/utils';

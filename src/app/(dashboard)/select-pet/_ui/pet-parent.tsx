@@ -3,9 +3,9 @@ import { type UseFormSetValue } from 'react-hook-form';
 import debounce from 'lodash.debounce';
 
 import { useGetPetParents } from '@/api/queries/use-get-pet-parent';
+import { UserProfile } from '@/components/user-profile';
 import { cn } from '@/helpers/utils';
 import { Command, CommandEmpty, CommandInput, CommandList } from '@/ui/command';
-import { UserProfile } from '@/ui/profile-image/user';
 import Spinner from '@/ui/spinner';
 
 export default function PetParent({

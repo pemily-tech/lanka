@@ -8,10 +8,10 @@ import {
 	CommandInput,
 	CommandList,
 } from '../../ui/command';
+import { UserProfile } from '../user-profile';
 
 import { useGetPetParents } from '@/api/queries/use-get-pet-parent';
 import { cn } from '@/helpers/utils';
-import { UserProfile } from '@/ui/profile-image/user';
 import Spinner from '@/ui/spinner';
 
 export default function PetParent({

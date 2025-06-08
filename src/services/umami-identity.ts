@@ -4,6 +4,8 @@ import { useEffect } from 'react';
 
 import { useAuthStore } from '../store/user-auth';
 
+import { AppConstants, TestMobileNumbers } from '@/helpers/primitives';
+
 export function UmamiIdentify() {
 	const { loggedIn, mobile } = useAuthStore();
 
@@ -11,10 +13,10 @@ export function UmamiIdentify() {
 		if (
 			loggedIn &&
 			!!mobile &&
-			mobile !== '9888888888' &&
-			mobile !== '9666666666' &&
+			mobile !== TestMobileNumbers.Test1 &&
+			mobile !== TestMobileNumbers.Test2 &&
 			typeof window !== 'undefined' &&
-			window.location.hostname === 'clinic.pemilyy.com' &&
+			window.location.hostname === AppConstants.HostNameProd &&
 			window.umami
 		) {
 			let attempts = 0;

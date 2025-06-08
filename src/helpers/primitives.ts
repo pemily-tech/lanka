@@ -18,4 +18,10 @@ export const enum RecordTypes {
 export const enum AppConstants {
 	Success = 'SUCCESS',
 	Error = 'ERROR',
+	HostNameProd = 'clinic.pemilyy.com',
+}
+
+export const enum TestMobileNumbers {
+	Test1 = '9888888888',
+	Test2 = '9666666666',
 }

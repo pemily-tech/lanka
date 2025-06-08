@@ -8,10 +8,10 @@ import {
 	CommandInput,
 	CommandList,
 } from '../../ui/command';
+import { UserProfile } from '../user-profile';
 
 import { useGetClinicDoctors } from '@/api/queries/use-get-clinic-doctors';
 import { cn } from '@/helpers/utils';
-import { UserProfile } from '@/ui/profile-image/user';
 import Spinner from '@/ui/spinner';
 
 export default function Doctor({

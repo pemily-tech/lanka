@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import Script from 'next/script';
 
+import { AppConstants, TestMobileNumbers } from '@/helpers/primitives';
 import { useAuthStore } from '@/store/user-auth';
 
 export default function AnalyticsScript() {
@@ -11,10 +12,10 @@ export default function AnalyticsScript() {
 
 	useEffect(() => {
 		if (
-			window.location.hostname === 'clinic.pemilyy.com' &&
+			window.location.hostname === AppConstants.HostNameProd &&
 			loggedIn &&
-			mobile !== '9888888888' &&
-			mobile !== '9666666666'
+			mobile !== TestMobileNumbers.Test1 &&
+			mobile !== TestMobileNumbers.Test2
 		) {
 			setShowScript(true);
 		}
