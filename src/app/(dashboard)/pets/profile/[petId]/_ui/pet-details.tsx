@@ -71,7 +71,7 @@ export default function PetDetails() {
 
 	return (
 		<div className="flex items-center justify-between gap-6">
-			<div className="gap-54 flex flex-row items-center justify-start rounded-[16px]">
+			<div className="flex flex-row items-center justify-start gap-14 rounded-lg">
 				<div className="flex gap-4">
 					<div>
 						<label className="relative block size-[120px] cursor-pointer rounded-full">
@@ -91,11 +91,11 @@ export default function PetDetails() {
 									className="size-[120px] rounded-full object-cover"
 								/>
 							)}
-							<div className="bg-primary absolute bottom-0 right-10 rounded-full p-[2px] ring-2 ring-white">
+							<div className="bg-primary absolute bottom-0 right-2 rounded-full p-[2px] ring-2 ring-white">
 								{isUrlExists ? (
 									<Check className="size-4 text-white" />
 								) : (
-									<Camera className="size-28 p-4 text-white" />
+									<Camera className="size-6 p-1 text-white" />
 								)}
 							</div>
 						</label>

@@ -111,7 +111,7 @@ export function PaginationWithLinks({
 	};
 
 	return (
-		<div className="flex items-center justify-between gap-6 rounded-lg bg-white px-4 py-8 shadow-md">
+		<div className="flex items-center justify-between gap-6 rounded-lg bg-white px-4 py-3 shadow-md">
 			<div className="flex-1">
 				Showing Results: {page * Number(limit) + 1}-
 				{Math.min((page + 1) * Number(limit), totalCount ?? 0)} of{' '}

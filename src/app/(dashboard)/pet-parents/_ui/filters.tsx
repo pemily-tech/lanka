@@ -24,7 +24,7 @@ export default function Filters({
 	return (
 		<div className="sticky top-0 z-20 grid grid-cols-5 gap-6 rounded-lg bg-white p-4 shadow-md">
 			<div className="col-span-3 flex">
-				<div className="max-w-316  h-[48px] w-full flex-1">
+				<div className="h-12  w-full max-w-80 flex-1">
 					<Command className="rounded-lg border">
 						<CommandInput
 							className="py-6"
@@ -52,7 +52,7 @@ export default function Filters({
 						data-umami-event="parents_create_button"
 					>
 						{hovered ? (
-							<span className="flex items-center gap-6 font-normal">
+							<span className="flex items-center gap-1 font-normal">
 								<Plus className="size-4 text-white" />
 								Add Parent
 							</span>
