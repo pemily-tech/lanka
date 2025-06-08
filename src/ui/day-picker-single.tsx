@@ -58,9 +58,7 @@ export function DayPickerSingle({
 							<span className="text-xl font-medium">
 								{formattedDay.split(' ')?.[0]}
 							</span>
-							<span className="">
-								{formattedDay.split(' ')?.[1]}
-							</span>
+							<span>{formattedDay.split(' ')?.[1]}</span>
 						</div>
 					);
 				})}

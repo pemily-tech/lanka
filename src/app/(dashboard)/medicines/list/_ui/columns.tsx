@@ -55,7 +55,7 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 				<div
 					className={cn(
 						row.original.active ? 'bg-primary' : 'bg-destructive',
-						'!text-12 inline-flex rounded-full px-3 py-4 text-white'
+						'inline-flex rounded-full px-3 py-1 !text-xs text-white'
 					)}
 				>
 					{row.original.active ? 'Active' : 'InActive'}
@@ -101,7 +101,7 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 									Are you sure you want to delete?
 								</AlertDialogDescription>
 							</AlertDialogHeader>
-							<AlertDialogFooter className="!pt-8">
+							<AlertDialogFooter className="!pt-2">
 								<AlertDialogAction
 									onClick={() =>
 										handelRemove(row.original.medicineId)
@@ -110,7 +110,7 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 								>
 									Confirm
 								</AlertDialogAction>
-								<AlertDialogCancel>
+								<AlertDialogCancel className="px-6">
 									<span className="text-sm">Cancel</span>
 								</AlertDialogCancel>
 							</AlertDialogFooter>

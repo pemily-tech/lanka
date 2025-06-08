@@ -59,7 +59,7 @@ export default function PetSelectModal({
 
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogContent className="max-w-[60%]">
+			<DialogContent className="max-w-[60%] gap-0">
 				<DialogHeader>
 					<DialogTitle>
 						Create a New Prescription{' '}
@@ -69,12 +69,12 @@ export default function PetSelectModal({
 					</DialogTitle>
 				</DialogHeader>
 				<DialogDescription />
-				<div className="my-3">
+				<div className="my-1">
 					<StepperNavigation
 						stepper={stepper}
 						currentIndex={currentIndex}
 					/>
-					<div className="space-y-4 ">
+					<div className="space-y-1">
 						{stepper.switch({
 							doctor: () => (
 								<Doctor
@@ -111,16 +111,11 @@ export default function PetSelectModal({
 								variant="secondary"
 								onClick={stepper.prev}
 								disabled={stepper.isFirst}
-								className="px-32"
-								size="lg"
+								className="px-16"
 							>
 								Back
 							</Button>
-							<Button
-								onClick={handleNext}
-								className="px-32"
-								size="lg"
-							>
+							<Button onClick={handleNext} className="px-16">
 								{stepper.isLast ? 'Done' : 'Next'}
 							</Button>
 						</div>

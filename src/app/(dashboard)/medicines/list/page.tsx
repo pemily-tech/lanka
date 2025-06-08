@@ -2,19 +2,11 @@
 
 import { useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
-import { Pill } from 'lucide-react';
-import Link from 'next/link';
 
-import { Routes } from '../../../../helpers/routes';
 import { useUpdateUrl } from '../../../../hooks/use-update-url';
 import { type IMedicine } from '../../../../types/prescription';
 import { DataTable } from '../../../../ui/data-table';
 import { PaginationWithLinks } from '../../../../ui/pagination-with-links';
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from '../../../../ui/tooltip';
 import { useGetMedicines } from './_api/use-get-medicines';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
@@ -71,20 +63,6 @@ export default function Page() {
 				limit={limit}
 				className="flex flex-1 items-center justify-end gap-3"
 			/>
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<Link
-						className="bg-purple fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white shadow-md transition-transform duration-200 hover:scale-110"
-						href={Routes.MEDICINES_CREATE}
-						data-umami-event="create_medicine_sticky_button"
-					>
-						<Pill className="text-white" />
-					</Link>
-				</TooltipTrigger>
-				<TooltipContent className="border-purple rounded-2xl border bg-white px-3 py-6">
-					<p className="text-black">Create Medicine</p>
-				</TooltipContent>
-			</Tooltip>
 		</div>
 	);
 }

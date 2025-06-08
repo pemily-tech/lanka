@@ -129,7 +129,7 @@ export const SelectItem = React.forwardRef<
 	>
 		<span className="absolute right-2 flex size-4 items-center justify-center">
 			<SelectPrimitive.ItemIndicator>
-				<Check className="size-12" />
+				<Check className="size-3" />
 			</SelectPrimitive.ItemIndicator>
 		</span>
 		<SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
