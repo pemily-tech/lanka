@@ -232,7 +232,7 @@ export default function VaccinationForm({
 						/>
 					</div>
 					{isModal ? (
-						<div className="mt-1 px-6">
+						<div className="mt-4 px-6">
 							<Button
 								disabled={isPending}
 								type="submit"

@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 
 import { useCreateFollowUp } from '../_api/use-create-follwup';
@@ -13,6 +12,8 @@ import { useGetFollowupList } from '../_api/use-get-followup-list';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import { cn, dateDisable } from '@/helpers/utils';
+import { queryClient } from '@/services/providers';
+import { type IOtherCommonFilter } from '@/types/common';
 import { Button } from '@/ui/button';
 import { Calendar } from '@/ui/calendar';
 import {
@@ -45,10 +46,16 @@ export default function FollowupForm({
 	stepper,
 	parentId,
 	petId,
+	isModal = false,
+	onFinish,
+	filterType,
 }: {
-	stepper: any;
+	stepper?: any;
 	parentId: string;
 	petId: string;
+	isModal?: boolean;
+	onFinish: () => void;
+	filterType?: IOtherCommonFilter;
 }) {
 	const form = useForm<IFormData>({
 		resolver: zodResolver(schema),
@@ -61,7 +68,6 @@ export default function FollowupForm({
 	const followupData =
 		data?.data?.followup || ([] as { label: string; value: string }[]);
 	const { mutateAsync: createFollowup, isPending } = useCreateFollowUp();
-	const router = useRouter();
 
 	const onSubmit = async (values: IFormData) => {
 		const data = {
@@ -74,12 +80,22 @@ export default function FollowupForm({
 		};
 		const response = await createFollowup(data);
 		if (response.status === AppConstants.Success) {
-			router.back();
+			queryClient.invalidateQueries({
+				queryKey: [
+					'clinic/followUpRecords',
+					filterType,
+					petId,
+					undefined,
+				],
+			});
+			onFinish();
 		}
 	};
 
 	return (
-		<div className="mb-12 mt-1 flex h-full flex-col">
+		<div
+			className={cn('mb-12 mt-1 flex h-full flex-col', isModal && 'my-0')}
+		>
 			<h2 className="mx-6 text-2xl font-semibold">
 				Add Follow-up Details
 			</h2>
@@ -210,25 +226,39 @@ export default function FollowupForm({
 							}}
 						/>
 					</div>
-					{stepper.isLast && (
-						<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-4 rounded-b-lg bg-white px-6 py-4">
-							<Button
-								type="button"
-								variant="secondary"
-								onClick={stepper.prev}
-								disabled={stepper.isFirst}
-								className="w-[240px]"
-							>
-								Back
-							</Button>
+					{isModal ? (
+						<div className="mt-4 px-6">
 							<Button
 								disabled={isPending}
 								type="submit"
 								className="w-[240px]"
 							>
-								{stepper.isLast ? 'Done' : 'Next'}
+								Submit
 							</Button>
 						</div>
+					) : (
+						<>
+							{stepper.isLast && (
+								<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-4 rounded-b-lg bg-white px-6 py-4">
+									<Button
+										type="button"
+										variant="secondary"
+										onClick={stepper.prev}
+										disabled={stepper.isFirst}
+										className="w-[240px]"
+									>
+										Back
+									</Button>
+									<Button
+										disabled={isPending}
+										type="submit"
+										className="w-[240px]"
+									>
+										{stepper.isLast ? 'Done' : 'Next'}
+									</Button>
+								</div>
+							)}
+						</>
 					)}
 				</form>
 			</Form>
