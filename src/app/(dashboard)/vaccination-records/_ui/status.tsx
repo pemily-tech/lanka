@@ -101,8 +101,8 @@ export default function Status({
 			{record?.vaccinatedOnDate === null || !record?.vaccinatedOnDate ? (
 				<Dialog open={open} onOpenChange={() => setOpen(!open)}>
 					<DialogTrigger asChild>
-						<Button variant="outline" size="lg">
-							<span className="font-normal">Complete</span>
+						<Button variant="outline" className="text-gray-500">
+							Complete
 						</Button>
 					</DialogTrigger>
 					<DialogContent className="max-w-3xl">
@@ -243,9 +243,9 @@ export default function Status({
 									<DialogClose>Cancel</DialogClose>
 									<Button
 										type="submit"
-										size="lg"
 										variant="secondary"
 										disabled={isPending}
+										className="px-6"
 									>
 										Confirm
 									</Button>

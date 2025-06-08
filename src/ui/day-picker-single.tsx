@@ -48,7 +48,7 @@ export function DayPickerSingle({
 					return (
 						<div
 							className={cn(
-								'flex w-[72px] cursor-pointer flex-col items-center justify-center gap-1 rounded-lg border border-gray-200 bg-white py-3 shadow-sm',
+								'flex w-[72px] cursor-pointer flex-col items-center justify-center gap-1 rounded-lg border border-gray-200 bg-white py-2 shadow-sm',
 								isSelected &&
 									'bg-primary border-primary text-white'
 							)}
