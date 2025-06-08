@@ -41,11 +41,11 @@ export function DayPickerRange({
 	};
 
 	return (
-		<div className="flex flex-col gap-12">
+		<div className="flex flex-col gap-3">
 			<div className="flex items-center justify-between">
-				<div className="text-24 font-medium">{displayDate}</div>
+				<div className="text-xl font-semibold">{displayDate}</div>
 			</div>
-			<div className="inline-flex flex-row flex-wrap gap-12 rounded-lg">
+			<div className="inline-flex flex-row flex-wrap gap-3 rounded-lg">
 				{days.reverse().map((day) => {
 					const formattedDay = format(day, 'dd EEE');
 					const isSelected = selectedDate?.from
@@ -55,24 +55,23 @@ export function DayPickerRange({
 					return (
 						<div
 							className={cn(
-								'border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center gap-6 rounded-lg border bg-white py-12',
-								isSelected && 'bg-primary text-white'
+								'flex w-[72px] cursor-pointer flex-col items-center justify-center gap-1 rounded-lg border border-gray-200 bg-white py-2 shadow-sm',
+								isSelected &&
+									'bg-primary border-primary text-white'
 							)}
 							key={day.toISOString()}
 							onClick={() => onDaySelect(day)}
 						>
-							<span className="text-24 leading-24 font-medium">
+							<span className="text-xl font-medium">
 								{formattedDay.split(' ')?.[0]}
 							</span>
-							<span className="text-16 leading-16">
-								{formattedDay.split(' ')?.[1]}
-							</span>
+							<span>{formattedDay.split(' ')?.[1]}</span>
 						</div>
 					);
 				})}
 				<Popover>
 					<PopoverTrigger asChild>
-						<div className="border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-12">
+						<div className="border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-3">
 							<CalendarIcon />
 						</div>
 					</PopoverTrigger>

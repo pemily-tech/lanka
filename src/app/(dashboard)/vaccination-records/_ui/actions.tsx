@@ -75,7 +75,7 @@ export default function Actions({
 	};
 
 	return (
-		<div className="flex items-center gap-12">
+		<div className="flex items-center gap-3">
 			<Button
 				data-umami-event="followup_notification"
 				data-umami-event-id={record._id}
@@ -84,7 +84,7 @@ export default function Actions({
 				disabled={disabled || isPending}
 				onClick={() => handleNotifications(record)}
 			>
-				<Bell className="size-18" />
+				<Bell className="size-4" />
 			</Button>
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
@@ -95,29 +95,29 @@ export default function Actions({
 						data-umami-event="vaccination_delete"
 						data-umami-event-id={record._id}
 					>
-						<Trash2 className="size-18 text-destructive" />
+						<Trash2 className="text-destructive size-4" />
 					</Button>
 				</AlertDialogTrigger>
-				<AlertDialogContent className="gap-24">
+				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
-						<AlertDialogTitle className="text-24">
+						<AlertDialogTitle className="text-2xl">
 							Delete
 						</AlertDialogTitle>
 						<AlertDialogDescription>
 							Are you sure you want to delete?
 						</AlertDialogDescription>
 					</AlertDialogHeader>
-					<AlertDialogFooter className="!pt-32">
+					<AlertDialogFooter className="!pt-2">
 						<AlertDialogAction
 							onClick={() => handelRemove(record)}
-							className="px-24 font-normal"
+							className="px-6 font-normal"
 							data-umami-event="vaccination_delete_confirm"
 							data-umami-event-id={record._id}
 						>
 							Confirm
 						</AlertDialogAction>
 						<AlertDialogCancel>
-							<span className="text-14 font-normal">Cancel</span>
+							<span className="text-sm font-normal">Cancel</span>
 						</AlertDialogCancel>
 					</AlertDialogFooter>
 				</AlertDialogContent>

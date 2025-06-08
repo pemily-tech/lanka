@@ -42,7 +42,7 @@ export default function Columns() {
 					return (
 						<Link
 							href={`${Routes.EDIT_ITEM}/${row.original.itemId}`}
-							className="text-black-1 text-14 hover:underline"
+							className="text-sm text-black hover:underline"
 						>
 							{row.original.name}
 						</Link>
@@ -80,7 +80,7 @@ export default function Columns() {
 					return (
 						<div
 							className={cn(
-								'!text-12 inline-block rounded-full px-12 py-4 !font-semibold',
+								'!text-12 inline-block rounded-full px-3 py-4 !font-semibold',
 								status
 									? 'bg-primary text-white'
 									: 'bg-red-1 text-white'
@@ -135,14 +135,14 @@ export default function Columns() {
 
 	return (
 		<div>
-			<div className="shadow-card1 rounded-8 bg-white">
+			<div className="rounded-lg bg-white shadow-md">
 				<Table>
 					<TableHeader>
 						{table?.getHeaderGroups().map((headerGroup) => (
 							<TableRow key={headerGroup.id}>
 								{headerGroup.headers.map((header) => (
 									<TableHead
-										className="text-14 p-16"
+										className="p-4 text-sm"
 										key={header.id}
 									>
 										{header.isPlaceholder
@@ -163,7 +163,7 @@ export default function Columns() {
 								<TableRow key={row.id}>
 									{row.getVisibleCells().map((cell) => (
 										<TableCell
-											className="text-14 px-16"
+											className="px-4 text-sm"
 											key={cell.id}
 										>
 											{flexRender(
@@ -178,7 +178,7 @@ export default function Columns() {
 							<TableRow>
 								<TableCell
 									colSpan={columns.length}
-									className="h-24 py-24 text-center"
+									className="h-24 py-6 text-center"
 								>
 									<span>No results found.</span>
 								</TableCell>
@@ -187,7 +187,7 @@ export default function Columns() {
 					</TableBody>
 				</Table>
 			</div>
-			<div className="rounded-8 shadow-card1 mt-12 bg-white p-12">
+			<div className="mt-12 rounded-lg bg-white p-3 shadow-md">
 				<Pagination className="flex justify-end">
 					<PaginationContent className="max-sm:gap-0">
 						<PaginationItem className="flex items-center">

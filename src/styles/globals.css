@@ -50,10 +50,7 @@
 }
 
 @layer base {
-	* {
-		@apply border-border;
-	}
 	body {
-		@apply bg-background text-foreground bg-grey-bg3 font-normal text-14;
+		@apply bg-gray-300 text-foreground font-normal text-sm antialiased;
 	}
 }

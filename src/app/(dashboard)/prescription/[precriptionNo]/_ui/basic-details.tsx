@@ -25,8 +25,8 @@ export default function BasicDetails() {
 
 	return (
 		<div>
-			<div className="flex flex-row justify-between gap-16 pb-16">
-				<div className="flex flex-1 gap-24">
+			<div className="flex flex-row justify-between gap-4 pb-4">
+				<div className="flex flex-1 gap-6">
 					<div className="flex size-[152px] items-center justify-center">
 						<div className="border-purple-1/20 size-[142px] rounded-full border-2 p-4">
 							{clinicLogo && (
@@ -37,15 +37,15 @@ export default function BasicDetails() {
 							)}
 						</div>
 					</div>
-					<div className="flex flex-1 flex-col gap-6">
-						<div className="flex flex-row gap-6">
-							<span className="text-black-1/60 font-semibold">
+					<div className="flex flex-1 flex-col gap-1">
+						<div className="flex flex-row gap-1">
+							<span className="font-semibold text-black/60">
 								{clinicDetails.name}
 							</span>
 						</div>
 						{clinicDetails.email && (
-							<div className="flex flex-row gap-6">
-								<span className="text-black-1/60">Email: </span>
+							<div className="flex flex-row gap-1">
+								<span className="text-black/60">Email: </span>
 								<a
 									className="hover:text-purple"
 									href={`mailto:${clinicDetails.email}`}
@@ -54,10 +54,8 @@ export default function BasicDetails() {
 								</a>
 							</div>
 						)}
-						<div className="flex flex-row">
-							<span className="text-black-1/60 pr-6">
-								Contact:{' '}
-							</span>
+						<div className="flex flex-row gap-1">
+							<span className="text-black/60">Contact: </span>
 							{(clinicDetails.primaryContact ||
 								clinicDetails.businessContact) && (
 								<a
@@ -73,8 +71,8 @@ export default function BasicDetails() {
 								</a>
 							)}
 						</div>
-						<div className="flex flex-row gap-6">
-							<span className="text-black-1/60">Address: </span>
+						<div className="flex flex-row gap-1">
+							<span className="text-black/60">Address: </span>
 							<span>
 								{[
 									clinicAddress.line1,
@@ -89,8 +87,8 @@ export default function BasicDetails() {
 						</div>
 					</div>
 				</div>
-				<div className="flex flex-1 flex-col items-end gap-6 text-right">
-					<div className="text-black-1/60 font-semibold">
+				<div className="flex flex-1 flex-col items-end gap-1 text-right">
+					<div className="font-semibold text-black/60">
 						{doctorDetails.name}
 					</div>
 					<div>
@@ -98,24 +96,24 @@ export default function BasicDetails() {
 					</div>
 					{doctorDetails.regNo && (
 						<div>
-							<span className="text-black-1/60">Reg No: </span>
+							<span className="text-black/60">Reg No: </span>
 							<span>{doctorDetails.regNo}</span>
 						</div>
 					)}
 				</div>
 			</div>
-			<div className="flex flex-1 flex-col gap-12 border-y py-12">
-				<div className="flex gap-16">
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Owner Name: </span>
+			<div className="flex flex-1 flex-col gap-3 border-y py-3">
+				<div className="flex gap-4">
+					<div className="flex flex-row gap-1">
+						<span className="text-black/60">Owner Name: </span>
 						<span>{parentName}</span>
 					</div>
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Owner Phone: </span>
+					<div className="flex flex-row gap-1">
+						<span className="text-black/60">Owner Phone: </span>
 						<span>{parentMobile}</span>
 					</div>
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Owner Address: </span>
+					<div className="flex flex-row gap-1">
+						<span className="text-black/60">Owner Address: </span>
 						<span>
 							{[
 								parentOrPatientAddress.line1,
@@ -129,42 +127,42 @@ export default function BasicDetails() {
 						</span>
 					</div>
 				</div>
-				<div className="flex gap-16">
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Patient: </span>
+				<div className="flex gap-4">
+					<div className="flex flex-row gap-1">
+						<span className="text-black/60">Patient: </span>
 						<span>{patientDetails.name}</span>
 					</div>
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Type: </span>
+					<div className="flex flex-row gap-1">
+						<span className="text-black/60">Type: </span>
 						<span>{patientDetails.type}</span>
 					</div>
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Sex: </span>
+					<div className="flex flex-row gap-1">
+						<span className="text-black/60">Sex: </span>
 						<span>{patientDetails.gender}</span>
 					</div>
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Breed: </span>
+					<div className="flex flex-row gap-1">
+						<span className="text-black/60">Breed: </span>
 						<span>{patientDetails.breed}</span>
 					</div>
-					<div className="flex flex-row gap-6">
-						<span className="text-black-1/60">Code: </span>
+					<div className="flex flex-row gap-1">
+						<span className="text-black/60">Code: </span>
 						<span>{patientDetails.code}</span>
 					</div>
 					{patientDetails.dob && (
-						<div className="flex flex-row gap-6">
-							<span className="text-black-1/60">DOB: </span>
+						<div className="flex flex-row gap-1">
+							<span className="text-black/60">DOB: </span>
 							<span>{patientDetails.dob}</span>
 						</div>
 					)}
 					{patientDetails?.age && (
-						<div className="flex flex-row gap-6">
-							<span className="text-black-1/60">Age: </span>
+						<div className="flex flex-row gap-1">
+							<span className="text-black/60">Age: </span>
 							<span>{patientDetails.age}</span>
 						</div>
 					)}
 					{patientDetails.microChipNo && (
-						<div className="flex flex-row gap-6">
-							<span className="text-black-1/60">
+						<div className="flex flex-row gap-1">
+							<span className="text-black/60">
 								MicroChip No:{' '}
 							</span>
 							<span>{patientDetails.microChipNo}</span>

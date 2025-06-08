@@ -31,7 +31,7 @@ function Filters({
 	children,
 }: IProps) {
 	return (
-		<div className="flex flex-col items-start gap-24">
+		<div className="flex flex-col items-start gap-6">
 			{showCalendar && (
 				<DayPickerSingle
 					selectedDate={selectedDate}
@@ -39,7 +39,7 @@ function Filters({
 					numberOfDays={12}
 				/>
 			)}
-			<div className="flex flex-1 items-end justify-end gap-12">
+			<div className="flex flex-1 items-end justify-end gap-3">
 				{medicalRecordFilters?.map((record) => {
 					const active = filter === record.value;
 					return (
@@ -58,7 +58,7 @@ function Filters({
 							}}
 							transition={{ duration: 0.25, ease: 'easeOut' }}
 							className={cn(
-								'rounded-12 flex h-48 cursor-pointer items-center justify-center gap-4 border',
+								'flex h-12 cursor-pointer items-center justify-center gap-4 rounded-xl border',
 								active
 									? 'border-secondary'
 									: 'border-transparent'

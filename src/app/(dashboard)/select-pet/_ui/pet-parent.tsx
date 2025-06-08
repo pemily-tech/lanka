@@ -45,10 +45,10 @@ export default function PetParent({
 	};
 
 	return (
-		<div className="mx-16 h-full">
-			<Command className="mt-16 rounded-lg border md:min-w-[450px]">
+		<div className="mx-4 h-full">
+			<Command className="mt-4 rounded-lg border md:min-w-[450px]">
 				<CommandInput
-					className="py-24"
+					className="py-6"
 					placeholder="Search for pet parents..."
 					value={value}
 					onValueChange={handleChange}
@@ -59,7 +59,7 @@ export default function PetParent({
 						return (
 							<div
 								className={cn(
-									'text-14 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-24 border-b px-12 py-8 outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-16 [&_svg]:shrink-0',
+									'data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-6 border-b px-3 py-2 text-sm outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
 									selectedParentId ===
 										parent.parent.parentId &&
 										'bg-primary/20 data-[selected=true]:bg-primary/20'
@@ -69,15 +69,15 @@ export default function PetParent({
 							>
 								<UserProfile
 									id={parent?.parent?.parentId}
-									imageClasses="!rounded-8 !size-[54px]"
+									imageClasses="!rounded-lg !size-[54px]"
 									iconClasses="!size-[54px]"
 								/>
 								<div>
-									<p className="text-14 text-left leading-[30px]">
+									<p className="text-left text-sm">
 										Pets:{' '}
 										{parent?.parent?.petNames.join(', ')}
 									</p>
-									<p className="text-14 text-left leading-[30px]">
+									<p className="text-left text-sm">
 										{parent?.parent?.mobile}
 									</p>
 								</div>

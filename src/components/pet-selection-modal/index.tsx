@@ -59,22 +59,22 @@ export default function PetSelectModal({
 
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogContent className="max-w-[60%]">
+			<DialogContent className="max-w-[60%] gap-0">
 				<DialogHeader>
 					<DialogTitle>
 						Create a New Prescription{' '}
-						<span className="text-14 text-black-1/60 font-normal">
+						<span className="text-sm font-normal text-black/60">
 							(Step {currentIndex + 1} of {steps.length})
 						</span>
 					</DialogTitle>
 				</DialogHeader>
 				<DialogDescription />
-				<div className="my-12">
+				<div className="my-1">
 					<StepperNavigation
 						stepper={stepper}
 						currentIndex={currentIndex}
 					/>
-					<div className="space-y-4 ">
+					<div className="space-y-1">
 						{stepper.switch({
 							doctor: () => (
 								<Doctor
@@ -105,22 +105,17 @@ export default function PetSelectModal({
 							parentError={parentError}
 							petError={petError}
 						/>
-						<div className="flex justify-end gap-16">
+						<div className="flex justify-end gap-4">
 							<Button
 								type="button"
 								variant="secondary"
 								onClick={stepper.prev}
 								disabled={stepper.isFirst}
-								className="px-32"
-								size="lg"
+								className="px-16"
 							>
 								Back
 							</Button>
-							<Button
-								onClick={handleNext}
-								className="px-32"
-								size="lg"
-							>
+							<Button onClick={handleNext} className="px-16">
 								{stepper.isLast ? 'Done' : 'Next'}
 							</Button>
 						</div>
@@ -153,7 +148,7 @@ function StepperNavigation({
 										: 'secondary'
 								}
 								onClick={() => stepper.goTo(step.id)}
-								className="flex size-32 items-center justify-center rounded-full"
+								className="flex size-8 items-center justify-center rounded-full"
 							>
 								{index + 1}
 							</Button>
@@ -163,7 +158,7 @@ function StepperNavigation({
 						</li>
 						{index < array.length - 1 && (
 							<Separator
-								className={`mx-12 flex-1 ${index < currentIndex ? 'bg-primary h-[2px]' : 'bg-muted'}`}
+								className={`mx-3 flex-1 ${index < currentIndex ? 'bg-primary h-[2px]' : 'bg-muted'}`}
 							/>
 						)}
 					</Fragment>

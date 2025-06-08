@@ -5,8 +5,8 @@ import AddEditForm from '../_ui/add-edit-form';
 export default function Page() {
 	return (
 		<div>
-			<h1 className="text-24 mb-12 font-medium">Add Item</h1>
-			<div className="shadow-card1 rounded-12 max-w-[720px] bg-white p-16">
+			<h1 className="mb-3 text-2xl font-medium">Add Item</h1>
+			<div className="max-w-[720px] rounded-xl bg-white p-4 shadow-md">
 				<AddEditForm type="ADD" />
 			</div>
 		</div>

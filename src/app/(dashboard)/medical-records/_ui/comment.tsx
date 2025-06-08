@@ -68,7 +68,7 @@ export default function Status({
 		<Dialog open={open} onOpenChange={() => setOpen(!open)}>
 			<DialogTrigger asChild>
 				<Button variant="ghost" size="icon">
-					<Pencil className="size-16" />
+					<Pencil className="size-4" />
 				</Button>
 			</DialogTrigger>
 			<DialogContent>
@@ -98,7 +98,7 @@ export default function Status({
 								</FormItem>
 							)}
 						/>
-						<DialogFooter className="col-span-2 mt-24 flex gap-24">
+						<DialogFooter className="col-span-2 mt-4 flex gap-6">
 							<DialogClose>Cancel</DialogClose>
 							<Button
 								type="submit"

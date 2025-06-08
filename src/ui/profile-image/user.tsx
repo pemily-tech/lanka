@@ -27,7 +27,7 @@ export const UserProfile = ({
 				/>
 			) : (
 				<CircleUserRound
-					className={cn('text-grey-bg3 !size-[160px]', iconClasses)}
+					className={cn('!size-[160px] text-gray-300', iconClasses)}
 				/>
 			)}
 		</>

@@ -37,9 +37,9 @@
 
 // 	return (
 // 		<div>
-// 			<div className="my-12 flex items-center justify-between">
+// 			<div className="my-3 flex items-center justify-between">
 // 				<div className="min-w-[320px]">
-// 					<label className="text-14 leading-24">
+// 					<label className="text-sm leading-24">
 // 						Choose a certificate
 // 					</label>
 // 					<Select
@@ -52,10 +52,10 @@
 // 					/>
 // 				</div>
 // 				<Link
-// 					className="bg-primary rounded-8 px-16 py-12"
+// 					className="bg-primary rounded-lg px-4 py-3"
 // 					href={`/certificate-pdf/${petId}?type=${selectedRecord?.value}`}
 // 				>
-// 					<span className="text-14 font-bold text-white">
+// 					<span className="text-sm font-bold text-white">
 // 						Create {selectedRecord?.label}
 // 					</span>
 // 				</Link>

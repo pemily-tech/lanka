@@ -67,7 +67,7 @@ export function DataTable({
 				{table.getHeaderGroups().map((headerGroup) => (
 					<TableRow key={headerGroup.id}>
 						{headerGroup.headers.map((header) => (
-							<TableHead className="text-14 p-16" key={header.id}>
+							<TableHead className="p-4 text-sm" key={header.id}>
 								{header.isPlaceholder
 									? null
 									: flexRender(
@@ -99,7 +99,7 @@ export function DataTable({
 							<TableRow className="hover:bg-muted cursor-pointer transition">
 								{row.getVisibleCells().map((cell) => (
 									<TableCell
-										className="text-14"
+										className="text-sm"
 										key={cell.id}
 									>
 										{flexRender(

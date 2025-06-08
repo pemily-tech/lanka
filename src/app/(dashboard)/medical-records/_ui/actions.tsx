@@ -51,15 +51,20 @@ export default function Actions({
 	};
 
 	return (
-		<div className="flex items-center justify-end gap-12">
+		<div className="flex items-center justify-end gap-2">
 			<Link target="_blank" href={url ?? ''}>
 				<Button
 					data-umami-event="medical_record_download"
 					data-umami-event-id={record._id}
 					size="icon"
 					variant="ghost"
+					className="p-1"
 				>
-					{isLoading ? <Loader /> : <Download className="size-18" />}
+					{isLoading ? (
+						<Loader />
+					) : (
+						<Download className="size-full" />
+					)}
 				</Button>
 			</Link>
 			<AlertDialog>
@@ -71,29 +76,29 @@ export default function Actions({
 						data-umami-event="medical_record_delete"
 						data-umami-event-id={record._id}
 					>
-						<Trash2 className="size-18 text-destructive" />
+						<Trash2 className="text-destructive size-4" />
 					</Button>
 				</AlertDialogTrigger>
-				<AlertDialogContent className="gap-24">
+				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
-						<AlertDialogTitle className="text-24">
+						<AlertDialogTitle className="text-2xl">
 							Delete
 						</AlertDialogTitle>
 						<AlertDialogDescription>
 							Are you sure you want to delete?
 						</AlertDialogDescription>
 					</AlertDialogHeader>
-					<AlertDialogFooter className="!pt-32">
+					<AlertDialogFooter className="!pt-2">
 						<AlertDialogAction
 							onClick={handelRemove}
-							className="px-24 font-normal"
+							className="px-6 font-normal"
 							data-umami-event="medical_record_confirm"
 							data-umami-event-id={record._id}
 						>
 							Confirm
 						</AlertDialogAction>
-						<AlertDialogCancel>
-							<span className="text-14 font-normal">Cancel</span>
+						<AlertDialogCancel className="px-4">
+							<span className="text-sm font-normal">Cancel</span>
 						</AlertDialogCancel>
 					</AlertDialogFooter>
 				</AlertDialogContent>

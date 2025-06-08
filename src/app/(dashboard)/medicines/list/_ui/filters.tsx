@@ -31,18 +31,18 @@ export default function Filters({
 	const [hovered, setHovered] = useState(false);
 
 	return (
-		<div className="flex w-full flex-wrap items-end justify-between gap-12">
+		<div className="flex w-full flex-wrap items-end justify-between gap-3">
 			<div className="flex-1">
 				<Command className="max-w-[450px] rounded-lg border">
 					<CommandInput
-						className="py-24"
+						className="py-6"
 						placeholder="Search for medicines..."
 						value={value}
 						onValueChange={setValue}
 					/>
 				</Command>
 			</div>
-			<div className="flex flex-1 items-end justify-end gap-12">
+			<div className="flex flex-1 items-end justify-end gap-3">
 				<div>
 					<Select
 						value={String(active)}
@@ -113,13 +113,13 @@ export default function Filters({
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -10 }}
 								transition={{ duration: 0.25 }}
-								className="flex items-center justify-center gap-4 text-xs text-white"
+								className="flex items-center justify-center gap-1 text-xs text-white"
 							>
-								<Plus className="size-18 text-white" />
+								<Plus className="size-4 text-white" />
 								<span>Create Medicine</span>
 							</motion.div>
 						) : (
-							<Plus className="size-18 text-white" />
+							<Plus className="size-4 text-white" />
 						)}
 					</motion.button>
 				</Link>

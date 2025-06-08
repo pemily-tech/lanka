@@ -70,9 +70,9 @@ export default function PetDetails() {
 	});
 
 	return (
-		<div className="flex items-center justify-between gap-24">
-			<div className="gap-54 flex flex-row items-center justify-start rounded-[16px]">
-				<div className="flex gap-16">
+		<div className="flex items-center justify-between gap-6">
+			<div className="flex flex-row items-center justify-start gap-14 rounded-lg">
+				<div className="flex gap-4">
 					<div>
 						<label className="relative block size-[120px] cursor-pointer rounded-full">
 							<input {...getInputProps()} />
@@ -91,43 +91,43 @@ export default function PetDetails() {
 									className="size-[120px] rounded-full object-cover"
 								/>
 							)}
-							<div className="bg-primary absolute bottom-0 right-10 rounded-full p-[2px] ring-2 ring-white">
+							<div className="bg-primary absolute bottom-0 right-2 rounded-full p-[2px] ring-2 ring-white">
 								{isUrlExists ? (
-									<Check className="size-18 text-white" />
+									<Check className="size-4 text-white" />
 								) : (
-									<Camera className="size-28 p-4 text-white" />
+									<Camera className="size-6 p-1 text-white" />
 								)}
 							</div>
 						</label>
 					</div>
 					<div className="flex flex-col items-start justify-center">
-						<h3 className="text-24 font-semibold">{name}</h3>
+						<h3 className="text-2xl font-semibold">{name}</h3>
 					</div>
 				</div>
 				<div>
-					<p className="text-black-1/60">Breed:</p>
+					<p className="text-black/60">Breed:</p>
 					<span>{breed}</span>
 				</div>
 				<div>
-					<p className="text-black-1/60">Gender:</p>
+					<p className="text-black/60">Gender:</p>
 					<span>{gender === 'M' ? 'Male' : 'Female'}</span>
 				</div>
 				<div>
-					<p className="text-black-1/60">Type:</p>
+					<p className="text-black/60">Type:</p>
 					<span>{type === 'CAT' ? 'Cat' : 'Dog'}</span>
 				</div>
 				{dob && (
 					<div>
-						<p className="text-black-1/60">DOB:</p>
+						<p className="text-black/60">DOB:</p>
 						<span>{format(dob as string, DATE_FORMAT)}</span>
 					</div>
 				)}
 				<div>
-					<p className="text-black-1/60">Code:</p>
+					<p className="text-black/60">Code:</p>
 					<span>{code}</span>
 				</div>
 				<div>
-					<p className="text-black-1/60">Microchip No:</p>
+					<p className="text-black/60">Microchip No:</p>
 					<span>{microChipNo}</span>
 				</div>
 			</div>
@@ -136,7 +136,7 @@ export default function PetDetails() {
 				className="flex gap-6"
 			>
 				<Button variant="link">
-					<Pencil className="size-16" />
+					<Pencil className="size-4" />
 					<span>Edit Pet</span>
 				</Button>
 			</Link>

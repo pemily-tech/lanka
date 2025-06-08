@@ -95,15 +95,12 @@ export default function VaccinationForm({
 
 	return (
 		<div
-			className={cn(
-				'mb-54 mt-24 flex h-full flex-col',
-				isModal && 'my-0'
-			)}
+			className={cn('mb-12 mt-1 flex h-full flex-col', isModal && 'my-0')}
 		>
-			<h2 className="text-24 mx-24 font-semibold">
+			<h2 className="mx-6 text-2xl font-semibold">
 				Add Vaccination Details
 			</h2>
-			<h6 className="text-black-1/50 mx-24 mb-24">
+			<h6 className="mx-6 mb-6 text-black/50">
 				We will remind you when vaccination is due
 			</h6>
 			<Form {...form}>
@@ -111,7 +108,7 @@ export default function VaccinationForm({
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="flex flex-1 flex-col"
 				>
-					<div className="mx-24 flex max-w-lg flex-1 flex-col gap-24">
+					<div className="mx-6 flex max-w-lg flex-1 flex-col gap-6">
 						<FormField
 							control={form.control}
 							name="vaccineName"
@@ -127,7 +124,7 @@ export default function VaccinationForm({
 											<FormControl>
 												<SelectTrigger
 													isError={!!fieldState.error}
-													className="!mt-6 bg-white"
+													className="!mt-1 bg-white"
 												>
 													<SelectValue placeholder="Select a type" />
 												</SelectTrigger>
@@ -172,7 +169,7 @@ export default function VaccinationForm({
 													<Button
 														variant="outline"
 														className={cn(
-															'!mt-6 h-48 text-left font-normal',
+															'!mt-1 h-12 text-left font-normal',
 															'flex flex-row truncate',
 															!field.value &&
 																'text-muted-foreground'
@@ -197,7 +194,7 @@ export default function VaccinationForm({
 																		)
 																: 'Pick a date'}
 														</span>
-														<CalendarIcon className="ml-auto size-24 opacity-50" />
+														<CalendarIcon className="ml-auto size-6 opacity-50" />
 													</Button>
 												</FormControl>
 											</PopoverTrigger>
@@ -235,7 +232,7 @@ export default function VaccinationForm({
 						/>
 					</div>
 					{isModal ? (
-						<div className="mt-24 px-24">
+						<div className="mt-1 px-6">
 							<Button
 								disabled={isPending}
 								type="submit"
@@ -247,7 +244,7 @@ export default function VaccinationForm({
 					) : (
 						<>
 							{stepper.isLast && (
-								<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-24 py-16">
+								<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-4 rounded-b-lg bg-white px-6 py-4">
 									<Button
 										type="button"
 										variant="secondary"

@@ -42,7 +42,7 @@ export default function SelectField({
 						<FormControl>
 							<SelectTrigger
 								isError={!!fieldState.error}
-								className="!mt-6 bg-white"
+								className="!mt-1 bg-white"
 							>
 								<SelectValue placeholder="Select a type" />
 							</SelectTrigger>

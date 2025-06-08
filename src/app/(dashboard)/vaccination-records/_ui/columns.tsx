@@ -22,20 +22,20 @@ export function useColumns({
 			accessorKey: 'name',
 			header: 'Details',
 			cell: ({ row }) => (
-				<div className="flex gap-12">
+				<div className="flex gap-2">
 					<LazyImage
 						src="/images/vaccination-record.svg"
 						className="h-[72px] w-[85px]"
 					/>
-					<div className="flex flex-col gap-4">
+					<div className="flex flex-col gap-1">
 						<div className="flex items-end gap-6">
-							<span className="text-black-1/60">Parent:</span>{' '}
+							<span className="text-black/60">Parent:</span>{' '}
 							<span className="font-medium">
 								{row.original.parent.name}
 							</span>
 						</div>
 						<div className="flex items-end gap-6">
-							<span className="text-black-1/60">Pet:</span>{' '}
+							<span className="text-black/60">Pet:</span>{' '}
 							<span className="font-medium">
 								{row.original.pet.name}
 							</span>

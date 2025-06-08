@@ -65,7 +65,7 @@ export function DataTable<TData>({
 					<TableRow key={headerGroup.id}>
 						{headerGroup.headers.map((header) => (
 							<TableHead
-								className="text-14 px-12 py-16"
+								className="px-3 py-4 text-sm"
 								key={header.id}
 							>
 								{header.isPlaceholder
@@ -99,7 +99,7 @@ export function DataTable<TData>({
 							<TableRow>
 								{row.getVisibleCells().map((cell) => (
 									<TableCell
-										className="text-14"
+										className="text-sm"
 										key={cell.id}
 									>
 										{flexRender(

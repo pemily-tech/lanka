@@ -46,9 +46,9 @@ export default function Doctor({
 	};
 
 	return (
-		<Command className="mb-16 mt-32 h-[380px] max-h-[380px] rounded-lg border md:min-w-[450px]">
+		<Command className="mb-4 mt-2 h-[380px] max-h-[380px] rounded-lg border md:min-w-[450px]">
 			<CommandInput
-				className="py-24"
+				className="py-6"
 				placeholder="Search for doctors..."
 				value={value}
 				onValueChange={handleChange}
@@ -59,7 +59,7 @@ export default function Doctor({
 					return (
 						<div
 							className={cn(
-								'text-14 data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-24 border-b px-12 py-8 outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-16 [&_svg]:shrink-0',
+								'data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-6 border-b px-3 py-2 text-sm outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
 								selectedDoctorId === doctor.doctor.doctorId &&
 									'bg-primary/20 data-[selected=true]:bg-primary/20'
 							)}
@@ -68,14 +68,14 @@ export default function Doctor({
 						>
 							<UserProfile
 								id={doctor.doctor.doctorId}
-								imageClasses="!rounded-8 !size-[54px]"
+								imageClasses="!rounded-lg !size-[54px]"
 								iconClasses="!size-[54px]"
 							/>
 							<div>
-								<p className="text-16 text-left font-medium">
+								<p className="text-left text-sm font-medium">
 									{doctor?.doctor?.name}
 								</p>
-								<p className="text-14 text-left leading-[30px]">
+								<p className="text-left text-sm">
 									{doctor?.doctor?.mobile}
 								</p>
 							</div>

@@ -4,7 +4,7 @@ export function Loader({ className }: { className?: string }) {
 	return (
 		<div
 			className={cn(
-				'text-primary inline-block size-16 animate-spin rounded-full border-2 border-current border-t-transparent',
+				'text-primary inline-block size-4 animate-spin rounded-full border-2 border-current border-t-transparent',
 				className
 			)}
 			role="status"

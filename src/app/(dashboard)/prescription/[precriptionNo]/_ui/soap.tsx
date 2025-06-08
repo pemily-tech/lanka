@@ -74,12 +74,12 @@ export default function Soap() {
 	}
 
 	return (
-		<div className="my-24 pr-16">
-			<h3 className="mb-12 font-semibold">SOAP</h3>
+		<div className="my-6 pr-4">
+			<h3 className="mb-3 font-semibold">SOAP</h3>
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="grid grid-cols-1 gap-24"
+					className="grid grid-cols-1 gap-6"
 				>
 					{[
 						['subjective', 'Subjective'],

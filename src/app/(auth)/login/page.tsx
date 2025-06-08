@@ -58,14 +58,12 @@ export default function Page() {
 	};
 
 	return (
-		<div>
-			<div className="flex items-center gap-24">
-				<span className="text-left text-[32px] font-semibold leading-[42px]">
-					Get started with your 10 digit mobile number
-				</span>
-			</div>
+		<div className="flex flex-col gap-6">
+			<h4 className="text-left text-2xl font-semibold">
+				Get started with your 10 digit mobile number
+			</h4>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="mt-24">
+				<form onSubmit={form.handleSubmit(onSubmit)} className="mt-1">
 					<FormField
 						control={form.control}
 						name="mobileNumber"
@@ -90,7 +88,7 @@ export default function Page() {
 						disabled={isExecuting}
 						loadingText="Sending Otp"
 						type="submit"
-						className="mt-24 w-full"
+						className="mt-6 w-full"
 					>
 						Get OTP
 					</Button>

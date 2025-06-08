@@ -77,11 +77,11 @@ export default function UserTabs() {
 	return (
 		<div className="w-full">
 			<Tabs value={type} onValueChange={handleChange}>
-				<TabsList className="mb-12 w-full max-w-3xl justify-start rounded-none border-b bg-white">
+				<TabsList className="mb-3 w-full max-w-3xl justify-start rounded-none border-b bg-white">
 					{filteredTabs.map((tab) => (
 						<TabsTrigger
 							key={tab.value}
-							className="flex-1 py-12"
+							className="flex-1 py-3"
 							value={tab.value}
 						>
 							{tab.label}

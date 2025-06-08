@@ -23,13 +23,13 @@ const contactInfo = [
 
 export default function Contact() {
 	return (
-		<div className="mt-16 grid max-w-3xl grid-cols-2 gap-24">
+		<div className="mt-4 grid max-w-3xl grid-cols-2 gap-6">
 			{contactInfo.map(({ label, value, href, icon: Icon }) => (
 				<div
 					key={label}
-					className="bg-grey-1/30 flex gap-16 rounded-lg border p-12"
+					className="bg-grey-1/30 flex gap-4 rounded-lg border p-3"
 				>
-					<div className="bg-primary/10 flex size-[54px] items-center justify-center rounded-full">
+					<div className="bg-primary/10 flex size-14 items-center justify-center rounded-full">
 						<Icon />
 					</div>
 					<div className="flex flex-col">

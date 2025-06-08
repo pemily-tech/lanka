@@ -10,7 +10,7 @@ const PageNotFound = () => {
 		<div className="flex min-h-screen flex-col items-center justify-center space-y-16 bg-white py-20 text-center">
 			<LazyImage className="size-[400px]" src="/images/404.svg" />
 			<div className="mx-auto w-full max-w-[546px]">
-				<h4 className="text-32 mb-12 font-semibold">Page not found</h4>
+				<h4 className="text-32 mb-3 font-semibold">Page not found</h4>
 				<p className="mb-10">
 					The page you are looking for might have been removed had its
 					name changed or is temporarily unavailable.

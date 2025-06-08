@@ -43,18 +43,15 @@ export default function MedicalRecordForm({
 
 	return (
 		<div
-			className={cn(
-				'mb-54 mt-24 flex h-full flex-col',
-				isModal && 'my-0'
-			)}
+			className={cn('mb-12 mt-1 flex h-full flex-col', isModal && 'my-0')}
 		>
-			<h2 className="text-24 mx-24 font-semibold">
+			<h2 className="mx-6 text-2xl font-semibold">
 				Upload a photo of your Prescription
 			</h2>
-			<h6 className="text-black-1/50 mx-24 mb-24">
+			<h6 className="mx-6 mb-6 text-black/50">
 				You can upload JPEG or PNG up to 2MB
 			</h6>
-			<div className="mb-24 h-full px-24">
+			<div className="mb-6 h-full px-6">
 				<div
 					{...getRootProps()}
 					className="border-black-1/20 relative z-10 flex h-[240px] w-[420px] cursor-pointer items-center justify-center rounded-xl border"
@@ -62,11 +59,11 @@ export default function MedicalRecordForm({
 					<input {...getInputProps()} />
 					{!previewUrl && (
 						<div>
-							<p className="text-16 text-center font-medium">
+							<p className="text-center font-medium">
 								Drag and drop a file here, or click to select a
 								file
 							</p>
-							<p className="text-black-1/40 text-center">
+							<p className="text-center text-black/40">
 								Max Size: 2MB
 							</p>
 						</div>
@@ -81,7 +78,7 @@ export default function MedicalRecordForm({
 							className={cn(
 								'size-full rounded-xl object-cover',
 								acceptedFile?.type === 'application/pdf' &&
-									'object-contain p-16'
+									'object-contain p-4'
 							)}
 						/>
 					)}
@@ -91,15 +88,15 @@ export default function MedicalRecordForm({
 								e.stopPropagation();
 								clear();
 							}}
-							className="border-destructive absolute -right-10 -top-10 z-10 flex size-24 cursor-pointer items-center justify-center rounded-full border bg-white"
+							className="border-destructive absolute -right-2 -top-2 z-10 flex size-6 cursor-pointer items-center justify-center rounded-full border bg-white"
 						>
-							<X className="text-destructive size-16" />
+							<X className="text-destructive size-4" />
 						</div>
 					)}
 				</div>
 			</div>
 			{isModal ? (
-				<div className="px-24">
+				<div className="px-6">
 					<Button
 						disabled={isPending || !acceptedFile}
 						type="submit"
@@ -112,7 +109,7 @@ export default function MedicalRecordForm({
 			) : (
 				<>
 					{stepper.isLast && (
-						<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-24 py-16">
+						<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-4 rounded-b-lg bg-white px-6 py-4">
 							<Button
 								type="button"
 								variant="secondary"

@@ -55,7 +55,7 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 				<div
 					className={cn(
 						row.original.active ? 'bg-primary' : 'bg-destructive',
-						'!text-12 inline-flex rounded-full px-12 py-4 text-white'
+						'inline-flex rounded-full px-3 py-1 !text-xs text-white'
 					)}
 				>
 					{row.original.active ? 'Active' : 'InActive'}
@@ -66,10 +66,10 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 			id: 'buttons',
 			header: '',
 			cell: ({ row }) => (
-				<div className="flex items-center gap-12">
+				<div className="flex items-center gap-3">
 					<Link
 						href={`${Routes.MEDICINES_UPDATE}/${row.original.medicineId}`}
-						className="flex size-24 items-center justify-center"
+						className="flex size-6 items-center justify-center"
 					>
 						<Button
 							size="icon"
@@ -77,7 +77,7 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 							data-umami-event="medicine_edit_button"
 							data-umami-event-id={row.original.medicineId}
 						>
-							<Edit2 className="size-18" />
+							<Edit2 className="size-4" />
 						</Button>
 					</Link>
 					<AlertDialog>
@@ -89,29 +89,29 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 								data-umami-event="medicine_delete"
 								data-umami-event-id={row.original.medicineId}
 							>
-								<Trash2 className="size-18 text-destructive" />
+								<Trash2 className="text-destructive size-4" />
 							</Button>
 						</AlertDialogTrigger>
-						<AlertDialogContent className="gap-24">
+						<AlertDialogContent className="gap-6">
 							<AlertDialogHeader>
-								<AlertDialogTitle className="text-24">
+								<AlertDialogTitle className="text-2xl">
 									Delete
 								</AlertDialogTitle>
 								<AlertDialogDescription>
 									Are you sure you want to delete?
 								</AlertDialogDescription>
 							</AlertDialogHeader>
-							<AlertDialogFooter className="!pt-32">
+							<AlertDialogFooter className="!pt-2">
 								<AlertDialogAction
 									onClick={() =>
 										handelRemove(row.original.medicineId)
 									}
-									className="px-24"
+									className="px-6"
 								>
 									Confirm
 								</AlertDialogAction>
-								<AlertDialogCancel>
-									<span className="text-14">Cancel</span>
+								<AlertDialogCancel className="px-6">
+									<span className="text-sm">Cancel</span>
 								</AlertDialogCancel>
 							</AlertDialogFooter>
 						</AlertDialogContent>

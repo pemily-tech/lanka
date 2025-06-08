@@ -50,7 +50,7 @@ export function Combobox({
 									variant="outline"
 									role="combobox"
 									className={cn(
-										'!mt-6 h-48 justify-between font-normal',
+										'!mt-1 h-12 justify-between font-normal',
 										!field.value && 'text-muted-foreground'
 									)}
 									disabled={!selectedType}
@@ -61,7 +61,7 @@ export function Combobox({
 													breed.value === field.value
 											)?.label
 										: 'Select Breed'}
-									<ChevronsUpDown className="size-16 opacity-50" />
+									<ChevronsUpDown className="size-4 opacity-50" />
 								</Button>
 							</FormControl>
 						</PopoverTrigger>

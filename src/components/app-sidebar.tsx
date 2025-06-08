@@ -73,17 +73,17 @@ export const AppSidebar = () => {
 
 	return (
 		<Sidebar collapsible="icon" className="bg-white">
-			<SidebarHeader className="px-8">
+			<SidebarHeader className="px-2">
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton>
 							<UserRoundCheck className="text-primary" />
-							<span className="text-14">{name || mobile}</span>
+							<span className="text-sm">{name || mobile}</span>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>
 			</SidebarHeader>
-			<SidebarContent className="py-24">
+			<SidebarContent className="py-6">
 				<SidebarGroup>
 					<Menu navMenu={filteredNavMenu} role={role} />
 				</SidebarGroup>
@@ -94,28 +94,28 @@ export const AppSidebar = () => {
 						<SidebarMenuButton className="p-0" asChild>
 							<div>
 								<AlertDialog>
-									<AlertDialogTrigger className="flex w-full items-center gap-12 py-12">
+									<AlertDialogTrigger className="flex w-full items-center gap-3 py-3">
 										<LogOutIcon width={16} height={16} />
-										<span className="text-14">Logout</span>
+										<span className="text-sm">Logout</span>
 									</AlertDialogTrigger>
-									<AlertDialogContent className="gap-24">
+									<AlertDialogContent className="gap-6">
 										<AlertDialogHeader>
-											<AlertDialogTitle className="text-24">
+											<AlertDialogTitle className="text-xl font-semibold">
 												Logout
 											</AlertDialogTitle>
 											<AlertDialogDescription>
 												Are you sure you want to logout?
 											</AlertDialogDescription>
 										</AlertDialogHeader>
-										<AlertDialogFooter className="!pt-32">
+										<AlertDialogFooter className="!pt-2">
 											<AlertDialogAction
 												onClick={handleLogout}
-												className="px-24"
+												className="px-6"
 											>
 												Logout
 											</AlertDialogAction>
-											<AlertDialogCancel>
-												<span className="text-14">
+											<AlertDialogCancel className="px-4">
+												<span className="text-sm">
 													Cancel
 												</span>
 											</AlertDialogCancel>
@@ -142,7 +142,7 @@ const Menu = ({
 	const pathname = usePathname();
 
 	return (
-		<SidebarMenu className="gap-24 px-8">
+		<SidebarMenu className="gap-6 px-2">
 			{navMenu.map((item, index) => {
 				const Icon =
 					item.icon && IconMap[item.icon] ? IconMap[item.icon] : null;
@@ -157,7 +157,7 @@ const Menu = ({
 						<SidebarMenuButton
 							className={`${
 								active
-									? 'bg-grey-bg3 text-accent-foreground hover:bg-greyBg hover:text-accent-foreground py-12 hover:opacity-80'
+									? 'text-accent-foreground hover:text-accent-foreground bg-gray-200 py-3 hover:bg-gray-300 hover:opacity-80'
 									: 'px-0'
 							}`}
 							key={index}
@@ -165,16 +165,16 @@ const Menu = ({
 						>
 							<Link href={item.path}>
 								{item.isIcon && Icon ? (
-									<div className="flex size-32 items-center justify-center">
-										<Icon className="!size-24" />
+									<div className="flex size-8 items-center justify-center">
+										<Icon className="!size-6" />
 									</div>
 								) : (
 									<LazyImage
-										className="size-32"
+										className="size-8"
 										src={item.icon as string}
 									/>
 								)}
-								<span className="text-14">{item.title}</span>
+								<span className="text-sm">{item.title}</span>
 							</Link>
 						</SidebarMenuButton>
 					);
@@ -199,16 +199,16 @@ const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 			key={item.id}
 			className="group/collapsible"
 		>
-			<SidebarMenuItem className="py-6">
+			<SidebarMenuItem className="py-1">
 				<CollapsibleTrigger asChild>
 					<SidebarMenuButton className="px-0">
-						{Icon && <Icon className="!size-18" />}
-						<span className="text-14">{item.title}</span>
-						<ChevronRight className="!size-18 ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+						{Icon && <Icon className="!size-5" />}
+						<span className="text-sm">{item.title}</span>
+						<ChevronRight className="ml-auto !size-5 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
 					</SidebarMenuButton>
 				</CollapsibleTrigger>
 				<CollapsibleContent>
-					<SidebarMenuSub className="mx-0 ml-24 mt-8 gap-12 px-0">
+					<SidebarMenuSub className="mx-0 ml-6 mt-2 gap-3 px-0">
 						{visibleItems?.map((ite, index) => {
 							const active = pathname === ite.path;
 							return (
@@ -216,13 +216,13 @@ const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 									<SidebarMenuSubButton
 										className={`${
 											active
-												? 'text-accent-foreground hover:bg-greyBg hover:text-accent-foreground bg-grey-bg3 p-12 hover:opacity-80'
+												? 'text-accent-foreground hover:text-accent-foreground bg-gray-200 p-3 hover:bg-gray-300 hover:opacity-80'
 												: ''
 										}`}
 										asChild
 									>
 										<Link href={ite.path}>
-											<span className="text-14">
+											<span className="text-sm">
 												{ite.title}
 											</span>
 										</Link>

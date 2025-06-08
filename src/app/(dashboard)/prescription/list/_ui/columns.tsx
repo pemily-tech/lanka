@@ -72,7 +72,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 				<div
 					className={cn(
 						row.original.active ? 'bg-primary' : 'bg-destructive',
-						'!text-12 inline-flex rounded-full px-12 py-4 text-white'
+						'inline-flex rounded-full px-3 py-1 !text-xs text-white'
 					)}
 				>
 					{row.original.active ? 'Active' : 'InActive'}
@@ -84,13 +84,13 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 			header: '',
 			cell: ({ row }) => {
 				return (
-					<div className="flex items-center gap-12">
+					<div className="flex items-center gap-3">
 						<Link
 							href={`/prescription/${row.original.prescriptionNo}`}
-							className="flex size-24 items-center justify-center"
+							className="flex size-6 items-center justify-center"
 						>
 							<Button size="icon" variant="ghost">
-								<Edit2 className="size-18" />
+								<Edit2 className="size-4" />
 							</Button>
 						</Link>
 						<AlertDialog>
@@ -100,31 +100,33 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 									size="icon"
 									variant="ghost"
 								>
-									<Trash2 className="size-18 text-destructive" />
+									<Trash2 className="text-destructive size-4" />
 								</Button>
 							</AlertDialogTrigger>
-							<AlertDialogContent className="gap-24">
+							<AlertDialogContent className="gap-6">
 								<AlertDialogHeader>
-									<AlertDialogTitle className="text-24">
+									<AlertDialogTitle className="text-2xl">
 										Delete
 									</AlertDialogTitle>
 									<AlertDialogDescription>
 										Are you sure you want to delete?
 									</AlertDialogDescription>
 								</AlertDialogHeader>
-								<AlertDialogFooter className="!pt-32">
+								<AlertDialogFooter className="!pt-2">
 									<AlertDialogAction
 										onClick={() =>
 											handleDelete(
 												row.original.prescriptionNo
 											)
 										}
-										className="px-24"
+										className="px-6"
 									>
 										Confirm
 									</AlertDialogAction>
 									<AlertDialogCancel>
-										<span className="text-14">Cancel</span>
+										<span className="px-6 text-sm">
+											Cancel
+										</span>
 									</AlertDialogCancel>
 								</AlertDialogFooter>
 							</AlertDialogContent>

@@ -1,5 +1,3 @@
-/* eslint-disable indent */
-/* eslint-disable max-lines-per-function */
 'use client';
 
 import { useEffect, useMemo } from 'react';
@@ -29,6 +27,7 @@ import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { Button } from '@/ui/button';
 import { Calendar } from '@/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
+import { AppConstants } from '@/helpers/primitives';
 
 const schema = z.object({
 	name: z.string().min(1, 'Name is required'),
@@ -96,7 +95,7 @@ const PersonalDetailsForm = () => {
 			dob: dob ? format(new Date(dob), DEFAULT_DATE_FORMAT) : '',
 		};
 		const response = await updateUser(payload);
-		if (response.status === 'SUCCESS') {
+		if (response.status === AppConstants.Success) {
 			refetch();
 		}
 	};
@@ -105,7 +104,7 @@ const PersonalDetailsForm = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="rounded-12 mt-12 grid max-w-3xl grid-cols-2 gap-24 bg-white px-16 py-24"
+				className="rounded-xl grid max-w-3xl grid-cols-2 gap-6 bg-white py-6"
 			>
 				{[
 					['name', 'Name', 'text'],
@@ -120,7 +119,7 @@ const PersonalDetailsForm = () => {
 								control={form.control}
 								name={name as keyof IFormData}
 								render={({ field }) => (
-									<FormItem className="flex flex-col space-y-6">
+									<FormItem className="flex flex-col space-y-1">
 										<FormLabel>Choose Gender</FormLabel>
 										<Popover>
 											<PopoverTrigger asChild>
@@ -140,7 +139,7 @@ const PersonalDetailsForm = () => {
 																	field.value
 															)?.label
 														: 'Select a gender'}
-													<ChevronDown className="ml-2 size-16 shrink-0 opacity-50" />
+													<ChevronDown className="ml-2 size-4 shrink-0 opacity-50" />
 												</Button>
 											</PopoverTrigger>
 											<PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
@@ -219,7 +218,7 @@ const PersonalDetailsForm = () => {
 															'PPP'
 														)
 													: 'Pick a date'}
-												<CalendarIcon className="ml-auto size-24 opacity-50" />
+												<CalendarIcon className="ml-auto size-6 opacity-50" />
 											</Button>
 										</FormControl>
 									</PopoverTrigger>

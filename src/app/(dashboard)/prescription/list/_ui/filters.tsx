@@ -39,17 +39,17 @@ function Filters({
 	const [hovered, setHovered] = useState(false);
 
 	return (
-		<div className="flex flex-row items-end justify-between gap-24">
+		<div className="flex flex-row items-end justify-between gap-6">
 			<DayPickerRange
 				selectedDate={selectedDate}
 				setDate={setDate}
 				disabled={{ after: new Date() }}
 			/>
-			<div className="flex flex-1 items-end justify-end gap-12">
+			<div className="flex flex-1 items-end justify-end gap-3">
 				<div className="h-[48px] max-w-[220px] flex-1 ">
 					<Command className="rounded-lg border">
 						<CommandInput
-							className="py-24"
+							className="py-6"
 							placeholder="Search..."
 							value={searchTerm}
 							onValueChange={setSearchTerm}
@@ -91,7 +91,7 @@ function Filters({
 							Create New Rx
 						</motion.span>
 					) : (
-						<Plus className="size-18 text-white" />
+						<Plus className="size-4 text-white" />
 					)}
 				</motion.button>
 			</div>

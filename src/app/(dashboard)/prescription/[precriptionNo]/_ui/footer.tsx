@@ -29,7 +29,7 @@ export default function Footer() {
 	} = useFooterActions();
 
 	return (
-		<div className="mt-16 flex items-center justify-end gap-16 border-t py-16">
+		<div className="mt-4 flex items-center justify-end gap-4 border-t py-4">
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
 					<Button
@@ -37,13 +37,13 @@ export default function Footer() {
 						disabled={isPrescriptionSaved || isUpdating}
 						className="min-w-[120px] !rounded-2xl"
 					>
-						<Check className="size-16" />
+						<Check className="size-4" />
 						<span className="font-normal">Save</span>
 					</Button>
 				</AlertDialogTrigger>
-				<AlertDialogContent className="gap-24">
+				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
-						<AlertDialogTitle className="text-24">
+						<AlertDialogTitle className="text-2xl">
 							Are you sure you want to save this prescription?
 						</AlertDialogTitle>
 						<AlertDialogDescription>
@@ -51,15 +51,15 @@ export default function Footer() {
 							prescription.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
-					<AlertDialogFooter className="!pt-32">
+					<AlertDialogFooter className="!pt-2">
 						<AlertDialogAction
 							onClick={handleSave}
-							className="px-24"
+							className="px-6"
 						>
 							Confirm
 						</AlertDialogAction>
 						<AlertDialogCancel>
-							<span className="text-14">Cancel</span>
+							<span className="px-6 text-sm">Cancel</span>
 						</AlertDialogCancel>
 					</AlertDialogFooter>
 				</AlertDialogContent>
@@ -71,7 +71,7 @@ export default function Footer() {
 				variant="secondary"
 				className="min-w-[120px] !rounded-2xl"
 			>
-				<Plus className="size-16" />
+				<Plus className="size-4" />
 				<span className="font-normal">Create PDF</span>
 			</Button>
 			<AlertDialog>
@@ -81,13 +81,13 @@ export default function Footer() {
 						className="min-w-[120px] !rounded-2xl"
 						variant="outline"
 					>
-						<SendHorizonal className="size-16" />
+						<SendHorizonal className="size-4" />
 						<span className="font-normal">Share PDF</span>
 					</Button>
 				</AlertDialogTrigger>
-				<AlertDialogContent className="gap-24">
+				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
-						<AlertDialogTitle className="text-24">
+						<AlertDialogTitle className="text-2xl">
 							Share Prescription
 						</AlertDialogTitle>
 						<AlertDialogDescription>
@@ -95,15 +95,15 @@ export default function Footer() {
 							WhatsApp and Pemilyy app.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
-					<AlertDialogFooter className="!pt-32">
+					<AlertDialogFooter className="!pt-2">
 						<AlertDialogAction
 							onClick={handleShare}
-							className="bg-secondary hover:bg-secondary/90 px-24 text-white hover:text-white"
+							className="bg-secondary hover:bg-secondary/90 px-6 text-white hover:text-white"
 						>
 							Confirm
 						</AlertDialogAction>
-						<AlertDialogCancel className="bg-transparent hover:bg-transparent">
-							<span className="text-14 text-black-1 font-normal">
+						<AlertDialogCancel className="bg-transparent px-6 hover:bg-transparent">
+							<span className="text-sm font-normal text-black">
 								Cancel
 							</span>
 						</AlertDialogCancel>
@@ -116,7 +116,7 @@ export default function Footer() {
 				variant="outline"
 				onClick={() => window.open(prescriptionUrl ?? '')}
 			>
-				<Eye className="size-16" />
+				<Eye className="size-4" />
 				<span className="font-normal">View PDF</span>
 			</Button>
 		</div>

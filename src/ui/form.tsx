@@ -82,7 +82,7 @@ export const FormItem = React.forwardRef<
 
 	return (
 		<FormItemContext.Provider value={{ id }}>
-			<div ref={ref} className={cn('space-y-12', className)} {...props} />
+			<div ref={ref} className={cn('space-y-3', className)} {...props} />
 		</FormItemContext.Provider>
 	);
 });
@@ -161,7 +161,7 @@ export const FormMessage = React.forwardRef<
 			ref={ref}
 			id={formMessageId}
 			className={cn(
-				'text-destructive !mt-4 text-[0.8rem] font-medium',
+				'text-destructive !mt-1 text-[0.8rem] font-medium',
 				className
 			)}
 			{...props}
