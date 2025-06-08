@@ -94,7 +94,11 @@ export const AppSidebar = () => {
 						<SidebarMenuButton className="p-0" asChild>
 							<div>
 								<AlertDialog>
-									<AlertDialogTrigger className="flex w-full items-center gap-3 py-3">
+									<AlertDialogTrigger
+										className="flex w-full items-center gap-3 py-3"
+										data-umami-event="user_logout_button"
+										data-umami-event-id={mobile}
+									>
 										<LogOutIcon width={16} height={16} />
 										<span className="text-sm">Logout</span>
 									</AlertDialogTrigger>
@@ -111,10 +115,16 @@ export const AppSidebar = () => {
 											<AlertDialogAction
 												onClick={handleLogout}
 												className="px-6"
+												data-umami-event="user_logout_confirm_button"
+												data-umami-event-id={mobile}
 											>
 												Logout
 											</AlertDialogAction>
-											<AlertDialogCancel className="px-4">
+											<AlertDialogCancel
+												data-umami-event="user_logout_cancel_button"
+												data-umami-event-id={mobile}
+												className="px-4"
+											>
 												<span className="text-sm">
 													Cancel
 												</span>

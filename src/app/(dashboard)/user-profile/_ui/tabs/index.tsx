@@ -83,6 +83,8 @@ export default function UserTabs() {
 							key={tab.value}
 							className="flex-1 py-3"
 							value={tab.value}
+							data-umami-event="user_profile_tabs_button"
+							data-umami-event-id={tab.value}
 						>
 							{tab.label}
 						</TabsTrigger>
