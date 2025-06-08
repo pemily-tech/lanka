@@ -76,27 +76,26 @@ export default function Page() {
 		<section className="rounded-lg bg-white">
 			<div className="grid grid-cols-5">
 				<div className="col-span-2 p-4">
-					<h1 className="text-[30px] font-semibold">
+					<h1 className="text-3xl font-semibold">
 						Data For Your Growth & Trust
 					</h1>
-					<ul className="space-y-2 py-4 pl-6 text-gray-800">
+					<ul className="space-y-2 py-4 pl-1">
 						{lists.map((list, i) => (
 							<li
 								key={i}
-								className="leading-18 relative list-none py-6 pl-12"
+								className="leading-18 relative list-none py-1 pl-2"
 							>
-								<span className="bg-black-1 absolute left-0 top-12 size-6 rounded-full" />
-								<span className="text-[16px] font-semibold">
+								<span className="text-lg font-semibold text-gray-700">
 									{list?.l1}:{' '}
 								</span>
-								<span className="text-[14px]">{list?.l2}</span>
+								<span className="text-black">{list?.l2}</span>
 							</li>
 						))}
 					</ul>
 					<div className="mt-1">
 						<div className="grid grid-cols-2 gap-6">
-							<div className="col-span-1 flex flex-col gap-6">
-								<label className="text-12 font-medium">
+							<div className="col-span-1 flex flex-col gap-1">
+								<label className="text-xs font-medium">
 									Select Year
 								</label>
 								<select
@@ -104,7 +103,7 @@ export default function Page() {
 									onChange={(e) =>
 										setYear(Number(e.target.value))
 									}
-									className="border-grey-light rounded-lg border px-1 py-8 text-sm outline-none"
+									className="rounded-lg border border-gray-300 p-2 text-sm outline-none"
 								>
 									{years.map((year) => {
 										return (
@@ -118,8 +117,8 @@ export default function Page() {
 									})}
 								</select>
 							</div>
-							<div className="col-span-1 flex flex-col gap-6">
-								<label className="text-12 font-medium">
+							<div className="col-span-1 flex flex-col gap-1">
+								<label className="text-xs font-medium">
 									Select Month
 								</label>
 								<select
@@ -127,7 +126,7 @@ export default function Page() {
 									onChange={(e) =>
 										setMonth(Number(e.target.value))
 									}
-									className="border-grey-light rounded-lg border px-1 py-8 text-sm outline-none"
+									className="rounded-lg border border-gray-300 p-2 text-sm outline-none"
 								>
 									{months.map((month) => {
 										return (
@@ -146,11 +145,9 @@ export default function Page() {
 							disabled={isPending || role === Roles.Staff}
 							loading={isPending}
 							onClick={handleSubmit}
-							className="mt-1 w-full"
+							className="mt-6 w-full"
 						>
-							<span className="text-[20px] font-semibold">
-								Download
-							</span>
+							<span>Download</span>
 						</Button>
 					</div>
 				</div>
