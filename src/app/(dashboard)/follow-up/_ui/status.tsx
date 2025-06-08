@@ -102,7 +102,7 @@ export default function Status({
 			!record?.followUpCompleteDate ? (
 				<Dialog open={open} onOpenChange={() => setOpen(!open)}>
 					<DialogTrigger asChild>
-						<Button variant="outline" size="lg">
+						<Button variant="outline">
 							<span className="font-normal">Complete</span>
 						</Button>
 					</DialogTrigger>
@@ -243,9 +243,9 @@ export default function Status({
 									<DialogClose>Cancel</DialogClose>
 									<Button
 										type="submit"
-										size="lg"
 										variant="secondary"
 										disabled={isPending}
+										className="px-6"
 									>
 										Confirm
 									</Button>

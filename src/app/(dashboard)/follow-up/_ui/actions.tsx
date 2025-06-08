@@ -106,7 +106,7 @@ export default function Actions({
 							Are you sure you want to delete?
 						</AlertDialogDescription>
 					</AlertDialogHeader>
-					<AlertDialogFooter className="!pt-8">
+					<AlertDialogFooter className="!pt-2">
 						<AlertDialogAction
 							onClick={() => handelRemove(record)}
 							className="px-6 font-normal"
@@ -115,7 +115,7 @@ export default function Actions({
 						>
 							Confirm
 						</AlertDialogAction>
-						<AlertDialogCancel>
+						<AlertDialogCancel className="px-6">
 							<span className="text-sm font-normal">Cancel</span>
 						</AlertDialogCancel>
 					</AlertDialogFooter>
