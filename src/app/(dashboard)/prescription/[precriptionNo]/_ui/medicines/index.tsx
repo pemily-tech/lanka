@@ -52,7 +52,7 @@ export default function Medicines() {
 	return (
 		<div className="px-4">
 			<div className="flex flex-row items-center gap-2">
-				<h4 className="text-16 text-primary font-semibold">
+				<h4 className="text-primary text-lg font-semibold">
 					Medicine (RX)
 				</h4>
 				{!isPrescriptionSaved && (

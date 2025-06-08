@@ -22,7 +22,7 @@ export default function Filters({
 	const [hovered, setHovered] = useState(false);
 
 	return (
-		<div className="shadow-card sticky top-0 z-20 grid grid-cols-5 gap-6 rounded-lg bg-white p-4">
+		<div className="sticky top-0 z-20 grid grid-cols-5 gap-6 rounded-lg bg-white p-4 shadow-md">
 			<div className="col-span-3 flex">
 				<div className="max-w-316  h-[48px] w-full flex-1">
 					<Command className="rounded-lg border">
@@ -53,11 +53,11 @@ export default function Filters({
 					>
 						{hovered ? (
 							<span className="flex items-center gap-6 font-normal">
-								<Plus className="size-18 text-white" />
+								<Plus className="size-4 text-white" />
 								Add Parent
 							</span>
 						) : (
-							<Plus className="size-18 text-white" />
+							<Plus className="size-4 text-white" />
 						)}
 					</MotionButton>
 				</Link>

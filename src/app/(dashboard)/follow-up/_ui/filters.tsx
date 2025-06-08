@@ -137,7 +137,7 @@ function Filters({
 								Add Followup
 							</motion.span>
 						) : (
-							<Plus className="size-18 text-white" />
+							<Plus className="size-4 text-white" />
 						)}
 					</motion.button>
 				</Link>

@@ -51,7 +51,7 @@ export default function PetParent({
 	};
 
 	return (
-		<Command className="mb-4 mt-32 h-[380px] max-h-[380px] rounded-lg border md:min-w-[450px]">
+		<Command className="mb-4 mt-8 h-[380px] max-h-[380px] rounded-lg border md:min-w-[450px]">
 			<CommandInput
 				className="py-6"
 				placeholder="Search for pet parents..."

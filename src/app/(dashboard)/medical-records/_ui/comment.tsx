@@ -98,7 +98,7 @@ export default function Status({
 								</FormItem>
 							)}
 						/>
-						<DialogFooter className="col-span-2 mt-1 flex gap-6">
+						<DialogFooter className="col-span-2 mt-4 flex gap-6">
 							<DialogClose>Cancel</DialogClose>
 							<Button
 								type="submit"

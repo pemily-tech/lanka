@@ -14,6 +14,8 @@ const schema = z.object({
 type IFormdata = z.infer<typeof schema>;
 
 export function useStepperHook({ type }: { type: string }) {
+	console.log(type, RecordTypes.Medical);
+
 	const { useStepper, steps, utils } = defineStepper(
 		{
 			id: 'parent',
@@ -30,9 +32,11 @@ export function useStepperHook({ type }: { type: string }) {
 			label:
 				type === RecordTypes.Followup
 					? 'Add Followup Details'
-					: RecordTypes.Vaccination
+					: type === RecordTypes.Vaccination
 						? 'Add Vaccination Details'
-						: 'Add Medical Record Details',
+						: type === RecordTypes.Medical
+							? 'Add Medical Record Details'
+							: '',
 			schema: z.object({}),
 		}
 	);

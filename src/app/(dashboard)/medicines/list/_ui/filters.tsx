@@ -115,11 +115,11 @@ export default function Filters({
 								transition={{ duration: 0.25 }}
 								className="flex items-center justify-center gap-4 text-xs text-white"
 							>
-								<Plus className="size-18 text-white" />
+								<Plus className="size-4 text-white" />
 								<span>Create Medicine</span>
 							</motion.div>
 						) : (
-							<Plus className="size-18 text-white" />
+							<Plus className="size-4 text-white" />
 						)}
 					</motion.button>
 				</Link>

@@ -84,7 +84,7 @@ export default function Actions({
 				disabled={disabled || isPending}
 				onClick={() => handleNotifications(record)}
 			>
-				<Bell className="size-18" />
+				<Bell className="size-4" />
 			</Button>
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
@@ -95,19 +95,19 @@ export default function Actions({
 						data-umami-event="vaccination_delete"
 						data-umami-event-id={record._id}
 					>
-						<Trash2 className="size-18 text-destructive" />
+						<Trash2 className="text-destructive size-4" />
 					</Button>
 				</AlertDialogTrigger>
 				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
-						<AlertDialogTitle className="text-24">
+						<AlertDialogTitle className="text-2xl">
 							Delete
 						</AlertDialogTitle>
 						<AlertDialogDescription>
 							Are you sure you want to delete?
 						</AlertDialogDescription>
 					</AlertDialogHeader>
-					<AlertDialogFooter className="!pt-32">
+					<AlertDialogFooter className="!pt-8">
 						<AlertDialogAction
 							onClick={() => handelRemove(record)}
 							className="px-6 font-normal"

@@ -29,7 +29,7 @@ export default function Footer() {
 	} = useFooterActions();
 
 	return (
-		<div className="mt-16 flex items-center justify-end gap-16 border-t py-4">
+		<div className="mt-4 flex items-center justify-end gap-4 border-t py-4">
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
 					<Button
@@ -43,7 +43,7 @@ export default function Footer() {
 				</AlertDialogTrigger>
 				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
-						<AlertDialogTitle className="text-24">
+						<AlertDialogTitle className="text-2xl">
 							Are you sure you want to save this prescription?
 						</AlertDialogTitle>
 						<AlertDialogDescription>
@@ -51,7 +51,7 @@ export default function Footer() {
 							prescription.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
-					<AlertDialogFooter className="!pt-32">
+					<AlertDialogFooter className="!pt-8">
 						<AlertDialogAction
 							onClick={handleSave}
 							className="px-6"
@@ -87,7 +87,7 @@ export default function Footer() {
 				</AlertDialogTrigger>
 				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
-						<AlertDialogTitle className="text-24">
+						<AlertDialogTitle className="text-2xl">
 							Share Prescription
 						</AlertDialogTitle>
 						<AlertDialogDescription>
@@ -95,7 +95,7 @@ export default function Footer() {
 							WhatsApp and Pemilyy app.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
-					<AlertDialogFooter className="!pt-32">
+					<AlertDialogFooter className="!pt-8">
 						<AlertDialogAction
 							onClick={handleShare}
 							className="bg-secondary hover:bg-secondary/90 px-6 text-white hover:text-white"
@@ -103,7 +103,7 @@ export default function Footer() {
 							Confirm
 						</AlertDialogAction>
 						<AlertDialogCancel className="bg-transparent hover:bg-transparent">
-							<span className="text-black-1 text-sm font-normal">
+							<span className="text-sm font-normal text-black">
 								Cancel
 							</span>
 						</AlertDialogCancel>

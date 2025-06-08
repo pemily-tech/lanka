@@ -54,7 +54,7 @@ export const PaginationLink = ({
 		size={size}
 		className={cn(
 			className,
-			'flex size-8 items-center justify-center gap-4 rounded-lg p-12'
+			'flex size-8 items-center justify-center gap-4 rounded-lg p-3'
 		)}
 		{...props}
 	/>

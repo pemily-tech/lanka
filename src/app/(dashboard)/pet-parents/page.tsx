@@ -39,7 +39,7 @@ export default function Page() {
 	return (
 		<div className="">
 			<Filters value={input} handleChange={handleChange} />
-			<div className="shadow-card relative my-3 rounded-lg bg-white">
+			<div className="relative my-3 rounded-lg bg-white shadow-md">
 				<DataTable
 					columns={columns}
 					data={parentData}

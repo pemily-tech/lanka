@@ -116,7 +116,7 @@ export default function Page() {
 
 	return (
 		<div className="mb-[54px]">
-			<div className="shadow-card sticky top-0 z-20 rounded-lg bg-white p-4">
+			<div className="sticky top-0 z-20 rounded-lg bg-white p-4 shadow-md">
 				<Filters
 					selectedDate={selectedDateRange}
 					setDate={({ date }) => {
@@ -140,7 +140,7 @@ export default function Page() {
 					setOpenPrescription={() => setOpen(!open)}
 				/>
 			</div>
-			<div className="shadow-card relative my-3 rounded-lg bg-white">
+			<div className="relative my-3 rounded-lg bg-white shadow-md">
 				<DataTable
 					columns={columns as any}
 					data={medicineData}
@@ -160,14 +160,14 @@ export default function Page() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<div
-						className="bg-purple shadow-card fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white transition-transform duration-200 hover:scale-110"
+						className="bg-purple fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white shadow-md transition-transform duration-200 hover:scale-110"
 						onClick={() => setOpen(!open)}
 					>
 						<PillBottle className="text-white" />
 					</div>
 				</TooltipTrigger>
 				<TooltipContent className="border-purple rounded-2xl border bg-white px-3 py-6">
-					<p className="text-black-1">Create New Rx</p>
+					<p className="text-black">Create New Rx</p>
 				</TooltipContent>
 			</Tooltip>
 			<PetSelectModal open={open} setOpen={setOpen} />

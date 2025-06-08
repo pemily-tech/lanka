@@ -37,7 +37,7 @@ export default function Pet({
 
 	return (
 		<CommandPrimitive>
-			<div className="mb-4 mt-32 h-[380px] max-h-[380px] overflow-y-scroll rounded-lg border md:min-w-[450px]">
+			<div className="mb-4 mt-8 h-[380px] max-h-[380px] overflow-y-scroll rounded-lg border md:min-w-[450px]">
 				<CommandList onClick={handleSelect} className="max-h-full">
 					{isPending && <Spinner />}
 					{petData?.map((pet) => {
@@ -56,7 +56,7 @@ export default function Pet({
 						);
 					})}
 					{!isPending && data && data?.data?.pets?.length <= 0 && (
-						<CommandEmpty className="pt-32 text-center">
+						<CommandEmpty className="pt-8 text-center">
 							No pets found.
 						</CommandEmpty>
 					)}
@@ -88,7 +88,7 @@ export function PetDetails({ pet }: { pet: IPetItem }) {
 				/>
 			)}
 			<div>
-				<p className="text-16 text-left font-medium">{pet?.name}</p>
+				<p className="text-left text-lg font-medium">{pet?.name}</p>
 			</div>
 		</Fragment>
 	);

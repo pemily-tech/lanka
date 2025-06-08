@@ -31,8 +31,8 @@ export default function Header() {
 	};
 
 	return (
-		<div className="shadow-card mb-3 rounded-lg bg-white">
-			<div className={cn('flex items-center justify-between p-12')}>
+		<div className="mb-3 rounded-lg bg-white shadow-md">
+			<div className={cn('flex items-center justify-between p-3')}>
 				<div className="flex-1">
 					<div className="relative flex w-[320px] items-center border-b px-3">
 						<Search className="mr-12 size-4 shrink-0 opacity-50" />

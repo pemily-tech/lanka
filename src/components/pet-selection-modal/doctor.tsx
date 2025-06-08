@@ -46,7 +46,7 @@ export default function Doctor({
 	};
 
 	return (
-		<Command className="mb-4 mt-32 h-[380px] max-h-[380px] rounded-lg border md:min-w-[450px]">
+		<Command className="mb-4 mt-8 h-[380px] max-h-[380px] rounded-lg border md:min-w-[450px]">
 			<CommandInput
 				className="py-6"
 				placeholder="Search for doctors..."
@@ -72,7 +72,7 @@ export default function Doctor({
 								iconClasses="!size-[54px]"
 							/>
 							<div>
-								<p className="text-16 text-left font-medium">
+								<p className="text-left text-lg font-medium">
 									{doctor?.doctor?.name}
 								</p>
 								<p className="text-left text-sm leading-[30px]">

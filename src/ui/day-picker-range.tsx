@@ -43,7 +43,7 @@ export function DayPickerRange({
 	return (
 		<div className="flex flex-col gap-3">
 			<div className="flex items-center justify-between">
-				<div className="text-24 font-medium">{displayDate}</div>
+				<div className="text-2xl font-medium">{displayDate}</div>
 			</div>
 			<div className="inline-flex flex-row flex-wrap gap-3 rounded-lg">
 				{days.reverse().map((day) => {
@@ -61,10 +61,10 @@ export function DayPickerRange({
 							key={day.toISOString()}
 							onClick={() => onDaySelect(day)}
 						>
-							<span className="text-24 leading-24 font-medium">
+							<span className="leading-24 text-2xl font-medium">
 								{formattedDay.split(' ')?.[0]}
 							</span>
-							<span className="text-16 leading-16">
+							<span className="leading-16 text-lg">
 								{formattedDay.split(' ')?.[1]}
 							</span>
 						</div>

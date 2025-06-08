@@ -46,7 +46,7 @@ export default function Page() {
 
 	return (
 		<div className="mb-[54px]">
-			<div className="shadow-card rounded-lg bg-white p-4">
+			<div className="rounded-lg bg-white p-4 shadow-md">
 				<Filters
 					value={input}
 					setValue={handleChange}
@@ -54,7 +54,7 @@ export default function Page() {
 					setActive={setActive}
 				/>
 			</div>
-			<div className="shadow-card relative my-3 rounded-lg bg-white">
+			<div className="relative my-3 rounded-lg bg-white shadow-md">
 				<DataTable
 					columns={columns}
 					data={medicineData}
@@ -74,7 +74,7 @@ export default function Page() {
 			<Tooltip>
 				<TooltipTrigger asChild>
 					<Link
-						className="bg-purple shadow-card fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white transition-transform duration-200 hover:scale-110"
+						className="bg-purple fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white shadow-md transition-transform duration-200 hover:scale-110"
 						href={Routes.MEDICINES_CREATE}
 						data-umami-event="create_medicine_sticky_button"
 					>
@@ -82,7 +82,7 @@ export default function Page() {
 					</Link>
 				</TooltipTrigger>
 				<TooltipContent className="border-purple rounded-2xl border bg-white px-3 py-6">
-					<p className="text-black-1">Create Medicine</p>
+					<p className="text-black">Create Medicine</p>
 				</TooltipContent>
 			</Tooltip>
 		</div>

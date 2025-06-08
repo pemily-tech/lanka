@@ -20,7 +20,7 @@ export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 	const { form, onSubmit, isUpdating, isCreating } = useMedicineForm(type);
 
 	return (
-		<div className="shadow-card col-span-2 rounded-lg bg-white p-4">
+		<div className="col-span-2 rounded-lg bg-white p-4 shadow-md">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}

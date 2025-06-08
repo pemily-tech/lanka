@@ -66,7 +66,7 @@
 // 				<div className="flex gap-3 ">
 // 					<PdfIcon width={85} height={72} />
 // 					<div className="flex flex-col gap-6">
-// 						<p className="text-16 font-semibold">
+// 						<p className="text-lg font-semibold">
 // 							{record.pet.name} (
 // 							{getCertificateLabel(record?.type)})
 // 						</p>

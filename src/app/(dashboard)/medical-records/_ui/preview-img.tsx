@@ -8,9 +8,7 @@ function PreviewImage({ url }: { url: string }) {
 	const { imgType, url: imgUrl, isPending } = useDocumentDownload(url);
 
 	if (isPending) {
-		return (
-			<div className="bg-black-1/10 h-[72px] w-[85px] rounded-lg"></div>
-		);
+		return <div className="h-[72px] w-[85px] rounded-lg bg-black/10"></div>;
 	}
 
 	if (!imgUrl) {

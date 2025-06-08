@@ -256,7 +256,7 @@ export default function Status({
 				</Dialog>
 			) : (
 				<div className="flex items-center gap-6">
-					<CheckCircle className="size-18 text-green-800" />
+					<CheckCircle className="size-4 text-green-800" />
 					<span className="text-green-800">Completed</span>
 				</div>
 			)}

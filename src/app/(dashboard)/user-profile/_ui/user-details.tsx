@@ -81,7 +81,7 @@ export default function UserDetails() {
 							{isUrlExists ? (
 								<Check className="size-3 text-white" />
 							) : (
-								<Camera className="size-18 p-1 text-white" />
+								<Camera className="size-4 p-1 text-white" />
 							)}
 						</div>
 					</label>

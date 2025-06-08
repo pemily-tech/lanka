@@ -104,7 +104,7 @@ export function ParentForm({ type }: { type: 'add' | 'edit' }) {
 	return (
 		<div
 			className={cn(
-				'shadow-card col-span-2 rounded-lg bg-white p-4',
+				'col-span-2 rounded-lg bg-white p-4 shadow-md',
 				type === 'add' && 'max-w-2xl'
 			)}
 		>

@@ -25,15 +25,15 @@ export function useColumns({
 			cell: ({ row }) => (
 				<div className="flex gap-3">
 					<PreviewImage url={row.original.url} />
-					<div className="flex flex-col gap-4">
-						<div className="flex items-end gap-6">
-							<span className="text-black-1/60">Parent:</span>{' '}
+					<div className="flex flex-col gap-1">
+						<div className="flex items-end gap-1">
+							<span className="text-black/60">Parent:</span>{' '}
 							<span className="font-medium">
 								{row.original.parent.name}
 							</span>
 						</div>
-						<div className="flex items-end gap-6">
-							<span className="text-black-1/60">Pet:</span>{' '}
+						<div className="flex items-end gap-1">
+							<span className="text-black/60">Pet:</span>{' '}
 							<span className="font-medium">
 								{row.original.pet.name}
 							</span>
@@ -63,7 +63,7 @@ export function useColumns({
 						{row.original.comment && row.original.comment !== '' ? (
 							row.original.comment
 						) : (
-							<span className="text-black-1/40">Add notes</span>
+							<span className="text-black/40">Add notes</span>
 						)}
 					</span>
 					<Comment

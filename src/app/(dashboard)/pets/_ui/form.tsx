@@ -102,7 +102,7 @@ export function PetForm({ type }: { type: 'add' | 'edit' }) {
 	};
 
 	return (
-		<div className="shadow-card col-span-2 max-w-2xl rounded-lg bg-white p-4">
+		<div className="col-span-2 max-w-2xl rounded-lg bg-white p-4 shadow-md">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}

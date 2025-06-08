@@ -35,14 +35,14 @@ export default function Pet({
 
 	return (
 		<Command className="px-4">
-			<div className="mb-4 mt-32 overflow-y-scroll rounded-lg border md:min-w-[450px]">
+			<div className="mb-4 mt-2 overflow-y-scroll rounded-lg border md:min-w-[450px]">
 				<CommandList onClick={handleSelect} className="max-h-full">
 					{isPending && <Spinner />}
 					{petData?.map((pet) => {
 						return (
 							<div
 								className={cn(
-									'data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-6 border-b px-3 py-8 text-sm outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
+									'data-[selected=true]:bg-accent data-[selected=true]:text-accent-foreground relative flex cursor-pointer select-none items-center gap-6 border-b px-3 py-2 text-sm outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0',
 									selectedPetId === pet.petId &&
 										'bg-primary/20 data-[selected=true]:bg-primary/20'
 								)}
@@ -54,7 +54,7 @@ export default function Pet({
 						);
 					})}
 					{!isPending && data && data?.data?.pets?.length <= 0 && (
-						<CommandEmpty className="pt-32 text-center">
+						<CommandEmpty className="pt-8 text-center">
 							No pets found.
 						</CommandEmpty>
 					)}
@@ -73,7 +73,7 @@ export function PetDetails({ pet }: { pet: IPetItem }) {
 			{petImage && petImage !== '' ? (
 				<LazyImage
 					src={petImage as string}
-					className="rounded-10 size-[54px] object-cover"
+					className="size-[54px] rounded-lg object-cover"
 				/>
 			) : (
 				<LazyImage
@@ -82,11 +82,11 @@ export function PetDetails({ pet }: { pet: IPetItem }) {
 							? '/images/Cat.png'
 							: '/images/Dog.png'
 					}
-					className="rounded-10 size-[54px] object-cover"
+					className="size-[54px] rounded-lg object-cover"
 				/>
 			)}
 			<div>
-				<p className="text-16 text-left font-medium">{pet?.name}</p>
+				<p className="text-left font-medium">{pet?.name}</p>
 			</div>
 		</Fragment>
 	);

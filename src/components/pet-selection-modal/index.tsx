@@ -63,7 +63,7 @@ export default function PetSelectModal({
 				<DialogHeader>
 					<DialogTitle>
 						Create a New Prescription{' '}
-						<span className="text-black-1/60 text-sm font-normal">
+						<span className="text-sm font-normal text-black/60">
 							(Step {currentIndex + 1} of {steps.length})
 						</span>
 					</DialogTitle>
@@ -105,7 +105,7 @@ export default function PetSelectModal({
 							parentError={parentError}
 							petError={petError}
 						/>
-						<div className="flex justify-end gap-16">
+						<div className="flex justify-end gap-4">
 							<Button
 								type="button"
 								variant="secondary"
@@ -163,7 +163,7 @@ function StepperNavigation({
 						</li>
 						{index < array.length - 1 && (
 							<Separator
-								className={`mx-12 flex-1 ${index < currentIndex ? 'bg-primary h-[2px]' : 'bg-muted'}`}
+								className={`mx-3 flex-1 ${index < currentIndex ? 'bg-primary h-[2px]' : 'bg-muted'}`}
 							/>
 						)}
 					</Fragment>

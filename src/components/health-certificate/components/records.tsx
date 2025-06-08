@@ -27,7 +27,7 @@
 // 					containerClasses="w-[120px] h-[150px]"
 // 					src="/images/no-records.svg"
 // 				/>
-// 				<p className="text-16 font-medium">No Records found.</p>
+// 				<p className="text-lg font-medium">No Records found.</p>
 // 			</div>
 // 		);
 // 	}

@@ -51,7 +51,7 @@ export default function UploadCard({ type }: { type: string }) {
 	return (
 		<div
 			{...getRootProps()}
-			className="flex cursor-pointer flex-col items-center gap-16 rounded-lg border-2 border-dashed border-gray-200 p-12"
+			className="flex cursor-pointer flex-col items-center gap-4 rounded-lg border-2 border-dashed border-gray-200 p-3"
 		>
 			<FileIcon className="size-42" />
 			<div className="flex flex-col gap-6 text-center">

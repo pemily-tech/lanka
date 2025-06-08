@@ -91,7 +91,7 @@ function Filters({
 							Create New Rx
 						</motion.span>
 					) : (
-						<Plus className="size-18 text-white" />
+						<Plus className="size-4 text-white" />
 					)}
 				</motion.button>
 			</div>

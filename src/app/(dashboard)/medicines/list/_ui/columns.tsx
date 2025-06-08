@@ -77,7 +77,7 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 							data-umami-event="medicine_edit_button"
 							data-umami-event-id={row.original.medicineId}
 						>
-							<Edit2 className="size-18" />
+							<Edit2 className="size-4" />
 						</Button>
 					</Link>
 					<AlertDialog>
@@ -89,19 +89,19 @@ export function useColumns(): ColumnDef<IMedicine>[] {
 								data-umami-event="medicine_delete"
 								data-umami-event-id={row.original.medicineId}
 							>
-								<Trash2 className="size-18 text-destructive" />
+								<Trash2 className="text-destructive size-4" />
 							</Button>
 						</AlertDialogTrigger>
 						<AlertDialogContent className="gap-6">
 							<AlertDialogHeader>
-								<AlertDialogTitle className="text-24">
+								<AlertDialogTitle className="text-2xl">
 									Delete
 								</AlertDialogTitle>
 								<AlertDialogDescription>
 									Are you sure you want to delete?
 								</AlertDialogDescription>
 							</AlertDialogHeader>
-							<AlertDialogFooter className="!pt-32">
+							<AlertDialogFooter className="!pt-8">
 								<AlertDialogAction
 									onClick={() =>
 										handelRemove(row.original.medicineId)

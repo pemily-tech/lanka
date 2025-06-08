@@ -24,7 +24,7 @@ export const Calendar = ({
 	return (
 		<DayPicker
 			showOutsideDays={showOutsideDays}
-			className={cn(className)}
+			className={cn('p-2', className)}
 			classNames={{
 				[UI.Months]: 'relative',
 				[UI.Month]: 'space-y-3 ml-0',

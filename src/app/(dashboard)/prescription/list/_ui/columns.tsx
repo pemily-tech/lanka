@@ -90,7 +90,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 							className="flex size-6 items-center justify-center"
 						>
 							<Button size="icon" variant="ghost">
-								<Edit2 className="size-18" />
+								<Edit2 className="size-4" />
 							</Button>
 						</Link>
 						<AlertDialog>
@@ -100,19 +100,19 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 									size="icon"
 									variant="ghost"
 								>
-									<Trash2 className="size-18 text-destructive" />
+									<Trash2 className="text-destructive size-4" />
 								</Button>
 							</AlertDialogTrigger>
 							<AlertDialogContent className="gap-6">
 								<AlertDialogHeader>
-									<AlertDialogTitle className="text-24">
+									<AlertDialogTitle className="text-2xl">
 										Delete
 									</AlertDialogTitle>
 									<AlertDialogDescription>
 										Are you sure you want to delete?
 									</AlertDialogDescription>
 								</AlertDialogHeader>
-								<AlertDialogFooter className="!pt-32">
+								<AlertDialogFooter className="!pt-8">
 									<AlertDialogAction
 										onClick={() =>
 											handleDelete(

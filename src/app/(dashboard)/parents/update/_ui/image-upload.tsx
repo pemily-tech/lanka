@@ -60,9 +60,9 @@ const ImageUpload = () => {
 	});
 
 	return (
-		<div className="shadow-card rounded-lg bg-white p-4">
+		<div className="rounded-lg bg-white p-4 shadow-md">
 			<span className="font-medium">Change profile image</span>
-			<div className="mt-16 flex justify-between">
+			<div className="mt-4 flex justify-between">
 				<div
 					className="relative size-[120px] cursor-pointer"
 					{...getRootProps()}
@@ -86,7 +86,7 @@ const ImageUpload = () => {
 					loading={isPending}
 					{...getRootProps()}
 				>
-					<Plus className="size-18" />
+					<Plus className="size-4" />
 					<span>Upload image</span>
 					<input {...getInputProps()} />
 				</Button>

@@ -42,7 +42,7 @@ export default function Columns() {
 					return (
 						<Link
 							href={`${Routes.EDIT_ITEM}/${row.original.itemId}`}
-							className="text-black-1 text-sm hover:underline"
+							className="text-sm text-black hover:underline"
 						>
 							{row.original.name}
 						</Link>
@@ -135,7 +135,7 @@ export default function Columns() {
 
 	return (
 		<div>
-			<div className="shadow-card rounded-lg bg-white">
+			<div className="rounded-lg bg-white shadow-md">
 				<Table>
 					<TableHeader>
 						{table?.getHeaderGroups().map((headerGroup) => (
@@ -187,7 +187,7 @@ export default function Columns() {
 					</TableBody>
 				</Table>
 			</div>
-			<div className="shadow-card mt-12 rounded-lg bg-white p-12">
+			<div className="mt-12 rounded-lg bg-white p-3 shadow-md">
 				<Pagination className="flex justify-end">
 					<PaginationContent className="max-sm:gap-0">
 						<PaginationItem className="flex items-center">

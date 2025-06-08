@@ -86,7 +86,7 @@ export default function AdviceFollowup() {
 	}, [prescription]);
 
 	return (
-		<div className="flex flex-col gap-16 px-4 py-6">
+		<div className="flex flex-col gap-4 px-4 py-6">
 			<div className="flex flex-row items-center gap-2">
 				<Button
 					onClick={

@@ -34,7 +34,7 @@ export default function Page() {
 	} = useStepperHook({ type: recordType as string });
 
 	return (
-		<div className="shadow-card my-3 rounded-lg bg-white">
+		<div className="my-3 rounded-lg bg-white shadow-md">
 			<StepperNavigation stepper={stepper} currentIndex={currentIndex} />
 			<div className="mb-3 h-[calc(100vh-240px)] space-y-4">
 				{stepper.switch({
@@ -89,7 +89,7 @@ export default function Page() {
 				})}
 			</div>
 			{!stepper.isLast && (
-				<div className="shadow-top sticky bottom-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-6 py-4">
+				<div className="shadow-top sticky bottom-0 flex w-full justify-end gap-4 rounded-b-lg bg-white px-6 py-4">
 					<Button
 						type="button"
 						variant="secondary"
@@ -116,7 +116,7 @@ function StepperNavigation({
 	stepper: any;
 }) {
 	return (
-		<nav className="group my-4 px-4 pt-24">
+		<nav className="group my-4 px-4 pt-4">
 			<ol className="flex items-center justify-between gap-2">
 				{stepper.all.map((step: any, index: number, array: any[]) => (
 					<Fragment key={step.id}>
@@ -126,7 +126,7 @@ function StepperNavigation({
 									'flex size-8 items-center justify-center rounded-full',
 									index <= currentIndex
 										? 'bg-primary text-white'
-										: 'bg-black-1/30'
+										: 'bg-black/20'
 								)}
 							>
 								{index + 1}
@@ -137,7 +137,7 @@ function StepperNavigation({
 						</li>
 						{index < array.length - 1 && (
 							<Separator
-								className={`mx-12 flex-1 ${index < currentIndex ? 'bg-primary h-[2px]' : 'bg-black-1/30'}`}
+								className={`mx-3 flex-1 ${index < currentIndex ? 'bg-primary h-[2px]' : 'bg-black/20'}`}
 							/>
 						)}
 					</Fragment>
