@@ -1,23 +1,21 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useParams, useSearchParams } from 'next/navigation';
 
 import { useMedicalRecord } from '../../../../../medical-records/_hooks/use-medical-record';
 import Filters from '../../../../../medical-records/_ui/filters';
 
 import ActionButton from '@/components/medical-records/action-button';
-import MedicalRecordForm from '@/components/medical-records/form';
 import { medicalRecordFilters } from '@/helpers/constant';
-import { type IMedicalRecordFilter } from '@/types/common';
 import { DataTable } from '@/ui/data-table';
-import {
-	Dialog,
-	DialogContent,
-	DialogDescription,
-	DialogHeader,
-	DialogTitle,
-} from '@/ui/dialog';
+import Spinner from '@/ui/spinner';
+
+const MedicalRecordDialog = dynamic(() => import('./dialog'), {
+	loading: () => <Spinner />,
+	ssr: false,
+});
 
 export default function MedicalRecord() {
 	const { date, filter, setState, columns, medicalRecords, isPending } =
@@ -27,6 +25,7 @@ export default function MedicalRecord() {
 	const searchParams = useSearchParams();
 	const parentId = searchParams.get('parentId') as string;
 	const petId = params?.petId as string;
+	console.log(show);
 
 	return (
 		<div className="mb-[54px]">
@@ -52,21 +51,12 @@ export default function MedicalRecord() {
 				getRowId={(row) => row._id}
 				emptyMessage="Nothing Records found."
 			/>
-			<Dialog open={show} onOpenChange={setShow}>
-				<DialogContent className="max-w-3xl">
-					<DialogHeader>
-						<DialogTitle></DialogTitle>
-					</DialogHeader>
-					<DialogDescription />
-					<MedicalRecordForm
-						parentId={parentId}
-						petId={petId}
-						filterType={filter as IMedicalRecordFilter}
-						isModal={true}
-						onFinish={() => setShow(false)}
-					/>
-				</DialogContent>
-			</Dialog>
+			<MedicalRecordDialog
+				show={show}
+				setShow={setShow}
+				parentId={parentId}
+				petId={petId}
+			/>
 		</div>
 	);
 }

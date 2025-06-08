@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
-import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 
 import { useCreateVaccination } from '../_api/use-create-vaccination';
@@ -13,6 +12,8 @@ import { useGetVaccinationList } from '../_api/use-get-vaccination-list';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import { cn, dateDisable } from '@/helpers/utils';
+import { queryClient } from '@/services/providers';
+import { type IOtherCommonFilter } from '@/types/common';
 import { Button } from '@/ui/button';
 import { Calendar } from '@/ui/calendar';
 import {
@@ -45,10 +46,16 @@ export default function VaccinationForm({
 	stepper,
 	parentId,
 	petId,
+	isModal = false,
+	onFinish,
+	filterType,
 }: {
-	stepper: any;
+	stepper?: any;
 	parentId: string;
 	petId: string;
+	isModal?: boolean;
+	onFinish: () => void;
+	filterType?: IOtherCommonFilter;
 }) {
 	const form = useForm<IFormData>({
 		resolver: zodResolver(schema),
@@ -62,7 +69,6 @@ export default function VaccinationForm({
 		data?.data?.vaccination || ([] as { label: string; value: string }[]);
 	const { mutateAsync: createVaccination, isPending } =
 		useCreateVaccination();
-	const router = useRouter();
 
 	const onSubmit = async (values: IFormData) => {
 		const data = {
@@ -75,12 +81,25 @@ export default function VaccinationForm({
 		};
 		const response = await createVaccination(data);
 		if (response.status === AppConstants.Success) {
-			router.back();
+			queryClient.invalidateQueries({
+				queryKey: [
+					'clinic/vaccinationRecords',
+					filterType,
+					petId,
+					undefined,
+				],
+			});
+			onFinish();
 		}
 	};
 
 	return (
-		<div className="mb-54 mt-24 flex h-full flex-col">
+		<div
+			className={cn(
+				'mb-54 mt-24 flex h-full flex-col',
+				isModal && 'my-0'
+			)}
+		>
 			<h2 className="text-24 mx-24 font-semibold">
 				Add Vaccination Details
 			</h2>
@@ -215,25 +234,39 @@ export default function VaccinationForm({
 							}}
 						/>
 					</div>
-					{stepper.isLast && (
-						<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-24 py-16">
-							<Button
-								type="button"
-								variant="secondary"
-								onClick={stepper.prev}
-								disabled={stepper.isFirst}
-								className="w-[240px]"
-							>
-								Back
-							</Button>
+					{isModal ? (
+						<div className="mt-24 px-24">
 							<Button
 								disabled={isPending}
 								type="submit"
 								className="w-[240px]"
 							>
-								{stepper.isLast ? 'Done' : 'Next'}
+								Submit
 							</Button>
 						</div>
+					) : (
+						<>
+							{stepper.isLast && (
+								<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-16 rounded-b-lg bg-white px-24 py-16">
+									<Button
+										type="button"
+										variant="secondary"
+										onClick={stepper.prev}
+										disabled={stepper.isFirst}
+										className="w-[240px]"
+									>
+										Back
+									</Button>
+									<Button
+										disabled={isPending}
+										type="submit"
+										className="w-[240px]"
+									>
+										{stepper.isLast ? 'Done' : 'Next'}
+									</Button>
+								</div>
+							)}
+						</>
 					)}
 				</form>
 			</Form>

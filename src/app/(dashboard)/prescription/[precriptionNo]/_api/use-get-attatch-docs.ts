@@ -10,7 +10,7 @@ const getAttachDocs = async ({
 	const [_key, id, type] = queryKey;
 	const { data } = await HttpService.get<
 		IApiResponse<{ attachedDocuments: IAttachedDocuments }>
-	>(`/prescription/attachedDocuments/${id}?type=${type}`);
+	>(`/${_key}/${id}?type=${type}`);
 	return data;
 };
 

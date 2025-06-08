@@ -4,8 +4,8 @@ import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
+import AnalyticsScript from '../components/analytics-script';
 import Providers from '../services/providers';
-import AnalyticsScript from '../ui/analytics-script';
 
 import { siteConfig } from '@/helpers/constant';
 import { fonts } from '@/helpers/fonts';

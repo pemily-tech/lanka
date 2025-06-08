@@ -67,6 +67,7 @@ export default function Page() {
 										stepper={stepper}
 										parentId={selectedParentId as string}
 										petId={selectedPetId as string}
+										onFinish={onFinish}
 									/>
 								);
 							case RecordTypes.Medical:

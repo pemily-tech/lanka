@@ -1,21 +1,44 @@
 'use client';
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
+import dynamic from 'next/dynamic';
+import {
+	useParams,
+	usePathname,
+	useRouter,
+	useSearchParams,
+} from 'next/navigation';
 
-import MedicalRecord from '../_ui/medical-record';
-import FollowUps from './follow-up';
-import VaccinationRecord from './vaccination-records';
-
+import { useGetPetById } from '@/api/queries/use-get-pet-byid';
+import { type IPetItem } from '@/types/common';
+import Spinner from '@/ui/spinner';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/ui/tabs';
+
+const MedicalRecord = dynamic(() => import('../_ui/medical-record'), {
+	loading: () => <Spinner />,
+	ssr: false,
+});
+
+const FollowUps = dynamic(() => import('./follow-up'), {
+	loading: () => <Spinner />,
+	ssr: false,
+});
+
+const VaccinationRecord = dynamic(() => import('./vaccination-records'), {
+	loading: () => <Spinner />,
+	ssr: false,
+});
 
 export default function RecordTabs() {
 	const router = useRouter();
+	const params = useParams();
 	const pathname = usePathname();
-	const params = useSearchParams();
-	const type = params.get('type') as string;
+	const searchParams = useSearchParams();
+	const type = searchParams.get('type') as string;
+	const { data } = useGetPetById(params?.petId as string);
+	const petData = data?.data?.pet || ({} as IPetItem);
 
 	const handleChange = (val: string) => {
-		router.replace(`${pathname}?type=${val}`);
+		router.replace(`${pathname}?type=${val}&parentId=${petData.parentId}`);
 	};
 
 	const tabData = [

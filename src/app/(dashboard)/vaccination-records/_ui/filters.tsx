@@ -1,14 +1,8 @@
 'use client';
 
-import { memo, useMemo, useState } from 'react';
-import { format } from 'date-fns';
+import { memo, type ReactNode, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Plus } from 'lucide-react';
-import Link from 'next/link';
 
-import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
-import { RecordTypes } from '@/helpers/primitives';
-import { Routes } from '@/helpers/routes';
 import { cn } from '@/helpers/utils';
 import { type IOtherCommonFilter } from '@/types/common';
 import { DayPickerSingle } from '@/ui/day-picker-single';
@@ -20,6 +14,7 @@ interface IProps {
 	setCommonFilter: (filter: IOtherCommonFilter) => void;
 	showCalendar?: boolean;
 	isPet?: boolean;
+	children: ReactNode;
 }
 
 export const filters: { label: string; value: IOtherCommonFilter }[] = [
@@ -38,8 +33,8 @@ function Filters({
 	setCommonFilter,
 	showCalendar = true,
 	isPet = false,
+	children,
 }: IProps) {
-	const [hovered, setHovered] = useState(false);
 	const localFilters = useMemo(() => {
 		if (isPet) {
 			return [
@@ -107,36 +102,7 @@ function Filters({
 						</motion.div>
 					);
 				})}
-				<Link
-					href={`${Routes.SELECT_PET}?recordType=${RecordTypes.Vaccination}&filter=${commonFilter}&date=${format(selectedDate as Date, DEFAULT_DATE_FORMAT)}`}
-				>
-					<motion.button
-						className="bg-secondary flex size-[48px] cursor-pointer items-center justify-center rounded-xl"
-						initial={{ width: 48 }}
-						whileHover={{ width: 120 }}
-						transition={{
-							type: 'spring',
-							stiffness: 300,
-							damping: 20,
-						}}
-						onMouseEnter={() => setHovered(!hovered)}
-						onMouseLeave={() => setHovered(!hovered)}
-					>
-						{hovered ? (
-							<motion.span
-								initial={{ opacity: 0, y: 10 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -10 }}
-								transition={{ duration: 0.25 }}
-								className="text-[12px] font-bold text-white"
-							>
-								Add Vaccination
-							</motion.span>
-						) : (
-							<Plus className="size-18 text-white" />
-						)}
-					</motion.button>
-				</Link>
+				{children}
 			</div>
 		</div>
 	);
