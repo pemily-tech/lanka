@@ -1,7 +1,8 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+
+import { cn } from '@/helpers/utils';
 
 interface IProps {
 	src: string;
@@ -35,12 +36,16 @@ export function LazyImage({ src, alt = 'pemilyy', className }: IProps) {
 		};
 	}, []);
 
-	return (
-		<img
-			ref={ref}
-			src={isVisible ? src : '/images/placeholder.png'}
-			alt={alt}
-			className={className}
-		/>
-	);
+	if (!isVisible) {
+		return (
+			<img
+				ref={ref}
+				src="/images/placeholder.png"
+				alt="Pemilyy"
+				className={cn(className, '!object-contain')}
+			/>
+		);
+	}
+
+	return <img ref={ref} src={src} alt={alt} className={className} />;
 }

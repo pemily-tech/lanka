@@ -23,7 +23,7 @@ export default function AttachDocs() {
 				defaultValue="PRESCRIPTION"
 				className="w-full"
 			>
-				<TabsList className="w-full justify-start rounded-none border-b bg-white">
+				<TabsList className="w-full justify-start rounded-none border-b border-border bg-white">
 					<TabsTrigger className="flex-1 py-3" value="PRESCRIPTION">
 						Prescription
 					</TabsTrigger>

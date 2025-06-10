@@ -34,7 +34,7 @@ export default function Header() {
 		<div className="mb-3 rounded-lg bg-white shadow-md">
 			<div className={cn('flex items-center justify-between p-3')}>
 				<div className="flex-1">
-					<div className="relative flex w-[320px] items-center border-b px-3">
+					<div className="relative flex w-[320px] items-center border-b border-border px-3">
 						<Search className="mr-12 size-4 shrink-0 opacity-50" />
 						<Input
 							className={cn(

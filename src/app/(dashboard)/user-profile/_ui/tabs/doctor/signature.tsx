@@ -60,7 +60,7 @@ export default function Signature({ doctor }: { doctor: IDoctor }) {
 	});
 
 	return (
-		<div className="mb-4 border-b pb-4">
+		<div className="mb-4 border-b border-border pb-4">
 			<h4 className="mb-3 font-semibold text-black/80">
 				Doctor eSignature:
 			</h4>

@@ -83,7 +83,7 @@ export function useColumns(
 								</Button>
 							</DialogTrigger>
 							<DialogContent className="min-w-[720px]">
-								<DialogHeader className="border-b">
+								<DialogHeader className="border-b border-border">
 									<DialogTitle>Update Medicine</DialogTitle>
 									<DialogDescription></DialogDescription>
 								</DialogHeader>

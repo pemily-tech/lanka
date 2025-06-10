@@ -62,7 +62,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 			<Comp
 				className={cn(
 					buttonVariants({ variant, size, className }),
-					loading && 'cursor-not-allowed opacity-60'
+					loading && 'cursor-not-allowed opacity-60',
+					'cursor-pointer'
 				)}
 				ref={ref}
 				disabled={loading || props.disabled}
