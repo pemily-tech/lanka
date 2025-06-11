@@ -77,7 +77,7 @@ export const AppSidebar = () => {
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton>
-							<UserRoundCheck className="text-primary" />
+							<UserRoundCheck className="text-primary !size-5" />
 							<span className="text-sm">{name || mobile}</span>
 						</SidebarMenuButton>
 					</SidebarMenuItem>
@@ -88,14 +88,14 @@ export const AppSidebar = () => {
 					<Menu navMenu={filteredNavMenu} role={role} />
 				</SidebarGroup>
 			</SidebarContent>
-			<SidebarFooter className="px-8">
+			<SidebarFooter className="px-4">
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton className="p-0" asChild>
 							<div>
 								<AlertDialog>
 									<AlertDialogTrigger
-										className="flex w-full items-center gap-3 py-3"
+										className="flex w-full items-center gap-3 py-3 cursor-pointer"
 										data-umami-event="user_logout_button"
 										data-umami-event-id={mobile}
 									>
@@ -137,7 +137,7 @@ export const AppSidebar = () => {
 					</SidebarMenuItem>
 				</SidebarMenu>
 			</SidebarFooter>
-			<SidebarRail />
+			{/* <SidebarRail /> */}
 		</Sidebar>
 	);
 };
@@ -167,7 +167,7 @@ const Menu = ({
 						<SidebarMenuButton
 							className={`${
 								active
-									? 'text-accent-foreground hover:text-accent-foreground bg-gray-200 py-3 hover:bg-gray-300 hover:opacity-80'
+									? 'text-accent-foreground hover:text-accent-foreground bg-gray-200 py-6 hover:bg-gray-300 hover:opacity-80'
 									: 'px-0'
 							}`}
 							key={index}
@@ -226,7 +226,7 @@ const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 									<SidebarMenuSubButton
 										className={`${
 											active
-												? 'text-accent-foreground hover:text-accent-foreground bg-gray-200 p-3 hover:bg-gray-300 hover:opacity-80'
+												? 'text-accent-foreground hover:text-accent-foreground bg-gray-200 px-3 py-6 hover:bg-gray-300 hover:opacity-80'
 												: ''
 										}`}
 										asChild

@@ -46,7 +46,7 @@ export default function PetParent({
 
 	return (
 		<div className="mx-4 h-full">
-			<Command className="mt-4 rounded-lg border md:min-w-[450px]">
+			<Command className="mt-4 rounded-lg border border-border md:min-w-[450px]">
 				<CommandInput
 					className="py-6"
 					placeholder="Search for pet parents..."

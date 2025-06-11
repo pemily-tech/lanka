@@ -54,7 +54,7 @@ export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 					</div>
 				))}
 			</div>
-			<div className="mt-4 flex flex-row justify-end gap-4 border-t pt-4">
+			<div className="mt-4 flex flex-row justify-end gap-4 border-t border-border pt-4">
 				<Button
 					onClick={() =>
 						updateFullMedicine(localData.medicineId, localData)

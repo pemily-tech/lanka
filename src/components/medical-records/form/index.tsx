@@ -54,7 +54,7 @@ export default function MedicalRecordForm({
 			<div className="mb-6 h-full px-6">
 				<div
 					{...getRootProps()}
-					className="border-black-1/20 relative z-10 flex h-[240px] w-[420px] cursor-pointer items-center justify-center rounded-xl border"
+					className="border-black-1/20 relative z-10 flex h-[240px] w-[420px] cursor-pointer items-center justify-center rounded-xl border border-border"
 				>
 					<input {...getInputProps()} />
 					{!previewUrl && (

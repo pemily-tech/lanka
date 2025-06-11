@@ -19,7 +19,7 @@ export default async function Page() {
 						<Soap />
 						<AttachDocs />
 					</div>
-					<div className="col-span-4 border-l ">
+					<div className="col-span-4 border-l border-border">
 						<Vitals />
 						<Medicines />
 						<AdviceFollowup />

@@ -86,7 +86,7 @@ export default function Page() {
 						{lists.map((list, i) => (
 							<li
 								key={i}
-								className="leading-18 relative list-none py-1 pl-2"
+								className="relative list-none py-1 pl-2"
 							>
 								<span className="text-lg font-semibold text-gray-700">
 									{list?.l1}:{' '}

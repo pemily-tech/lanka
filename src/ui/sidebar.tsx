@@ -216,7 +216,7 @@ export function Sidebar({
 					// Adjust the padding for floating and inset variants.
 					variant === 'floating' || variant === 'inset'
 						? 'p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]'
-						: 'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=right]:border-l',
+						: 'group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r border-border group-data-[side=right]:border-l',
 					className
 				)}
 				{...props}
@@ -513,7 +513,8 @@ export function SidebarMenuButton({
 			data-active={isActive}
 			className={cn(
 				sidebarMenuButtonVariants({ variant, size }),
-				className
+				className,
+				'cursor-pointer'
 			)}
 			{...props}
 		/>
@@ -605,7 +606,7 @@ export function SidebarMenuSub({
 			data-slot="sidebar-menu-sub"
 			data-sidebar="menu-sub"
 			className={cn(
-				'border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l px-2.5 py-0.5',
+				'border-sidebar-border mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 px-2.5 py-0.5',
 				'group-data-[collapsible=icon]:hidden',
 				className
 			)}

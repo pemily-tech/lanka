@@ -35,7 +35,7 @@ export default function Pet({
 
 	return (
 		<Command className="px-4">
-			<div className="mb-4 mt-2 overflow-y-scroll rounded-lg border md:min-w-[450px]">
+			<div className="mb-4 mt-2 overflow-y-scroll rounded-lg border border-border md:min-w-[450px]">
 				<CommandList onClick={handleSelect} className="max-h-full">
 					{isPending && <Spinner />}
 					{petData?.map((pet) => {

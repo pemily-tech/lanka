@@ -65,7 +65,7 @@ export default function Page() {
 				<DialogContent
 					onInteractOutside={(event) => event.preventDefault()}
 					showCloseButton={false}
-					className="flex size-36 flex-col items-center justify-center gap-3"
+					className="flex size-42 flex-col items-center justify-center gap-3"
 				>
 					<DialogHeader className="hidden">
 						<DialogTitle></DialogTitle>

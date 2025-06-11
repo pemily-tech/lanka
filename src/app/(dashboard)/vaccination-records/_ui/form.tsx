@@ -114,7 +114,7 @@ export default function VaccinationForm({
 							name="vaccineName"
 							render={({ field: selectField, fieldState }) => {
 								return (
-									<FormItem className="col-span-1">
+									<FormItem className="col-span-1 space-y-1">
 										<FormLabel>Type</FormLabel>
 										<Select
 											onValueChange={selectField.onChange}
@@ -122,10 +122,7 @@ export default function VaccinationForm({
 											value={selectField.value}
 										>
 											<FormControl>
-												<SelectTrigger
-													isError={!!fieldState.error}
-													className="!mt-1 bg-white"
-												>
+												<SelectTrigger className="!mt-1 bg-white w-full">
 													<SelectValue placeholder="Select a type" />
 												</SelectTrigger>
 											</FormControl>

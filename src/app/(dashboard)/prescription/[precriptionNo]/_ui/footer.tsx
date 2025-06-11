@@ -29,7 +29,7 @@ export default function Footer() {
 	} = useFooterActions();
 
 	return (
-		<div className="mt-4 flex items-center justify-end gap-4 border-t py-4">
+		<div className="mt-4 flex items-center justify-end gap-4 border-t border-border py-4">
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
 					<Button
