@@ -2,8 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../services/http-service';
-import { type IApiResponse } from '../../../../types/common';
-import { type IUserDetails } from '../../../../types/user';
+import { type IApiResponse, type IUserDetails } from '../../../../types/common';
 
 import { AppConstants } from '@/helpers/primitives';
 

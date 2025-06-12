@@ -53,7 +53,7 @@ export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 						name="active"
 						render={({ field: switchField }) => (
 							<FormItem className="flex flex-row items-center gap-3">
-								<div className="space-y-2">
+								<div className="space-y-1">
 									<FormLabel className="text-sm">
 										Choose Active/InActive
 									</FormLabel>

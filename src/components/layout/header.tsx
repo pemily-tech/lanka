@@ -26,7 +26,7 @@ export function LayoutHeader() {
 							variant="ghost"
 							size="icon"
 						>
-							<ChevronLeft />
+							<ChevronLeft className="size-6" />
 						</Button>
 					)}
 					<ClinicDetails />

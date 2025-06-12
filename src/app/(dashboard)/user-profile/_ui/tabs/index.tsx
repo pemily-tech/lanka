@@ -81,7 +81,7 @@ export default function UserTabs() {
 					{filteredTabs.map((tab) => (
 						<TabsTrigger
 							key={tab.value}
-							className="flex-1 py-3"
+							className="flex-1 py-3 !bg-white rounded-none !shadow-none"
 							value={tab.value}
 							data-umami-event="user_profile_tabs_button"
 							data-umami-event-id={tab.value}

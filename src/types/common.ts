@@ -294,3 +294,31 @@ export type IFileWithPreview = File & { preview: string };
 
 export type IMedicalRecordFilter = 'PRESCRIPTION' | 'REPORT' | 'DIET' | 'OTHER';
 export type IOtherCommonFilter = 'PENDING' | 'COMPLETE' | 'ALL' | 'UPCOMING';
+
+export interface IUserDetails {
+	active: boolean;
+	address: IAddress;
+	addressId: string;
+	clinicId: string;
+	category: string;
+	createdAt: string;
+	dob: string;
+	doctorIds: string[];
+	email: string;
+	firebaseToken: string;
+	gender: string;
+	mobile: string;
+	name: string;
+	profileUrl: string;
+	role: string;
+	updatedAt: string;
+	updatedBy: string;
+	userId: string;
+	degree?: string;
+	experience?: number;
+	speciality?: string;
+	ownerName: string;
+	pan: string;
+	gstNo: string;
+	businessContact: string;
+}

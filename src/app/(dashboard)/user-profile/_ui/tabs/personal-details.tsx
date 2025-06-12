@@ -9,7 +9,6 @@ import { z } from 'zod';
 
 import { cn } from '../../../../../helpers/utils';
 import { useAuthStore } from '../../../../../store/user-auth';
-import { type IUserDetails } from '../../../../../types/user';
 import {
 	Form,
 	FormControl,
@@ -28,6 +27,7 @@ import { Button } from '@/ui/button';
 import { Calendar } from '@/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
 import { AppConstants } from '@/helpers/primitives';
+import { IUserDetails } from '@/types/common';
 
 const schema = z.object({
 	name: z.string().min(1, 'Name is required'),
@@ -197,7 +197,7 @@ const PersonalDetailsForm = () => {
 							: undefined;
 
 						return (
-							<FormItem className="flex flex-col">
+							<FormItem className="flex flex-col space-y-1">
 								<FormLabel>Date of birth</FormLabel>
 								<Popover>
 									<PopoverTrigger asChild>
@@ -223,7 +223,7 @@ const PersonalDetailsForm = () => {
 										</FormControl>
 									</PopoverTrigger>
 									<PopoverContent
-										className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width]"
+										className="PopoverContent"
 										align="start"
 									>
 										<Calendar

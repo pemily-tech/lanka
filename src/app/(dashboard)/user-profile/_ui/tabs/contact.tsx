@@ -27,7 +27,7 @@ export default function Contact() {
 			{contactInfo.map(({ label, value, href, icon: Icon }) => (
 				<div
 					key={label}
-					className="bg-grey-1/30 flex gap-4 rounded-lg border p-3"
+					className="bg-grey-1/30 flex gap-4 rounded-lg border border-border p-3"
 				>
 					<div className="bg-primary/10 flex size-14 items-center justify-center rounded-full">
 						<Icon />

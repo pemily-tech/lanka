@@ -25,8 +25,8 @@ export default function Doctors() {
 		<div className="max-w-3xl space-y-4">
 			{doctorsData.map((doctor) => (
 				<Collapsible key={doctor._id} className="group">
-					<div className="rounded-lg border transition-all group-data-[state=open]:shadow-sm">
-						<CollapsibleTrigger className="flex w-full items-center justify-between px-4 py-3 text-left font-medium">
+					<div className="rounded-lg border border-border transition-all group-data-[state=open]:shadow-sm">
+						<CollapsibleTrigger className="flex w-full items-center justify-between px-4 py-3 text-left font-medium cursor-pointer">
 							<div className="flex items-center gap-3">
 								<ProfileImage id={doctor?.doctor?.doctorId} />
 								<div className="flex flex-col gap-1">

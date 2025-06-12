@@ -33,9 +33,9 @@ export default function Filters({
 	return (
 		<div className="flex w-full flex-wrap items-end justify-between gap-3">
 			<div className="flex-1">
-				<Command className="max-w-[450px] rounded-lg border">
+				<Command className="max-w-[450px] rounded-lg border border-border">
 					<CommandInput
-						className="py-6"
+						className=""
 						placeholder="Search for medicines..."
 						value={value}
 						onValueChange={setValue}

@@ -1,8 +1,7 @@
 import { type QueryFunctionContext, useQuery } from '@tanstack/react-query';
 
 import { HttpService } from '@/services/http-service';
-import { type IApiResponse } from '@/types/common';
-import { type IUserDetails } from '@/types/user';
+import { type IApiResponse, type IUserDetails } from '@/types/common';
 
 const getUser = async ({
 	queryKey,

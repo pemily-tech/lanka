@@ -54,7 +54,7 @@ const Logo = () => {
 		<div className="w-[200px]">
 			<div
 				{...getRootProps()}
-				className="border-primary-1 relative flex size-[200px] cursor-pointer items-center justify-center rounded-full border"
+				className="border-primary relative flex size-[200px] cursor-pointer items-center justify-center rounded-full border-2"
 			>
 				<input {...getInputProps()} />
 				{isUrlExists ? (
