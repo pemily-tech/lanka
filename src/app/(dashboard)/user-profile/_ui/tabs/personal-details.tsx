@@ -223,7 +223,7 @@ const PersonalDetailsForm = () => {
 										</FormControl>
 									</PopoverTrigger>
 									<PopoverContent
-										className="popoverContent"
+										className="popover-content"
 										align="start"
 									>
 										<Calendar

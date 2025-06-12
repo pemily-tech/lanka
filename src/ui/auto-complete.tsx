@@ -91,7 +91,7 @@ export const AutoComplete = <T,>({
 						isOpen ? 'block' : 'hidden'
 					)}
 				>
-					<CommandList className="border">
+					<CommandList className="border border-border">
 						{!isLoading && options.length > 0 && (
 							<CommandGroup>
 								{options?.map((option, i) => {
@@ -105,6 +105,7 @@ export const AutoComplete = <T,>({
 												e.preventDefault();
 												e.stopPropagation();
 											}}
+											className="cursor-pointer"
 										>
 											{renderOption(option)}
 										</CommandItem>

@@ -24,13 +24,22 @@ export default function AttachDocs() {
 				className="w-full"
 			>
 				<TabsList className="w-full justify-start rounded-none border-b border-border bg-white">
-					<TabsTrigger className="flex-1 py-3" value="PRESCRIPTION">
+					<TabsTrigger
+						className="flex-1 py-3 data-[state=active]:shadow-none rounded-none"
+						value="PRESCRIPTION"
+					>
 						Prescription
 					</TabsTrigger>
-					<TabsTrigger className="flex-1 py-3" value="REPORT">
+					<TabsTrigger
+						className="flex-1 py-3 data-[state=active]:shadow-none rounded-none"
+						value="REPORT"
+					>
 						Report
 					</TabsTrigger>
-					<TabsTrigger className="flex-1 py-3" value="OTHER">
+					<TabsTrigger
+						className="flex-1 py-3 data-[state=active]:shadow-none rounded-none"
+						value="OTHER"
+					>
 						Other
 					</TabsTrigger>
 				</TabsList>

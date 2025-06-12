@@ -82,7 +82,7 @@ export function useColumns(
 									<Pencil className="size-4" />
 								</Button>
 							</DialogTrigger>
-							<DialogContent className="min-w-[720px]">
+							<DialogContent className="max-w-[720px]">
 								<DialogHeader className="border-b border-border">
 									<DialogTitle>Update Medicine</DialogTitle>
 									<DialogDescription></DialogDescription>

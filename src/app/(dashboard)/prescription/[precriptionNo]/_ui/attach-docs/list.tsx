@@ -84,7 +84,7 @@ function Doc({
 
 	return (
 		<div
-			className="flex flex-row items-center gap-3 rounded-lg border p-3"
+			className="flex flex-row items-center gap-3 rounded-lg border border-border p-3"
 			key={doc?._id}
 		>
 			<a href={url} target="_blank" className="size-[54px]">

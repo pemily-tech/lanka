@@ -47,7 +47,7 @@ function Filters({
 			/>
 			<div className="flex flex-1 items-end justify-end gap-3">
 				<div className="h-[48px] max-w-[220px] flex-1 ">
-					<Command className="rounded-lg border">
+					<Command className="rounded-lg border border-border">
 						<CommandInput
 							className="py-6"
 							placeholder="Search..."

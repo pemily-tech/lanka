@@ -44,7 +44,7 @@ function EditableDialog({
 }: EditableDialogProps) {
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent>
+			<DialogContent className="max-w-md">
 				<DialogHeader className="mb-2">
 					<DialogTitle>{title}</DialogTitle>
 				</DialogHeader>
@@ -128,7 +128,7 @@ export default function AdviceFollowup() {
 						</Button>
 					</PopoverTrigger>
 					{!isPrescriptionSaved && (
-						<PopoverContent className="w-auto p-0">
+						<PopoverContent className="w-full">
 							<Calendar
 								mode="single"
 								selected={follwup ?? undefined}

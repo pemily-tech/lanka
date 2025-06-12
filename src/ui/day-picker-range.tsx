@@ -71,11 +71,11 @@ export function DayPickerRange({
 				})}
 				<Popover>
 					<PopoverTrigger asChild>
-						<div className="border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center rounded-lg border bg-white py-3">
+						<div className="border-black-1/10 flex w-[72px] cursor-pointer flex-col items-center justify-center rounded-lg border border-border bg-white py-3">
 							<CalendarIcon />
 						</div>
 					</PopoverTrigger>
-					<PopoverContent className="w-auto p-0">
+					<PopoverContent className="w-full" align="start">
 						<Calendar
 							mode="range"
 							selected={selectedDate}

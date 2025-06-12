@@ -14,8 +14,6 @@ const schema = z.object({
 type IFormdata = z.infer<typeof schema>;
 
 export function useStepperHook({ type }: { type: string }) {
-	console.log(type, RecordTypes.Medical);
-
 	const { useStepper, steps, utils } = defineStepper(
 		{
 			id: 'parent',

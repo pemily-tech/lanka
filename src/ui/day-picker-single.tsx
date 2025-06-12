@@ -68,7 +68,7 @@ export function DayPickerSingle({
 							<CalendarIcon />
 						</div>
 					</PopoverTrigger>
-					<PopoverContent>
+					<PopoverContent className="w-full">
 						<Calendar
 							mode="single"
 							selected={selectedDate}
