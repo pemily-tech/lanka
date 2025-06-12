@@ -71,7 +71,7 @@ export default function Status({
 					<Pencil className="size-4" />
 				</Button>
 			</DialogTrigger>
-			<DialogContent>
+			<DialogContent className="max-w-lg">
 				<DialogHeader>
 					<DialogTitle>Edit Comment</DialogTitle>
 				</DialogHeader>
