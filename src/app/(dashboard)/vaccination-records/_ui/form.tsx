@@ -108,7 +108,7 @@ export default function VaccinationForm({
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="flex flex-1 flex-col"
 				>
-					<div className="mx-6 flex max-w-lg flex-1 flex-col gap-6">
+					<div className="mx-6 flex max-w-sm flex-1 flex-col gap-6">
 						<FormField
 							control={form.control}
 							name="vaccineName"

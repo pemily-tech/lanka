@@ -11,7 +11,7 @@
 	--primary: oklch(0.5174 0.0975 175.07);
 	--primary-foreground: oklch(0.9848 0 0);
 	--secondary: oklch(0.587 0.0602 302.86);
-	--secondary-foreground: oklch(0.2103 0.0059 285.88);
+	--secondary-foreground: oklch(0.9848 0 0);
 	--muted: oklch(0.9676 0.0013 286.38);
 	--muted-foreground: oklch(0.5519 0.0137 285.94);
 	--accent: oklch(0.9676 0.0013 286.38);
@@ -91,7 +91,23 @@
 	}
 }
 
-.PopoverContent {
+@layer utilities {
+	.shadow-base {
+		box-shadow:
+			0px 0px 1px rgba(40, 41, 61, 0.08),
+			0px 0.5px 2px rgba(96, 97, 112, 0.16);
+	}
+
+	.shadow-card {
+		box-shadow: 0 0.1875rem 0.75rem 0 rgba(47, 43, 61, 0.14);
+	}
+
+	.shadow-top {
+		box-shadow: -2px -4px 12px 0px rgba(0, 0, 0, 0.1);
+	}
+}
+
+.popoverContent {
 	width: var(--radix-popover-trigger-width);
 	max-height: var(--radix-popover-content-available-height);
 }

@@ -107,7 +107,7 @@ export default function FollowupForm({
 					onSubmit={form.handleSubmit(onSubmit)}
 					className="flex flex-1 flex-col"
 				>
-					<div className="mx-6 flex max-w-lg flex-1 flex-col gap-6">
+					<div className="mx-6 flex max-w-sm flex-1 flex-col gap-6">
 						<FormField
 							control={form.control}
 							name="followUpType"
@@ -121,10 +121,7 @@ export default function FollowupForm({
 											value={selectField.value}
 										>
 											<FormControl>
-												<SelectTrigger
-													isError={!!fieldState.error}
-													className="!mt-1 bg-white"
-												>
+												<SelectTrigger className="!mt-1 bg-white w-full">
 													<SelectValue placeholder="Select a type" />
 												</SelectTrigger>
 											</FormControl>

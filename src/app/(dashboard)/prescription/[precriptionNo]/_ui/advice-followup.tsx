@@ -55,7 +55,7 @@ function EditableDialog({
 					onChange={(e) => onChange(e.target.value)}
 				/>
 				<DialogFooter className="mt-1 gap-6">
-					<DialogClose>Close</DialogClose>
+					<DialogClose className="cursor-pointer">Close</DialogClose>
 					<Button className="px-6" onClick={onConfirm}>
 						Confirm
 					</Button>

@@ -53,7 +53,10 @@ export default function PetParent({
 					value={value}
 					onValueChange={handleChange}
 				/>
-				<CommandList onClick={handleSelect} className="max-h-full">
+				<CommandList
+					onClick={handleSelect}
+					className="max-h-full border-t border-border"
+				>
 					{isPending && <Spinner />}
 					{petParentData?.map((parent) => {
 						return (

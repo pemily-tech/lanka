@@ -99,10 +99,11 @@ export default function Status({
 							)}
 						/>
 						<DialogFooter className="col-span-2 mt-4 flex gap-6">
-							<DialogClose>Cancel</DialogClose>
+							<DialogClose className="cursor-pointer">
+								Cancel
+							</DialogClose>
 							<Button
 								type="submit"
-								size="lg"
 								variant="secondary"
 								disabled={isPending}
 							>

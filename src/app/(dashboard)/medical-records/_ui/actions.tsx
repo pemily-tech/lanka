@@ -60,11 +60,7 @@ export default function Actions({
 					variant="ghost"
 					className="p-1"
 				>
-					{isLoading ? (
-						<Loader />
-					) : (
-						<Download className="size-full" />
-					)}
+					{isLoading ? <Loader /> : <Download className="size-4" />}
 				</Button>
 			</Link>
 			<AlertDialog>

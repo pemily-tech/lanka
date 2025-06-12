@@ -119,10 +119,7 @@ export default function Status({
 								<FormField
 									control={form.control}
 									name="repeatAfter"
-									render={({
-										field: selectField,
-										fieldState,
-									}) => {
+									render={({ field: selectField }) => {
 										return (
 											<FormItem className="col-span-1">
 												<FormLabel>
@@ -138,12 +135,7 @@ export default function Status({
 													value={selectField.value}
 												>
 													<FormControl>
-														<SelectTrigger
-															isError={
-																!!fieldState.error
-															}
-															className="!mt-1 bg-white"
-														>
+														<SelectTrigger className="!mt-1 bg-white w-full">
 															<SelectValue placeholder="Select a type" />
 														</SelectTrigger>
 													</FormControl>
@@ -241,7 +233,9 @@ export default function Status({
 									}}
 								/>
 								<DialogFooter className="col-span-2 mt-1 flex gap-6">
-									<DialogClose>Cancel</DialogClose>
+									<DialogClose className="cursor-pointer">
+										Cancel
+									</DialogClose>
 									<Button
 										type="submit"
 										variant="secondary"

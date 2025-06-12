@@ -31,6 +31,7 @@ export default function Page() {
 		count: 1,
 		searchTerm,
 		active,
+		limit,
 	});
 
 	const medicineData = data?.data?.medicines || ([] as IMedicine[]);
