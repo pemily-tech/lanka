@@ -7,17 +7,24 @@ import { useRouter } from 'next/navigation';
 import { Routes } from '../../helpers/routes';
 import { useAuthStore } from '../../store/user-auth';
 
+import MobileOnly from '@/components/mobile-only';
+import { useIsMobile } from '@/hooks/use-is-mobile';
 import { LazyImage } from '@/ui/lazy-image';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
 	const { loggedIn } = useAuthStore();
 	const router = useRouter();
+	const isMobile = useIsMobile();
 
 	useEffect(() => {
 		if (loggedIn) {
 			router.push(Routes.HOME);
 		}
 	}, [loggedIn, router]);
+
+	if (isMobile) {
+		return <MobileOnly />;
+	}
 
 	return (
 		<section className="min-h-screen w-full overflow-hidden">

@@ -8,19 +8,27 @@ import { AppSidebar } from '../../components/app-sidebar';
 import { SidebarInset, SidebarProvider } from '../../ui/sidebar';
 
 import LayoutHeader from '@/components/layout/header';
+import MobileOnly from '@/components/mobile-only';
 import { Routes } from '@/helpers/routes';
+import { useIsMobile } from '@/hooks/use-is-mobile';
 import { useAuthStore } from '@/store/user-auth';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 	const { loggedIn, hasHydrated } = useAuthStore();
 	const pathname = usePathname();
 	const router = useRouter();
+	const isMobile = useIsMobile();
+	console.log(isMobile);
 
 	useEffect(() => {
 		if (hasHydrated && !loggedIn) {
 			router.push(Routes.LOGIN);
 		}
 	}, [hasHydrated, loggedIn]);
+
+	if (isMobile) {
+		return <MobileOnly />;
+	}
 
 	return (
 		<AnimatePresence>

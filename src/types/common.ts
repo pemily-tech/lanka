@@ -322,3 +322,8 @@ export interface IUserDetails {
 	gstNo: string;
 	businessContact: string;
 }
+
+export type IHomeInfoCard = {
+	l1: string;
+	l2: string;
+};

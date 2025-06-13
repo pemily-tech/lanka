@@ -136,3 +136,29 @@ export const dateDisable = (date: Date) => {
 
 	return normalizedDate < today || normalizedDate < minDate;
 };
+
+export const getYears = () => {
+	const date = new Date();
+	const currentYear = date.getFullYear();
+	const startYear = 2024;
+	const years = Array.from({ length: 5 }, (_, i) => {
+		const calculatedYear = startYear + i;
+		if (calculatedYear <= currentYear) {
+			return {
+				label: calculatedYear.toString(),
+				value: calculatedYear.toString(),
+			};
+		}
+	}).filter(Boolean);
+	return years;
+};
+
+export const getMonths = () => {
+	const months = Array.from({ length: 12 }, (_, i) => {
+		return {
+			value: String(i + 1),
+			label: new Date(0, i).toLocaleString('default', { month: 'long' }),
+		};
+	});
+	return months;
+};

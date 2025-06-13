@@ -57,11 +57,6 @@ export default function RecordTabs() {
 			value: 'followups',
 			component: <FollowUps />,
 		},
-		{
-			label: 'Health Certificate',
-			value: 'health_certificate',
-			component: <div>Health Certificate</div>,
-		},
 	];
 
 	return (
@@ -71,7 +66,7 @@ export default function RecordTabs() {
 					{tabData.map((tab) => (
 						<TabsTrigger
 							key={tab.value}
-							className="flex-1 py-3"
+							className="flex-1 py-3 rounded-none data-[state=active]:shadow-none"
 							value={tab.value}
 						>
 							{tab.label}
