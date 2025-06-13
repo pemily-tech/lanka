@@ -111,3 +111,7 @@
 	width: var(--radix-popover-trigger-width);
 	max-height: var(--radix-popover-content-available-height);
 }
+
+.heading {
+	@apply text-2xl font-medium;
+}

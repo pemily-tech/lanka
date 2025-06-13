@@ -41,10 +41,7 @@ export function SelectType({
 						value={selectField.value}
 					>
 						<FormControl>
-							<SelectTrigger
-								isError={!!fieldState.error}
-								className="!mt-1 bg-white"
-							>
+							<SelectTrigger className="!mt-1 bg-white w-full">
 								<SelectValue placeholder={`Select ${label}`} />
 							</SelectTrigger>
 						</FormControl>

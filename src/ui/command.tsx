@@ -14,6 +14,12 @@ import {
 
 import { cn } from '@/helpers/utils';
 
+interface ICommandInputProps
+	extends React.ComponentProps<typeof CommandPrimitive.Input> {
+	className?: string;
+	containerClasses?: string;
+}
+
 export function Command({
 	className,
 	...props
@@ -63,12 +69,16 @@ export function CommandDialog({
 
 export function CommandInput({
 	className,
+	containerClasses,
 	...props
-}: React.ComponentProps<typeof CommandPrimitive.Input>) {
+}: ICommandInputProps) {
 	return (
 		<div
 			data-slot="command-input-wrapper"
-			className="flex h-11 items-center gap-2 px-3 border-b border-border"
+			className={cn(
+				'flex h-11 items-center gap-2 px-3 border-b border-border',
+				containerClasses
+			)}
 		>
 			<SearchIcon className="size-4 shrink-0 opacity-50" />
 			<CommandPrimitive.Input

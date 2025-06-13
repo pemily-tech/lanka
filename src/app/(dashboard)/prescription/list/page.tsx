@@ -157,19 +157,6 @@ export default function Page() {
 				className="flex flex-1 items-center justify-end gap-3"
 				limit={limit}
 			/>
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<div
-						className="bg-purple fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white shadow-md transition-transform duration-200 hover:scale-110"
-						onClick={() => setOpen(!open)}
-					>
-						<PillBottle className="text-white" />
-					</div>
-				</TooltipTrigger>
-				<TooltipContent className="border-purple rounded-2xl border bg-white px-3 py-6">
-					<p className="text-black">Create New Rx</p>
-				</TooltipContent>
-			</Tooltip>
 			<PetSelectModal open={open} setOpen={setOpen} />
 		</div>
 	);
