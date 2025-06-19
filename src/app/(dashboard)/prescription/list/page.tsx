@@ -12,17 +12,12 @@ import { useQueryStates } from 'nuqs';
 import { DEFAULT_DATE_FORMAT } from '../../../../helpers/constant';
 import { useUpdateUrl } from '../../../../hooks/use-update-url';
 import { type IPrescription } from '../../../../types/prescription';
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from '../../../../ui/tooltip';
 import { useGetPrescriptions } from './_api/use-get-prescription';
 import { useColumns } from './_ui/columns';
 
 import { Loader } from '@/ui/loader';
 
-const Filters = dynamic(() => import('./_ui/filters'), {
+const CommonFilters = dynamic(() => import('@/components/common-filters'), {
 	loading: () => <Loader />,
 	ssr: false,
 });
@@ -117,7 +112,7 @@ export default function Page() {
 	return (
 		<div className="mb-[54px]">
 			<div className="sticky top-0 z-20 rounded-lg bg-white p-4 shadow-md">
-				<Filters
+				<CommonFilters
 					selectedDate={selectedDateRange}
 					setDate={({ date }) => {
 						setDateRange({
@@ -137,7 +132,8 @@ export default function Page() {
 					setActive={setActive}
 					searchTerm={input}
 					setSearchTerm={handleChange}
-					setOpenPrescription={() => setOpen(!open)}
+					btnAction={() => setOpen(!open)}
+					btnTxt="Create New Rx"
 				/>
 			</div>
 			<div className="relative my-3 rounded-lg bg-white shadow-md">

@@ -45,7 +45,6 @@ import {
 	SidebarMenuSub,
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
-	SidebarRail,
 } from '../ui/sidebar';
 
 import { LazyImage } from '@/ui/lazy-image';

@@ -105,6 +105,10 @@
 	.shadow-top {
 		box-shadow: -2px -4px 12px 0px rgba(0, 0, 0, 0.1);
 	}
+
+	.flex-center {
+		@apply justify-center items-center;
+	}
 }
 
 .popover-content {
@@ -114,4 +118,12 @@
 
 .heading {
 	@apply text-2xl font-medium;
+}
+
+.primary-bg {
+	@apply bg-primary text-primary-foreground;
+}
+
+.secondary-bg {
+	@apply bg-secondary text-secondary-foreground;
 }

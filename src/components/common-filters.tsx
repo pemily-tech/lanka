@@ -1,14 +1,13 @@
 'use client';
 
-import { memo, useState } from 'react';
+import { useState } from 'react';
 import { type DateRange } from 'react-day-picker';
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
-import { Command, CommandInput } from '../../../../../ui/command';
-import { DayPickerRange } from '../../../../../ui/day-picker-range';
-import { Label } from '../../../../../ui/label';
-
+import { Command, CommandInput } from '@/ui/command';
+import { DayPickerRange } from '@/ui/day-picker-range';
+import { Label } from '@/ui/label';
 import {
 	Select,
 	SelectContent,
@@ -24,17 +23,19 @@ interface IProps {
 	setActive: (active: number) => void;
 	searchTerm: string;
 	setSearchTerm: (searchTerm: string) => void;
-	setOpenPrescription: () => void;
+	btnAction: () => void;
+	btnTxt: string;
 }
 
-function Filters({
+export default function CommonFilters({
 	selectedDate,
 	setDate,
 	active,
 	setActive,
 	searchTerm,
 	setSearchTerm,
-	setOpenPrescription,
+	btnAction,
+	btnTxt,
 }: IProps) {
 	const [hovered, setHovered] = useState(false);
 
@@ -49,10 +50,11 @@ function Filters({
 				<div className="h-[48px] max-w-[220px] flex-1 ">
 					<Command className="rounded-lg border border-border">
 						<CommandInput
-							className="py-6"
+							className="h-full"
 							placeholder="Search..."
 							value={searchTerm}
 							onValueChange={setSearchTerm}
+							containerClasses="border-none border-0 h-full"
 						/>
 					</Command>
 				</div>
@@ -76,7 +78,7 @@ function Filters({
 					initial={{ width: 48 }}
 					whileHover={{ width: 120 }}
 					transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-					onClick={setOpenPrescription}
+					onClick={btnAction}
 					onMouseEnter={() => setHovered(!hovered)}
 					onMouseLeave={() => setHovered(!hovered)}
 				>
@@ -88,7 +90,7 @@ function Filters({
 							transition={{ duration: 0.25 }}
 							className="text-[10px] font-bold text-white"
 						>
-							Create New Rx
+							{btnTxt}
 						</motion.span>
 					) : (
 						<Plus className="size-4 text-white" />
@@ -98,5 +100,3 @@ function Filters({
 		</div>
 	);
 }
-
-export default memo(Filters);

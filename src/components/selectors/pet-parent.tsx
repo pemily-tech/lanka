@@ -57,6 +57,7 @@ export default function PetParent({
 				placeholder="Search for pet parents..."
 				value={value}
 				onValueChange={handleChange}
+				containerClasses="border-none"
 			/>
 			<CommandList
 				onClick={handleSelect}

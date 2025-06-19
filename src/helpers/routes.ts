@@ -23,4 +23,8 @@ export const Routes = {
 	PETS_UPDATE: '/pets/update',
 	SELECT_PET: '/select-pet',
 	PET_PROFILE: '/pets/profile',
+	PET_PARENTS: '/pet-parents',
+	HEALTH_CERTIFICATE_LIST: '/health-certificate/list',
+	HEALTH_CERTIFICATE_ADD_ITEM: '/health-certificate/add',
+	HEALTH_CERTIFICATE_EDIT_ITEM: '/health-certificate/edit',
 };

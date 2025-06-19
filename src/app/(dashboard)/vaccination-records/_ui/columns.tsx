@@ -28,13 +28,13 @@ export function useColumns({
 						className="h-[72px] w-[85px]"
 					/>
 					<div className="flex flex-col gap-1">
-						<div className="flex items-end gap-6">
+						<div className="flex items-end gap-1">
 							<span className="text-black/60">Parent:</span>{' '}
 							<span className="font-medium">
 								{row.original.parent.name}
 							</span>
 						</div>
-						<div className="flex items-end gap-6">
+						<div className="flex items-end gap-1">
 							<span className="text-black/60">Pet:</span>{' '}
 							<span className="font-medium">
 								{row.original.pet.name}

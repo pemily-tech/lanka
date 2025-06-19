@@ -281,7 +281,7 @@ export interface IUploadType {
 	index: string;
 }
 export interface INavigationItem {
-	id: number;
+	id: string;
 	type: 'link' | 'menu';
 	path: string;
 	title: string;

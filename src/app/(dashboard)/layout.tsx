@@ -18,7 +18,6 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 	const pathname = usePathname();
 	const router = useRouter();
 	const isMobile = useIsMobile();
-	console.log(isMobile);
 
 	useEffect(() => {
 		if (hasHydrated && !loggedIn) {

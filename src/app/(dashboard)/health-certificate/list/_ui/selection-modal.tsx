@@ -1,49 +1,53 @@
 import React, { Fragment } from 'react';
 import dynamic from 'next/dynamic';
 
+import { useSelectionStepper } from '../_hooks/use-stepper';
+
+import { Button } from '@/ui/button';
 import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-} from '../../ui/dialog';
-import { Separator } from '../../ui/separator';
-import { usePrescriptionStepper } from './_hooks/use-stepper';
-
-import { Button } from '@/ui/button';
+} from '@/ui/dialog';
 import { Loader } from '@/ui/loader';
+import { Separator } from '@/ui/separator';
 
-const Doctor = dynamic(() => import('../selectors/doctor'), {
-	loading: () => <Loader />,
-	ssr: false,
-});
-
-const ErrorMessage = dynamic(() => import('./error-message'), {
-	loading: () => <Loader />,
-	ssr: false,
-});
-
-const Pet = dynamic(() => import('../selectors/pet'), {
+const Pet = dynamic(() => import('@/components/selectors/pet'), {
 	loading: () => (
-		<div className="h-[380px]">
+		<div className="h-[380px] flex-center">
 			<Loader />
 		</div>
 	),
 	ssr: false,
 });
 
-const PetParent = dynamic(() => import('../selectors/pet-parent'), {
-	loading: () => <Loader />,
+const PetParent = dynamic(() => import('@/components/selectors/pet-parent'), {
+	loading: () => (
+		<div className="h-[380px] flex-center">
+			<Loader />
+		</div>
+	),
 	ssr: false,
 });
 
 export default function PetSelectModal({
 	open,
 	setOpen,
+	heading,
+	onComplete,
 }: {
 	open: boolean;
 	setOpen: (o: boolean) => void;
+	heading: string;
+	onComplete: ({
+		parentId,
+		petId,
+	}: {
+		parentId: string;
+		petId: string;
+	}) => void;
 }) {
 	const {
 		stepper,
@@ -51,65 +55,52 @@ export default function PetSelectModal({
 		currentIndex,
 		handleNext,
 		setValue,
-		selectedDoctorId,
-		doctorError,
-		parentError,
-		petError,
 		selectedParentId,
 		selectedPetId,
-	} = usePrescriptionStepper({
-		onComplete: () => setOpen(false),
+	} = useSelectionStepper({
+		onComplete,
 	});
 
 	return (
 		<Dialog open={open} onOpenChange={setOpen}>
-			<DialogContent className="max-w-[60%] gap-0">
-				<DialogHeader>
+			<DialogContent className="max-w-[60%] gap-0 px-0 pt-6 pb-0">
+				<DialogHeader className="px-4">
 					<DialogTitle>
-						Create a New Prescription{' '}
+						{heading}
 						<span className="text-sm font-normal text-black/60">
 							(Step {currentIndex + 1} of {steps.length})
 						</span>
 					</DialogTitle>
 				</DialogHeader>
 				<DialogDescription />
-				<div className="my-1">
+				<div>
 					<StepperNavigation
 						stepper={stepper}
 						currentIndex={currentIndex}
 					/>
 					<div className="space-y-1">
 						{stepper.switch({
-							doctor: () => (
-								<Doctor
-									setValue={setValue}
-									selectedDoctorId={selectedDoctorId}
-								/>
-							),
 							parent: () => (
-								<PetParent
-									setValue={setValue}
-									selectedParentId={selectedParentId}
-								/>
+								<div className="px-4">
+									<PetParent
+										setValue={setValue}
+										selectedParentId={selectedParentId}
+									/>
+								</div>
 							),
 							pet: () => (
-								<Pet
-									setValue={setValue}
-									selectedParentId={selectedParentId ?? ''}
-									selectedPetId={selectedPetId}
-								/>
+								<div className="px-4">
+									<Pet
+										setValue={setValue}
+										selectedParentId={
+											selectedParentId ?? ''
+										}
+										selectedPetId={selectedPetId}
+									/>
+								</div>
 							),
 						})}
-						<ErrorMessage
-							selectedDoctorId={selectedDoctorId}
-							selectedParentId={selectedParentId}
-							selectedPetId={selectedPetId}
-							stepperId={stepper.current.id}
-							doctorError={doctorError}
-							parentError={parentError}
-							petError={petError}
-						/>
-						<div className="flex justify-end gap-4">
+						<div className="flex justify-end gap-4 shadow-top px-4 py-2">
 							<Button
 								type="button"
 								variant="secondary"
@@ -138,7 +129,7 @@ function StepperNavigation({
 	stepper: any;
 }) {
 	return (
-		<nav className="group my-4">
+		<nav className="group my-4 px-4">
 			<ol className="flex items-center justify-between gap-2">
 				{stepper.all.map((step: any, index: number, array: any[]) => (
 					<Fragment key={step.id}>
