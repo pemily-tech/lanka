@@ -12,7 +12,7 @@ import { useAuthStore } from '../../../../store/user-auth';
 import { useUploadUserProfile } from '@/api/mutations/upload-user-profile';
 import { useGetUser } from '@/api/queries/use-get-user-details';
 import { MAX_SIZE_500 } from '@/helpers/constant';
-import { LazyImage } from '@/ui/lazy-image';
+import { BlurImage } from '@/ui/blur-image';
 
 export default function UserDetails() {
 	const { userId } = useAuthStore();
@@ -64,9 +64,11 @@ export default function UserDetails() {
 					<label className="relative block size-[62px] cursor-pointer rounded-full">
 						<input {...getInputProps()} />
 						{isUrlExists ? (
-							<LazyImage
+							<BlurImage
 								src={profileUrl as string}
 								className="size-[62px] rounded-full object-cover"
+								width={120}
+								height={120}
 							/>
 						) : (
 							<div className="flex size-[62px] items-center justify-center rounded-full bg-gray-100">

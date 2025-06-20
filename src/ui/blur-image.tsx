@@ -2,30 +2,44 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import { cn } from '@/helpers/utils';
+
 type BlurImageProps = {
-	url: string;
+	src: string;
+	source?: 'local' | 'remote';
 	width?: number;
 	height?: number;
 	quality?: number;
 	className?: string;
+	imageClasses?: string;
 	alt?: string;
 };
 
 export function BlurImage({
-	url,
+	src,
+	source = 'remote',
 	width = 760,
 	height = 760,
 	quality = 80,
 	className = '',
-	alt = 'Image',
+	alt = 'Pemilyy',
+	imageClasses = '',
 }: BlurImageProps) {
 	const [isInView, setIsInView] = useState(false);
 	const [loaded, setLoaded] = useState(false);
 	const wrapperRef = useRef<HTMLDivElement>(null);
 
-	const encodedUrl = encodeURIComponent(url);
-	const fullSrc = `/api/image?url=${encodedUrl}&w=${width}&h=${height}&q=${quality}`;
-	const blurSrc = `/api/image?url=${encodedUrl}&w=16&h=15&q=16&blur=true`;
+	const encoded = encodeURIComponent(src);
+	const baseParams = `source=${source}&w=${width}&h=${height}&q=${quality}`;
+	const fullSrc =
+		source === 'local'
+			? `/api/image?${baseParams}&path=${encoded}`
+			: `/api/image?${baseParams}&url=${encoded}`;
+
+	const blurSrc =
+		source === 'local'
+			? `/api/image?source=${source}&w=16&h=16&q=20&blur=true&path=${encoded}`
+			: `/api/image?source=${source}&w=16&h=16&q=20&blur=true&url=${encoded}`;
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
@@ -38,9 +52,7 @@ export function BlurImage({
 			{ rootMargin: '100px' }
 		);
 
-		if (wrapperRef.current) {
-			observer.observe(wrapperRef.current);
-		}
+		if (wrapperRef.current) observer.observe(wrapperRef.current);
 
 		return () => observer.disconnect();
 	}, []);
@@ -48,12 +60,13 @@ export function BlurImage({
 	return (
 		<div
 			ref={wrapperRef}
-			className={`relative w-full overflow-hidden ${className}`}
+			className={`relative overflow-hidden ${className}`}
 		>
 			<div
-				className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${
+				className={cn(
+					'absolute inset-0 bg-cover bg-center transition-opacity duration-500',
 					loaded ? 'opacity-0' : 'opacity-100'
-				}`}
+				)}
 				style={{ backgroundImage: `url(${blurSrc})` }}
 			/>
 			{isInView && (
@@ -61,9 +74,11 @@ export function BlurImage({
 					src={fullSrc}
 					alt={alt}
 					onLoad={() => setLoaded(true)}
-					className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ${
-						loaded ? 'opacity-100' : 'opacity-0'
-					}`}
+					className={cn(
+						'absolute inset-0 w-full h-full object-cover transition-opacity duration-500',
+						loaded ? 'opacity-100' : 'opacity-0',
+						imageClasses
+					)}
 				/>
 			)}
 		</div>

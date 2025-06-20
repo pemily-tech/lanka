@@ -47,7 +47,7 @@ import {
 	SidebarMenuSubItem,
 } from '../ui/sidebar';
 
-import { LazyImage } from '@/ui/lazy-image';
+import { BlurImage } from '@/ui/blur-image';
 
 const IconMap: Record<string, React.ElementType> = {
 	House,
@@ -178,9 +178,12 @@ const Menu = ({
 										<Icon className="!size-6" />
 									</div>
 								) : (
-									<LazyImage
+									<BlurImage
 										className="size-8"
 										src={item.icon as string}
+										width={120}
+										height={120}
+										source="local"
 									/>
 								)}
 								<span className="text-sm">{item.title}</span>

@@ -6,6 +6,7 @@ import Status from './status';
 
 import { type IVaccinationRecord } from '@/types/clinic';
 import { type IOtherCommonFilter } from '@/types/common';
+import { BlurImage } from '@/ui/blur-image';
 import { LazyImage } from '@/ui/lazy-image';
 
 export function useColumns({
@@ -23,9 +24,13 @@ export function useColumns({
 			header: 'Details',
 			cell: ({ row }) => (
 				<div className="flex gap-2">
-					<LazyImage
+					<BlurImage
 						src="/images/vaccination-record.svg"
 						className="h-[72px] w-[85px]"
+						source="local"
+						width={120}
+						height={100}
+						imageClasses="rounded-md"
 					/>
 					<div className="flex flex-col gap-1">
 						<div className="flex items-end gap-1">

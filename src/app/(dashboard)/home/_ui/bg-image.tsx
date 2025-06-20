@@ -1,12 +1,15 @@
 'use client';
 
-import { LazyImage } from '@/ui/lazy-image';
+import { BlurImage } from '@/ui/blur-image';
 
 export function BgImage() {
 	return (
-		<LazyImage
-			className="size-full object-cover"
+		<BlurImage
+			className="size-full"
 			src="/images/home-bg.webp"
+			width={1534}
+			height={1024}
+			source="local"
 		/>
 	);
 }

@@ -5,8 +5,8 @@ import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
 import { useGetPets } from '@/api/queries/use-get-pets';
 import { cn } from '@/helpers/utils';
 import { type IPetItem } from '@/types/common';
+import { BlurImage } from '@/ui/blur-image';
 import { Command, CommandEmpty, CommandList } from '@/ui/command';
-import { LazyImage } from '@/ui/lazy-image';
 import Spinner from '@/ui/spinner';
 
 export default function Pet({
@@ -71,18 +71,23 @@ export function PetDetails({ pet }: { pet: IPetItem }) {
 	return (
 		<Fragment>
 			{petImage && petImage !== '' ? (
-				<LazyImage
+				<BlurImage
 					src={petImage as string}
 					className="size-[54px] rounded-lg object-cover"
+					width={64}
+					height={64}
 				/>
 			) : (
-				<LazyImage
+				<BlurImage
 					src={
 						pet?.type === 'CAT'
 							? '/images/Cat.png'
 							: '/images/Dog.png'
 					}
+					source="local"
 					className="size-[54px] rounded-lg object-cover"
+					width={180}
+					height={180}
 				/>
 			)}
 			<div>

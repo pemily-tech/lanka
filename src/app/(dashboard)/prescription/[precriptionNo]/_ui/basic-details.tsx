@@ -3,7 +3,7 @@
 
 import { useBasicDetails } from '../_hooks/use-basic-details';
 
-import { LazyImage } from '@/ui/lazy-image';
+import { BlurImage } from '@/ui/blur-image';
 import Spinner from '@/ui/spinner';
 
 export default function BasicDetails() {
@@ -30,9 +30,12 @@ export default function BasicDetails() {
 					<div className="flex size-[152px] items-center justify-center">
 						<div className="border-secondary size-[142px] rounded-full border-2 p-4">
 							{clinicLogo && (
-								<LazyImage
+								<BlurImage
 									src={clinicLogo}
-									className="size-full rounded-full object-cover"
+									className="size-full"
+									width={240}
+									height={240}
+									imageClasses="rounded-full object-cover"
 								/>
 							)}
 						</div>

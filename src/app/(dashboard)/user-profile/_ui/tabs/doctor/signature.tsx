@@ -11,6 +11,7 @@ import { AppConstants } from '@/helpers/primitives';
 import { createFormDataForImage } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IDoctor } from '@/types/common';
+import { BlurImage } from '@/ui/blur-image';
 
 export default function Signature({ doctor }: { doctor: IDoctor }) {
 	const { data: signatureData } = useGetDoctorSignature({
@@ -67,9 +68,12 @@ export default function Signature({ doctor }: { doctor: IDoctor }) {
 			<div className="flex items-center justify-between">
 				{signatureData?.data?.signatureUrl ? (
 					<div className="cursor-pointer" {...getRootProps()}>
-						<img
+						<BlurImage
 							src={signatureData?.data?.signatureUrl}
-							className="h-[64px] w-[240px] border-none bg-contain"
+							className="h-[64px] w-[240px] border-none"
+							width={240}
+							height={64}
+							imageClasses="bg-contain rounded-md"
 						/>
 						<input {...getInputProps()} />
 					</div>

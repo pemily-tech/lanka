@@ -7,6 +7,7 @@ import Status from './status';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { type IFollowUpRecord } from '@/types/clinic';
 import { type IOtherCommonFilter } from '@/types/common';
+import { BlurImage } from '@/ui/blur-image';
 import { LazyImage } from '@/ui/lazy-image';
 
 export function useColumns({
@@ -24,9 +25,13 @@ export function useColumns({
 			header: 'Details',
 			cell: ({ row }) => (
 				<div className="flex gap-3">
-					<LazyImage
+					<BlurImage
 						src="/images/follow-up-records.svg"
 						className="h-[72px] w-[85px]"
+						source="local"
+						width={240}
+						height={240}
+						imageClasses="rounded-md"
 					/>
 					<div className="flex flex-col gap-1">
 						<div className="flex items-end gap-1">

@@ -9,6 +9,7 @@ import { useUploadClinicLogo } from '@/api/mutations/upload-clinic-logo';
 import { useGetClinicLogo } from '@/api/queries/use-get-clinic-logo';
 import { MAX_SIZE_500 } from '@/helpers/constant';
 import { createFormDataForImage } from '@/helpers/utils';
+import { BlurImage } from '@/ui/blur-image';
 
 const Logo = () => {
 	const { data } = useGetClinicLogo();
@@ -58,10 +59,11 @@ const Logo = () => {
 			>
 				<input {...getInputProps()} />
 				{isUrlExists ? (
-					<img
-						alt="logo"
+					<BlurImage
 						src={data?.data?.logoUrl as string}
 						className="size-[200px] rounded-full object-cover"
+						width={200}
+						height={200}
 					/>
 				) : (
 					<UserIcon width={120} height={120} />
