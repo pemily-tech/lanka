@@ -13,6 +13,7 @@ type BlurImageProps = {
 	className?: string;
 	imageClasses?: string;
 	alt?: string;
+	placeholderClasses?: string;
 };
 
 export function BlurImage({
@@ -24,6 +25,7 @@ export function BlurImage({
 	className = '',
 	alt = 'Pemilyy',
 	imageClasses = '',
+	placeholderClasses = 'placeholderClasses',
 }: BlurImageProps) {
 	const [isInView, setIsInView] = useState(false);
 	const [loaded, setLoaded] = useState(false);
@@ -64,8 +66,9 @@ export function BlurImage({
 		>
 			<div
 				className={cn(
-					'absolute inset-0 bg-cover bg-center transition-opacity duration-500',
-					loaded ? 'opacity-0' : 'opacity-100'
+					'absolute inset-0 bg-cover bg-center transition-opacity duration-500 rounded-md',
+					loaded ? 'opacity-0' : 'opacity-100',
+					placeholderClasses
 				)}
 				style={{ backgroundImage: `url(${blurSrc})` }}
 			/>

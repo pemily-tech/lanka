@@ -5,8 +5,8 @@ import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
 import { useGetPets } from '@/api/queries/use-get-pets';
 import { Routes } from '@/helpers/routes';
 import { type IPetItem } from '@/types/common';
+import { BlurImage } from '@/ui/blur-image';
 import { Button } from '@/ui/button';
-import { LazyImage } from '@/ui/lazy-image';
 import Spinner from '@/ui/spinner';
 
 export default function PetDetails({ parentId }: { parentId: string }) {
@@ -50,18 +50,25 @@ const Pet = ({ pet, parentId }: { pet: IPetItem; parentId: string }) => {
 			className="flex flex-col items-center justify-center gap-3"
 		>
 			{isProfileExists ? (
-				<LazyImage
+				<BlurImage
 					src={data?.data?.profileUrl as string}
-					className="size-[120px] rounded-full object-cover"
+					className="size-[120px]"
+					imageClasses="rounded-full object-cover"
+					width={120}
+					height={120}
+					placeholderClasses="rounded-full"
 				/>
 			) : (
-				<LazyImage
+				<BlurImage
 					src={
 						pet.type === 'CAT'
 							? '/images/Cat.png'
 							: '/images/Dog.png'
 					}
 					className="size-[120px] rounded-full object-cover"
+					width={120}
+					height={120}
+					source="local"
 				/>
 			)}
 			<div>{pet.name}</div>

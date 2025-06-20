@@ -116,6 +116,7 @@ export const AppSidebar = () => {
 												className="px-6"
 												data-umami-event="user_logout_confirm_button"
 												data-umami-event-id={mobile}
+												variant="secondary"
 											>
 												Logout
 											</AlertDialogAction>

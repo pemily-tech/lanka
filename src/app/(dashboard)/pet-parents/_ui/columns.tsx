@@ -5,8 +5,8 @@ import Link from 'next/link';
 import { useGetUserProfileUrl } from '@/api/queries/use-get-user-profile-image';
 import { Routes } from '@/helpers/routes';
 import { type IPetParent } from '@/types/clinic';
+import { BlurImage } from '@/ui/blur-image';
 import { Button } from '@/ui/button';
-import { LazyImage } from '@/ui/lazy-image';
 
 export function useColumns(): ColumnDef<IPetParent>[] {
 	return [
@@ -81,9 +81,12 @@ const UserImage = ({ id }: { id: string }) => {
 	return (
 		<div className="relative">
 			{profileUrl && profileUrl !== '' ? (
-				<LazyImage
+				<BlurImage
 					src={profileUrl}
-					className="size-[54px] rounded-lg object-cover"
+					className="size-[54px]"
+					imageClasses="rounded-lg object-cover"
+					width={54}
+					height={54}
 				/>
 			) : (
 				<CircleUserRound color="#cacfd2" width={54} height={54} />

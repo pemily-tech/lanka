@@ -15,8 +15,8 @@ import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
 import { DATE_FORMAT, MAX_SIZE_500 } from '@/helpers/constant';
 import { Routes } from '@/helpers/routes';
 import { createFormDataForImage } from '@/helpers/utils';
+import { BlurImage } from '@/ui/blur-image';
 import { Button } from '@/ui/button';
-import { LazyImage } from '@/ui/lazy-image';
 
 export default function PetDetails() {
 	const params = useParams();
@@ -77,18 +77,27 @@ export default function PetDetails() {
 						<label className="relative block size-[120px] cursor-pointer rounded-full">
 							<input {...getInputProps()} />
 							{isUrlExists ? (
-								<LazyImage
+								<BlurImage
 									src={profileUrl as string}
-									className="size-[120px] rounded-full"
+									className="size-[120px]"
+									width={220}
+									height={220}
+									imageClasses="rounded-full"
+									placeholderClasses="rounded-full"
 								/>
 							) : (
-								<LazyImage
+								<BlurImage
 									src={
 										type === 'CAT'
 											? '/images/Cat.png'
 											: '/images/Dog.png'
 									}
-									className="size-[120px] rounded-full object-cover"
+									className="size-[120px]"
+									source="local"
+									imageClasses="rounded-full object-cover"
+									width={220}
+									height={220}
+									placeholderClasses="rounded-full"
 								/>
 							)}
 							<div className="bg-primary absolute bottom-0 right-2 rounded-full p-[2px] ring-2 ring-white">

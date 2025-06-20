@@ -7,7 +7,6 @@ import Status from './status';
 import { type IVaccinationRecord } from '@/types/clinic';
 import { type IOtherCommonFilter } from '@/types/common';
 import { BlurImage } from '@/ui/blur-image';
-import { LazyImage } from '@/ui/lazy-image';
 
 export function useColumns({
 	type,

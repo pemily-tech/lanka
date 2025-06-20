@@ -11,8 +11,8 @@ import { useUploadPetParentProfile } from '@/app/(dashboard)/pet-parents/_api/us
 import { MAX_SIZE_500 } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import { createFormDataForImage } from '@/helpers/utils';
+import { BlurImage } from '@/ui/blur-image';
 import { Button } from '@/ui/button';
-import { LazyImage } from '@/ui/lazy-image';
 
 const ImageUpload = () => {
 	const params = useParams<{ id: string }>();
@@ -70,9 +70,12 @@ const ImageUpload = () => {
 				>
 					<input {...getInputProps()} />
 					{urlExists ? (
-						<LazyImage
+						<BlurImage
 							src={profileUrl}
-							className="size-[120px] rounded-lg object-cover"
+							className="size-[120px]"
+							imageClasses="rounded-lg object-cover"
+							width={120}
+							height={120}
 						/>
 					) : (
 						<CircleUserRound
