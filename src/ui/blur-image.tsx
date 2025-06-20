@@ -25,7 +25,7 @@ export function BlurImage({
 
 	const encodedUrl = encodeURIComponent(url);
 	const fullSrc = `/api/image?url=${encodedUrl}&w=${width}&h=${height}&q=${quality}`;
-	const blurSrc = `/api/image?url=${encodedUrl}&w=15&h=15&q=20&blur=true`;
+	const blurSrc = `/api/image?url=${encodedUrl}&w=16&h=15&q=16&blur=true`;
 
 	useEffect(() => {
 		const observer = new IntersectionObserver(
