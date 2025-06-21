@@ -1,9 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { type AxiosResponse } from 'axios';
 
 import { logout } from '../helpers/utils';
 import { useAuthStore } from '../store/user-auth';
-// eslint-disable-next-line import/no-cycle
 import { HttpService } from './http-service';
 
 import { env } from '@/env.mjs';

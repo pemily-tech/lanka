@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 'use client';
 
 import { useEffect, useMemo } from 'react';

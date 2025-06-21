@@ -62,7 +62,7 @@ export function BlurImage({
 	return (
 		<div
 			ref={wrapperRef}
-			className={`relative overflow-hidden ${className}`}
+			className={cn('relative overflow-hidden', className)}
 		>
 			<div
 				className={cn(

@@ -1,4 +1,5 @@
 import { env } from '@/env.mjs';
+import { type IHomeInfoCard } from '@/types/common';
 
 export const siteConfig = {
 	title: 'Pemilyy - Your Digital Pet Clinic Companion',
@@ -65,4 +66,27 @@ export const medicalRecordFilters = [
 	},
 	{ label: 'Diet', value: 'DIET' },
 	{ label: 'Other Documents', value: 'OTHER' },
+];
+
+export const homeInfoCard: IHomeInfoCard[] = [
+	{
+		l1: 'Transparency',
+		l2: 'Your data belongs to you, and we take pride in making it accessible.',
+	},
+	{
+		l1: 'Security',
+		l2: 'Your data is secure. Avoid multiple downloads and sharing with untrusted sources.',
+	},
+	{
+		l1: 'Notifications',
+		l2: 'Admins receive WhatsApp alerts for every download.',
+	},
+	{
+		l1: 'User-Friendly',
+		l2: 'Data is available in a simple and easy-to-use Excel format.',
+	},
+	{
+		l1: 'Growth-Focused',
+		l2: 'Gain monthly insights to support growth and better planning.',
+	},
 ];

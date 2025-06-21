@@ -16,7 +16,7 @@ export async function GET(req: Request) {
 		return new Response('Missing or invalid source type', { status: 400 });
 	}
 
-	let inputBuffer: Buffer;
+	let inputBuffer: any;
 
 	try {
 		if (source === 'local') {

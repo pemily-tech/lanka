@@ -2,7 +2,6 @@ import axios, { type AxiosError, type AxiosResponse } from 'axios';
 
 import { logout } from '../helpers/utils';
 import { useAuthStore } from '../store/user-auth';
-// eslint-disable-next-line import/no-cycle
 import { ResetTokenAndReattemptRequest } from './reattempt-token.service';
 
 import { env } from '@/env.mjs';

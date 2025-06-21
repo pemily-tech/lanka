@@ -1,5 +1,4 @@
 /* eslint-disable indent */
-/* eslint-disable @typescript-eslint/no-namespace */
 /* eslint-disable max-lines-per-function */
 import * as React from 'react';
 import { Slot } from '@radix-ui/react-slot';

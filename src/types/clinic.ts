@@ -69,7 +69,6 @@ export interface IScheduleApiResponse {
 	schedules: ISchedule[];
 }
 export interface IClinicSlotsApiResponse {
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	clinicSlots: any[];
 }
 export interface IPetParent {

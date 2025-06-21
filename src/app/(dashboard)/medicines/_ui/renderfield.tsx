@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type UseFormReturn } from 'react-hook-form';
 
 import {
@@ -35,10 +34,7 @@ export const renderField = (form: UseFormReturn<IFormData>, field: any) => {
 							value={selectField.value}
 						>
 							<FormControl>
-								<SelectTrigger
-									isError={!!fieldState.error}
-									className="!mt-1 bg-white"
-								>
+								<SelectTrigger className="!mt-1 bg-white">
 									<SelectValue placeholder="Select a type" />
 								</SelectTrigger>
 							</FormControl>
