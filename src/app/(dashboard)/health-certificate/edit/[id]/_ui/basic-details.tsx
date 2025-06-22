@@ -22,7 +22,7 @@ export default function BasicDetails() {
 	}
 
 	return (
-		<div>
+		<div className="mx-6">
 			<div className="flex flex-row justify-between gap-4 pb-4">
 				<div className="flex flex-1 gap-6">
 					<div className="flex size-[152px] items-center justify-center">
