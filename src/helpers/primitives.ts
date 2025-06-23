@@ -13,6 +13,7 @@ export const enum RecordTypes {
 	Followup = 'FOLLWUP',
 	Vaccination = 'VACCINATION',
 	Medical = 'Medical',
+	Certificate = 'CERTIFICATE',
 	TravelVaccinationCertificate = 'TRAVEL_CUM_VACCINATION_CERTIFICATE',
 }
 

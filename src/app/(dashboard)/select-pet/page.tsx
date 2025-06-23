@@ -9,6 +9,7 @@ import { useStepperHook } from './_hooks/use-stepper';
 import Pet from './_ui/pet';
 import PetParent from './_ui/pet-parent';
 
+import HealthCertificateForm from '@/components/health-certificate/form';
 import MedicalRecordForm from '@/components/medical-records/form';
 import { RecordTypes } from '@/helpers/primitives';
 import { cn } from '@/helpers/utils';
@@ -42,7 +43,9 @@ export default function Page() {
 						? 'Add Vaccination Details'
 						: recordType === RecordTypes.Medical
 							? 'Add Medical Record Details'
-							: ''}
+							: recordType === RecordTypes.Certificate
+								? 'Add Health Certificate'
+								: ''}
 			</h2>
 			<div className="my-3 rounded-lg bg-white shadow-md">
 				<StepperNavigation
@@ -100,6 +103,15 @@ export default function Page() {
 												medicalRecordFilterType as IMedicalRecordFilter
 											}
 											onFinish={onFinish}
+										/>
+									);
+								case RecordTypes.Certificate:
+									return (
+										<HealthCertificateForm
+											parentId={
+												selectedParentId as string
+											}
+											petId={selectedPetId as string}
 										/>
 									);
 								default:

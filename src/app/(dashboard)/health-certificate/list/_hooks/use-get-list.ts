@@ -3,7 +3,7 @@ import { format, parseISO, startOfToday } from 'date-fns';
 import debounce from 'lodash.debounce';
 import { useQueryStates } from 'nuqs';
 
-import { useCreateCertificate } from '../_api/use-create-certificate';
+import { useCreateCertificate } from '../../../../../api/mutations/use-create-certificate';
 import { useGetCertificate } from '../_api/use-get-certificate';
 
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
@@ -52,6 +52,7 @@ export function useCertificateList() {
 		active,
 		page,
 		searchTerm,
+		limit,
 	});
 
 	const certificateData = data?.data?.certificates ?? [];

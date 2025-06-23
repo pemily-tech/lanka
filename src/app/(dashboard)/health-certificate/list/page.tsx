@@ -2,23 +2,20 @@
 'use client';
 
 import { format, parseISO } from 'date-fns';
-import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 
 import { useCertificateList } from './_hooks/use-get-list';
 import { useColumns } from './_ui/columns';
 
 import CommonFilters from '@/components/common-filters';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
+import { RecordTypes } from '@/helpers/primitives';
+import { Routes } from '@/helpers/routes';
 import { type ICertificate } from '@/types/health-certificate';
 import { DataTable } from '@/ui/data-table';
-import { Loader } from '@/ui/loader';
-
-const SelectionModal = dynamic(() => import('./_ui/selection-modal'), {
-	loading: () => <Loader />,
-	ssr: false,
-});
 
 export default function Page() {
+	const router = useRouter();
 	const {
 		selectedDateRange,
 		setDateRange,
@@ -27,12 +24,10 @@ export default function Page() {
 		input,
 		active,
 		setActive,
-		open,
-		setOpen,
-		onComplete,
 		certificateData,
 		isPending,
 		invalidateQueries,
+		page,
 	} = useCertificateList();
 	const columns = useColumns(invalidateQueries);
 
@@ -59,7 +54,11 @@ export default function Page() {
 					setActive={setActive}
 					searchTerm={input}
 					setSearchTerm={handleChange}
-					btnAction={() => setOpen(!open)}
+					btnAction={() =>
+						router.push(
+							`${Routes.SELECT_PET}?recordType=${RecordTypes.Certificate}&startDate=${format(selectedDateRange.from, DEFAULT_DATE_FORMAT)}&endDate=${format(selectedDateRange.to, DEFAULT_DATE_FORMAT)}&active=${active}&page=${page}&searchTerm=${input}`
+						)
+					}
 					btnTxt="Create Certificate"
 				/>
 			</div>
@@ -72,12 +71,6 @@ export default function Page() {
 					emptyMessage="Nothing found for the day."
 				/>
 			</div>
-			<SelectionModal
-				open={open}
-				setOpen={setOpen}
-				heading="Create new Health Certificate"
-				onComplete={onComplete}
-			/>
 		</div>
 	);
 }
