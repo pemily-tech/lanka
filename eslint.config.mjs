@@ -21,7 +21,7 @@ const compat = new FlatCompat({
 export default [
 	{
 		ignores: ['dist/*', '**/.cache', '**/public', '**/node_modules', '**/*.esm.js', 'src/app/(dashboard)/user-profile/_ui/tabs/personal-details.tsx',
-'/src/components/pet-selection-modal/_hooks/use-stepper.ts'
+'/src/components/pet-selection-modal/_hooks/use-stepper.ts', 'commitlint.config.js'
 ],
 	},
 	...compat.extends(

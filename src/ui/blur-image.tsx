@@ -25,7 +25,7 @@ export function BlurImage({
 	className = '',
 	alt = 'Pemilyy',
 	imageClasses = '',
-	placeholderClasses = 'placeholderClasses',
+	placeholderClasses = '',
 }: BlurImageProps) {
 	const [isInView, setIsInView] = useState(false);
 	const [loaded, setLoaded] = useState(false);

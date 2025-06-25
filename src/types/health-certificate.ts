@@ -12,7 +12,7 @@ export interface IVaccine {
 export interface ICertificate {
 	_id: string;
 	certificateNo: string;
-	type: 'TRAVEL_CUM_VACCINATION_CERTIFICATE' | string;
+	type: string;
 	certificateDate: string;
 	template: string | null;
 	parentId: string;

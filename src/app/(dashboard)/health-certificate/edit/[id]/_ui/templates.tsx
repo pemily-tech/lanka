@@ -22,24 +22,25 @@ export default function Templates() {
 	return (
 		<div className="">
 			<div className="m-6 border-b border-border">
-				{templateDetails?.descriptions?.map((description) => {
+				{templateDetails?.descriptions?.map((description, i) => {
 					return (
 						<p
 							className="pb-4"
+							key={i}
 							dangerouslySetInnerHTML={{ __html: description }}
 						/>
 					);
 				})}
 			</div>
 			<div className="flex justify-between items-center mx-6">
-				<div className="flex-1">
-					{templateDetails?.dateFields?.map((date) => {
-						return <p>{date}: </p>;
+				<div className="flex-1 flex flex-col items-start gap-10">
+					{templateDetails?.dateFields?.map((date, i) => {
+						return <p key={i}>{date}: </p>;
 					})}
 				</div>
-				<div className="flex-1 flex justify-end items-center">
-					{templateDetails?.signatureFields?.map((signature) => {
-						return <p>{signature}</p>;
+				<div className="flex-1 flex flex-col justify-end items-end gap-10">
+					{templateDetails?.signatureFields?.map((signature, i) => {
+						return <p key={i}>{signature}</p>;
 					})}
 				</div>
 			</div>
