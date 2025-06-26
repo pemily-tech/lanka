@@ -3,12 +3,13 @@
 import { useCallback } from 'react';
 import { type FileRejection, useDropzone } from 'react-dropzone';
 import { format } from 'date-fns';
-import { Camera, Check, Pencil } from 'lucide-react';
+import { Camera, Check, Pencil, Trash } from 'lucide-react';
 import Link from 'next/link';
 import { useParams, useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 
-import { useUpdatePetImage } from '../_api/use-update-pet-image';
+import { useUpdatePetImage } from '../../_api/use-update-pet-image';
+import { Actions } from './actions';
 
 import { useGetPetById } from '@/api/queries/use-get-pet-byid';
 import { useGetPetProfileImage } from '@/api/queries/use-get-pet-profile';
@@ -140,15 +141,10 @@ export default function PetDetails() {
 					<span>{microChipNo}</span>
 				</div>
 			</div>
-			<Link
-				href={`${Routes.PETS_UPDATE}/${params?.petId}?parentId=${parentId}`}
-				className="flex gap-6"
-			>
-				<Button variant="link">
-					<Pencil className="size-4" />
-					<span>Edit Pet</span>
-				</Button>
-			</Link>
+			<Actions
+				parentId={parentId as string}
+				petId={params?.petId as string}
+			/>
 		</div>
 	);
 }
