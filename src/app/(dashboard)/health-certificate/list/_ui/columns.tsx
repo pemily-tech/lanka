@@ -89,14 +89,18 @@ export function useColumns(
 			cell: ({ row }) => {
 				return (
 					<div className="flex items-center gap-3">
-						<Link
-							href={`${Routes.HEALTH_CERTIFICATE_EDIT_ITEM}/${row.original.certificateNo}`}
-							className="flex size-6 items-center justify-center"
+						<Button
+							disabled={!row.original.active}
+							size="icon"
+							variant="ghost"
 						>
-							<Button size="icon" variant="ghost">
+							<Link
+								href={`${Routes.HEALTH_CERTIFICATE_EDIT_ITEM}/${row.original.certificateNo}`}
+								className="flex size-6 items-center justify-center"
+							>
 								<Edit2 className="size-4" />
-							</Button>
-						</Link>
+							</Link>
+						</Button>
 						<AlertDialog>
 							<AlertDialogTrigger asChild>
 								<Button
