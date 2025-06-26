@@ -58,7 +58,7 @@ const data: INavigationItem[] = [
 		path: Routes.HEALTH_CERTIFICATE_LIST,
 		title: 'Health Certificate',
 		isIcon: false,
-		icon: '/images/Pet-Parent.svg',
+		icon: '/images/Health-Certificate.svg',
 		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
@@ -66,8 +66,8 @@ const data: INavigationItem[] = [
 		type: 'menu',
 		path: Routes.ITEMS_LIST,
 		title: 'ePrescription',
-		isIcon: true,
-		icon: 'Pill',
+		isIcon: false,
+		icon: '/images/ePrescription.svg',
 		roles: [Roles.Clinic],
 		items: [
 			{
@@ -93,8 +93,8 @@ const data: INavigationItem[] = [
 		type: 'link',
 		path: Routes.USER_PROFILE,
 		title: 'Profile',
-		isIcon: true,
-		icon: 'UserCircleIcon',
+		isIcon: false,
+		icon: '/images/Profile.svg',
 		roles: [Roles.Clinic, Roles.Staff],
 	},
 ];

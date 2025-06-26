@@ -215,7 +215,19 @@ const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 			<SidebarMenuItem className="py-1">
 				<CollapsibleTrigger asChild>
 					<SidebarMenuButton className="px-0">
-						{Icon && <Icon className="!size-5" />}
+						{item.isIcon && Icon ? (
+							<div className="flex size-8 items-center justify-center">
+								<Icon className="!size-6" />
+							</div>
+						) : (
+							<BlurImage
+								className="size-8"
+								src={item.icon as string}
+								width={120}
+								height={120}
+								source="local"
+							/>
+						)}
 						<span className="text-sm">{item.title}</span>
 						<ChevronRight className="ml-auto !size-5 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
 					</SidebarMenuButton>
