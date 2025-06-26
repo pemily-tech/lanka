@@ -27,6 +27,13 @@ export function useColumns(): ColumnDef<IVaccine>[] {
 			cell: ({ row }) => <span>{row.original.batch}</span>,
 		},
 		{
+			accessorKey: 'dueDate',
+			header: 'Due Date',
+			cell: ({ row }) => (
+				<span>{format(row.original.dueDate, DATE_FORMAT)}</span>
+			),
+		},
+		{
 			accessorKey: 'givenOn',
 			header: 'Given On',
 			cell: ({ row }) => (

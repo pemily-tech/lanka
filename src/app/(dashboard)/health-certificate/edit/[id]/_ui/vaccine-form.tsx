@@ -24,6 +24,7 @@ const schema = z.object({
 	brand: z.string().nonempty('Please choose a brand'),
 	name: z.string().optional(),
 	givenOn: z.string().optional(),
+	dueDate: z.string().optional(),
 });
 
 type IFormData = z.infer<typeof schema>;
@@ -47,6 +48,7 @@ export function VaccineDialogForm({
 			batch: vaccineItem?.batch ?? '',
 			name: vaccineItem?.name ?? '',
 			givenOn: vaccineItem?.givenOn ?? '',
+			dueDate: vaccineItem?.givenOn ?? '',
 		},
 	});
 
@@ -57,6 +59,7 @@ export function VaccineDialogForm({
 				batch: vaccineItem.batch ?? '',
 				name: vaccineItem?.name ?? '',
 				givenOn: format(vaccineItem?.givenOn, DATE_FORMAT) ?? '',
+				dueDate: format(vaccineItem?.dueDate, DATE_FORMAT) ?? '',
 			});
 		}
 	}, [vaccineItem, form]);
@@ -67,9 +70,10 @@ export function VaccineDialogForm({
 		disabled?: boolean;
 	}[] = [
 		{ name: 'name', label: 'Name', disabled: true },
+		{ name: 'givenOn', label: 'Given On', disabled: true },
+		{ name: 'dueDate', label: 'Due Date', disabled: true },
 		{ name: 'brand', label: 'Brand' },
 		{ name: 'batch', label: 'Batch' },
-		{ name: 'givenOn', label: 'Given On', disabled: true },
 	];
 
 	const onSubmit = async (values: IFormData) => {
@@ -119,9 +123,11 @@ export function VaccineDialogForm({
 								)}
 							/>
 						))}
-						<Button variant="secondary">
-							<span>Submit</span>
-						</Button>
+						<div className="col-span-2">
+							<Button variant="secondary" className="w-56">
+								<span>Submit</span>
+							</Button>
+						</div>
 					</form>
 				</Form>
 			</DialogContent>

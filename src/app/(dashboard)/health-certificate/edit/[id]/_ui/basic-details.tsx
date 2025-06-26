@@ -1,3 +1,4 @@
+/* eslint-disable max-lines-per-function */
 'use client';
 
 import { useBasicDetails } from '../_hooks/use-get-basic-details';
@@ -15,6 +16,7 @@ export default function BasicDetails() {
 		clinicLogo,
 		parentMobile,
 		parentName,
+		certificateType,
 	} = useBasicDetails();
 
 	if (isPending) {
@@ -87,6 +89,12 @@ export default function BasicDetails() {
 							</span>
 						</div>
 					</div>
+				</div>
+				<div className="text-black/60">
+					Certificate Type:{' '}
+					<span className="text-black font-semibold">
+						{certificateType}
+					</span>
 				</div>
 			</div>
 			<div className="flex flex-1 flex-col gap-3 border-y border-border py-3">

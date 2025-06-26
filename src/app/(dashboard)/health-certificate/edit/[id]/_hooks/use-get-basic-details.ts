@@ -66,5 +66,6 @@ export function useBasicDetails() {
 		clinicLogo: isPrescriptionSaved ? url : clinicLogo,
 		parentName,
 		parentMobile,
+		certificateType: certificate.type,
 	};
 }
