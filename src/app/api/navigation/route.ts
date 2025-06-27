@@ -12,8 +12,8 @@ const data: INavigationItem[] = [
 		type: 'link',
 		path: Routes.HOME,
 		title: 'Home',
-		isIcon: true,
-		icon: 'House',
+		isIcon: false,
+		icon: '/images/Home.svg',
 		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{

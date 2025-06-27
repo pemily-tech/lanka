@@ -8,6 +8,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronDown } from 'lucide-react';
 import { z } from 'zod';
 
+import { usePincode } from '../../../../../api/mutations/use-get-pincode';
 import { useAuthStore } from '../../../../../store/user-auth';
 import { type IAddress } from '../../../../../types/common';
 import {
@@ -20,7 +21,6 @@ import {
 } from '../../../../../ui/form';
 import { FloatingInput } from '../../../../../ui/input';
 import { useCreateAddress } from '../../_api/create-address';
-import { usePincode } from '../../_api/pincode';
 import { useUpdateAddress } from '../../_api/update-address';
 
 import { useGetUser } from '@/api/queries/use-get-user-details';
