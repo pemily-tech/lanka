@@ -214,11 +214,6 @@ export default function VaccinationForm({
 															isoDates
 														);
 													}}
-													disabled={(date) => {
-														return dateDisable(
-															date
-														);
-													}}
 												/>
 											</PopoverContent>
 										</Popover>

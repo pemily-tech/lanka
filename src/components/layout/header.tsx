@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronLeft } from 'lucide-react';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 import { useGetUser } from '@/api/queries/use-get-user-details';
 import { Roles } from '@/helpers/primitives';
@@ -13,8 +13,22 @@ import { Loader } from '@/ui/loader';
 export function LayoutHeader() {
 	const router = useRouter();
 	const pathname = usePathname();
+	const searchParams = useSearchParams();
 
 	const isHome = pathname === Routes.HOME;
+
+	const handleBack = () => {
+		if (pathname.includes(Routes.HEALTH_CERTIFICATE_EDIT_ITEM)) {
+			//TODO: we are losing the prev params
+			//have to store the prev params in this case and redirect
+			const params = new URLSearchParams(searchParams.toString());
+			const queryString = params.toString();
+			const url = `${Routes.HEALTH_CERTIFICATE_LIST}?${queryString}`;
+			router.replace(url);
+		} else {
+			router.back();
+		}
+	};
 
 	return (
 		<header className="flex h-[72px] shrink-0 items-center justify-between gap-3 border-b border-border bg-white px-4">
@@ -22,7 +36,7 @@ export function LayoutHeader() {
 				<div className="flex flex-row items-center gap-3">
 					{!isHome && (
 						<Button
-							onClick={() => router.back()}
+							onClick={handleBack}
 							variant="ghost"
 							size="icon"
 						>

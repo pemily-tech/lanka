@@ -4,6 +4,7 @@ import { useParams } from 'next/navigation';
 
 import { useGetCertificateBasicDetails } from '../_api/use-get-basic-details';
 
+import { cn } from '@/helpers/utils';
 import { type ICertificateTemplate } from '@/types/health-certificate';
 import Spinner from '@/ui/spinner';
 
@@ -14,6 +15,9 @@ export default function Templates() {
 	const templateDetails =
 		data?.data?.certificateBasicDetails?.template ??
 		({} as ICertificateTemplate);
+	const totalDateFields = templateDetails?.dateFields?.length ?? 0;
+	const totalSignatureFields = templateDetails?.signatureFields?.length ?? 0;
+	const isFlexColumn = totalDateFields && totalSignatureFields >= 2;
 
 	if (isPending) {
 		return <Spinner className="py-4" />;
@@ -32,15 +36,32 @@ export default function Templates() {
 					);
 				})}
 			</div>
-			<div className="flex justify-between items-center mx-6">
-				<div className="flex-1 flex flex-col items-start gap-10">
-					{templateDetails?.dateFields?.map((date, i) => {
-						return <p key={i}>{date}: </p>;
+			<div
+				className={cn(
+					'flex  gap-10 mx-6',
+					isFlexColumn ? 'flex-col' : 'flex-row justify-between'
+				)}
+			>
+				<div
+					className={cn(
+						totalSignatureFields >= 2
+							? 'justify-between flex-1'
+							: '',
+						'flex'
+					)}
+				>
+					{templateDetails?.signatureFields?.map((signature, i) => {
+						return <p key={i}>{signature}: </p>;
 					})}
 				</div>
-				<div className="flex-1 flex flex-col justify-end items-end gap-10">
-					{templateDetails?.signatureFields?.map((signature, i) => {
-						return <p key={i}>{signature}</p>;
+				<div
+					className={cn(
+						totalDateFields >= 2 ? 'justify-between flex-1' : '',
+						'flex'
+					)}
+				>
+					{templateDetails?.dateFields?.map((date, i) => {
+						return <p key={i}>{date}: </p>;
 					})}
 				</div>
 			</div>

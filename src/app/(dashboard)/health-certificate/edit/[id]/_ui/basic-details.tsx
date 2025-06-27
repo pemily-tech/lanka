@@ -18,6 +18,7 @@ export default function BasicDetails() {
 		parentName,
 		certificateType,
 	} = useBasicDetails();
+	const typeOfCertificate = certificateType?.split('_').join(' ');
 
 	if (isPending) {
 		return <Spinner />;
@@ -93,7 +94,7 @@ export default function BasicDetails() {
 				<div className="text-black/60">
 					Certificate Type:{' '}
 					<span className="text-black font-semibold">
-						{certificateType}
+						{typeOfCertificate}
 					</span>
 				</div>
 			</div>
