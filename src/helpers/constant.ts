@@ -90,3 +90,9 @@ export const homeInfoCard: IHomeInfoCard[] = [
 		l2: 'Gain monthly insights to support growth and better planning.',
 	},
 ];
+
+export const addressTypes = [
+	{ label: 'Home', value: 'HOME' },
+	{ label: 'Work', value: 'WORK' },
+	{ label: 'Other', value: 'OTHER' },
+];

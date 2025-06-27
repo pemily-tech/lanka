@@ -24,6 +24,7 @@ import { useCreateAddress } from '../../_api/create-address';
 import { useUpdateAddress } from '../../_api/update-address';
 
 import { useGetUser } from '@/api/queries/use-get-user-details';
+import { addressTypes } from '@/helpers/constant';
 import { cn } from '@/helpers/utils';
 import { Button } from '@/ui/button';
 import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
@@ -52,12 +53,6 @@ interface IPayload {
 	type: string;
 	isPrimary: boolean;
 }
-
-const addressTypes = [
-	{ label: 'Home', value: 'HOME' },
-	{ label: 'Work', value: 'WORK' },
-	{ label: 'Other', value: 'OTHER' },
-];
 
 const AddressForm = () => {
 	const form = useForm<IFormData>({
