@@ -20,7 +20,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 	const isMobile = useIsMobile();
 
 	useEffect(() => {
-		if (!hasHydrated && !loggedIn) {
+		if (hasHydrated && !loggedIn) {
 			router.push(Routes.LOGIN);
 		}
 	}, [hasHydrated, loggedIn]);
