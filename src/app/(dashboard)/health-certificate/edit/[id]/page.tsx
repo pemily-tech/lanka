@@ -10,8 +10,8 @@ export default function Page() {
 			<Header />
 			<div className="rounded-lg bg-white p-4 shadow-md">
 				<BasicDetails />
-				<Vaccines />
 				<Templates />
+				<Vaccines />
 				<Footer />
 			</div>
 		</div>
