@@ -1,14 +1,17 @@
 'use client';
 
-import { Check } from 'lucide-react';
+import { Check, Eye, Plus } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
 import { useGetCertificateBasicDetails } from '../_api/use-get-basic-details';
 import { useGetCertificateById } from '../_api/use-get-byid';
 import { useUpdateCertificate } from '../_api/use-update-certificate';
+import { useUploadCertificate } from '../_api/use-upload-prescription';
 import { useVaccineStore } from '../_store/use-vaccine';
 
+import { certificateData } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
+import useDocumentDownload from '@/hooks/use-download-document';
 import { queryClient } from '@/services/providers';
 import {
 	type ICertificate,
@@ -40,6 +43,19 @@ export default function Footer() {
 	const vaccines = useVaccineStore((s) => s.vaccines);
 	const { mutateAsync: updateCertificate, isPending } =
 		useUpdateCertificate(certificateNo);
+	const { mutateAsync: uploadCertificate, isPending: isUploading } =
+		useUploadCertificate(certificateNo);
+	const isCertificateSaved = !!certificateData.url;
+	const { url } = useDocumentDownload(certificateData.url ?? undefined);
+
+	const commonQuery = () => {
+		queryClient.invalidateQueries({
+			queryKey: ['certificate/basicDetails', certificateNo],
+		});
+		queryClient.invalidateQueries({
+			queryKey: ['certificate/byNo', certificateNo],
+		});
+	};
 
 	const handleSave = async () => {
 		const payload = {
@@ -65,22 +81,34 @@ export default function Footer() {
 		};
 		const response = await updateCertificate(payload);
 		if (response.status === AppConstants.Success) {
-			queryClient.invalidateQueries({
-				queryKey: ['certificate/basicDetails', certificateNo],
-			});
-			queryClient.invalidateQueries({
-				queryKey: ['certificate/byNo', certificateNo],
-			});
+			commonQuery();
+		}
+	};
+
+	const handleCreate = async () => {
+		const response = await uploadCertificate();
+		if (response?.status === AppConstants.Success) {
+			commonQuery();
 		}
 	};
 
 	return (
 		<div className="mt-4 mx-6 flex items-center justify-end gap-4 border-t border-border py-4">
+			<Button
+				loading={isUploading}
+				disabled={isUploading || isCertificateSaved}
+				onClick={handleCreate}
+				variant="secondary"
+				className="min-w-[120px] !rounded-2xl"
+			>
+				<Plus className="size-4" />
+				<span className="font-normal">Create</span>
+			</Button>
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
 					<Button
 						loading={isPending}
-						// disabled={isPrescriptionSaved || isUpdating}
+						disabled={isPending || isCertificateSaved}
 						className="min-w-[120px] !rounded-2xl"
 					>
 						<Check className="size-4" />
@@ -111,6 +139,15 @@ export default function Footer() {
 					</AlertDialogFooter>
 				</AlertDialogContent>
 			</AlertDialog>
+			<Button
+				disabled={!isCertificateSaved}
+				className="min-w-[120px] !rounded-2xl"
+				variant="outline"
+				onClick={() => window.open(url ?? '')}
+			>
+				<Eye className="size-4" />
+				<span className="font-normal">View PDF</span>
+			</Button>
 		</div>
 	);
 }

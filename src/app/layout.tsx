@@ -2,7 +2,6 @@ import '@/styles/globals.css';
 
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
-import { ThemeProvider } from 'next-themes';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import AnalyticsScript from '../components/analytics-script';

@@ -3,7 +3,7 @@
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { z } from 'zod';
 
 import {
@@ -45,6 +45,7 @@ type IFormData = z.infer<FormSchema>;
 
 export function ParentForm({ type }: { type: 'add' | 'edit' }) {
 	const params = useParams<{ id: string }>();
+	const router = useRouter();
 	const schema = useMemo(() => getValidationSchema(type), [type]);
 	const { mutateAsync: createParent, isPending: createPending } =
 		useCreateParent();
@@ -88,7 +89,10 @@ export function ParentForm({ type }: { type: 'add' | 'edit' }) {
 				mobileNumber: values.mobileNumber!,
 				name: values.name,
 			});
-			if (res.status === AppConstants.Success) commonInvalidateQuery();
+			if (res.status === AppConstants.Success) {
+				commonInvalidateQuery();
+				router.back();
+			}
 		} else {
 			const res = await updateParent({
 				name: values.name,

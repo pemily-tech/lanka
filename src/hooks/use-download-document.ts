@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useDownloadDocument } from '../api/mutations/download-document';
 
-const useDocumentDownload = (url: string, publicDoc = false) => {
+const useDocumentDownload = (url?: string, publicDoc = false) => {
 	const { mutateAsync: downloadDocument, isPending } = useDownloadDocument();
 	const [imageUrl, setImageUrl] = useState<string | null>(null);
 
