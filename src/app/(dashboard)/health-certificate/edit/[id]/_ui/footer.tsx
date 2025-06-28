@@ -9,7 +9,6 @@ import { useUpdateCertificate } from '../_api/use-update-certificate';
 import { useUploadCertificate } from '../_api/use-upload-prescription';
 import { useVaccineStore } from '../_store/use-vaccine';
 
-import { certificateData } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import useDocumentDownload from '@/hooks/use-download-document';
 import { queryClient } from '@/services/providers';
@@ -65,7 +64,8 @@ export default function Footer() {
 			patientDetails: certificateBasicDetails.patientDetails,
 			clinicDetails: certificateBasicDetails.clinicDetails,
 			clinicAddress: certificateBasicDetails.clinicAddress,
-			parentOrPatientAddress: certificateData.parentOrPatientAddress,
+			parentOrPatientAddress:
+				certificateBasicDetails.parentOrPatientAddress,
 			template: certificateBasicDetails.template,
 			vaccines: vaccines.map(
 				({ name, brand, batch, givenOn, dueDate }) => {
