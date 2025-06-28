@@ -1,3 +1,5 @@
+import { type IAddress } from './prescription';
+
 export interface IVaccine {
 	name: string;
 	batch: string | null;
@@ -75,4 +77,5 @@ export interface ICertificateBasicDetails {
 	clinicDetails: IClinicDetails;
 	clinicAddress: IClinicAddress;
 	template: ICertificateTemplate;
+	parentOrPatientAddress: IAddress;
 }

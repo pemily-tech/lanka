@@ -112,11 +112,11 @@ export default function BasicDetails() {
 						<span className="text-black/60">Owner Address: </span>
 						<span>
 							{[
-								parentOrPatientAddress.line1,
-								parentOrPatientAddress.line2,
-								parentOrPatientAddress.district,
-								parentOrPatientAddress.state,
-								parentOrPatientAddress.pincode,
+								parentOrPatientAddress?.line1,
+								parentOrPatientAddress?.line2,
+								parentOrPatientAddress?.district,
+								parentOrPatientAddress?.state,
+								parentOrPatientAddress?.pincode,
 							]
 								.filter(Boolean)
 								.join(', ')}
@@ -125,7 +125,7 @@ export default function BasicDetails() {
 				</div>
 				<div className="flex gap-4">
 					<div className="flex flex-row gap-1">
-						<span className="text-black/60">Patient: </span>
+						<span className="text-black/60">Pet Name: </span>
 						<span>{patientDetails.name}</span>
 					</div>
 					<div className="flex flex-row gap-1">

@@ -40,7 +40,7 @@ export function useBasicDetails() {
 
 	const parentOrPatientAddress = isPrescriptionSaved
 		? (certificate.parentOrPatientAddress ?? {})
-		: (basicData.patientDetails ?? {});
+		: (basicData.parentOrPatientAddress ?? {});
 
 	const parentName = isPrescriptionSaved
 		? (certificate.parentName ?? '')
