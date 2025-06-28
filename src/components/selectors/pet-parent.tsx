@@ -81,11 +81,12 @@ export default function PetParent({
 								iconClasses="!size-[54px]"
 							/>
 							<div>
-								<p className="text-left text-sm">
-									Pets: {parent?.parent?.petNames.join(', ')}
+								<p className="text-left text-sm font-medium">
+									{parent?.parent?.name} (
+									{parent?.parent?.mobile})
 								</p>
 								<p className="text-left text-sm">
-									{parent?.parent?.mobile}
+									Pets: {parent?.parent?.petNames.join(', ')}
 								</p>
 							</div>
 						</div>

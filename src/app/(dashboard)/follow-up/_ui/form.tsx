@@ -34,9 +34,7 @@ import {
 } from '@/ui/select';
 
 const schema = z.object({
-	followUpDates: z
-		.array(z.string().min(1))
-		.min(1, 'Please pick at least one follow-up date'),
+	followUpDates: z.string().min(1, 'Please pick at least one follow-up date'),
 	followUpType: z.string().nonempty('Please select a repeat type'),
 });
 
@@ -60,7 +58,7 @@ export default function FollowupForm({
 	const form = useForm<IFormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			followUpDates: [],
+			followUpDates: '',
 			followUpType: '',
 		},
 	});
@@ -74,9 +72,7 @@ export default function FollowupForm({
 			petId,
 			parentId,
 			followUpType: values.followUpType,
-			followUpDates: values.followUpDates.map((d) =>
-				format(d, DEFAULT_DATE_FORMAT)
-			),
+			followUpDates: [format(values.followUpDates, DEFAULT_DATE_FORMAT)],
 		};
 		const response = await createFollowup(data);
 		if (response.status === AppConstants.Success) {
@@ -114,7 +110,9 @@ export default function FollowupForm({
 							render={({ field: selectField, fieldState }) => {
 								return (
 									<FormItem className="col-span-1">
-										<FormLabel>Type</FormLabel>
+										<FormLabel>
+											Select Follow-up Type
+										</FormLabel>
 										<Select
 											onValueChange={selectField.onChange}
 											defaultValue={selectField.value}
@@ -147,13 +145,13 @@ export default function FollowupForm({
 							control={form.control}
 							name="followUpDates"
 							render={({ field }) => {
-								const dateValue =
-									field.value?.map((d) => new Date(d)) || [];
-
+								const dateValue = field.value
+									? new Date(field.value)
+									: undefined;
 								return (
 									<FormItem className="col-span-1 flex flex-col">
 										<FormLabel>
-											Choose Followup Complete Date
+											Choose Follow-up Date
 										</FormLabel>
 										<Popover>
 											<PopoverTrigger asChild>
@@ -168,22 +166,13 @@ export default function FollowupForm({
 														)}
 													>
 														<span className="flex-1 truncate">
-															{field.value?.length
-																? field.value
-																		.map(
-																			(
-																				d
-																			) =>
-																				format(
-																					new Date(
-																						d
-																					),
-																					'PPP'
-																				)
-																		)
-																		.join(
-																			', '
-																		)
+															{field.value
+																? format(
+																		new Date(
+																			field.value
+																		),
+																		'PPP'
+																	)
 																: 'Pick a date'}
 														</span>
 														<CalendarIcon className="ml-auto size-6 opacity-50" />
@@ -195,23 +184,15 @@ export default function FollowupForm({
 												align="start"
 											>
 												<Calendar
-													mode="multiple"
+													mode="single"
 													selected={dateValue}
 													onSelect={(
-														selectedDates
+														selectedDate
 													) => {
-														const isoDates =
-															selectedDates?.map(
-																(date) =>
-																	date.toISOString()
-															) || [];
 														field.onChange(
-															isoDates
-														);
-													}}
-													disabled={(date) => {
-														return dateDisable(
-															date
+															selectedDate
+																? selectedDate.toISOString()
+																: ''
 														);
 													}}
 												/>

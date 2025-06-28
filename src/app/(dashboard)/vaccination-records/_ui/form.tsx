@@ -35,8 +35,8 @@ import {
 
 const schema = z.object({
 	vaccinationDates: z
-		.array(z.string().min(1))
-		.min(1, 'Please pick at least one vaccination date'),
+		.string()
+		.min(1, 'Please pick at least one vaccine due date'),
 	vaccineName: z.string().nonempty('Please select a vaccine'),
 });
 
@@ -60,7 +60,7 @@ export default function VaccinationForm({
 	const form = useForm<IFormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			vaccinationDates: [],
+			vaccinationDates: '',
 			vaccineName: '',
 		},
 	});
@@ -75,9 +75,9 @@ export default function VaccinationForm({
 			petId,
 			parentId,
 			vaccineName: values.vaccineName,
-			vaccinationDates: values.vaccinationDates.map((d) =>
-				format(d, DEFAULT_DATE_FORMAT)
-			),
+			vaccinationDates: [
+				format(values.vaccinationDates, DEFAULT_DATE_FORMAT),
+			],
 		};
 		const response = await createVaccination(data);
 		if (response.status === AppConstants.Success) {
@@ -115,7 +115,10 @@ export default function VaccinationForm({
 							render={({ field: selectField, fieldState }) => {
 								return (
 									<FormItem className="col-span-1 space-y-1">
-										<FormLabel>Type</FormLabel>
+										<FormLabel>
+											{' '}
+											Select Vaccine(s)
+										</FormLabel>
 										<Select
 											onValueChange={selectField.onChange}
 											defaultValue={selectField.value}
@@ -123,7 +126,7 @@ export default function VaccinationForm({
 										>
 											<FormControl>
 												<SelectTrigger className="!mt-1 bg-white w-full">
-													<SelectValue placeholder="Select a type" />
+													<SelectValue placeholder="Select" />
 												</SelectTrigger>
 											</FormControl>
 											<SelectContent>
@@ -152,13 +155,14 @@ export default function VaccinationForm({
 							control={form.control}
 							name="vaccinationDates"
 							render={({ field }) => {
-								const dateValue =
-									field.value?.map((d) => new Date(d)) || [];
+								const dateValue = field.value
+									? new Date(field.value)
+									: undefined;
 
 								return (
 									<FormItem className="col-span-1 flex flex-col">
 										<FormLabel>
-											Choose Followup Complete Date
+											Choose Vaccine Due Date
 										</FormLabel>
 										<Popover>
 											<PopoverTrigger asChild>
@@ -173,22 +177,13 @@ export default function VaccinationForm({
 														)}
 													>
 														<span className="flex-1 truncate">
-															{field.value?.length
-																? field.value
-																		.map(
-																			(
-																				d
-																			) =>
-																				format(
-																					new Date(
-																						d
-																					),
-																					'PPP'
-																				)
-																		)
-																		.join(
-																			', '
-																		)
+															{field.value
+																? format(
+																		new Date(
+																			field.value
+																		),
+																		'PPP'
+																	)
 																: 'Pick a date'}
 														</span>
 														<CalendarIcon className="ml-auto size-6 opacity-50" />
@@ -200,18 +195,15 @@ export default function VaccinationForm({
 												align="start"
 											>
 												<Calendar
-													mode="multiple"
+													mode="single"
 													selected={dateValue}
 													onSelect={(
-														selectedDates
+														selectedDate
 													) => {
-														const isoDates =
-															selectedDates?.map(
-																(date) =>
-																	date.toISOString()
-															) || [];
 														field.onChange(
-															isoDates
+															selectedDate
+																? selectedDate.toISOString()
+																: ''
 														);
 													}}
 												/>
