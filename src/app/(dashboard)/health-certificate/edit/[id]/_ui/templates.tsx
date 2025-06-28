@@ -17,8 +17,6 @@ export default function Templates() {
 		({} as ICertificateTemplate);
 	const totalDateFields = templateDetails?.dateFields?.length ?? 0;
 	const totalSignatureFields = templateDetails?.signatureFields?.length ?? 0;
-	const isFlexColumn = totalDateFields && totalSignatureFields >= 2;
-
 	if (isPending) {
 		return <Spinner className="py-4" />;
 	}
@@ -36,17 +34,12 @@ export default function Templates() {
 					);
 				})}
 			</div>
-			<div
-				className={cn(
-					'flex  gap-10 mx-6',
-					isFlexColumn ? 'flex-col' : 'flex-row justify-between'
-				)}
-			>
+			<div className={cn('flex  gap-10 mx-6', 'flex-col')}>
 				<div
 					className={cn(
 						totalSignatureFields >= 2
 							? 'justify-between flex-1'
-							: '',
+							: 'justify-end',
 						'flex'
 					)}
 				>
@@ -56,7 +49,9 @@ export default function Templates() {
 				</div>
 				<div
 					className={cn(
-						totalDateFields >= 2 ? 'justify-between flex-1' : '',
+						totalDateFields >= 2
+							? 'justify-between flex-1'
+							: 'justify-start',
 						'flex'
 					)}
 				>

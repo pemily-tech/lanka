@@ -94,16 +94,6 @@ export default function Footer() {
 
 	return (
 		<div className="mt-4 mx-6 flex items-center justify-end gap-4 border-t border-border py-4">
-			<Button
-				loading={isUploading}
-				disabled={isUploading || isCertificateSaved}
-				onClick={handleCreate}
-				variant="secondary"
-				className="min-w-[120px] !rounded-2xl"
-			>
-				<Plus className="size-4" />
-				<span className="font-normal">Create</span>
-			</Button>
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
 					<Button
@@ -139,6 +129,16 @@ export default function Footer() {
 					</AlertDialogFooter>
 				</AlertDialogContent>
 			</AlertDialog>
+			<Button
+				loading={isUploading}
+				disabled={isUploading || isCertificateSaved}
+				onClick={handleCreate}
+				variant="secondary"
+				className="min-w-[120px] !rounded-2xl"
+			>
+				<Plus className="size-4" />
+				<span className="font-normal">Create</span>
+			</Button>
 			<Button
 				disabled={!isCertificateSaved}
 				className="min-w-[120px] !rounded-2xl"
