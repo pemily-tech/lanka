@@ -42,7 +42,6 @@ async function ResetTokenAndReattemptRequest(
 				logout();
 			}
 		} catch (err) {
-			console.log(err, '======');
 			logout();
 			// Handle errors
 		} finally {
