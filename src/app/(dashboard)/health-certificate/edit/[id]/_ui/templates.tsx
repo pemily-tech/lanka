@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 
 import { useGetCertificateBasicDetails } from '../_api/use-get-basic-details';
+import Vaccines from './vaccines';
 
 import { cn } from '@/helpers/utils';
 import { type ICertificateTemplate } from '@/types/health-certificate';
@@ -23,7 +24,7 @@ export default function Templates() {
 
 	return (
 		<div className="">
-			<div className="m-6 border-b border-border">
+			<div className="m-6">
 				{templateDetails?.descriptions?.map((description, i) => {
 					return (
 						<p
@@ -34,6 +35,7 @@ export default function Templates() {
 					);
 				})}
 			</div>
+			<Vaccines />
 			<div className={cn('flex  gap-10 mx-6', 'flex-col')}>
 				<div
 					className={cn(

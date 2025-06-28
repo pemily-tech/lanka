@@ -33,8 +33,7 @@ export default function Vaccines() {
 	}
 
 	return (
-		<div className="m-6">
-			<h3 className="mb-3 font-semibold">Vaccines:</h3>
+		<div className="m-6 border-b border-border">
 			<DataTable
 				columns={columns}
 				data={vaccines}

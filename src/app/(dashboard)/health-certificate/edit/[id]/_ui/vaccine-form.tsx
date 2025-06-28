@@ -58,8 +58,12 @@ export function VaccineDialogForm({
 				brand: vaccineItem.brand ?? '',
 				batch: vaccineItem.batch ?? '',
 				name: vaccineItem?.name ?? '',
-				givenOn: format(vaccineItem?.givenOn, DATE_FORMAT) ?? '',
-				dueDate: format(vaccineItem?.dueDate, DATE_FORMAT) ?? '',
+				givenOn: vaccineItem?.givenOn
+					? format(vaccineItem?.givenOn, DATE_FORMAT)
+					: '',
+				dueDate: vaccineItem?.dueDate
+					? format(vaccineItem?.dueDate, DATE_FORMAT)
+					: '',
 			});
 		}
 	}, [vaccineItem, form]);
