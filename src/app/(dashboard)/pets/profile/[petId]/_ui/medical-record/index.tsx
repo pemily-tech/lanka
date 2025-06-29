@@ -9,6 +9,7 @@ import Filters from '../../../../../medical-records/_ui/filters';
 
 import ActionButton from '@/components/medical-records/action-button';
 import { medicalRecordFilters } from '@/helpers/constant';
+import { type IMedicalRecordFilter } from '@/types/common';
 import { DataTable } from '@/ui/data-table';
 import Spinner from '@/ui/spinner';
 
@@ -55,6 +56,7 @@ export default function MedicalRecord() {
 				setShow={setShow}
 				parentId={parentId}
 				petId={petId}
+				filter={filter as IMedicalRecordFilter}
 			/>
 		</div>
 	);
