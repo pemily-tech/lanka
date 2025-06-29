@@ -52,7 +52,11 @@ HttpService.interceptors.response.use(
 				error.response.data?.msg === 'jwt expired'
 			) {
 				return ResetTokenAndReattemptRequest(error.response);
-			} else if (error.response.data?.msg === 'Inactive user!') {
+			} else if (
+				['Log out!', 'Inactive user!'].includes(
+					error.response.data?.msg
+				)
+			) {
 				logout();
 			}
 			const message =
