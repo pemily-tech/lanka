@@ -14,7 +14,6 @@ export const UserProfile = ({
 	iconClasses?: string;
 }) => {
 	const { data } = useGetUserProfileUrl(id as string);
-	console.log(data?.data?.profileUrl);
 
 	return (
 		<>
