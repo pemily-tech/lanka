@@ -1,12 +1,12 @@
 'use server';
 
+import axios from 'axios';
 import { z } from 'zod';
 
 import { env } from '@/env.mjs';
-import { AppConstants, Roles } from '@/helpers/primitives';
+import { AppConstants } from '@/helpers/primitives';
 import { phoneValidator } from '@/helpers/utils';
 import { safeActionClient } from '@/services/next-safe-actions';
-import { type IsUserRegisteredInterface } from '@/types/auth';
 import { type IApiResponse } from '@/types/common';
 
 const schema = z.object({
@@ -21,76 +21,37 @@ export const getOtpAction = safeActionClient
 	.schema(schema)
 	.action(async ({ parsedInput }) => {
 		const { mobileNumber } = parsedInput;
+
 		try {
-			const response = await fetch(
-				`${env.NEXT_PUBLIC_BASE_PATH}/auth/isUser/${mobileNumber}`
+			const otpResponse = await axios.post<
+				IApiResponse<{ type: 'success' }>
+			>(
+				`${env.NEXT_PUBLIC_BASE_PATH}/auth/sendOtp`,
+				{ mobile: mobileNumber },
+				{
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				}
 			);
 
-			if (!response.ok) {
+			return otpResponse.data;
+		} catch (error: any) {
+			console.error(error);
+			if (axios.isAxiosError(error) && error.response) {
 				return {
 					status: AppConstants.Error,
 					msg: 'Failed to check user registration.',
 					data: null,
-					statusCode: response.status,
+					statusCode: error.response.status,
 				} as IApiResponse<null>;
 			}
 
-			const data =
-				(await response.json()) as IApiResponse<IsUserRegisteredInterface>;
-			const isSuccess = data?.status === AppConstants.Success;
-			const isUser = data?.data?.isUser;
-			const isClinicOrStaff =
-				data?.data?.role === Roles.Clinic ||
-				data?.data?.role === Roles.Staff;
-
-			if (isSuccess && isUser && isClinicOrStaff) {
-				try {
-					const otpResponse = await fetch(
-						`${env.NEXT_PUBLIC_BASE_PATH}/auth/sendOtp`,
-						{
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify({ mobile: mobileNumber }),
-						}
-					);
-					if (!otpResponse.ok) {
-						return {
-							status: AppConstants.Error,
-							msg: 'Failed to check user registration.',
-							data: null,
-							statusCode: response.status,
-						} as IApiResponse<null>;
-					}
-					const otpData = (await otpResponse.json()) as IApiResponse<{
-						type: 'success';
-					}>;
-					return otpData;
-				} catch (err) {
-					console.error(err);
-					return {
-						status: AppConstants.Error,
-						msg: 'A network error occurred. Please check your connection and try again.',
-						data: null,
-						statusCode: 500,
-					};
-				}
-			} else {
-				return {
-					status: AppConstants.Error,
-					msg: 'Only registered users can log in.',
-					data: null,
-					statusCode: 401,
-				} as IApiResponse<null>;
-			}
-		} catch (err) {
-			console.error(err);
 			return {
 				status: AppConstants.Error,
 				msg: 'A network error occurred. Please check your connection and try again.',
 				data: null,
 				statusCode: 500,
-			};
+			} as IApiResponse<null>;
 		}
 	});

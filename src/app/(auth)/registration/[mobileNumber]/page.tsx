@@ -5,8 +5,13 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ArrowLeft } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
+import { useAction } from 'next-safe-action/hooks';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
+import { getOtpAction } from '../../login/_actions/get-otp-action';
+
+import { AppConstants } from '@/helpers/primitives';
 import { phoneValidator } from '@/helpers/utils';
 import { Button } from '@/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form';
@@ -31,6 +36,7 @@ export default function Page() {
 	});
 	const params = useParams<{ mobileNumber: string }>();
 	const router = useRouter();
+	const { execute, result, isExecuting } = useAction(getOtpAction);
 
 	useEffect(() => {
 		form.reset({
@@ -38,14 +44,30 @@ export default function Page() {
 		});
 	}, []);
 
+	useEffect(() => {
+		if (!result.data) {
+			return;
+		}
+
+		if (result.data.status === AppConstants.Success) {
+			toast.success(result.data.msg);
+			router.push(
+				`/otp/${form.getValues('mobileNumber')}?name=${form.getValues('name')}&type=register`
+			);
+		} else {
+			toast.error(result.data.msg);
+		}
+	}, [form, result, router]);
+
 	const handleBack = () => {
 		router.back();
 	};
 
 	const onSubmit = async (values: { mobileNumber: string; name: string }) => {
-		router.push(
-			`/otp/${form.getValues('mobileNumber')}?name=${form.getValues('name')}&type=register`
-		);
+		const payload = {
+			mobileNumber: values.mobileNumber,
+		};
+		execute(payload);
 	};
 
 	return (
@@ -101,6 +123,8 @@ export default function Page() {
 						)}
 					/>
 					<Button
+						loading={isExecuting}
+						disabled={isExecuting}
 						loadingText="Sending Otp"
 						type="submit"
 						className="mt-6 w-full"
