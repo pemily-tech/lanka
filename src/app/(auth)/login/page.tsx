@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import { useAction } from 'next-safe-action/hooks';
 import { toast } from 'sonner';
@@ -20,7 +21,10 @@ import {
 import { FloatingInput } from '../../../ui/input/';
 import { getOtpAction } from './_actions/get-otp-action';
 
-import { AppConstants } from '@/helpers/primitives';
+import { env } from '@/env.mjs';
+import { AppConstants, Roles } from '@/helpers/primitives';
+import { type IsUserRegisteredInterface } from '@/types/auth';
+import { type IApiResponse } from '@/types/common';
 
 const schema = z.object({
 	mobileNumber: z
@@ -39,6 +43,7 @@ export default function Page() {
 	});
 	const { execute, result, isExecuting } = useAction(getOtpAction);
 	const router = useRouter();
+	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
 		if (!result.data) {
@@ -48,21 +53,38 @@ export default function Page() {
 		if (result.data.status === AppConstants.Success) {
 			toast.success(result.data.msg);
 			router.push(`otp/${form.getValues('mobileNumber')}?type=login`);
-		} else if (
-			result.data.status === AppConstants.Error &&
-			result.data.statusCode === 401
-		) {
-			router.push(`registration/${form.getValues('mobileNumber')}`);
 		} else {
 			toast.error(result.data.msg);
 		}
 	}, [form, result, router]);
 
 	const onSubmit = async (values: { mobileNumber: string }) => {
-		const payload = {
-			mobileNumber: values.mobileNumber,
-		};
-		execute(payload);
+		setIsLoading(true);
+		try {
+			const { data } = await axios.get<
+				IApiResponse<IsUserRegisteredInterface>
+			>(
+				`${env.NEXT_PUBLIC_BASE_PATH}/auth/isUser/${values.mobileNumber}`
+			);
+
+			if (
+				data.status === AppConstants.Success &&
+				data.data?.isUser &&
+				(data?.data?.role === Roles.Clinic ||
+					data?.data?.role === Roles.Staff)
+			) {
+				const payload = {
+					mobileNumber: values.mobileNumber,
+				};
+				execute(payload);
+			} else {
+				router.push(`registration/${form.getValues('mobileNumber')}`);
+			}
+		} catch (error) {
+			toast.error('Error checking user');
+		} finally {
+			setIsLoading(false);
+		}
 	};
 
 	return (
@@ -98,8 +120,8 @@ export default function Page() {
 						)}
 					/>
 					<Button
-						loading={isExecuting}
-						disabled={isExecuting}
+						loading={isExecuting || isLoading}
+						disabled={isExecuting || isLoading}
 						loadingText="Sending Otp"
 						type="submit"
 						className="mt-6 w-full"
