@@ -25,7 +25,6 @@ export default function MedicalRecord() {
 	const searchParams = useSearchParams();
 	const parentId = searchParams.get('parentId') as string;
 	const petId = params?.petId as string;
-	console.log(show);
 
 	return (
 		<div className="mb-[54px]">

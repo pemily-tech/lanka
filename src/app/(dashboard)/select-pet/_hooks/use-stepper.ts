@@ -34,7 +34,9 @@ export function useStepperHook({ type }: { type: string }) {
 						? 'Add Vaccination Details'
 						: type === RecordTypes.Medical
 							? 'Add Medical Record Details'
-							: '',
+							: type === RecordTypes.Certificate
+								? 'Add Certificate Details'
+								: '',
 			schema: z.object({}),
 		}
 	);
