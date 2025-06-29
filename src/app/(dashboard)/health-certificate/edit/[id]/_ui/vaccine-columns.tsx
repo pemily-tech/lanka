@@ -13,17 +13,17 @@ export function useColumns(isCertificateSaved: boolean): ColumnDef<IVaccine>[] {
 	return [
 		{
 			accessorKey: 'name',
-			header: 'Name',
+			header: 'Vaccine Name',
 			cell: ({ row }) => <span>{row.original.name}</span>,
 		},
 		{
 			accessorKey: 'brand',
-			header: 'Brand',
+			header: 'Brand/Mfr.',
 			cell: ({ row }) => <span>{row.original.brand}</span>,
 		},
 		{
 			accessorKey: 'batch',
-			header: 'Batch',
+			header: 'Batch/Lot No.',
 			cell: ({ row }) => <span>{row.original.batch}</span>,
 		},
 		{
@@ -39,7 +39,7 @@ export function useColumns(isCertificateSaved: boolean): ColumnDef<IVaccine>[] {
 		},
 		{
 			accessorKey: 'dueDate',
-			header: 'Due On',
+			header: 'Due Date',
 			cell: ({ row }) => (
 				<span>
 					{row.original?.dueDate

@@ -59,7 +59,7 @@ export default function BasicDetails() {
 							</div>
 						)}
 						<div className="flex flex-row gap-1">
-							<span className="text-black/60">Contact: </span>
+							<span className="text-black/60">Phone: </span>
 							{(clinicDetails.primaryContact ||
 								clinicDetails.businessContact) && (
 								<a
