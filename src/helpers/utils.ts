@@ -10,6 +10,7 @@ import {
 import { twMerge } from 'tailwind-merge';
 
 import { useAuthStore } from '../store/user-auth';
+import { Routes } from './routes';
 
 export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
@@ -24,6 +25,8 @@ export const gstValidator = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/;
 export const logout = () => {
 	localStorage.removeItem('persist:root');
 	useAuthStore.getState().resetUser();
+	//TODO: need a better way to logout
+	window.location.href = Routes.LOGIN;
 };
 
 export const createFormDataForImage = (
