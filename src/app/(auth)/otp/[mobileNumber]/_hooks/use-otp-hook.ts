@@ -44,8 +44,6 @@ export default function useOtpHook() {
 		const combinedOtp = temp.join('');
 		if (combinedOtp.length === 6) {
 			if (type === 'login') {
-				console.log('hhh');
-
 				execute({
 					mobileNumber: params?.mobileNumber,
 					otp: combinedOtp,

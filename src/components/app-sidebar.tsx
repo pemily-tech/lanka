@@ -11,7 +11,7 @@ import {
 	UserRoundCheck,
 } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 import { useGetNavigation } from '../api/queries/use-get-navigation';
 import { logout } from '../helpers/utils';
@@ -47,6 +47,7 @@ import {
 	SidebarMenuSubItem,
 } from '../ui/sidebar';
 
+import { Routes } from '@/helpers/routes';
 import { BlurImage } from '@/ui/blur-image';
 
 const IconMap: Record<string, React.ElementType> = {
@@ -65,9 +66,11 @@ export const AppSidebar = () => {
 		if (!item.roles) return true;
 		return item.roles.includes(role);
 	});
+	const router = useRouter();
 
 	const handleLogout = () => {
 		logout();
+		router.replace(Routes.LOGIN);
 	};
 
 	return (

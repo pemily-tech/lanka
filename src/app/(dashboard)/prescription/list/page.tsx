@@ -107,6 +107,9 @@ export default function Page() {
 	const handleChange = (val: string) => {
 		setInput(val);
 		debouncedSearch(val);
+		if (page !== 0) {
+			handlePagination(0);
+		}
 	};
 
 	return (

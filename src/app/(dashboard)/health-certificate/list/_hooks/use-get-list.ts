@@ -68,6 +68,9 @@ export function useCertificateList() {
 	const handleChange = (val: string) => {
 		setInput(val);
 		debouncedSearch(val);
+		if (page !== 0) {
+			handlePagination(0);
+		}
 	};
 
 	const invalidateQueries = () => {
