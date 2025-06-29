@@ -1,16 +1,31 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useAction } from 'next-safe-action/hooks';
 
 import { signinAction } from '../_actions/signin-action';
+import { signupAction } from '../_actions/signup-action';
 
-export default function useOtpHook({ mobile }: { mobile: string }) {
+import { Roles } from '@/helpers/primitives';
+
+export default function useOtpHook() {
+	const params = useParams<{
+		mobileNumber: string;
+	}>();
+	const searchParams = useSearchParams();
+	const type = searchParams.get('type') ?? 'login';
+	const name = searchParams.get('name') ?? '';
+
 	const [otp, updateOtp] = useState<string[]>(Array(6).fill(''));
 	const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
 	const router = useRouter();
 	const { execute, result, isExecuting } = useAction(signinAction);
+	const {
+		execute: signupExecute,
+		result: signupResult,
+		isExecuting: isSignupExecuting,
+	} = useAction(signupAction);
 
 	const handleBack = () => {
 		router.back();
@@ -28,10 +43,21 @@ export default function useOtpHook({ mobile }: { mobile: string }) {
 
 		const combinedOtp = temp.join('');
 		if (combinedOtp.length === 6) {
-			execute({
-				mobileNumber: mobile,
-				otp: combinedOtp,
-			});
+			if (type === 'login') {
+				console.log('hhh');
+
+				execute({
+					mobileNumber: params?.mobileNumber,
+					otp: combinedOtp,
+				});
+			} else {
+				signupExecute({
+					mobileNumber: params?.mobileNumber,
+					otp: combinedOtp,
+					name: name,
+					role: Roles.Clinic,
+				});
+			}
 		}
 
 		if (value && i < otp.length - 1) {
@@ -65,5 +91,7 @@ export default function useOtpHook({ mobile }: { mobile: string }) {
 		handleBack,
 		isExecuting,
 		result,
+		signupResult,
+		isSignupExecuting,
 	};
 }

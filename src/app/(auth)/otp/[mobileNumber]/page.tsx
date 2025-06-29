@@ -20,7 +20,11 @@ import { AppConstants } from '@/helpers/primitives';
 import { Spinner } from '@/ui/spinner';
 
 export default function Page() {
-	const params = useParams<{ mobileNumber: string }>();
+	const params = useParams<{
+		mobileNumber: string;
+		type: string;
+		name: string;
+	}>();
 	const router = useRouter();
 	const verifyUser = useAuthStore((state) => state.verifyUser);
 
@@ -33,9 +37,9 @@ export default function Page() {
 		handleBack,
 		isExecuting,
 		result,
-	} = useOtpHook({
-		mobile: params?.mobileNumber ?? '',
-	});
+		signupResult,
+		isSignupExecuting,
+	} = useOtpHook();
 
 	useEffect(() => {
 		if (!result.data) {
@@ -59,9 +63,31 @@ export default function Page() {
 		}
 	}, [result, result.data, router]);
 
+	useEffect(() => {
+		if (!signupResult.data) {
+			return;
+		}
+
+		if (
+			signupResult.data &&
+			signupResult.data.status === AppConstants.Success &&
+			signupResult.data.data?.accessToken
+		) {
+			verifyUser(
+				signupResult.data.data?.accessToken ?? '',
+				signupResult.data.data?.refreshToken ?? '',
+				() => {
+					router.push(Routes.HOME);
+				}
+			);
+		} else {
+			toast.error(signupResult.data.msg ?? 'An error occurred');
+		}
+	}, [signupResult, signupResult.data, router]);
+
 	return (
 		<div>
-			<Dialog open={isExecuting}>
+			<Dialog open={isExecuting || isSignupExecuting}>
 				<DialogContent
 					onInteractOutside={(event) => event.preventDefault()}
 					showCloseButton={false}

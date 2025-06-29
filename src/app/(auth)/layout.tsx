@@ -41,14 +41,6 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 				</div>
 				<div className="col-span-1 flex flex-col bg-white">
 					<div className="flex flex-1 flex-col justify-center px-4">
-						<div className="flex items-center">
-							<p className="mb-4 mt-1 text-lg">
-								Welcome to{' '}
-								<span className="text-primary font-bold">
-									Pemilyy
-								</span>
-							</p>
-						</div>
 						{children}
 					</div>
 					<p className="px-4 py-6 text-center text-xs">

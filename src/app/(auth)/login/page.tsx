@@ -44,9 +44,15 @@ export default function Page() {
 		if (!result.data) {
 			return;
 		}
+
 		if (result.data.status === AppConstants.Success) {
 			toast.success(result.data.msg);
-			router.push(`otp/${form.getValues('mobileNumber')}`);
+			router.push(`otp/${form.getValues('mobileNumber')}?type=login`);
+		} else if (
+			result.data.status === AppConstants.Error &&
+			result.data.statusCode === 401
+		) {
+			router.push(`registration/${form.getValues('mobileNumber')}`);
 		} else {
 			toast.error(result.data.msg);
 		}
@@ -61,6 +67,12 @@ export default function Page() {
 
 	return (
 		<div className="flex flex-col gap-6">
+			<div className="flex items-center">
+				<p className="mb-4 mt-1 text-lg">
+					Welcome to{' '}
+					<span className="text-primary font-bold">Pemilyy</span>
+				</p>
+			</div>
 			<h4 className="text-left text-2xl font-semibold">
 				Get started with your 10 digit mobile number
 			</h4>
