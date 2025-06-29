@@ -21,7 +21,7 @@ export default function Filters({
 	const [hovered, setHovered] = useState(false);
 
 	return (
-		<div className="sticky top-0 z-20 grid grid-cols-5 gap-6 rounded-lg bg-white p-4 shadow-md">
+		<div className="sticky top-[76px] z-20 grid grid-cols-5 gap-6 rounded-lg bg-white p-4 shadow-md">
 			<div className="col-span-3 flex">
 				<div className="h-12  w-full max-w-80 flex-1">
 					<Command className="rounded-lg border border-border">

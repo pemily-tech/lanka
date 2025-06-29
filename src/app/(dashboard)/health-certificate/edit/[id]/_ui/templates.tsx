@@ -18,24 +18,13 @@ export default function Templates() {
 		({} as ICertificateTemplate);
 	const totalDateFields = templateDetails?.dateFields?.length ?? 0;
 	const totalSignatureFields = templateDetails?.signatureFields?.length ?? 0;
+
 	if (isPending) {
 		return <Spinner className="py-4" />;
 	}
 
 	return (
 		<div className="">
-			<div className="m-6">
-				{templateDetails?.descriptions?.map((description, i) => {
-					return (
-						<p
-							className="pb-4"
-							key={i}
-							dangerouslySetInnerHTML={{ __html: description }}
-						/>
-					);
-				})}
-			</div>
-			<Vaccines />
 			<div className={cn('flex  gap-10 mx-6', 'flex-col')}>
 				<div
 					className={cn(

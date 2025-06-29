@@ -17,12 +17,13 @@ export default function Vaccines() {
 	const vaccinesData = data?.data?.certificate?.vaccines || [];
 	const setVaccines = useVaccineStore((s) => s.setVaccines);
 	const vaccines = useVaccineStore((s) => s.vaccines);
+	const isCertificateSaved = !!data?.data?.certificate?.url;
 
 	useEffect(() => {
 		setVaccines(vaccinesData);
 	}, [data]);
 
-	const columns = useColumns();
+	const columns = useColumns(isCertificateSaved);
 
 	if (isPending) {
 		return <Spinner className="py-4" />;

@@ -40,7 +40,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 						initial="pageInitial"
 						animate="pageAnimate"
 						exit="pageExit"
-						className="min-h-[calc(100vh-72px)] bg-gray-100 p-4"
+						className="min-h-[calc(100vh-72px)] bg-gray-100 p-4 mt-[72px]"
 						variants={{
 							pageInitial: {
 								opacity: 0,

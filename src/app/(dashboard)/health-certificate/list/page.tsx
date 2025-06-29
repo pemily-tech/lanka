@@ -37,7 +37,7 @@ export default function Page() {
 
 	return (
 		<div>
-			<div className="sticky top-0 z-20 rounded-lg bg-white p-4 shadow-md">
+			<div className="sticky top-[76px] z-20 rounded-lg bg-white p-4 shadow-md">
 				<CommonFilters
 					selectedDate={selectedDateRange}
 					setDate={({ date }) => {

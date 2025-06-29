@@ -31,7 +31,7 @@ export function LayoutHeader() {
 	};
 
 	return (
-		<header className="flex h-[72px] shrink-0 items-center justify-between gap-3 border-b border-border bg-white px-4">
+		<header className="flex fixed top-0 w-full z-50 h-[72px] shrink-0 items-center justify-between gap-3 border-b border-border bg-white px-4">
 			<div className="flex items-center justify-between gap-3 py-6">
 				<div className="flex flex-row items-center gap-3">
 					{!isHome && (

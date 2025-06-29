@@ -9,7 +9,7 @@ import { DATE_FORMAT } from '@/helpers/constant';
 import { type IVaccine } from '@/types/health-certificate';
 import { Button } from '@/ui/button';
 
-export function useColumns(): ColumnDef<IVaccine>[] {
+export function useColumns(isCertificateSaved: boolean): ColumnDef<IVaccine>[] {
 	return [
 		{
 			accessorKey: 'name',
@@ -59,6 +59,7 @@ export function useColumns(): ColumnDef<IVaccine>[] {
 							onClick={() => setOpen(!open)}
 							size="icon"
 							variant="ghost"
+							disabled={isCertificateSaved}
 						>
 							<Pencil className="size-4" />
 						</Button>
