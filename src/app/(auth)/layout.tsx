@@ -6,11 +6,15 @@ import { useRouter } from 'next/navigation';
 
 import { Routes } from '../../helpers/routes';
 import { useAuthStore } from '../../store/user-auth';
-import { ImagePlaceholder } from '../../ui/shared/image';
+
+import MobileOnly from '@/components/mobile-only';
+import { useIsMobile } from '@/hooks/use-is-mobile';
+import { BlurImage } from '@/ui/blur-image';
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
 	const { loggedIn } = useAuthStore();
 	const router = useRouter();
+	const isMobile = useIsMobile();
 
 	useEffect(() => {
 		if (loggedIn) {
@@ -18,29 +22,28 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 		}
 	}, [loggedIn, router]);
 
+	if (isMobile) {
+		return <MobileOnly />;
+	}
+
 	return (
 		<section className="min-h-screen w-full overflow-hidden">
 			<div className="grid min-h-screen grid-cols-3 overflow-hidden">
 				<div className="bg-grey-4 col-span-2 flex items-center justify-center">
-					<ImagePlaceholder
+					<BlurImage
 						src="/images/bg.png"
+						className="size-full"
+						source="local"
+						width={2918}
+						height={2283}
 						imageClasses="object-cover"
-						containerClasses="w-full h-full"
 					/>
 				</div>
 				<div className="col-span-1 flex flex-col bg-white">
-					<div className="flex flex-1 flex-col  justify-center px-24">
-						<div className="mb-24 flex items-center">
-							<p className=" text-grey-text3 text-14 mb-16 mt-24">
-								Welcome to{' '}
-								<span className="font-semibold text-black">
-									Pemilyy
-								</span>
-							</p>
-						</div>
+					<div className="flex flex-1 flex-col justify-center px-4">
 						{children}
 					</div>
-					<p className="text-12 px-16 py-24 text-center">
+					<p className="px-4 py-6 text-center text-xs">
 						By clicking you agree to our{' '}
 						<Link
 							href="/"

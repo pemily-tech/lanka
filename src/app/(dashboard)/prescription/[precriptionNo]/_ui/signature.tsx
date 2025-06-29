@@ -1,10 +1,9 @@
 'use client';
 
-import { url } from 'inspector';
 import { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
-import { useGetDoctorSignature } from '../../../../../api/use-doctor-signature';
+import { useGetDoctorSignature } from '../../../../../api/queries/use-doctor-signature';
 import {
 	type IDoctorDetails,
 	type IPrescription,
@@ -14,6 +13,7 @@ import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useGetPrescriptionBasicDetails } from '../_api/use-get-details';
 
 import useDocumentDownload from '@/hooks/use-download-document';
+import { BlurImage } from '@/ui/blur-image';
 
 export default function Signature() {
 	const params = useParams();
@@ -42,15 +42,19 @@ export default function Signature() {
 	);
 
 	return (
-		<div className="flex flex-col items-end justify-center gap-12 pb-24">
-			<img
-				src={
-					isPrescriptionSaved
-						? url || signatureData?.data?.signatureUrl
-						: signatureData?.data?.signatureUrl
-				}
-				className="h-[42px] w-[120px]"
-			/>
+		<div className="flex flex-col items-end justify-center gap-3 pb-24">
+			{signatureData?.data?.signatureUrl && (
+				<BlurImage
+					src={
+						isPrescriptionSaved
+							? url || signatureData?.data?.signatureUrl
+							: signatureData?.data?.signatureUrl
+					}
+					className="h-[42px] w-[120px]"
+					width={120}
+					height={42}
+				/>
+			)}
 			<div className="flex flex-col items-end justify-end">
 				<p className="text-primary font-semibold">
 					{doctorDetails?.name}

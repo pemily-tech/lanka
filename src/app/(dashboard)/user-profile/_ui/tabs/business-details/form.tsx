@@ -1,4 +1,3 @@
-/* eslint-disable max-lines-per-function */
 'use client';
 
 import { useEffect } from 'react';
@@ -6,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
-import useUpdateBusiness from '../../../../../../api/use-update-business/update-business';
 import {
 	gstValidator,
 	panValidator,
@@ -14,16 +12,17 @@ import {
 } from '../../../../../../helpers/utils';
 import { useAuthStore } from '../../../../../../store/user-auth';
 import {
-	Button,
-	FloatingInput,
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from '../../../../../../ui/shared';
+} from '../../../../../../ui/form';
+import { FloatingInput } from '../../../../../../ui/input';
+import { useUpdateBusiness } from '../../../_api/update-business';
 
-import { useGetUser } from '@/api/user-details/user-details';
+import { useGetUser } from '@/api/queries/use-get-user-details';
+import { Button } from '@/ui/button';
 
 const schema = z.object({
 	ownerName: z.string().optional().or(z.literal('')),
@@ -90,14 +89,14 @@ const BusinessForm = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="rounded-12 mt-12 grid flex-1 grid-cols-2 gap-24 bg-white px-16 py-24"
+				className="grid flex-1 grid-cols-2 gap-6 rounded-xl bg-white px-4 py-2"
 			>
 				{[
 					['businessContact', 'Business Contact Number', 'numeric'],
 					['ownerName', 'Owner Name', 'text'],
 					['pan', 'PAN', 'text'],
 					['gstNo', 'GST No', 'text'],
-				].map(([name, label, type, placeholder]) => {
+				].map(([name, label, type]) => {
 					return (
 						<FormField
 							key={name}

@@ -7,22 +7,21 @@ import { useParams } from 'next/navigation';
 
 import { DATE_FORMAT } from '../../../../../helpers/constant';
 import { type IPrescription } from '../../../../../types/prescription';
+import { FloatingTextArea } from '../../../../../ui/text-area';
+import { useGetPrescriptionById } from '../_api/use-get-byid';
+import { useMedicineStore } from '../_store/medicine-store';
+
+import { Button } from '@/ui/button';
+import { Calendar } from '@/ui/calendar';
 import {
-	Button,
-	Calendar,
 	Dialog,
 	DialogClose,
 	DialogContent,
 	DialogFooter,
 	DialogHeader,
 	DialogTitle,
-	FloatingTextArea,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '../../../../../ui/shared';
-import { useGetPrescriptionById } from '../_api/use-get-byid';
-import { useMedicineStore } from '../_store/medicine-store';
+} from '@/ui/dialog';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
 
 type EditableDialogProps = {
 	title: string;
@@ -45,8 +44,8 @@ function EditableDialog({
 }: EditableDialogProps) {
 	return (
 		<Dialog open={open} onOpenChange={onOpenChange}>
-			<DialogContent>
-				<DialogHeader className="mb-24">
+			<DialogContent className="max-w-md">
+				<DialogHeader className="mb-2">
 					<DialogTitle>{title}</DialogTitle>
 				</DialogHeader>
 				<FloatingTextArea
@@ -55,9 +54,9 @@ function EditableDialog({
 					value={value}
 					onChange={(e) => onChange(e.target.value)}
 				/>
-				<DialogFooter className="mt-24 gap-24">
-					<DialogClose>Close</DialogClose>
-					<Button size="lg" onClick={onConfirm}>
+				<DialogFooter className="mt-1 gap-6">
+					<DialogClose className="cursor-pointer">Close</DialogClose>
+					<Button className="px-6" onClick={onConfirm}>
 						Confirm
 					</Button>
 				</DialogFooter>
@@ -87,19 +86,18 @@ export default function AdviceFollowup() {
 	}, [prescription]);
 
 	return (
-		<div className="flex flex-col gap-16 px-16 py-24">
-			<div className="flex flex-row items-center gap-8">
+		<div className="flex flex-col gap-4 px-4 py-6">
+			<div className="flex flex-row items-center gap-2">
 				<Button
 					onClick={
 						isPrescriptionSaved
 							? () => null
 							: () => setOpenAdvice(true)
 					}
-					className="flex cursor-pointer flex-row items-center gap-4 px-4"
+					className="flex cursor-pointer flex-row items-center gap-1 px-4"
 					variant="ghost"
-					size="lg"
 				>
-					<Plus className="text-primary size-16" />
+					<Plus className="text-primary size-4" />
 					<span className="text-primary font-medium">Advice: </span>
 				</Button>
 				<span>
@@ -110,11 +108,11 @@ export default function AdviceFollowup() {
 				<Popover>
 					<PopoverTrigger asChild>
 						<Button
-							className="flex cursor-pointer flex-row items-center gap-8 px-4"
+							className="flex cursor-pointer flex-row items-center gap-2 px-4"
 							variant="ghost"
 							size="lg"
 						>
-							<CalendarIcon className="text-primary size-16" />
+							<CalendarIcon className="text-primary size-4" />
 							<span className="text-primary font-medium">
 								Follow-up On:
 							</span>
@@ -130,7 +128,7 @@ export default function AdviceFollowup() {
 						</Button>
 					</PopoverTrigger>
 					{!isPrescriptionSaved && (
-						<PopoverContent className="w-auto p-0">
+						<PopoverContent className="w-full">
 							<Calendar
 								mode="single"
 								selected={follwup ?? undefined}

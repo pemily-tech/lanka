@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
 import { ArrowLeft } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { toast } from 'sonner';
@@ -14,12 +13,18 @@ import {
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
-	Spinner,
-} from '../../../../ui/shared';
+} from '../../../../ui/dialog';
 import useOtpHook from './_hooks/use-otp-hook';
 
+import { AppConstants } from '@/helpers/primitives';
+import { Spinner } from '@/ui/spinner';
+
 export default function Page() {
-	const params = useParams<{ mobileNumber: string }>();
+	const params = useParams<{
+		mobileNumber: string;
+		type: string;
+		name: string;
+	}>();
 	const router = useRouter();
 	const verifyUser = useAuthStore((state) => state.verifyUser);
 
@@ -32,9 +37,9 @@ export default function Page() {
 		handleBack,
 		isExecuting,
 		result,
-	} = useOtpHook({
-		mobile: params?.mobileNumber ?? '',
-	});
+		signupResult,
+		isSignupExecuting,
+	} = useOtpHook();
 
 	useEffect(() => {
 		if (!result.data) {
@@ -43,7 +48,7 @@ export default function Page() {
 
 		if (
 			result.data &&
-			result.data.status === 'SUCCESS' &&
+			result.data.status === AppConstants.Success &&
 			result.data.data?.accessToken
 		) {
 			verifyUser(
@@ -58,39 +63,61 @@ export default function Page() {
 		}
 	}, [result, result.data, router]);
 
+	useEffect(() => {
+		if (!signupResult.data) {
+			return;
+		}
+
+		if (
+			signupResult.data &&
+			signupResult.data.status === AppConstants.Success &&
+			signupResult.data.data?.accessToken
+		) {
+			verifyUser(
+				signupResult.data.data?.accessToken ?? '',
+				signupResult.data.data?.refreshToken ?? '',
+				() => {
+					router.push(Routes.HOME);
+				}
+			);
+		} else {
+			toast.error(signupResult.data.msg ?? 'An error occurred');
+		}
+	}, [signupResult, signupResult.data, router]);
+
 	return (
 		<div>
-			<Dialog open={isExecuting}>
+			<Dialog open={isExecuting || isSignupExecuting}>
 				<DialogContent
 					onInteractOutside={(event) => event.preventDefault()}
 					showCloseButton={false}
-					className="w-[150px]"
+					className="flex size-42 flex-col items-center justify-center gap-3"
 				>
-					<DialogHeader>
+					<DialogHeader className="hidden">
 						<DialogTitle></DialogTitle>
 						<DialogDescription></DialogDescription>
 					</DialogHeader>
 					<Spinner />
-					<span className="text-14 text-center font-medium">
+					<span className="text-center text-sm font-medium">
 						Setting up user...
 					</span>
 				</DialogContent>
 			</Dialog>
-			<div onClick={handleBack} className="flex items-center gap-12">
-				<div className="flex size-32 cursor-pointer items-center justify-center">
+			<div onClick={handleBack} className="flex items-center gap-3">
+				<div className="flex size-8 cursor-pointer items-center justify-center">
 					<ArrowLeft width={24} height={24} />
 				</div>
-				<span className="text-left text-[32px] font-semibold leading-[42px]">
+				<span className="text-left text-2xl font-semibold">
 					Enter 6 digit OTP code
 				</span>
 			</div>
-			<div className="text-14 text-grey-text3 my-12">
+			<div className="my-3 text-sm text-black/50">
 				OTP sent to{' '}
-				<span className="text-black-1 font-medium">
+				<span className="font-medium text-black">
 					+91-{params?.mobileNumber}
 				</span>
 			</div>
-			<div className="mt-24 flex gap-12">
+			<div className="flex gap-4 pt-6">
 				{otp.map((_, i) => (
 					<input
 						key={i}
@@ -99,8 +126,8 @@ export default function Page() {
 								otpRefs.current[i] = input;
 							}
 						}}
-						className="leading-16 rounded-8 focus:ring-brand border-grey-divider text-24 size-[52px] border px-12 text-center  font-medium outline-none transition
-   duration-300 ease-in-out focus:border-none focus:shadow-sm focus:outline-none focus:ring-2 focus:ring-opacity-90"
+						className="focus:ring-primary focus:ring-opacity/90 size-12 rounded-lg border border-gray-300 px-3 text-center text-xl font-medium
+   outline-none transition duration-300 ease-in-out focus:border-none focus:shadow-sm focus:outline-none focus:ring-2"
 						onChange={(e) => handleOtpChange(e, i)}
 						onKeyDown={(e) => handleKeyDown(e, i)}
 						value={(otp[i] ?? '') as string}

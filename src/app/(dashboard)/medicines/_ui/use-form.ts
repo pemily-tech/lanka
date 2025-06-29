@@ -9,6 +9,8 @@ import { useGetMedicineById } from '../_api/use-get-medicine-byid';
 import { useUpdateMedicine } from '../_api/use-update-medicine';
 import { type IFormData, schema } from './schema';
 
+import { AppConstants } from '@/helpers/primitives';
+
 export const useMedicineForm = (type: 'UPDATE' | 'CREATE') => {
 	const params = useParams();
 	const router = useRouter();
@@ -27,14 +29,12 @@ export const useMedicineForm = (type: 'UPDATE' | 'CREATE') => {
 		defaultValues: useMemo(
 			() => ({
 				name: medicine?.name ?? '',
-				// brand: medicine?.brand ?? '',
 				dose: medicine?.dose ?? '',
 				duration: medicine?.duration ?? '',
 				frequency: medicine?.frequency ?? '',
 				strength: medicine?.strength ?? '',
 				interval: medicine?.interval ?? '',
 				take: medicine?.take ?? '',
-				// diagnosis: medicine?.diagnosis ?? '',
 				active: medicine?.active ?? true,
 			}),
 			[medicine]
@@ -45,14 +45,12 @@ export const useMedicineForm = (type: 'UPDATE' | 'CREATE') => {
 		if (medicine && Object.keys(medicine).length > 0) {
 			form.reset({
 				name: medicine?.name ?? '',
-				// brand: medicine?.brand ?? '',
 				dose: medicine?.dose ?? '',
 				duration: medicine?.duration ?? '',
 				frequency: medicine?.frequency ?? '',
 				strength: medicine?.strength ?? '',
 				interval: medicine?.interval ?? '',
 				take: medicine?.take ?? '',
-				// diagnosis: medicine?.diagnosis ?? '',
 				active: medicine?.active ?? false,
 			});
 		}
@@ -63,12 +61,13 @@ export const useMedicineForm = (type: 'UPDATE' | 'CREATE') => {
 			updateMedicine(values);
 		} else {
 			const { active, ...tempPayload } = values;
+			void active;
 			const response = await createMedicine(tempPayload);
-			if (response.status === 'SUCCESS') {
+			if (response.status === AppConstants.Success) {
 				router.back();
 			}
 		}
 	};
 
-	return { form, onSubmit, isUpdaing: isPending, isCreating: isLoading };
+	return { form, onSubmit, isUpdating: isPending, isCreating: isLoading };
 };

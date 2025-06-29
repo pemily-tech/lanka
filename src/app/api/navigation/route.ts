@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { v4 as uuidv4 } from 'uuid';
 
 import { Routes } from '../../../helpers/routes';
 import { type INavigationItem } from '../../../types/common';
@@ -7,16 +8,16 @@ import { Roles } from '@/helpers/primitives';
 
 const data: INavigationItem[] = [
 	{
-		id: 1,
+		id: uuidv4(),
 		type: 'link',
 		path: Routes.HOME,
 		title: 'Home',
-		isIcon: true,
-		icon: 'House',
+		isIcon: false,
+		icon: '/images/Home.svg',
 		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
-		id: 12,
+		id: uuidv4(),
 		type: 'link',
 		path: Routes.MEDICAL_RECORDS,
 		title: 'Medical Records',
@@ -25,7 +26,7 @@ const data: INavigationItem[] = [
 		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
-		id: 12,
+		id: uuidv4(),
 		type: 'link',
 		path: Routes.VACCINATION_RECORDS,
 		title: 'Vaccination Records',
@@ -34,7 +35,7 @@ const data: INavigationItem[] = [
 		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
-		id: 2,
+		id: uuidv4(),
 		type: 'link',
 		path: Routes.FOLLOW_UP,
 		title: 'Follow Up',
@@ -43,7 +44,7 @@ const data: INavigationItem[] = [
 		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
-		id: 19,
+		id: uuidv4(),
 		type: 'link',
 		path: '/pet-parents',
 		title: 'Pet Parents',
@@ -52,16 +53,25 @@ const data: INavigationItem[] = [
 		roles: [Roles.Clinic, Roles.Staff],
 	},
 	{
-		id: 3,
+		id: uuidv4(),
+		type: 'link',
+		path: Routes.HEALTH_CERTIFICATE_LIST,
+		title: 'Health Certificate',
+		isIcon: false,
+		icon: '/images/Health-Certificate.svg',
+		roles: [Roles.Clinic, Roles.Staff],
+	},
+	{
+		id: uuidv4(),
 		type: 'menu',
-		path: '/items/list',
+		path: Routes.ITEMS_LIST,
 		title: 'ePrescription',
-		isIcon: true,
-		icon: 'Pill',
+		isIcon: false,
+		icon: '/images/ePrescription.svg',
 		roles: [Roles.Clinic],
 		items: [
 			{
-				id: 3,
+				id: uuidv4(),
 				type: 'link',
 				path: Routes.PRESCRIPTION_LIST,
 				title: 'Rx & SOAP',
@@ -69,7 +79,7 @@ const data: INavigationItem[] = [
 				roles: [Roles.Clinic],
 			},
 			{
-				id: 4,
+				id: uuidv4(),
 				type: 'link',
 				path: Routes.MEDICINES_LIST,
 				title: 'My Medications',
@@ -79,12 +89,12 @@ const data: INavigationItem[] = [
 		],
 	},
 	{
-		id: 9,
+		id: uuidv4(),
 		type: 'link',
-		path: '/user-profile',
+		path: Routes.USER_PROFILE,
 		title: 'Profile',
-		isIcon: true,
-		icon: 'UserCircleIcon',
+		isIcon: false,
+		icon: '/images/Profile.svg',
 		roles: [Roles.Clinic, Roles.Staff],
 	},
 ];

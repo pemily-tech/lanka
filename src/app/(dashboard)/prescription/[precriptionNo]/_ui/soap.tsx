@@ -8,17 +8,19 @@ import { z } from 'zod';
 
 import { type ISoap } from '../../../../../types/prescription';
 import {
-	Button,
-	FloatingTextArea,
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-	Spinner,
-} from '../../../../../ui/shared';
+} from '../../../../../ui/form';
+import { FloatingTextArea } from '../../../../../ui/text-area';
 import { useGetPrescriptionSoap } from '../_api/use-get-soap';
 import { useUpdateSoap } from '../_api/use-update.soap';
+
+import { AppConstants } from '@/helpers/primitives';
+import { Button } from '@/ui/button';
+import Spinner from '@/ui/spinner';
 
 const schema = z.object({
 	subjective: z.string().optional().or(z.literal('')),
@@ -63,7 +65,7 @@ export default function Soap() {
 
 	const onSubmit = async (values: IFormData) => {
 		const response = await updateSoap(values);
-		if (response.status === 'SUCCESS') {
+		if (response.status === AppConstants.Success) {
 			refetch();
 		}
 	};
@@ -73,12 +75,12 @@ export default function Soap() {
 	}
 
 	return (
-		<div className="my-24 pr-16">
-			<h3 className="mb-12 font-semibold">SOAP</h3>
+		<div className="my-6 pr-4">
+			<h3 className="mb-3 font-semibold">SOAP</h3>
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="grid grid-cols-1 gap-24"
+					className="grid grid-cols-1 gap-6"
 				>
 					{[
 						['subjective', 'Subjective'],

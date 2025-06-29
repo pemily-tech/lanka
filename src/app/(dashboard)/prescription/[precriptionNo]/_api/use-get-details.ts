@@ -10,7 +10,7 @@ const prescriptionBasicDetails = async ({
 	const [_key, id] = queryKey;
 	const { data } = await HttpService.get<
 		IApiResponse<{ prescriptionBasicDetails: IPrescriptionBasicDetails }>
-	>(`/prescription/basicDetails/${id}`);
+	>(`/${_key}/${id}`);
 	return data;
 };
 

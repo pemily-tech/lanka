@@ -1,5 +1,5 @@
 import { type IMedicine } from '../../../../../../types/prescription';
-import { DataTable } from '../../../../../../ui/shared/data-table';
+import { DataTable } from '../../../../../../ui/data-table';
 import { useColumns } from './medicine-columns';
 
 export default function SelectedMedicines({
@@ -12,7 +12,7 @@ export default function SelectedMedicines({
 	const columns = useColumns(isPrescriptionSaved);
 
 	return (
-		<div className="mt-12 max-h-[380px] min-h-[280px] overflow-y-scroll">
+		<div className="mt-3 max-h-[380px] min-h-[280px] overflow-y-scroll">
 			{selectedMedicines.length > 0 && (
 				<DataTable
 					columns={columns}

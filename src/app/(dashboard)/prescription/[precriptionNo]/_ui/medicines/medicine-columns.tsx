@@ -12,16 +12,19 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-	Button,
+} from '../../../../../../ui/alert';
+import { useMedicineStore } from '../../_store/medicine-store';
+import UpdateMedicine from './update-medicine';
+
+import { Button } from '@/ui/button';
+import {
 	Dialog,
 	DialogContent,
 	DialogDescription,
 	DialogHeader,
 	DialogTitle,
 	DialogTrigger,
-} from '../../../../../../ui/shared';
-import { useMedicineStore } from '../../_store/medicine-store';
-import UpdateMedicine from './update-medicine';
+} from '@/ui/dialog';
 
 export function useColumns(
 	isPrescriptionSaved: boolean
@@ -72,15 +75,15 @@ export function useColumns(
 					return null;
 				}
 				return (
-					<div className="flex items-center gap-12">
+					<div className="flex items-center gap-3">
 						<Dialog>
 							<DialogTrigger asChild>
 								<Button size="icon" variant="ghost">
-									<Pencil className="size-18" />
+									<Pencil className="size-4" />
 								</Button>
 							</DialogTrigger>
-							<DialogContent className="min-w-[720px]">
-								<DialogHeader className="border-b">
+							<DialogContent className="max-w-[720px]">
+								<DialogHeader className="border-b border-border">
 									<DialogTitle>Update Medicine</DialogTitle>
 									<DialogDescription></DialogDescription>
 								</DialogHeader>
@@ -90,31 +93,31 @@ export function useColumns(
 						<AlertDialog>
 							<AlertDialogTrigger asChild>
 								<Button size="icon" variant="ghost">
-									<Trash2 className="size-18 text-destructive" />
+									<Trash2 className="text-destructive size-4" />
 								</Button>
 							</AlertDialogTrigger>
-							<AlertDialogContent className="gap-24">
+							<AlertDialogContent className="gap-6">
 								<AlertDialogHeader>
-									<AlertDialogTitle className="text-24">
+									<AlertDialogTitle className="text-2xl">
 										Delete
 									</AlertDialogTitle>
 									<AlertDialogDescription>
 										Are you sure you want to delete?
 									</AlertDialogDescription>
 								</AlertDialogHeader>
-								<AlertDialogFooter className="!pt-32">
+								<AlertDialogFooter className="!pt-2">
 									<AlertDialogAction
 										onClick={() =>
 											removeMedicine(
 												row.original.medicineId
 											)
 										}
-										className="px-24"
+										className="px-6"
 									>
 										Confirm
 									</AlertDialogAction>
 									<AlertDialogCancel>
-										<span className="text-14">Cancel</span>
+										<span className="text-sm">Cancel</span>
 									</AlertDialogCancel>
 								</AlertDialogFooter>
 							</AlertDialogContent>

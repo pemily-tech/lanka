@@ -2,7 +2,6 @@ import axios, { type AxiosError, type AxiosResponse } from 'axios';
 
 import { logout } from '../helpers/utils';
 import { useAuthStore } from '../store/user-auth';
-// eslint-disable-next-line import/no-cycle
 import { ResetTokenAndReattemptRequest } from './reattempt-token.service';
 
 import { env } from '@/env.mjs';
@@ -53,7 +52,11 @@ HttpService.interceptors.response.use(
 				error.response.data?.msg === 'jwt expired'
 			) {
 				return ResetTokenAndReattemptRequest(error.response);
-			} else if (error.response.data?.msg === 'Inactive user!') {
+			} else if (
+				['Log out!', 'Inactive user!'].includes(
+					error.response.data?.msg
+				)
+			) {
 				logout();
 			}
 			const message =
@@ -74,8 +77,6 @@ HttpService.interceptors.response.use(
 				new Error('Unexpected error occurred. Please try again.')
 			);
 		}
-
-		return Promise.reject(error);
 	}
 );
 

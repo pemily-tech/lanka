@@ -5,7 +5,7 @@ import { HttpService } from '../../../../services/http-service';
 import { type IApiResponse } from '../../../../types/common';
 import { type IMedicine } from '../../../../types/prescription';
 
-import { env } from '@/env.mjs';
+import { AppConstants } from '@/helpers/primitives';
 
 interface IPayload {
 	name: string;
@@ -20,22 +20,17 @@ interface IPayload {
 }
 
 const createMedicine = async (payload: IPayload) => {
-	try {
-		const { data } = await HttpService.post<
-			IApiResponse<{ medicine: IMedicine }>
-		>(`${env.NEXT_PUBLIC_BASE_PATH}/medicine/create`, payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.post<
+		IApiResponse<{ medicine: IMedicine }>
+	>(`/medicine/create`, payload);
+	return data;
 };
 
 export const useCreateMedicine = () => {
 	return useMutation({
 		mutationFn: (payload: IPayload) => createMedicine(payload),
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Updated Successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

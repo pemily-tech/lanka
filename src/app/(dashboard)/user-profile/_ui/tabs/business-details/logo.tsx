@@ -5,10 +5,11 @@ import { type FileRejection, useDropzone } from 'react-dropzone';
 import { Camera, Check, UserIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
-import useGetClinicLogo from '@/api/get-clinic-logo';
-import useUploadClinicLogo from '@/api/upload-clinic-logo';
+import { useUploadClinicLogo } from '@/api/mutations/upload-clinic-logo';
+import { useGetClinicLogo } from '@/api/queries/use-get-clinic-logo';
 import { MAX_SIZE_500 } from '@/helpers/constant';
 import { createFormDataForImage } from '@/helpers/utils';
+import { BlurImage } from '@/ui/blur-image';
 
 const Logo = () => {
 	const { data } = useGetClinicLogo();
@@ -54,23 +55,24 @@ const Logo = () => {
 		<div className="w-[200px]">
 			<div
 				{...getRootProps()}
-				className="border-primary-1 relative flex size-[200px] cursor-pointer items-center justify-center rounded-full border"
+				className="border-primary relative flex size-[200px] cursor-pointer items-center justify-center rounded-full border-2"
 			>
 				<input {...getInputProps()} />
 				{isUrlExists ? (
-					<img
-						alt="logo"
+					<BlurImage
 						src={data?.data?.logoUrl as string}
 						className="size-[200px] rounded-full object-cover"
+						width={200}
+						height={200}
 					/>
 				) : (
 					<UserIcon width={120} height={120} />
 				)}
-				<div className="bg-primary absolute bottom-14 right-24 rounded-full p-[2px] ring-2 ring-white">
+				<div className="bg-primary absolute bottom-3 right-6 rounded-full p-[2px] ring-2 ring-white">
 					{isUrlExists ? (
-						<Check className="size-18 text-white" />
+						<Check className="size-4 text-white" />
 					) : (
-						<Camera className="size-24 p-2 text-white" />
+						<Camera className="size-6 p-1 text-white" />
 					)}
 				</div>
 			</div>

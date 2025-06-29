@@ -17,11 +17,13 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-	Button,
-} from '../../../../../../ui/shared';
+} from '../../../../../../ui/alert';
 import { useGetAttatchDocs } from '../../_api/use-get-attatch-docs';
 import { useRemoveAttachDoc } from '../../_api/use-remove-docs';
 import { useShareDoc } from '../../_api/use-share-doc';
+
+import { AppConstants } from '@/helpers/primitives';
+import { Button } from '@/ui/button';
 
 export default function DocsList({ type }: { type: string }) {
 	const params = useParams();
@@ -31,7 +33,7 @@ export default function DocsList({ type }: { type: string }) {
 		data?.data?.attachedDocuments || ({} as IAttachedDocuments);
 
 	return (
-		<div className="mt-4 flex flex-col gap-12">
+		<div className="mt-4 flex flex-col gap-3">
 			{attachDocs.attachedDocuments?.map((doc) => {
 				return (
 					<Doc
@@ -65,7 +67,7 @@ function Doc({
 
 	const handelRemove = async (id: string) => {
 		const response = await removeDoc({ attachedDocumentId: id });
-		if (response.status === 'SUCCESS') {
+		if (response.status === AppConstants.Success) {
 			queryClient.invalidateQueries({
 				queryKey: [
 					'prescription/attachedDocuments',
@@ -82,20 +84,20 @@ function Doc({
 
 	return (
 		<div
-			className="flex flex-row items-center gap-12 rounded-lg border p-12"
+			className="flex flex-row items-center gap-3 rounded-lg border border-border p-3"
 			key={doc?._id}
 		>
 			<a href={url} target="_blank" className="size-[54px]">
 				<img src="/images/pdf.png" />
 			</a>
-			<div className="flex flex-1 flex-row items-center justify-end gap-8">
+			<div className="flex flex-1 flex-row items-center justify-end gap-2">
 				<Button
 					onClick={() => window.open(url)}
 					size="icon"
 					variant="ghost"
 					disabled={isPending}
 				>
-					<Eye className="size-18" />
+					<Eye className="size-4" />
 				</Button>
 				<AlertDialog>
 					<AlertDialogTrigger asChild>
@@ -104,12 +106,12 @@ function Doc({
 							variant="ghost"
 							disabled={isPending}
 						>
-							<Share className="size-18" />
+							<Share className="size-4" />
 						</Button>
 					</AlertDialogTrigger>
-					<AlertDialogContent className="gap-24">
+					<AlertDialogContent className="gap-6">
 						<AlertDialogHeader>
-							<AlertDialogTitle className="text-24">
+							<AlertDialogTitle className="text-2xl">
 								Share Prescription
 							</AlertDialogTitle>
 							<AlertDialogDescription>
@@ -117,46 +119,45 @@ function Doc({
 								through WhatsApp and Pemilyy app.
 							</AlertDialogDescription>
 						</AlertDialogHeader>
-						<AlertDialogFooter className="!pt-32">
+						<AlertDialogFooter className="!pt-2">
 							<AlertDialogAction
 								onClick={() => handelShare(doc._id)}
-								className="bg-secondary hover:bg-secondary/90 px-24 text-white hover:text-white"
+								className="bg-secondary hover:bg-secondary/90 px-6 text-white hover:text-white"
 							>
 								Confirm
 							</AlertDialogAction>
-							<AlertDialogCancel className="bg-transparent hover:bg-transparent">
-								<span className="text-14 text-black-1 font-normal">
+							<AlertDialogCancel className="bg-transparent px-6 hover:bg-transparent">
+								<span className="text-sm font-normal text-black">
 									Cancel
 								</span>
 							</AlertDialogCancel>
 						</AlertDialogFooter>
 					</AlertDialogContent>
 				</AlertDialog>
-
 				<AlertDialog>
 					<AlertDialogTrigger asChild>
 						<Button size="icon" variant="ghost">
-							<Trash2 className="size-18 text-destructive" />
+							<Trash2 className="text-destructive size-4" />
 						</Button>
 					</AlertDialogTrigger>
-					<AlertDialogContent className="gap-24">
+					<AlertDialogContent className="gap-6">
 						<AlertDialogHeader>
-							<AlertDialogTitle className="text-24">
+							<AlertDialogTitle className="text-2xl">
 								Delete
 							</AlertDialogTitle>
 							<AlertDialogDescription>
 								Are you sure you want to delete?
 							</AlertDialogDescription>
 						</AlertDialogHeader>
-						<AlertDialogFooter className="!pt-32">
+						<AlertDialogFooter className="!pt-2">
 							<AlertDialogAction
 								onClick={() => handelRemove(doc._id)}
-								className="px-24"
+								className="px-6"
 							>
 								Confirm
 							</AlertDialogAction>
 							<AlertDialogCancel>
-								<span className="text-14">Cancel</span>
+								<span className="px-6 text-sm">Cancel</span>
 							</AlertDialogCancel>
 						</AlertDialogFooter>
 					</AlertDialogContent>

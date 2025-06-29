@@ -10,7 +10,7 @@ import {
 	TabsContent,
 	TabsList,
 	TabsTrigger,
-} from '../../../../../ui/shared/tabs';
+} from '../../../../../ui/tabs';
 import AddressForm from './address';
 import BusinessDetails from './business-details';
 import Contact from './contact';
@@ -77,12 +77,14 @@ export default function UserTabs() {
 	return (
 		<div className="w-full">
 			<Tabs value={type} onValueChange={handleChange}>
-				<TabsList className="mb-12 w-full max-w-3xl justify-start rounded-none border-b bg-white">
+				<TabsList className="mb-3 w-full max-w-3xl justify-start rounded-none border-b border-border bg-white">
 					{filteredTabs.map((tab) => (
 						<TabsTrigger
 							key={tab.value}
-							className="flex-1 py-12"
+							className="flex-1 py-3 !bg-white rounded-none !shadow-none"
 							value={tab.value}
+							data-umami-event="user_profile_tabs_button"
+							data-umami-event-id={tab.value}
 						>
 							{tab.label}
 						</TabsTrigger>

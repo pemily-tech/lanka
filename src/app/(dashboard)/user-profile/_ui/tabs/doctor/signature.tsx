@@ -5,11 +5,13 @@ import { toast } from 'sonner';
 
 import { useUploadDoctorSignature } from '../../../_api/use-upload-doctor-signature';
 
-import { useGetDoctorSignature } from '@/api/use-doctor-signature';
+import { useGetDoctorSignature } from '@/api/queries/use-doctor-signature';
 import { MAX_SIZE_500 } from '@/helpers/constant';
+import { AppConstants } from '@/helpers/primitives';
 import { createFormDataForImage } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IDoctor } from '@/types/common';
+import { BlurImage } from '@/ui/blur-image';
 
 export default function Signature({ doctor }: { doctor: IDoctor }) {
 	const { data: signatureData } = useGetDoctorSignature({
@@ -27,7 +29,7 @@ export default function Signature({ doctor }: { doctor: IDoctor }) {
 					'file'
 				);
 				const response = await uploadSignature(formData);
-				if (response.status === 'SUCCESS') {
+				if (response.status === AppConstants.Success) {
 					queryClient.invalidateQueries({
 						queryKey: ['clinic/signatureUrl', doctor.doctorId],
 					});
@@ -59,26 +61,29 @@ export default function Signature({ doctor }: { doctor: IDoctor }) {
 	});
 
 	return (
-		<div className="mb-16 border-b pb-16">
-			<h4 className="text-black-1/80 mb-12 font-semibold">
+		<div className="mb-4 border-b border-border pb-4">
+			<h4 className="mb-3 font-semibold text-black/80">
 				Doctor eSignature:
 			</h4>
 			<div className="flex items-center justify-between">
 				{signatureData?.data?.signatureUrl ? (
 					<div className="cursor-pointer" {...getRootProps()}>
-						<img
+						<BlurImage
 							src={signatureData?.data?.signatureUrl}
-							className="h-[64px] w-[240px] border-none bg-contain"
+							className="h-[64px] w-[240px] border-none"
+							width={240}
+							height={64}
+							imageClasses="bg-contain rounded-md"
 						/>
 						<input {...getInputProps()} />
 					</div>
 				) : (
 					<div
 						{...getRootProps()}
-						className="bg-secondary flex cursor-pointer items-center gap-6 rounded-xl px-16 py-12 text-white"
+						className="bg-secondary flex cursor-pointer items-center gap-1 rounded-xl px-4 py-3 text-white"
 					>
-						<Plus className="size-16" />
-						<span>Upload eSignature</span>
+						<Plus className="size-4" />
+						<span className="font-medium">Upload eSignature</span>
 						<input {...getInputProps()} />
 					</div>
 				)}

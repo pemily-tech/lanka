@@ -2,20 +2,12 @@
 
 import { useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
-import { Pill } from 'lucide-react';
-import Link from 'next/link';
 
-import { Routes } from '../../../../helpers/routes';
+import { useUpdateUrl } from '../../../../hooks/use-update-url';
 import { type IMedicine } from '../../../../types/prescription';
-import { PaginationWithLinks } from '../../../../ui/shared';
-import { DataTable } from '../../../../ui/shared/data-table';
-import {
-	Tooltip,
-	TooltipContent,
-	TooltipTrigger,
-} from '../../../../ui/shared/tooltip';
+import { DataTable } from '../../../../ui/data-table';
+import { PaginationWithLinks } from '../../../../ui/pagination-with-links';
 import { useGetMedicines } from './_api/use-get-medicines';
-import { useUpdateUrl } from './_hooks/use-update-url';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
 
@@ -39,6 +31,7 @@ export default function Page() {
 		count: 1,
 		searchTerm,
 		active,
+		limit,
 	});
 
 	const medicineData = data?.data?.medicines || ([] as IMedicine[]);
@@ -46,7 +39,7 @@ export default function Page() {
 
 	return (
 		<div className="mb-[54px]">
-			<div className="rounded-8 shadow-card1 bg-white p-16">
+			<div className="rounded-lg bg-white p-4 shadow-md">
 				<Filters
 					value={input}
 					setValue={handleChange}
@@ -54,7 +47,7 @@ export default function Page() {
 					setActive={setActive}
 				/>
 			</div>
-			<div className="shadow-card1 rounded-8 relative my-12 bg-white">
+			<div className="relative my-3 rounded-lg bg-white shadow-md">
 				<DataTable
 					columns={columns}
 					data={medicineData}
@@ -69,22 +62,8 @@ export default function Page() {
 				totalCount={totalCount ?? 0}
 				handlePagination={handlePagination}
 				limit={limit}
-				className="flex flex-1 items-center justify-end gap-12"
+				className="flex flex-1 items-center justify-end gap-3"
 			/>
-			<Tooltip>
-				<TooltipTrigger asChild>
-					<Link
-						className="bg-purple shadow-card1 fixed bottom-[12px] right-[12px] flex size-[48px] cursor-pointer items-center justify-center rounded-full border-2 border-white transition-transform duration-200 hover:scale-110"
-						href={Routes.MEDICINES_CREATE}
-						data-umami-event="create_medicine_sticky_button"
-					>
-						<Pill className="text-white" />
-					</Link>
-				</TooltipTrigger>
-				<TooltipContent className="border-purple rounded-2xl border bg-white px-12 py-6">
-					<p className="text-black-1">Create Medicine</p>
-				</TooltipContent>
-			</Tooltip>
 		</div>
 	);
 }

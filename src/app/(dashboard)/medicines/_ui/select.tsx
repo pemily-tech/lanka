@@ -1,16 +1,19 @@
-import useGetDropdownList from '../../../../api/use-get-dropdown-list/get-dropdown-list';
 import {
 	FormControl,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
+} from '../../../../ui/form';
+
+import { useGetDropdownList } from '@/api/queries/use-get-dropdownlist';
+import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../ui/shared';
+} from '@/ui/select';
 
 export default function SelectField({
 	apiKey,
@@ -37,10 +40,7 @@ export default function SelectField({
 						value={selectField.value}
 					>
 						<FormControl>
-							<SelectTrigger
-								isError={!!fieldState.error}
-								className="!mt-6 bg-white"
-							>
+							<SelectTrigger className="!mt-1 bg-white w-full">
 								<SelectValue placeholder="Select a type" />
 							</SelectTrigger>
 						</FormControl>

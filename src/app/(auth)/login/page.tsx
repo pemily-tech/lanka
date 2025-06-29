@@ -9,16 +9,18 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { phoneValidator } from '../../../helpers/utils';
-import { Button } from '../../../ui/shared/button';
+import { Button } from '../../../ui/button';
 import {
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormMessage,
-} from '../../../ui/shared/form';
-import { FloatingInput } from '../../../ui/shared/input';
+} from '../../../ui/form';
+import { FloatingInput } from '../../../ui/input/';
 import { getOtpAction } from './_actions/get-otp-action';
+
+import { AppConstants } from '@/helpers/primitives';
 
 const schema = z.object({
 	mobileNumber: z
@@ -42,9 +44,15 @@ export default function Page() {
 		if (!result.data) {
 			return;
 		}
-		if (result.data.status === 'SUCCESS') {
+
+		if (result.data.status === AppConstants.Success) {
 			toast.success(result.data.msg);
-			router.push(`otp/${form.getValues('mobileNumber')}`);
+			router.push(`otp/${form.getValues('mobileNumber')}?type=login`);
+		} else if (
+			result.data.status === AppConstants.Error &&
+			result.data.statusCode === 401
+		) {
+			router.push(`registration/${form.getValues('mobileNumber')}`);
 		} else {
 			toast.error(result.data.msg);
 		}
@@ -58,14 +66,18 @@ export default function Page() {
 	};
 
 	return (
-		<div>
-			<div className="flex items-center gap-24">
-				<span className="text-left text-[32px] font-semibold leading-[42px]">
-					Get started with your 10 digit mobile number
-				</span>
+		<div className="flex flex-col gap-6">
+			<div className="flex items-center">
+				<p className="mb-4 mt-1 text-lg">
+					Welcome to{' '}
+					<span className="text-primary font-bold">Pemilyy</span>
+				</p>
 			</div>
+			<h4 className="text-left text-2xl font-semibold">
+				Get started with your 10 digit mobile number
+			</h4>
 			<Form {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className="mt-24">
+				<form onSubmit={form.handleSubmit(onSubmit)} className="mt-1">
 					<FormField
 						control={form.control}
 						name="mobileNumber"
@@ -90,7 +102,7 @@ export default function Page() {
 						disabled={isExecuting}
 						loadingText="Sending Otp"
 						type="submit"
-						className="mt-24 w-full"
+						className="mt-6 w-full"
 					>
 						Get OTP
 					</Button>

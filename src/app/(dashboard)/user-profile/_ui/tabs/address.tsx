@@ -8,27 +8,26 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { ChevronDown } from 'lucide-react';
 import { z } from 'zod';
 
-import useCreateAddress from '../../../../../api/use-create-address/create-address';
-import { usePincode } from '../../../../../api/use-pincode/pincode';
-import useUpdateAddress from '../../../../../api/use-update-address/update-address';
-import { useGetUser } from '../../../../../api/user-details/user-details';
+import { usePincode } from '../../../../../api/mutations/use-get-pincode';
 import { useAuthStore } from '../../../../../store/user-auth';
 import { type IAddress } from '../../../../../types/common';
 import {
-	Button,
-	FloatingInput,
 	Form,
 	FormControl,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-} from '../../../../../ui/shared';
+} from '../../../../../ui/form';
+import { FloatingInput } from '../../../../../ui/input';
+import { useCreateAddress } from '../../_api/create-address';
+import { useUpdateAddress } from '../../_api/update-address';
 
+import { useGetUser } from '@/api/queries/use-get-user-details';
+import { addressTypes } from '@/helpers/constant';
 import { cn } from '@/helpers/utils';
+import { Button } from '@/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/popover';
 
 const schema = z.object({
 	line1: z.string().min(1, 'Line1 is required'),
@@ -54,12 +53,6 @@ interface IPayload {
 	type: string;
 	isPrimary: boolean;
 }
-
-const addressTypes = [
-	{ label: 'Home', value: 'HOME' },
-	{ label: 'Work', value: 'WORK' },
-	{ label: 'Other', value: 'OTHER' },
-];
 
 const AddressForm = () => {
 	const form = useForm<IFormData>({
@@ -136,7 +129,7 @@ const AddressForm = () => {
 		<Form {...form}>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="rounded-12 mt-12 grid max-w-3xl grid-cols-2 gap-24 bg-white px-16 py-24"
+				className="mt-4 grid max-w-3xl grid-cols-2 gap-6 rounded-xl bg-white py-1"
 			>
 				{[
 					['line1', 'Line1', 'text'],
@@ -173,7 +166,7 @@ const AddressForm = () => {
 					control={form.control}
 					name="type"
 					render={({ field }) => (
-						<FormItem className="flex flex-col space-y-6">
+						<FormItem className="flex flex-col space-y-1">
 							<FormLabel>Choose address type</FormLabel>
 							<Popover>
 								<PopoverTrigger asChild>
@@ -193,7 +186,7 @@ const AddressForm = () => {
 														field.value
 												)?.label
 											: 'Choose address type'}
-										<ChevronDown className="ml-2 size-16 shrink-0 opacity-50" />
+										<ChevronDown className="ml-2 size-4 shrink-0 opacity-50" />
 									</Button>
 								</PopoverTrigger>
 								<PopoverContent className="w-[var(--radix-popover-trigger-width)] p-0">
@@ -201,7 +194,7 @@ const AddressForm = () => {
 										<Button
 											key={type.value}
 											variant="ghost"
-											className="w-full justify-start px-16 text-left"
+											className="w-full justify-start px-4 text-left"
 											onClick={() =>
 												field.onChange(type.value)
 											}

@@ -7,6 +7,8 @@ import { createFormDataForDocument } from '../../../../../../helpers/utils';
 import { queryClient } from '../../../../../../services/providers';
 import { useUploadAttachDocs } from '../../_api/use-upload-attach-docs';
 
+import { AppConstants } from '@/helpers/primitives';
+
 export default function UploadCard({ type }: { type: string }) {
 	const params = useParams();
 	const prescriptionNo = params?.precriptionNo as string;
@@ -22,7 +24,7 @@ export default function UploadCard({ type }: { type: string }) {
 				}
 			);
 			const response = await uploadAttachDocs(formData);
-			if (response.status === 'SUCCESS') {
+			if (response.status === AppConstants.Success) {
 				queryClient.invalidateQueries({
 					queryKey: [
 						'prescription/attachedDocuments',
@@ -51,10 +53,10 @@ export default function UploadCard({ type }: { type: string }) {
 	return (
 		<div
 			{...getRootProps()}
-			className="flex cursor-pointer flex-col items-center gap-16 rounded-lg border-2 border-dashed border-gray-200 p-12"
+			className="flex cursor-pointer flex-col items-center gap-4 rounded-lg border-2 border-dashed border-gray-200 p-3"
 		>
-			<FileIcon className="size-42" />
-			<div className="flex flex-col gap-6 text-center">
+			<FileIcon className="size-6" />
+			<div className="flex flex-col gap-1 text-center">
 				<span className="text-md font-medium text-gray-500">
 					Drag and drop a file or click to browse
 				</span>

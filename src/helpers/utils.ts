@@ -1,4 +1,3 @@
-import { type StylesConfig } from 'react-select';
 import { type ClassValue, clsx } from 'clsx';
 import {
 	addMonths,
@@ -11,6 +10,7 @@ import {
 import { twMerge } from 'tailwind-merge';
 
 import { useAuthStore } from '../store/user-auth';
+import { Routes } from './routes';
 
 export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
@@ -25,6 +25,8 @@ export const gstValidator = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/;
 export const logout = () => {
 	localStorage.removeItem('persist:root');
 	useAuthStore.getState().resetUser();
+	//TODO: need a better way to logout
+	window.location.href = Routes.LOGIN;
 };
 
 export const createFormDataForImage = (
@@ -76,23 +78,6 @@ export const createFormDataForDocument = (
 	return data;
 };
 
-export const customSelectBoxStyles: StylesConfig<
-	{ value: string; label: string },
-	false
-> = {
-	control: (provided, state) => ({
-		...provided,
-		borderColor: state.isFocused ? '#007A65' : '#D3DADD',
-		boxShadow: 'none',
-	}),
-	option: (provided, state) => ({
-		...provided,
-		backgroundColor: state.isFocused ? '#007A65' : undefined,
-		color: state.isFocused ? '#fff' : '#000',
-		fontSize: '14px',
-	}),
-};
-
 export const convertDates = (dates: Date[] | Date) => {
 	const isArray = Array.isArray(dates);
 	if (isArray) {
@@ -140,4 +125,43 @@ export const calculateAge = (birthDateString: string) => {
 	}
 
 	return `${years}Y, ${months}M, ${days}D`;
+};
+
+export const dateDisable = (date: Date) => {
+	const today = new Date();
+	today.setHours(0, 0, 0, 0);
+
+	const minDate = new Date('1900-01-01');
+	minDate.setHours(0, 0, 0, 0);
+
+	const normalizedDate = new Date(date);
+	normalizedDate.setHours(0, 0, 0, 0);
+
+	return normalizedDate < today || normalizedDate < minDate;
+};
+
+export const getYears = () => {
+	const date = new Date();
+	const currentYear = date.getFullYear();
+	const startYear = 2024;
+	const years = Array.from({ length: 5 }, (_, i) => {
+		const calculatedYear = startYear + i;
+		if (calculatedYear <= currentYear) {
+			return {
+				label: calculatedYear.toString(),
+				value: calculatedYear.toString(),
+			};
+		}
+	}).filter(Boolean);
+	return years;
+};
+
+export const getMonths = () => {
+	const months = Array.from({ length: 12 }, (_, i) => {
+		return {
+			value: String(i + 1),
+			label: new Date(0, i).toLocaleString('default', { month: 'long' }),
+		};
+	});
+	return months;
 };

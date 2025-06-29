@@ -3,20 +3,18 @@ import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import Link from 'next/link';
 
+import { useUpdateUrl } from '../../../../../hooks/use-update-url';
+import { Label } from '../../../../../ui/label';
+
+import { Routes } from '@/helpers/routes';
+import { Command, CommandInput } from '@/ui/command';
 import {
-	Button,
-	Command,
-	CommandInput,
-	Label,
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../../ui/shared';
-import { useUpdateUrl } from '../_hooks/use-update-url';
-
-import { Routes } from '@/helpers/routes';
+} from '@/ui/select';
 
 export default function Filters({
 	value,
@@ -33,18 +31,18 @@ export default function Filters({
 	const [hovered, setHovered] = useState(false);
 
 	return (
-		<div className="flex w-full flex-wrap items-end justify-between gap-12">
+		<div className="flex w-full flex-wrap items-end justify-between gap-3">
 			<div className="flex-1">
-				<Command className="max-w-[450px] rounded-lg border">
+				<Command className="max-w-[450px] rounded-lg border border-border">
 					<CommandInput
-						className="py-24"
+						className=""
 						placeholder="Search for medicines..."
 						value={value}
 						onValueChange={setValue}
 					/>
 				</Command>
 			</div>
-			<div className="flex flex-1 items-end justify-end gap-12">
+			<div className="flex flex-1 items-end justify-end gap-3">
 				<div>
 					<Select
 						value={String(active)}
@@ -115,13 +113,13 @@ export default function Filters({
 								animate={{ opacity: 1, y: 0 }}
 								exit={{ opacity: 0, y: -10 }}
 								transition={{ duration: 0.25 }}
-								className="flex items-center justify-center gap-4 text-xs text-white"
+								className="flex items-center justify-center gap-1 text-xs text-white"
 							>
-								<Plus className="size-18 text-white" />
+								<Plus className="size-4 text-white" />
 								<span>Create Medicine</span>
 							</motion.div>
 						) : (
-							<Plus className="size-18 text-white" />
+							<Plus className="size-4 text-white" />
 						)}
 					</motion.button>
 				</Link>

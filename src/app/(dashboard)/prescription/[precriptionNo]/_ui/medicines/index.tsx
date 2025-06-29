@@ -8,12 +8,13 @@ import {
 	type IMedicine,
 	type IPrescription,
 } from '../../../../../../types/prescription';
-import { Button } from '../../../../../../ui/shared';
 import { useGetMedicines } from '../../../../medicines/list/_api/use-get-medicines';
 import { useGetPrescriptionById } from '../../_api/use-get-byid';
 import { useMedicineStore } from '../../_store/medicine-store';
 import { Search } from './search';
 import SelectedMedicines from './selected-medicines';
+
+import { Button } from '@/ui/button';
 
 export default function Medicines() {
 	const params = useParams();
@@ -49,9 +50,9 @@ export default function Medicines() {
 	}, [isPrescriptionSaved, prescription?.medicines]);
 
 	return (
-		<div className="px-16">
-			<div className="flex flex-row items-center gap-8">
-				<h4 className="text-16 text-primary font-semibold">
+		<div className="px-4">
+			<div className="flex flex-row items-center gap-2">
+				<h4 className="text-primary text-lg font-semibold">
 					Medicine (RX)
 				</h4>
 				{!isPrescriptionSaved && (
@@ -61,7 +62,7 @@ export default function Medicines() {
 						size="icon"
 						variant="ghost"
 					>
-						<PencilLine className="text-primary size-16" />
+						<PencilLine className="text-primary size-4" />
 					</Button>
 				)}
 			</div>

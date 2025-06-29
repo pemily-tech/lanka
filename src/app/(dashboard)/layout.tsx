@@ -2,27 +2,28 @@
 
 import { useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { usePathname, useRouter } from 'next/navigation';
 
-import { Routes } from '../../helpers/routes';
-import { useIsMobile } from '../../hooks/use-is-mobile';
-import useRouterQuery from '../../hooks/use-router-query';
-import { useAppSelector } from '../../store';
-import { useAuthStore } from '../../store/user-auth';
-import { AppSidebar } from '../../ui/components/app-sidebar';
-import DashboardLayoutHeader from '../../ui/components/dashboard-layout-header/dashboard-layout-header';
-import MobileOnly from '../../ui/components/mobile-only';
-import { SidebarInset, SidebarProvider } from '../../ui/shared/sidebar';
+import { AppSidebar } from '../../components/app-sidebar';
+import { SidebarInset, SidebarProvider } from '../../ui/sidebar';
+
+import LayoutHeader from '@/components/layout/header';
+import MobileOnly from '@/components/mobile-only';
+import { Routes } from '@/helpers/routes';
+import { useIsMobile } from '@/hooks/use-is-mobile';
+import { useAuthStore } from '@/store/user-auth';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
-	const { loggedIn } = useAuthStore();
-	const { router, pathname } = useRouterQuery();
+	const { loggedIn, hasHydrated } = useAuthStore();
+	const pathname = usePathname();
+	const router = useRouter();
 	const isMobile = useIsMobile();
 
 	useEffect(() => {
-		if (!loggedIn) {
+		if (hasHydrated && !loggedIn) {
 			router.push(Routes.LOGIN);
 		}
-	}, [loggedIn, router]);
+	}, [hasHydrated, loggedIn]);
 
 	if (isMobile) {
 		return <MobileOnly />;
@@ -33,13 +34,13 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
 			<SidebarProvider>
 				<AppSidebar />
 				<SidebarInset>
-					<DashboardLayoutHeader />
+					<LayoutHeader />
 					<motion.div
 						key={pathname}
 						initial="pageInitial"
 						animate="pageAnimate"
 						exit="pageExit"
-						className="bg-grey-bg3 min-h-[calc(100vh-72px)] p-16"
+						className="min-h-[calc(100vh-72px)] bg-gray-100 p-4 mt-[72px]"
 						variants={{
 							pageInitial: {
 								opacity: 0,

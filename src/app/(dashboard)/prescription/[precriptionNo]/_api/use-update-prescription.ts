@@ -5,6 +5,8 @@ import { HttpService } from '../../../../../services/http-service';
 import { type IApiResponse } from '../../../../../types/common';
 import { type IPrescription } from '../../../../../types/prescription';
 
+import { AppConstants } from '@/helpers/primitives';
+
 interface IPayload {
 	parentName: string;
 	parentMobile: string;
@@ -74,7 +76,7 @@ export const useUpdatePrescription = (id: string) => {
 	return useMutation({
 		mutationFn: (payload: IPayload) => updatePrescription(payload, id),
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Updated Successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

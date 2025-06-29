@@ -3,7 +3,7 @@
 import { z } from 'zod';
 
 import { env } from '@/env.mjs';
-import { Roles } from '@/helpers/primitives';
+import { AppConstants, Roles } from '@/helpers/primitives';
 import { phoneValidator } from '@/helpers/utils';
 import { safeActionClient } from '@/services/next-safe-actions';
 import { type IsUserRegisteredInterface } from '@/types/auth';
@@ -28,7 +28,7 @@ export const getOtpAction = safeActionClient
 
 			if (!response.ok) {
 				return {
-					status: 'ERROR',
+					status: AppConstants.Error,
 					msg: 'Failed to check user registration.',
 					data: null,
 					statusCode: response.status,
@@ -37,7 +37,7 @@ export const getOtpAction = safeActionClient
 
 			const data =
 				(await response.json()) as IApiResponse<IsUserRegisteredInterface>;
-			const isSuccess = data?.status === 'SUCCESS';
+			const isSuccess = data?.status === AppConstants.Success;
 			const isUser = data?.data?.isUser;
 			const isClinicOrStaff =
 				data?.data?.role === Roles.Clinic ||
@@ -57,7 +57,7 @@ export const getOtpAction = safeActionClient
 					);
 					if (!otpResponse.ok) {
 						return {
-							status: 'ERROR',
+							status: AppConstants.Error,
 							msg: 'Failed to check user registration.',
 							data: null,
 							statusCode: response.status,
@@ -70,7 +70,7 @@ export const getOtpAction = safeActionClient
 				} catch (err) {
 					console.error(err);
 					return {
-						status: 'ERROR',
+						status: AppConstants.Error,
 						msg: 'A network error occurred. Please check your connection and try again.',
 						data: null,
 						statusCode: 500,
@@ -78,7 +78,7 @@ export const getOtpAction = safeActionClient
 				}
 			} else {
 				return {
-					status: 'ERROR',
+					status: AppConstants.Error,
 					msg: 'Only registered users can log in.',
 					data: null,
 					statusCode: 401,
@@ -87,7 +87,7 @@ export const getOtpAction = safeActionClient
 		} catch (err) {
 			console.error(err);
 			return {
-				status: 'ERROR',
+				status: AppConstants.Error,
 				msg: 'A network error occurred. Please check your connection and try again.',
 				data: null,
 				statusCode: 500,

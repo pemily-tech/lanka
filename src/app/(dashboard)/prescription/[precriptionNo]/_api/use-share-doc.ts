@@ -3,7 +3,8 @@ import { toast } from 'sonner';
 
 import { HttpService } from '../../../../../services/http-service';
 import { type IApiResponse } from '../../../../../types/common';
-import { type IPrescription } from '../../../../../types/prescription';
+
+import { AppConstants } from '@/helpers/primitives';
 
 interface IPayload {
 	attachedDocumentId?: string;
@@ -11,22 +12,17 @@ interface IPayload {
 }
 
 const shareDoc = async (payload: IPayload, id: string) => {
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ success: boolean }>
-		>(`prescription/shareDocument/${id}`, payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<
+		IApiResponse<{ success: boolean }>
+	>(`prescription/shareDocument/${id}`, payload);
+	return data;
 };
 
 export const useShareDoc = (id: string) => {
 	return useMutation({
 		mutationFn: (payload: IPayload) => shareDoc(payload, id),
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Document shared Successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

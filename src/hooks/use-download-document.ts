@@ -2,10 +2,10 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import useDownloadDocument from '../api/download-document';
+import { useDownloadDocument } from '../api/mutations/download-document';
 
-const useDocumentDownload = (url: string, publicDoc = false) => {
-	const { mutateAsync: downloadDocument } = useDownloadDocument();
+const useDocumentDownload = (url?: string, publicDoc = false) => {
+	const { mutateAsync: downloadDocument, isPending } = useDownloadDocument();
 	const [imageUrl, setImageUrl] = useState<string | null>(null);
 
 	const imgType = useMemo(() => {
@@ -16,15 +16,10 @@ const useDocumentDownload = (url: string, publicDoc = false) => {
 
 	const getImageUrl = useCallback(async () => {
 		if (!url) return;
-
-		try {
-			const payload = { key: url, publicDoc };
-			const response = await downloadDocument(payload);
-			if (response?.data?.signedUrl) {
-				setImageUrl(response.data.signedUrl);
-			}
-		} catch (err) {
-			console.error('Error downloading document:', err);
+		const payload = { key: url, publicDoc };
+		const response = await downloadDocument(payload);
+		if (response?.data?.signedUrl) {
+			setImageUrl(response.data.signedUrl);
 		}
 	}, [url]);
 
@@ -35,6 +30,7 @@ const useDocumentDownload = (url: string, publicDoc = false) => {
 	return {
 		url: imageUrl,
 		imgType,
+		isPending,
 	};
 };
 

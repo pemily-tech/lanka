@@ -12,14 +12,14 @@ export default async function Page() {
 	return (
 		<div>
 			<Header />
-			<div className="shadow-card1 rounded-lg bg-white p-16">
+			<div className="rounded-lg bg-white p-4 shadow-md">
 				<BasicDetails />
 				<div className="grid grid-cols-6">
 					<div className="col-span-2">
 						<Soap />
 						<AttachDocs />
 					</div>
-					<div className="col-span-4 border-l ">
+					<div className="col-span-4 border-l border-border">
 						<Vitals />
 						<Medicines />
 						<AdviceFollowup />

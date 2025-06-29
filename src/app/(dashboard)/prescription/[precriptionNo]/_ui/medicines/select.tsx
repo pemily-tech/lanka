@@ -1,11 +1,12 @@
-import useGetDropdownList from '../../../../../../api/use-get-dropdown-list/get-dropdown-list';
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../../../ui/shared';
+} from '../../../../../../ui/select';
+
+import { useGetDropdownList } from '@/api/queries/use-get-dropdownlist';
 
 export default function SelectMedicineType({
 	value,
@@ -22,7 +23,7 @@ export default function SelectMedicineType({
 
 	return (
 		<Select value={value} onValueChange={onChange}>
-			<SelectTrigger className="h-32 w-[280px]">
+			<SelectTrigger className="h-12 w-[280px]">
 				<SelectValue placeholder={label} />
 			</SelectTrigger>
 			<SelectContent>

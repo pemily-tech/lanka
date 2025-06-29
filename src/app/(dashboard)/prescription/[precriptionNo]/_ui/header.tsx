@@ -17,13 +17,13 @@ export default function Header() {
 	}, [prescriptionData]);
 
 	return (
-		<div className="mb-16 flex items-center justify-between">
-			<div className="flex items-center gap-6">
-				<span className="text-black-1/60">RX No: </span>
+		<div className="mb-4 flex items-center justify-between">
+			<div className="flex items-center gap-1">
+				<span className="text-black/60">RX No: </span>
 				<span className="text-lg font-medium">{prescriptionNo}</span>
 			</div>
-			<div className="flex items-center gap-6">
-				<span className="text-black-1/60">Date: </span>
+			<div className="flex items-center gap-1">
+				<span className="text-black/60">Date: </span>
 				{prescription?.prescriptionDate && (
 					<span className="text-lg font-medium">
 						{format(prescription?.prescriptionDate, DATE_FORMAT)}

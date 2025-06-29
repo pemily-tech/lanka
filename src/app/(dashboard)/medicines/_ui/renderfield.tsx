@@ -1,21 +1,23 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { type UseFormReturn } from 'react-hook-form';
 
 import {
-	FloatingInput,
-	FloatingTextArea,
 	FormControl,
 	FormField,
 	FormItem,
 	FormLabel,
 	FormMessage,
+} from '../../../../ui/form';
+import { FloatingTextArea } from '../../../../ui/text-area';
+import { type IFormData } from './schema';
+
+import { FloatingInput } from '@/ui/input';
+import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from '../../../../ui/shared';
-import { type IFormData } from './schema';
+} from '@/ui/select';
 
 export const renderField = (form: UseFormReturn<IFormData>, field: any) => {
 	if (field.type === 'select') {
@@ -32,10 +34,7 @@ export const renderField = (form: UseFormReturn<IFormData>, field: any) => {
 							value={selectField.value}
 						>
 							<FormControl>
-								<SelectTrigger
-									isError={!!fieldState.error}
-									className="!mt-6 bg-white"
-								>
+								<SelectTrigger className="!mt-1 bg-white">
 									<SelectValue placeholder="Select a type" />
 								</SelectTrigger>
 							</FormControl>

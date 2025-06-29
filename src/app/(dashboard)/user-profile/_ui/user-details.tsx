@@ -5,14 +5,14 @@ import { type FileRejection, useDropzone } from 'react-dropzone';
 import { Camera, Check, UserIcon } from 'lucide-react';
 import { toast } from 'sonner';
 
-import { useGetUserProfileUrl } from '../../../../api/profile-image';
-import useUploadUserProfile from '../../../../api/upload-user-profile/upload-user-profile';
-import { useGetUser } from '../../../../api/user-details/user-details';
+import { useGetUserProfileUrl } from '../../../../api/queries/use-get-user-profile-image';
 import { createFormDataForImage } from '../../../../helpers/utils';
 import { useAuthStore } from '../../../../store/user-auth';
-import { ImagePlaceholder } from '../../../../ui/shared';
 
+import { useUploadUserProfile } from '@/api/mutations/upload-user-profile';
+import { useGetUser } from '@/api/queries/use-get-user-details';
 import { MAX_SIZE_500 } from '@/helpers/constant';
+import { BlurImage } from '@/ui/blur-image';
 
 export default function UserDetails() {
 	const { userId } = useAuthStore();
@@ -58,16 +58,17 @@ export default function UserDetails() {
 	});
 
 	return (
-		<div className="gap-54 flex flex-row items-start justify-start rounded-[16px]">
-			<div className="flex gap-16">
+		<div className="flex flex-row items-start justify-start gap-12 rounded-lg">
+			<div className="flex gap-4">
 				<div>
 					<label className="relative block size-[62px] cursor-pointer rounded-full">
 						<input {...getInputProps()} />
 						{isUrlExists ? (
-							<ImagePlaceholder
+							<BlurImage
 								src={profileUrl as string}
-								containerClasses="size-[62px]"
-								imageClasses="rounded-full object-cover"
+								className="size-[62px] rounded-full object-cover"
+								width={120}
+								height={120}
 							/>
 						) : (
 							<div className="flex size-[62px] items-center justify-center rounded-full bg-gray-100">
@@ -78,33 +79,33 @@ export default function UserDetails() {
 								/>
 							</div>
 						)}
-						<div className="bg-primary absolute bottom-0 right-10 rounded-full p-[2px] ring-2 ring-white">
+						<div className="bg-primary absolute bottom-0 right-2 rounded-full p-[2px] ring-2 ring-white">
 							{isUrlExists ? (
-								<Check className="size-12 text-white" />
+								<Check className="size-3 text-white" />
 							) : (
-								<Camera className="size-18 p-1 text-white" />
+								<Camera className="size-4 p-1 text-white" />
 							)}
 						</div>
 					</label>
 				</div>
 				<div>
-					<h3 className="text-24 font-semibold">{name}</h3>
-					<div className="flex flex-row items-center gap-4">
-						<span className="bg-primary size-6 rounded-full" />
-						<span className="text-12">Online</span>
+					<h3 className="text-2xl font-semibold">{name}</h3>
+					<div className="flex flex-row items-center gap-1">
+						<span className="bg-primary size-2 rounded-full" />
+						<span className="text-xs">Online</span>
 					</div>
 				</div>
 			</div>
 			<div>
-				<p className="text-black-1/60">Email:</p>
+				<p className="text-black/60">Email:</p>
 				<a href={`mailto:${email}`}>{email}</a>
 			</div>
 			<div>
-				<p className="text-black-1/60">Mobile:</p>
+				<p className="text-black/60">Mobile:</p>
 				<a href={`tel:${mobile}`}>{mobile}</a>
 			</div>
 			<div>
-				<p className="text-black-1/60">Address:</p>
+				<p className="text-black/60">Address:</p>
 				{[
 					address?.line1,
 					address?.line2,

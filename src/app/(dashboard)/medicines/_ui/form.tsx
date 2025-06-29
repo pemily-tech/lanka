@@ -1,9 +1,6 @@
 'use client';
 
 import {
-	Button,
-	FloatingInput,
-	FloatingTextArea,
 	Form,
 	FormControl,
 	FormDescription,
@@ -11,25 +8,25 @@ import {
 	FormItem,
 	FormLabel,
 	FormMessage,
-	Switch,
-} from '../../../../ui/shared';
+} from '../../../../ui/form';
 import SelectField from './select';
 import { useMedicineForm } from './use-form';
 
+import { Button } from '@/ui/button';
+import { FloatingInput } from '@/ui/input';
+import { Switch } from '@/ui/switch';
+
 export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
-	const { form, onSubmit, isUpdaing, isCreating } = useMedicineForm(type);
+	const { form, onSubmit, isUpdating, isCreating } = useMedicineForm(type);
 
 	return (
-		<div className="rounded-8 shadow-card1 col-span-2 bg-white p-16">
+		<div className="col-span-2 rounded-lg bg-white p-4 shadow-md">
 			<Form {...form}>
 				<form
 					onSubmit={form.handleSubmit(onSubmit)}
-					className="mt-24 grid grid-cols-2 gap-24"
+					className="mt-1 grid grid-cols-2 gap-6"
 				>
-					{[
-						['name', 'Name'],
-						// ['brand', 'Brand'],
-					].map(([name, label], i) => {
+					{[['name', 'Name']].map(([name, label], i) => {
 						return (
 							<FormField
 								key={i}
@@ -55,9 +52,9 @@ export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 						control={form.control}
 						name="active"
 						render={({ field: switchField }) => (
-							<FormItem className="flex flex-row items-center gap-12">
-								<div className="space-y-2">
-									<FormLabel className="text-14">
+							<FormItem className="flex flex-row items-center gap-3">
+								<div className="space-y-1">
+									<FormLabel className="text-sm">
 										Choose Active/InActive
 									</FormLabel>
 									<FormDescription>
@@ -91,27 +88,10 @@ export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 							/>
 						);
 					})}
-					{/* <FormField
-						control={form.control}
-						name="diagnosis"
-						render={({ field: inputField, fieldState }) => (
-							<FormItem className="relative col-span-1">
-								<FormControl>
-									<FloatingTextArea
-										label="Diagnosis"
-										id="diagnosis"
-										isError={!!fieldState.error}
-										{...inputField}
-									/>
-								</FormControl>
-								<FormMessage />
-							</FormItem>
-						)}
-					/> */}
 					<div className="col-span-2">
 						<Button
-							disabled={isCreating || isUpdaing}
-							loading={isCreating || isUpdaing}
+							disabled={isCreating || isUpdating}
+							loading={isCreating || isUpdating}
 							loadingText={
 								type === 'UPDATE'
 									? 'Updating ...'

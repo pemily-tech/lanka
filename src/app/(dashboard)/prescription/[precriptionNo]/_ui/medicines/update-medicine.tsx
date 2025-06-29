@@ -1,9 +1,11 @@
 import { useState } from 'react';
 
 import { type IMedicine } from '../../../../../../types/prescription';
-import { Button, DialogClose } from '../../../../../../ui/shared';
 import { useMedicineStore } from '../../_store/medicine-store';
 import SelectMedicineType from './select';
+
+import { Button } from '@/ui/button';
+import { DialogClose } from '@/ui/dialog';
 
 export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 	const [localData, setLocalData] = useState<IMedicine>(medicine);
@@ -12,15 +14,15 @@ export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 
 	return (
 		<div>
-			<div className="flex flex-col gap-16">
+			<div className="flex flex-col gap-4">
 				<div className="flex flex-row">
-					<div className="text-black-1/60 w-[120px] font-semibold">
+					<div className="w-[120px] font-semibold text-black/60">
 						Name:
 					</div>
 					<div className="flex-1">{localData.name}</div>
 				</div>
 				<div className="flex flex-row">
-					<div className="text-black-1/60 w-[120px] font-semibold">
+					<div className="w-[120px] font-semibold text-black/60">
 						Strength:
 					</div>
 					<div className="flex-1">{localData.strength}</div>
@@ -35,7 +37,7 @@ export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 					] as [keyof IMedicine, string, string][]
 				).map(([name, label, option]) => (
 					<div className="flex flex-row" key={name}>
-						<div className="text-black-1/60 w-[120px] font-semibold">
+						<div className="w-[120px] font-semibold text-black/60">
 							{label}:
 						</div>
 						<SelectMedicineType
@@ -52,22 +54,17 @@ export default function UpdateMedicine({ medicine }: { medicine: IMedicine }) {
 					</div>
 				))}
 			</div>
-			<div className="mt-16 flex flex-row justify-end gap-16 border-t pt-16">
+			<div className="mt-4 flex flex-row justify-end gap-4 border-t border-border pt-4">
 				<Button
 					onClick={() =>
 						updateFullMedicine(localData.medicineId, localData)
 					}
-					size="lg"
-					className="px-24 font-normal"
+					className="px-6 font-normal"
 				>
 					Update
 				</Button>
 				<DialogClose asChild>
-					<Button
-						size="lg"
-						variant="outline"
-						className="px-24 font-normal"
-					>
+					<Button variant="outline" className="px-6 font-normal">
 						Cancel
 					</Button>
 				</DialogClose>

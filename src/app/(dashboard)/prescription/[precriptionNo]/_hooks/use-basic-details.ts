@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
-import useGetClinicLogo from '../../../../../api/get-clinic-logo';
+import { useGetClinicLogo } from '../../../../../api/queries/use-get-clinic-logo';
 import {
 	type IPrescription,
 	type IPrescriptionBasicDetails,

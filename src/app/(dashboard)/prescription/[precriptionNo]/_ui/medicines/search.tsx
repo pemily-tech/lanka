@@ -1,5 +1,5 @@
 import { type IMedicine } from '../../../../../../types/prescription';
-import { AutoComplete } from '../../../../../../ui/shared/auto-complete';
+import { AutoComplete } from '../../../../../../ui/auto-complete';
 import { useMedicineStore } from '../../_store/medicine-store';
 
 type Props = {

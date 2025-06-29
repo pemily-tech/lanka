@@ -1,16 +1,12 @@
 import '@/styles/globals.css';
-// import 'react-calendar/dist/Calendar.css';
-import 'react-datepicker/dist/react-datepicker.css';
 
 import { type PropsWithChildren } from 'react';
 import { type Metadata } from 'next';
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
+import AnalyticsScript from '../components/analytics-script';
 import Providers from '../services/providers';
-import AnalyticsScript from '../ui/shared/analytics-script';
 
-import 'swiper/css';
-import 'swiper/css/pagination';
 import { siteConfig } from '@/helpers/constant';
 import { fonts } from '@/helpers/fonts';
 import { cn } from '@/helpers/utils';

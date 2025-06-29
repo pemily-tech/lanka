@@ -4,17 +4,12 @@ import { z } from 'zod';
 
 import { useUpdateDoctor } from '../../../_api/use-update-doctor';
 
+import { AppConstants } from '@/helpers/primitives';
 import { queryClient } from '@/services/providers';
 import { type IDoctor } from '@/types/common';
-import {
-	Button,
-	FloatingInput,
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormMessage,
-} from '@/ui/shared';
+import { Button } from '@/ui/button';
+import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form';
+import { FloatingInput } from '@/ui/input';
 
 const schema = z.object({
 	name: z.string().nonempty('Name is required'),
@@ -41,7 +36,7 @@ export default function DoctorForm({ doctor }: { doctor: IDoctor }) {
 
 	const onSubmit = async (values: IFormData) => {
 		const response = await updateDoctor(values);
-		if (response?.status === 'SUCCESS') {
+		if (response?.status === AppConstants.Success) {
 			queryClient.invalidateQueries({
 				queryKey: ['clinic/doctors'],
 			});
@@ -50,12 +45,12 @@ export default function DoctorForm({ doctor }: { doctor: IDoctor }) {
 
 	return (
 		<Form {...form}>
-			<h4 className="text-black-1/80 mb-24 font-semibold">
+			<h4 className="mb-6 font-semibold text-black/80">
 				Doctor Details:
 			</h4>
 			<form
 				onSubmit={form.handleSubmit(onSubmit)}
-				className="rounded-12 grid flex-1 grid-cols-2 gap-24 bg-white"
+				className="grid flex-1 grid-cols-2 gap-6 rounded-xl bg-white"
 			>
 				{[
 					['name', 'Name', 'text'],

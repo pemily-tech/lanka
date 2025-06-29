@@ -5,8 +5,6 @@ import { HttpService } from '../../../../../services/http-service';
 import { type IApiResponse } from '../../../../../types/common';
 import { type IMedicine } from '../../../../../types/prescription';
 
-import { env } from '@/env.mjs';
-
 interface IProps {
 	count?: 0 | 1;
 	page?: number;
@@ -30,7 +28,7 @@ const getMedicines = async ({
 		encode: false,
 	});
 
-	const url = `${env.NEXT_PUBLIC_BASE_PATH}/${key}?${query}`;
+	const url = `/${key}?${query}`;
 
 	const { data } =
 		await HttpService.get<

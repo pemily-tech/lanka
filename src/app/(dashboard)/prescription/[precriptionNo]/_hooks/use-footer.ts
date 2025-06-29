@@ -3,7 +3,6 @@ import { format } from 'date-fns';
 import { useParams, useRouter } from 'next/navigation';
 
 import { DEFAULT_DATE_FORMAT } from '../../../../../helpers/constant';
-import { calculateAge } from '../../../../../helpers/utils';
 import useDocumentDownload from '../../../../../hooks/use-download-document';
 import { queryClient } from '../../../../../services/providers';
 import {
@@ -16,7 +15,8 @@ import { useShareDoc } from '../_api/use-share-doc';
 import { useUpdatePrescription } from '../_api/use-update-prescription';
 import { useUploadPrescription } from '../_api/use-upload-prescription';
 import { useMedicineStore } from '../_store/medicine-store';
-import selectedMedicines from '../_ui/medicines/selected-medicines';
+
+import { AppConstants } from '@/helpers/primitives';
 
 export function useFooterActions() {
 	const router = useRouter();
@@ -84,7 +84,7 @@ export function useFooterActions() {
 
 	const handleCreate = async () => {
 		const response = await uploadPrescription();
-		if (response?.status === 'SUCCESS') {
+		if (response?.status === AppConstants.Success) {
 			reset();
 			queryClient.invalidateQueries({
 				queryKey: ['prescription/byNo', params.precriptionNo],

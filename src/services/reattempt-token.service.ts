@@ -1,13 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios, { type AxiosResponse } from 'axios';
 
-import { ApiEndpoints } from '../helpers/primitives';
 import { logout } from '../helpers/utils';
 import { useAuthStore } from '../store/user-auth';
-// eslint-disable-next-line import/no-cycle
 import { HttpService } from './http-service';
 
 import { env } from '@/env.mjs';
+import { AppConstants } from '@/helpers/primitives';
 
 let isAlreadyFetchingAccessToken = false;
 type AccessTokenSubscriber = (accessToken: string) => void;
@@ -29,13 +27,12 @@ async function ResetTokenAndReattemptRequest(
 
 		try {
 			const resp = await axios.post(
-				`${env.NEXT_PUBLIC_BASE_PATH}/${ApiEndpoints.RefreshToken}`,
+				`${env.NEXT_PUBLIC_BASE_PATH}/auth/token`,
 				{
 					refreshToken: authStore.refreshToken,
 				}
 			);
-
-			if (resp?.data?.status === 'SUCCESS') {
+			if (resp?.data?.status === AppConstants.Success) {
 				authStore.updateUser({
 					...useAuthStore.getState(),
 					token: resp?.data?.data?.accessToken,
@@ -45,7 +42,6 @@ async function ResetTokenAndReattemptRequest(
 				logout();
 			}
 		} catch (err) {
-			console.error(err);
 			logout();
 			// Handle errors
 		} finally {

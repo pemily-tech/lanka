@@ -2,8 +2,9 @@ import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner';
 
 import { HttpService } from '../../../../services/http-service';
-import { type IApiResponse } from '../../../../types/common';
-import { type IUserDetails } from '../../../../types/user';
+import { type IApiResponse, type IUserDetails } from '../../../../types/common';
+
+import { AppConstants } from '@/helpers/primitives';
 
 interface IPayload {
 	name: string;
@@ -13,22 +14,17 @@ interface IPayload {
 }
 
 const updateUserDetails = async (payload: IPayload) => {
-	try {
-		const { data } = await HttpService.patch<
-			IApiResponse<{ user: IUserDetails }>
-		>('user/basicDetail', payload);
-		return data;
-	} catch (err) {
-		console.error(err);
-		throw new Error('Network Error');
-	}
+	const { data } = await HttpService.patch<
+		IApiResponse<{ user: IUserDetails }>
+	>('user/basicDetail', payload);
+	return data;
 };
 
 export function useUpdateUserDetails() {
 	return useMutation({
 		mutationFn: updateUserDetails,
 		onSuccess: (data) => {
-			if (data?.status === 'SUCCESS') {
+			if (data?.status === AppConstants.Success) {
 				toast.success('Updated Successfully!');
 			} else {
 				toast.error('Something went wrong. Please try again');

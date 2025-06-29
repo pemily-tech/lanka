@@ -4,7 +4,7 @@ import { useEffect, useMemo } from 'react';
 import { useParams } from 'next/navigation';
 
 import { type IPrescription } from '../../../../../types/prescription';
-import { FloatingTextArea } from '../../../../../ui/shared';
+import { FloatingTextArea } from '../../../../../ui/text-area';
 import { useGetPrescriptionById } from '../_api/use-get-byid';
 import { useMedicineStore } from '../_store/medicine-store';
 
@@ -28,7 +28,7 @@ export default function Vitals() {
 	}, [prescriptionData]);
 
 	return (
-		<div className="flex flex-1 flex-row gap-16 px-16 py-24">
+		<div className="flex flex-1 flex-row gap-4 px-4 py-6">
 			<div className="flex-1">
 				{isPrescriptionSaved ? (
 					<div>

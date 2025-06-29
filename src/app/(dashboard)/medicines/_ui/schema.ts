@@ -2,8 +2,6 @@ import { z } from 'zod';
 
 export const schema = z.object({
 	name: z.string().min(3, { message: 'Name is required' }),
-	// brand: z.string().min(3, { message: 'Brand is required' }),
-	// diagnosis: z.string().min(3, { message: 'Diagnosis is required' }),
 	dose: z.string().min(1, { message: 'Dose is required' }),
 	duration: z.string().min(1, { message: 'Duration is required' }),
 	frequency: z.string().min(1, { message: 'Frequency is required' }),
