@@ -13,6 +13,7 @@ import { RecordTypes } from '@/helpers/primitives';
 import { Routes } from '@/helpers/routes';
 import { type ICertificate } from '@/types/health-certificate';
 import { DataTable } from '@/ui/data-table';
+import { PaginationWithLinks } from '@/ui/pagination-with-links';
 
 export default function Page() {
 	const router = useRouter();
@@ -28,6 +29,9 @@ export default function Page() {
 		isPending,
 		invalidateQueries,
 		page,
+		limit,
+		totalCount,
+		handlePagination,
 	} = useCertificateList();
 	const columns = useColumns(invalidateQueries);
 
@@ -71,6 +75,14 @@ export default function Page() {
 					emptyMessage="Nothing found for the day."
 				/>
 			</div>
+			<PaginationWithLinks
+				page={page}
+				pageSize={Number(limit)}
+				totalCount={totalCount ?? 0}
+				handlePagination={handlePagination}
+				className="flex flex-1 items-center justify-end gap-3"
+				limit={limit}
+			/>
 		</div>
 	);
 }

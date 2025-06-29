@@ -125,5 +125,6 @@ export function useCertificateList() {
 		page,
 		isPending,
 		invalidateQueries,
+		limit,
 	};
 }
