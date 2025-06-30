@@ -9,6 +9,7 @@ import {
 } from 'date-fns';
 import { twMerge } from 'tailwind-merge';
 
+import { clearSubscribers } from '../services/reattempt-token.service';
 import { useAuthStore } from '../store/user-auth';
 import { Routes } from './routes';
 
@@ -22,9 +23,10 @@ export const panValidator = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
 
 export const gstValidator = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/;
 
-export const logout = () => {
+export const logout = async () => {
 	localStorage.removeItem('persist:root');
 	useAuthStore.getState().resetUser();
+	clearSubscribers();
 	//TODO: need a better way to logout
 	window.location.href = Routes.LOGIN;
 };

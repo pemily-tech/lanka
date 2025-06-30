@@ -41,24 +41,34 @@ HttpService.interceptors.request.use(
 );
 
 HttpService.interceptors.response.use(
-	(response: AxiosResponse) => {
-		return response;
-	},
+	(response: AxiosResponse) => response,
 	async (error: CustomAxiosError) => {
 		if (error.response) {
-			// Handle specific error responses
+			const originalRequest: any = error.config;
+
+			// Prevent infinite loops by _retry flag
 			if (
-				error.response.data?.statusCode === 401 &&
-				error.response.data?.msg === 'jwt expired'
+				error.response?.status === 401 &&
+				!originalRequest._retry &&
+				error.response?.data?.msg === 'jwt expired'
 			) {
-				return ResetTokenAndReattemptRequest(error.response);
-			} else if (
-				['Log out!', 'Inactive user!'].includes(
-					error.response.data?.msg
+				originalRequest._retry = true;
+				return await ResetTokenAndReattemptRequest(error);
+			}
+
+			// Handle other 401 cases (like invalid token)
+			if (
+				['Log out!', 'Inactive user!', 'invalid signature'].includes(
+					error?.response?.data?.msg as string
 				)
 			) {
-				logout();
+				await logout();
+				return Promise.reject(
+					new Error('Session expired. Please login again.')
+				);
 			}
+
+			// Handle other errors
 			const message =
 				error.response?.data?.msg ||
 				error.message ||
