@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { type DateRange } from 'react-day-picker';
 import { format, parseISO, startOfToday } from 'date-fns';
 import { useParams } from 'next/navigation';
