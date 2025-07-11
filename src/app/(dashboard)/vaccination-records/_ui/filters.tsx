@@ -1,15 +1,16 @@
 'use client';
 
 import { memo, type ReactNode, useMemo } from 'react';
+import { type DateRange } from 'react-day-picker';
 import { motion } from 'framer-motion';
 
 import { cn } from '@/helpers/utils';
 import { type IOtherCommonFilter } from '@/types/common';
-import { DayPickerSingle } from '@/ui/day-picker-single';
+import { DayPickerRange } from '@/ui/day-picker-range';
 
 interface IProps {
-	selectedDate: Date | undefined;
-	setSelectedDate: (date: Date | undefined) => void;
+	selectedDate: DateRange | undefined;
+	setSelectedDate: (payload: { date: DateRange }) => void;
 	commonFilter: IOtherCommonFilter | null;
 	setCommonFilter: (filter: IOtherCommonFilter) => void;
 	showCalendar?: boolean;
@@ -55,9 +56,9 @@ function Filters({
 			)}
 		>
 			{showCalendar && (
-				<DayPickerSingle
+				<DayPickerRange
 					selectedDate={selectedDate}
-					setSelectedDate={setSelectedDate}
+					setDate={setSelectedDate}
 				/>
 			)}
 			<div

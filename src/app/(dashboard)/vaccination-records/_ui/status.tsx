@@ -75,7 +75,7 @@ export default function Status({
 	});
 	const { mutateAsync: updateVaccination, isPending } =
 		useUpdateVaccination();
-	const { data } = useGetDropdownList('REPEAT_AFTERS');
+	const { data } = useGetDropdownList('REPEAT_AFTERS', open);
 	const dropdownData =
 		data?.data?.dropdown || ([] as { label: string; value: string }[]);
 
