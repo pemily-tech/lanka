@@ -13,9 +13,7 @@ export default function AnalyticsScript() {
 	useEffect(() => {
 		if (
 			window.location.hostname === AppConstants.HostNameProd &&
-			loggedIn &&
-			mobile !== TestMobileNumbers.Test1 &&
-			mobile !== TestMobileNumbers.Test2
+			loggedIn
 		) {
 			setShowScript(true);
 		}
