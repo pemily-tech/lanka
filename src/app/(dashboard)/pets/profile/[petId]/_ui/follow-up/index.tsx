@@ -12,8 +12,14 @@ import { type IOtherCommonFilter } from '@/types/common';
 import { DataTable } from '@/ui/data-table';
 
 export default function Followups() {
-	const { date, filter, setState, columns, followupData, isPending } =
-		useFollowup();
+	const {
+		selectedDateRange,
+		filter,
+		setState,
+		columns,
+		followupData,
+		isPending,
+	} = useFollowup();
 	const [show, setShow] = useState(false);
 	const params = useParams();
 	const searchParams = useSearchParams();
