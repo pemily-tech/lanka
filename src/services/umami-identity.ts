@@ -13,8 +13,6 @@ export function UmamiIdentify() {
 		if (
 			loggedIn &&
 			!!mobile &&
-			mobile !== TestMobileNumbers.Test1 &&
-			mobile !== TestMobileNumbers.Test2 &&
 			typeof window !== 'undefined' &&
 			window.location.hostname === AppConstants.HostNameProd &&
 			window.umami
