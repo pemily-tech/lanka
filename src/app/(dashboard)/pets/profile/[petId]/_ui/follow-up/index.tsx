@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { format, parseISO } from 'date-fns';
 import { useParams, useSearchParams } from 'next/navigation';
 
 import { useFollowup } from '../../../../../follow-up/_hooks/use-follwups';
@@ -8,6 +9,7 @@ import Filters from '../../../../../follow-up/_ui/filters';
 import FollowupDialog from './dialog';
 
 import { ActionRecordButton } from '@/components/action-button';
+import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { type IOtherCommonFilter } from '@/types/common';
 import { DataTable } from '@/ui/data-table';
 
@@ -30,8 +32,19 @@ export default function Followups() {
 		<div className="mb-[54px]">
 			<div className="mb-4">
 				<Filters
-					selectedDate={date as Date}
-					setSelectedDate={(date) => setState({ date })}
+					selectedDate={selectedDateRange}
+					setSelectedDate={({ date }) => {
+						setState({
+							start: date.from
+								? parseISO(
+										format(date.from, DEFAULT_DATE_FORMAT)
+									)
+								: new Date(),
+							end: date.to
+								? parseISO(format(date.to, DEFAULT_DATE_FORMAT))
+								: new Date(),
+						});
+					}}
 					setFilter={(filter) => setState({ filter })}
 					filter={filter}
 					showCalendar={false}

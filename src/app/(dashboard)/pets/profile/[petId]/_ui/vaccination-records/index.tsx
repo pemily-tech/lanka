@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { format, parseISO } from 'date-fns';
 import dynamic from 'next/dynamic';
 import { useParams, useSearchParams } from 'next/navigation';
 
@@ -8,6 +9,7 @@ import { useVaccination } from '../../../../../vaccination-records/_hooks/use-va
 import Filters from '../../../../../vaccination-records/_ui/filters';
 
 import { ActionRecordButton } from '@/components/action-button';
+import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { type IOtherCommonFilter } from '@/types/common';
 import { DataTable } from '@/ui/data-table';
 import Spinner from '@/ui/spinner';
@@ -18,8 +20,14 @@ const VaccinationDialog = dynamic(() => import('./dialog'), {
 });
 
 export default function VaccinationRecord() {
-	const { date, setState, filter, columns, vaccinationRecords, isPending } =
-		useVaccination();
+	const {
+		selectedDateRange,
+		setState,
+		filter,
+		columns,
+		vaccinationRecords,
+		isPending,
+	} = useVaccination();
 	const [show, setShow] = useState(false);
 	const params = useParams();
 	const searchParams = useSearchParams();
@@ -30,8 +38,19 @@ export default function VaccinationRecord() {
 		<div className="mb-[54px]">
 			<div className="mb-4">
 				<Filters
-					selectedDate={date as Date}
-					setSelectedDate={(date) => setState({ date })}
+					selectedDate={selectedDateRange}
+					setSelectedDate={({ date }) => {
+						setState({
+							start: date.from
+								? parseISO(
+										format(date.from, DEFAULT_DATE_FORMAT)
+									)
+								: new Date(),
+							end: date.to
+								? parseISO(format(date.to, DEFAULT_DATE_FORMAT))
+								: new Date(),
+						});
+					}}
 					setCommonFilter={(filter) => setState({ filter })}
 					commonFilter={filter}
 					showCalendar={false}
