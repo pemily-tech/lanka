@@ -68,6 +68,11 @@ export function useVaccination() {
 		setState({ page: newPage });
 	};
 
+	const handleFilters = (newFilter: IOtherCommonFilter) => {
+		setState({ filter: newFilter });
+		handlePagination(0);
+	};
+
 	return {
 		selectedDateRange,
 		setState,
@@ -78,5 +83,6 @@ export function useVaccination() {
 		page,
 		handlePagination,
 		totalCount: data?.data?.totalCount ?? 0,
+		handleFilters,
 	};
 }

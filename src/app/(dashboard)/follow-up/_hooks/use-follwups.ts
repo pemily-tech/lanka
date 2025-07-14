@@ -69,6 +69,11 @@ export function useFollowup() {
 		setState({ page: newPage });
 	};
 
+	const handleFilters = (newFilter: IOtherCommonFilter) => {
+		setState({ filter: newFilter });
+		handlePagination(0);
+	};
+
 	return {
 		selectedDateRange,
 		setState,
@@ -79,5 +84,6 @@ export function useFollowup() {
 		page,
 		handlePagination,
 		totalCount: data?.data?.totalCount ?? 0,
+		handleFilters,
 	};
 }

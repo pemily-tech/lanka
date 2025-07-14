@@ -25,6 +25,7 @@ export default function Page() {
 		page,
 		handlePagination,
 		totalCount,
+		handleFilters,
 	} = useVaccination();
 
 	return (
@@ -44,7 +45,7 @@ export default function Page() {
 								: new Date(),
 						});
 					}}
-					setCommonFilter={(filter) => setState({ filter })}
+					setCommonFilter={handleFilters}
 					commonFilter={filter}
 				>
 					<Link

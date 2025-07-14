@@ -23,7 +23,7 @@ const getFollowups = async ({
 	if (startDate) params.append('startDate', startDate);
 	if (endDate) params.append('endDate', endDate);
 	if (!petId) params.append('count', '1');
-	if (!petId) params.append('limit', '30');
+	if (!petId) params.append('limit', '15');
 	if (!petId) params.append('page', page ? String(page) : '0');
 	const url = `/${_key}?${params.toString()}`;
 

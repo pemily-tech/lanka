@@ -25,6 +25,7 @@ export default function Page() {
 		page,
 		handlePagination,
 		totalCount,
+		handleFilters,
 	} = useFollowup();
 
 	return (
@@ -44,7 +45,7 @@ export default function Page() {
 								: new Date(),
 						});
 					}}
-					setFilter={(filter) => setState({ filter })}
+					setFilter={handleFilters}
 					filter={filter}
 				>
 					<Link
