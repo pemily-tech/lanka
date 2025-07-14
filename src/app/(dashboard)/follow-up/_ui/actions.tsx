@@ -4,9 +4,7 @@ import { useUpdateFollowUp } from '../_api/use-update-followup';
 import { useUpdateNotification } from '../_api/use-update-notification';
 
 import { AppConstants } from '@/helpers/primitives';
-import { queryClient } from '@/services/providers';
 import { type IFollowUpRecord } from '@/types/clinic';
-import { type IOtherCommonFilter } from '@/types/common';
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -22,14 +20,10 @@ import { Button } from '@/ui/button';
 
 export default function Actions({
 	record,
-	type,
-	date,
-	petId,
+	refetch,
 }: {
 	record: IFollowUpRecord;
-	type: IOtherCommonFilter;
-	date?: string | undefined;
-	petId?: string | undefined;
+	refetch: () => void;
 }) {
 	const { mutateAsync: updateNotification, isPending } =
 		useUpdateNotification();
@@ -48,9 +42,7 @@ export default function Actions({
 		};
 		const response = await updateFollowup(payload);
 		if (response.status === AppConstants.Success) {
-			queryClient.invalidateQueries({
-				queryKey: ['clinic/followUpRecords', type, petId, date],
-			});
+			refetch();
 		}
 	};
 
@@ -68,9 +60,7 @@ export default function Actions({
 		};
 		const response = await updateNotification(payload);
 		if (response.status === AppConstants.Success) {
-			queryClient.invalidateQueries({
-				queryKey: ['clinic/followUpRecords', type, petId, date],
-			});
+			refetch();
 		}
 	};
 

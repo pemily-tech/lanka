@@ -1,14 +1,11 @@
-/* eslint-disable indent */
 'use client';
 
-import { format, parseISO } from 'date-fns';
 import Link from 'next/link';
 
 import { useFollowup } from './_hooks/use-follwups';
 import Filters from './_ui/filters';
 
 import { ActionRecordButton } from '@/components/action-button';
-import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { RecordTypes } from '@/helpers/primitives';
 import { Routes } from '@/helpers/routes';
 import { DataTable } from '@/ui/data-table';
@@ -16,7 +13,6 @@ import { PaginationWithLinks } from '@/ui/pagination-with-links';
 
 export default function Page() {
 	const {
-		setState,
 		filter,
 		columns,
 		followupData,
@@ -25,6 +21,8 @@ export default function Page() {
 		page,
 		handlePagination,
 		totalCount,
+		handleFilters,
+		handleDate,
 	} = useFollowup();
 
 	return (
@@ -32,19 +30,8 @@ export default function Page() {
 			<div className="sticky top-[76px] z-20 rounded-lg bg-white p-4 shadow-md">
 				<Filters
 					selectedDate={selectedDateRange}
-					setSelectedDate={({ date }) => {
-						setState({
-							start: date.from
-								? parseISO(
-										format(date.from, DEFAULT_DATE_FORMAT)
-									)
-								: new Date(),
-							end: date.to
-								? parseISO(format(date.to, DEFAULT_DATE_FORMAT))
-								: new Date(),
-						});
-					}}
-					setFilter={(filter) => setState({ filter })}
+					setSelectedDate={({ date }) => handleDate(date)}
+					setFilter={handleFilters}
 					filter={filter}
 				>
 					<Link

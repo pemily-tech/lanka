@@ -53,19 +53,35 @@ export function useVaccination() {
 				page,
 			};
 
-	const { data, isPending } = useGetVaccinations({
+	const { data, isPending, refetch } = useGetVaccinations({
 		type: filter as IOtherCommonFilter,
 		...props,
 	});
 	const columns = useColumns({
-		type: filter as IOtherCommonFilter,
-		...props,
+		refetch,
 	});
 	const vaccinationRecords =
 		data?.data?.vaccinationRecords || ([] as IVaccinationRecord[]);
 
 	const handlePagination = (newPage: any) => {
 		setState({ page: newPage });
+	};
+
+	const handleFilters = (newFilter: IOtherCommonFilter) => {
+		setState({ filter: newFilter });
+		handlePagination(0);
+	};
+
+	const handleDate = (date: DateRange) => {
+		setState({
+			start: date.from
+				? parseISO(format(date.from, DEFAULT_DATE_FORMAT))
+				: new Date(),
+			end: date.to
+				? parseISO(format(date.to, DEFAULT_DATE_FORMAT))
+				: new Date(),
+		});
+		handlePagination(0);
 	};
 
 	return {
@@ -78,5 +94,7 @@ export function useVaccination() {
 		page,
 		handlePagination,
 		totalCount: data?.data?.totalCount ?? 0,
+		handleFilters,
+		handleDate,
 	};
 }
