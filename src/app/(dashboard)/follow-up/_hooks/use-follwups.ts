@@ -54,13 +54,12 @@ export function useFollowup() {
 				page,
 			};
 
-	const { data, isPending } = useGetFollows({
+	const { data, isPending, refetch } = useGetFollows({
 		type: filter as IOtherCommonFilter,
 		...props,
 	});
 	const columns = useColumns({
-		type: filter as IOtherCommonFilter,
-		...props,
+		refetch,
 	});
 	const followupData =
 		data?.data?.followUpRecords || ([] as IFollowUpRecord[]);

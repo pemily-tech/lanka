@@ -53,13 +53,12 @@ export function useVaccination() {
 				page,
 			};
 
-	const { data, isPending } = useGetVaccinations({
+	const { data, isPending, refetch } = useGetVaccinations({
 		type: filter as IOtherCommonFilter,
 		...props,
 	});
 	const columns = useColumns({
-		type: filter as IOtherCommonFilter,
-		...props,
+		refetch,
 	});
 	const vaccinationRecords =
 		data?.data?.vaccinationRecords || ([] as IVaccinationRecord[]);

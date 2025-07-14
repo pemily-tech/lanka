@@ -5,17 +5,12 @@ import Actions from './actions';
 import Status from './status';
 
 import { type IVaccinationRecord } from '@/types/clinic';
-import { type IOtherCommonFilter } from '@/types/common';
 import { BlurImage } from '@/ui/blur-image';
 
 export function useColumns({
-	type,
-	date,
-	petId,
+	refetch,
 }: {
-	type: IOtherCommonFilter;
-	date?: string | undefined;
-	petId?: string | undefined;
+	refetch: () => void;
 }): ColumnDef<IVaccinationRecord>[] {
 	return [
 		{
@@ -83,14 +78,7 @@ export function useColumns({
 			id: 'status',
 			header: 'Status',
 			cell: ({ row }) => {
-				return (
-					<Status
-						record={row.original}
-						type={type}
-						date={date}
-						petId={petId}
-					/>
-				);
+				return <Status record={row.original} refetch={refetch} />;
 			},
 		},
 		{
@@ -102,14 +90,7 @@ export function useColumns({
 			id: 'actions',
 			header: 'Actions',
 			cell: ({ row }) => {
-				return (
-					<Actions
-						record={row.original}
-						type={type}
-						date={date}
-						petId={petId}
-					/>
-				);
+				return <Actions record={row.original} refetch={refetch} />;
 			},
 		},
 	];

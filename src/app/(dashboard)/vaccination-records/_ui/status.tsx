@@ -13,7 +13,6 @@ import { useGetDropdownList } from '@/api/queries/use-get-dropdownlist';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import { cn, dateDisable } from '@/helpers/utils';
-import { queryClient } from '@/services/providers';
 import { type IVaccinationRecord } from '@/types/clinic';
 import { type IOtherCommonFilter } from '@/types/common';
 import { Button } from '@/ui/button';
@@ -56,14 +55,10 @@ type IFormData = z.infer<typeof schema>;
 
 export default function Status({
 	record,
-	type,
-	date,
-	petId,
+	refetch,
 }: {
 	record: IVaccinationRecord;
-	type: IOtherCommonFilter;
-	date?: string | undefined;
-	petId?: string | undefined;
+	refetch: () => void;
 }) {
 	const [open, setOpen] = useState(false);
 	const form = useForm<IFormData>({
@@ -91,9 +86,7 @@ export default function Status({
 		const response = await updateVaccination(payload);
 		if (response.status === AppConstants.Success) {
 			setOpen(!open);
-			queryClient.invalidateQueries({
-				queryKey: ['clinic/vaccinationRecords', type, petId, date],
-			});
+			refetch();
 		}
 	};
 
