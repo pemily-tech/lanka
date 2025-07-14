@@ -73,6 +73,18 @@ export function useVaccination() {
 		handlePagination(0);
 	};
 
+	const handleDate = (date: DateRange) => {
+		setState({
+			start: date.from
+				? parseISO(format(date.from, DEFAULT_DATE_FORMAT))
+				: new Date(),
+			end: date.to
+				? parseISO(format(date.to, DEFAULT_DATE_FORMAT))
+				: new Date(),
+		});
+		handlePagination(0);
+	};
+
 	return {
 		selectedDateRange,
 		setState,
@@ -84,5 +96,6 @@ export function useVaccination() {
 		handlePagination,
 		totalCount: data?.data?.totalCount ?? 0,
 		handleFilters,
+		handleDate,
 	};
 }
