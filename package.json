@@ -1,6 +1,6 @@
 {
 	"name": "clinic-dashboard",
-	"version": "1.0.0",
+	"version": "2.1.9",
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbo",
