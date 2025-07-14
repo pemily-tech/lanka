@@ -74,7 +74,7 @@ export default function Status({
 		},
 	});
 	const { mutateAsync: updateFollowup, isPending } = useUpdateFollowUp();
-	const { data } = useGetDropdownList('REPEAT_AFTERS');
+	const { data } = useGetDropdownList('REPEAT_AFTERS', open);
 	const dropdownData =
 		data?.data?.dropdown || ([] as { label: string; value: string }[]);
 

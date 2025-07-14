@@ -15,9 +15,10 @@ const getDropdownList = async ({
 	return data;
 };
 
-export function useGetDropdownList(key: string) {
+export function useGetDropdownList(key: string, enabled?: boolean) {
 	return useQuery({
 		queryKey: ['app/utils/dropdown', key],
 		queryFn: getDropdownList,
+		enabled,
 	});
 }

@@ -5,7 +5,6 @@ import { useCallback, useState } from 'react';
 import { type DateRange } from 'react-day-picker';
 import { format, parseISO, startOfToday } from 'date-fns';
 import debounce from 'lodash.debounce';
-import { PillBottle } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useQueryStates } from 'nuqs';
 

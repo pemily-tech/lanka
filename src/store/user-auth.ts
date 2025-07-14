@@ -64,11 +64,16 @@ export const useAuthStore = create<AuthState & AuthActions>()(
 						refreshToken,
 						loggedIn: true,
 						loading: false,
+						hasHydrated: true, // Ensure hydration is marked complete
 					});
 					navigateFunction();
 				} catch (error) {
 					console.error('Failed to decode token:', error);
-					set({ loading: false });
+					set({
+						...initialState,
+						loading: false,
+						hasHydrated: true,
+					});
 				}
 			},
 		}),
