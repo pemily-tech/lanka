@@ -26,9 +26,13 @@ export function Search({ medicines, isPending }: Props) {
 			handleSelect={selectMedicine}
 			handleBlur={resetSearch}
 			placeholder="Search for medicines..."
-			renderOption={(option) => (
-				<div className="text-sm text-gray-900">{option.name}</div>
-			)}
+			renderOption={(option) => {
+				return (
+					<div className="text-sm text-gray-900">
+						{option.name} - {option.strength}
+					</div>
+				);
+			}}
 		/>
 	);
 }
