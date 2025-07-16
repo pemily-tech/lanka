@@ -71,8 +71,8 @@ export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 						)}
 					/>
 					{[
-						['dose', 'Dose', 'MEDICINE_DOSE'],
 						['strength', 'Strength', 'MEDICINE_STRENGTH'],
+						['dose', 'Dose', 'MEDICINE_DOSE'],
 						['duration', 'Duration', 'MEDICINE_DURATION'],
 						['frequency', 'Frequency', 'MEDICINE_FREQUENCY'],
 						['interval', 'Interval', 'MEDICINE_INTERVAL'],
