@@ -72,9 +72,9 @@ export function MedicineForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 					/>
 					{[
 						['dose', 'Dose', 'MEDICINE_DOSE'],
+						['strength', 'Strength', 'MEDICINE_STRENGTH'],
 						['duration', 'Duration', 'MEDICINE_DURATION'],
 						['frequency', 'Frequency', 'MEDICINE_FREQUENCY'],
-						['strength', 'Strength', 'MEDICINE_STRENGTH'],
 						['interval', 'Interval', 'MEDICINE_INTERVAL'],
 						['take', 'Take', 'MEDICINE_TAKE'],
 					].map(([name, label, option], i) => {
