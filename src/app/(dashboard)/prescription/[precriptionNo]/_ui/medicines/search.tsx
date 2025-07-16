@@ -28,7 +28,9 @@ export function Search({ medicines, isPending }: Props) {
 			placeholder="Search for medicines..."
 			renderOption={(option) => {
 				return (
-					<div className="text-sm text-gray-900">{option.name}</div>
+					<div className="text-sm text-gray-900">
+						{option.name} - {option.strength}
+					</div>
 				);
 			}}
 		/>
