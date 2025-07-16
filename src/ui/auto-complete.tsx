@@ -91,34 +91,30 @@ export const AutoComplete = <T,>({
 						isOpen ? 'block' : 'hidden'
 					)}
 				>
-					<CommandList className="border border-border">
-						{!isLoading && options.length > 0 && (
-							<CommandGroup>
-								{options?.map((option, i) => {
-									return (
-										<CommandItem
-											key={i}
-											onSelect={() =>
-												onSelectOption(option)
-											}
-											onMouseDown={(e) => {
-												e.preventDefault();
-												e.stopPropagation();
-											}}
-											className="cursor-pointer"
-										>
-											{renderOption(option)}
-										</CommandItem>
-									);
-								})}
-							</CommandGroup>
-						)}
+					<div className="border border-border bg-white">
+						{!isLoading &&
+							options.length > 0 &&
+							options.map((option, i) => {
+								return (
+									<div
+										key={i}
+										onClick={() => onSelectOption(option)}
+										onMouseDown={(e) => {
+											e.preventDefault();
+											e.stopPropagation();
+										}}
+										className="px-4 py-2 cursor-pointer border-b border-border"
+									>
+										{renderOption(option)}
+									</div>
+								);
+							})}
 						{!isLoading && options.length === 0 && (
-							<CommandEmpty className="select-none rounded-sm px-2 py-3 text-center text-sm">
+							<div className="select-none rounded-sm px-2 py-3 text-center text-sm">
 								{emptyMessage}
-							</CommandEmpty>
+							</div>
 						)}
-					</CommandList>
+					</div>
 				</div>
 			</div>
 		</CommandPrimitive>
