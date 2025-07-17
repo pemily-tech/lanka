@@ -139,7 +139,8 @@ export const dateDisable = (date: Date) => {
 	const normalizedDate = new Date(date);
 	normalizedDate.setHours(0, 0, 0, 0);
 
-	return normalizedDate < today || normalizedDate < minDate;
+	return normalizedDate < minDate;
+	// return normalizedDate < today || normalizedDate < minDate;
 };
 
 export const getYears = () => {
