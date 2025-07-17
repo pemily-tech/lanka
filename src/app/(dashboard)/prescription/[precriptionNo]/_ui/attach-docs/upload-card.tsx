@@ -39,6 +39,8 @@ export default function UploadCard({ type }: { type: string }) {
 	const { getRootProps, getInputProps } = useDropzone({
 		onDrop,
 		accept: {
+			'image/jpeg': [],
+			'image/png': [],
 			'application/pdf': [],
 			'application/msword': [],
 			'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
