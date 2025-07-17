@@ -11,7 +11,7 @@ import { useGetFollowupList } from '../_api/use-get-followup-list';
 
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
-import { cn, dateDisable } from '@/helpers/utils';
+import { cn } from '@/helpers/utils';
 import { queryClient } from '@/services/providers';
 import { type IOtherCommonFilter } from '@/types/common';
 import { Button } from '@/ui/button';

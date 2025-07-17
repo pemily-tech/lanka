@@ -34,7 +34,7 @@ export function Calendar({
 	return (
 		<DayPicker
 			showOutsideDays={showOutsideDays}
-			startMonth={new Date(2000, 0)}
+			startMonth={new Date(1950, 0)}
 			endMonth={new Date(2030, 11)}
 			className={cn(
 				'bg-background group/calendar [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent',
