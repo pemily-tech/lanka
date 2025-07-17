@@ -30,30 +30,41 @@ export default function Footer() {
 
 	return (
 		<div className="mt-4 flex items-center justify-end gap-4 border-t border-border py-4">
+			<Button
+				loading={isUpdating}
+				disabled={isPrescriptionSaved || isUpdating}
+				onClick={handleSave}
+				className="min-w-[120px] !rounded-2xl"
+			>
+				<Check className="size-4" />
+				<span className="font-normal">Save</span>
+			</Button>
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
 					<Button
-						loading={isUpdating}
-						disabled={isPrescriptionSaved || isUpdating}
+						loading={isUploading}
+						disabled={isPrescriptionSaved || isUploading}
+						variant="secondary"
 						className="min-w-[120px] !rounded-2xl"
 					>
-						<Check className="size-4" />
-						<span className="font-normal">Save</span>
+						<Plus className="size-4" />
+						<span className="font-normal">Create PDF</span>
 					</Button>
 				</AlertDialogTrigger>
 				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
 						<AlertDialogTitle className="text-2xl">
-							Are you sure you want to save this prescription?
+							Are you sure you want to create this prescription?
 						</AlertDialogTitle>
 						<AlertDialogDescription>
-							Once saved you will not be able to edit this
-							prescription.
+							Once the PDF is created, it cannot be edited or
+							changed. Please review the prescription carefully
+							before generating the PDF.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 					<AlertDialogFooter className="!pt-2">
 						<AlertDialogAction
-							onClick={handleSave}
+							onClick={handleCreate}
 							className="px-6"
 						>
 							Confirm
@@ -64,16 +75,6 @@ export default function Footer() {
 					</AlertDialogFooter>
 				</AlertDialogContent>
 			</AlertDialog>
-			<Button
-				loading={isUploading}
-				disabled={isPrescriptionSaved || isUploading}
-				onClick={handleCreate}
-				variant="secondary"
-				className="min-w-[120px] !rounded-2xl"
-			>
-				<Plus className="size-4" />
-				<span className="font-normal">Create PDF</span>
-			</Button>
 			<AlertDialog>
 				<AlertDialogTrigger asChild>
 					<Button
@@ -88,11 +89,13 @@ export default function Footer() {
 				<AlertDialogContent className="gap-6">
 					<AlertDialogHeader>
 						<AlertDialogTitle className="text-2xl">
-							Share Prescription
+							Share Prescription PDF via WhatsApp?
 						</AlertDialogTitle>
 						<AlertDialogDescription>
-							This document will be shared with pet parent through
-							WhatsApp and Pemilyy app.
+							This document will be shared with the pet parent via
+							WhatsApp on their registered mobile number (as
+							mentioned in the prescription) and also through the
+							Pemilyy app.
 						</AlertDialogDescription>
 					</AlertDialogHeader>
 					<AlertDialogFooter className="!pt-2">
