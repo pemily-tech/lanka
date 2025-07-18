@@ -96,7 +96,7 @@ export default function Status({
 				<Dialog open={open} onOpenChange={() => setOpen(!open)}>
 					<DialogTrigger asChild>
 						<Button className="min-w-[120px] !rounded-2xl">
-							<span className="font-normal">Complete</span>
+							<span className="font-normal">Complete Now</span>
 						</Button>
 					</DialogTrigger>
 					<DialogContent className="max-w-3xl">
