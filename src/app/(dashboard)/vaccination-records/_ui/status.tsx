@@ -14,7 +14,6 @@ import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import { cn, dateDisable } from '@/helpers/utils';
 import { type IVaccinationRecord } from '@/types/clinic';
-import { type IOtherCommonFilter } from '@/types/common';
 import { Button } from '@/ui/button';
 import { Calendar } from '@/ui/calendar';
 import {
