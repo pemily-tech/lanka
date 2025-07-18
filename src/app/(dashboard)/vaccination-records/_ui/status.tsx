@@ -95,7 +95,7 @@ export default function Status({
 			{record?.vaccinatedOnDate === null || !record?.vaccinatedOnDate ? (
 				<Dialog open={open} onOpenChange={() => setOpen(!open)}>
 					<DialogTrigger asChild>
-						<Button variant="outline" className="text-gray-500">
+						<Button className="min-w-[120px] !rounded-2xl">
 							Complete
 						</Button>
 					</DialogTrigger>

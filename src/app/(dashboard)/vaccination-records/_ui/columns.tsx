@@ -49,8 +49,19 @@ export function useColumns({
 			cell: ({ row }) => <span>{row.original.vaccineName}</span>,
 		},
 		{
+			accessorKey: 'vaccinationDate',
+			header: 'Due On',
+			cell: ({ row }) => {
+				const date = row?.original?.vaccinationDate
+					? parseISO(row?.original?.vaccinationDate as string)
+					: '';
+				const vaccinationDate = date && format(date, 'do MMM yyyy');
+				return <span>{vaccinationDate}</span>;
+			},
+		},
+		{
 			accessorKey: 'vaccinatedOnDate',
-			header: 'Vaccination Date',
+			header: 'Completed On',
 			cell: ({ row }) => {
 				const date = row?.original?.vaccinatedOnDate
 					? parseISO(row?.original?.vaccinatedOnDate as string)
@@ -61,17 +72,6 @@ export function useColumns({
 						{vaccinationDate ? vaccinationDate : '(Not Updated)'}
 					</span>
 				);
-			},
-		},
-		{
-			accessorKey: 'vaccinationDate',
-			header: 'Due Date',
-			cell: ({ row }) => {
-				const date = row?.original?.vaccinationDate
-					? parseISO(row?.original?.vaccinationDate as string)
-					: '';
-				const vaccinationDate = date && format(date, 'do MMM yyyy');
-				return <span>{vaccinationDate}</span>;
 			},
 		},
 		{
