@@ -95,8 +95,8 @@ export default function Status({
 			!record?.followUpCompleteDate ? (
 				<Dialog open={open} onOpenChange={() => setOpen(!open)}>
 					<DialogTrigger asChild>
-						<Button variant="outline">
-							<span className="font-normal">Complete</span>
+						<Button className="min-w-[120px] !rounded-2xl">
+							<span className="font-normal">Complete Now</span>
 						</Button>
 					</DialogTrigger>
 					<DialogContent className="max-w-3xl">

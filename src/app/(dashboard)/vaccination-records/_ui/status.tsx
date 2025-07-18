@@ -14,7 +14,6 @@ import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import { cn, dateDisable } from '@/helpers/utils';
 import { type IVaccinationRecord } from '@/types/clinic';
-import { type IOtherCommonFilter } from '@/types/common';
 import { Button } from '@/ui/button';
 import { Calendar } from '@/ui/calendar';
 import {
@@ -95,8 +94,8 @@ export default function Status({
 			{record?.vaccinatedOnDate === null || !record?.vaccinatedOnDate ? (
 				<Dialog open={open} onOpenChange={() => setOpen(!open)}>
 					<DialogTrigger asChild>
-						<Button variant="outline" className="text-gray-500">
-							Complete
+						<Button className="min-w-[120px] !rounded-2xl">
+							<span className="font-normal">Complete Now</span>
 						</Button>
 					</DialogTrigger>
 					<DialogContent className="max-w-3xl">
