@@ -70,7 +70,7 @@ export function useColumns({
 				const followUpCompleteDate =
 					date !== '' && format(date, DEFAULT_DATE_FORMAT);
 				return (
-					<span className="text-secondary-800">
+					<span>
 						{row?.original?.followUpCompleteDate
 							? followUpCompleteDate
 							: '(Pending)'}

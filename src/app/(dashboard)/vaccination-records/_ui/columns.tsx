@@ -68,7 +68,7 @@ export function useColumns({
 					: '';
 				const vaccinationDate = date && format(date, 'do MMM yyyy');
 				return (
-					<span className="text-secondary-800">
+					<span>
 						{vaccinationDate ? vaccinationDate : '(Pending)'}
 					</span>
 				);
