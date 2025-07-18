@@ -53,7 +53,7 @@ export const DEFAULT_DATE_FORMAT = 'yyyy-MM-dd';
 export const DATE_BE_FORMAT = 'dd-MM-yyyy';
 
 export const MAX_SIZE_500 = 500 * 1024;
-export const MAX_SIZE_2MB = 2 * 1024 * 1024;
+export const MAX_SIZE_5MB = 5 * 1024 * 1024;
 
 export const medicalRecordFilters = [
 	{
