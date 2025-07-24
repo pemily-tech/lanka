@@ -232,11 +232,11 @@ const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 							/>
 						)}
 						<span className="text-sm">{item.title}</span>
-						<ChevronRight className="ml-auto !size-5 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+						<ChevronRight className="ml-auto !size-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
 					</SidebarMenuButton>
 				</CollapsibleTrigger>
 				<CollapsibleContent>
-					<SidebarMenuSub className="mx-0 ml-6 mt-2 gap-3 px-0">
+					<SidebarMenuSub className="mx-0 ml-8 mt-2 gap-3 px-0">
 						{visibleItems?.map((ite, index) => {
 							const active = pathname === ite.path;
 							return (

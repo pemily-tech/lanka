@@ -2,19 +2,34 @@
 
 import { useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
+import { useQueryStates } from 'nuqs';
 
-import { useGetMedicines } from './_api/use-get-medicines';
+import { useGetItems } from '../_api/use-get-items';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
 
 import { useUpdateUrl } from '@/hooks/use-update-url';
-import { type IMedicine } from '@/types/prescription';
+import { type IItem } from '@/types/bills-items';
 import { DataTable } from '@/ui/data-table';
 import { PaginationWithLinks } from '@/ui/pagination-with-links';
 
 export default function Page() {
+	const [{ type, quantity }, setState] = useQueryStates({
+		type: {
+			defaultValue: 'PRODUCT',
+			parse: (val: string) =>
+				val === 'PRODUCT' || val === 'SERVICE' ? val : 'PRODUCT',
+			serialize: (val: 'PRODUCT' | 'SERVICE') => val,
+		},
+		quantity: {
+			defaultValue: null,
+			parse: (val: string) => val ?? null,
+			serialize: (val) => val ?? '',
+		},
+	});
 	const [input, setInput] = useState('');
 	const [searchTerm, setSearchTerm] = useState('');
+	const { limit, page, handlePagination } = useUpdateUrl();
 	const columns = useColumns();
 
 	const debouncedSearch = useCallback(
@@ -25,18 +40,20 @@ export default function Page() {
 	const handleChange = (val: string) => {
 		setInput(val);
 		debouncedSearch(val);
+		if (page !== 0) {
+			handlePagination(0);
+		}
 	};
-	const { limit, page, handlePagination, active, setActive } = useUpdateUrl();
 
-	const { data, isPending } = useGetMedicines({
-		count: 1,
+	const { data, isPending } = useGetItems({
 		searchTerm,
-		active,
-		limit,
+		type: type as 'PRODUCT' | 'SERVICE',
+		count: 1,
 		page,
+		limit,
+		...(quantity ? { qty: Number(quantity) } : {}),
 	});
-
-	const medicineData = data?.data?.medicines || ([] as IMedicine[]);
+	const itemsData = data?.data?.items || ([] as IItem[]);
 	const totalCount = data?.data?.totalCount || 0;
 
 	return (
@@ -45,14 +62,15 @@ export default function Page() {
 				<Filters
 					value={input}
 					setValue={handleChange}
-					active={active}
-					setActive={setActive}
+					type={type as 'PRODUCT' | 'SERVICE'}
+					setState={setState}
+					quantity={quantity}
 				/>
 			</div>
 			<div className="relative my-3 rounded-lg bg-white shadow-md">
 				<DataTable
 					columns={columns}
-					data={medicineData}
+					data={itemsData}
 					isPending={isPending}
 					getRowId={(row) => row._id}
 					emptyMessage="Nothing found for the day."
