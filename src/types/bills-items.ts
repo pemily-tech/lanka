@@ -13,3 +13,8 @@ export interface IItem {
 	active: boolean;
 	updatedBy: string;
 }
+
+export enum IItemType {
+	PRODUCT = 'PRODUCT',
+	SERVICE = 'SERVICE',
+}

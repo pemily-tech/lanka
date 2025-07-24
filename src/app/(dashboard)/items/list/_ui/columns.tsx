@@ -15,6 +15,7 @@ import {
 } from '../../../../../ui/alert';
 import { useRemoveItem } from '../_api/use-delete-item';
 
+import { Routes } from '@/helpers/routes';
 import { type IItem } from '@/types/bills-items';
 import { Button } from '@/ui/button';
 
@@ -61,8 +62,7 @@ export function useColumns(): ColumnDef<IItem>[] {
 			cell: ({ row }) => (
 				<div className="flex items-center gap-3">
 					<Link
-						href="/"
-						// href={`${Routes.EDIT_BILLS_ITEM}/${row.original.}`}
+						href={`${Routes.EDIT_ITEM}/${row.original.itemId}`}
 						className="flex size-6 items-center justify-center"
 					>
 						<Button
