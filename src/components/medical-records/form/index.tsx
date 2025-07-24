@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 
 import { useRecord } from './use-record';
 
-import { MAX_SIZE_2MB } from '@/helpers/constant';
+import { MAX_SIZE_5MB } from '@/helpers/constant';
 import { cn } from '@/helpers/utils';
 import { type IMedicalRecordFilter } from '@/types/common';
 import { Button } from '@/ui/button';
@@ -34,7 +34,7 @@ export default function MedicalRecordForm({
 			'image/png': [],
 			'application/pdf': [],
 		},
-		maxSize: MAX_SIZE_2MB,
+		maxSize: MAX_SIZE_5MB,
 	});
 
 	const handleSubmit = () => {
@@ -49,7 +49,7 @@ export default function MedicalRecordForm({
 				Upload a photo of your Prescription
 			</h2>
 			<h6 className="mx-6 mb-6 text-black/50">
-				You can upload JPEG or PNG up to 2MB
+				You can upload JPEG or PNG up to 5MB
 			</h6>
 			<div className="mb-6 h-full px-6">
 				<div
@@ -64,7 +64,7 @@ export default function MedicalRecordForm({
 								file
 							</p>
 							<p className="text-center text-black/40">
-								Max Size: 2MB
+								Max Size: 5MB
 							</p>
 						</div>
 					)}

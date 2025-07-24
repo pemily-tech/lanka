@@ -73,7 +73,7 @@ export function useColumns({
 					<span>
 						{row?.original?.followUpCompleteDate
 							? followUpCompleteDate
-							: 'Pending'}
+							: '(Pending)'}
 					</span>
 				);
 			},

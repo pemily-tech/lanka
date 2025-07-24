@@ -41,7 +41,7 @@ export function useRecord({
 				rejection.errors.forEach((error) => {
 					toast.error(
 						error.code === 'file-too-large'
-							? 'File is too large. Maximum size allowed is 2MB.'
+							? 'File is too large. Maximum size allowed is 5MB.'
 							: error.message
 					);
 				});
