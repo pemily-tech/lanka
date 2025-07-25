@@ -22,7 +22,7 @@ export function FloatingTextArea({
 			<label
 				htmlFor={id}
 				className={`origin-start text-muted-foreground/70 group-focus-within:text-primary has-[+textarea:not(:placeholder-shown)]:text-foreground pointer-events-none absolute top-1/2 block -translate-y-1/2 cursor-text px-3 text-sm transition-all group-focus-within:pointer-events-none group-focus-within:top-0 group-focus-within:cursor-default group-focus-within:text-xs group-focus-within:font-medium has-[+textarea:not(:placeholder-shown)]:pointer-events-none has-[+textarea:not(:placeholder-shown)]:top-0 has-[+textarea:not(:placeholder-shown)]:cursor-default has-[+textarea:not(:placeholder-shown)]:text-xs has-[+textarea:not(:placeholder-shown)]:font-medium ${
-					isError && '!text-destructive'
+					isError && '!text-orange-700'
 				}`}
 			>
 				<span className="bg-background inline-flex px-1">{label}</span>
@@ -30,7 +30,7 @@ export function FloatingTextArea({
 			<Textarea
 				className={`${
 					isError &&
-					'border-destructive/80 text-destructive focus-visible:border-destructive'
+					'border-orange-700/80 text-orange-700 focus-visible:border-orange-700'
 				} ${className}`}
 				placeholder=""
 				{...props}

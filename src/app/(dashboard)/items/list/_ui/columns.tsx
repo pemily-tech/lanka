@@ -83,7 +83,7 @@ export function useColumns(): ColumnDef<IItem>[] {
 								data-umami-event="items_delete"
 								data-umami-event-id={row.original.itemId}
 							>
-								<Trash2 className="text-destructive size-4" />
+								<Trash2 className="text-orange-700 size-4" />
 							</Button>
 						</AlertDialogTrigger>
 						<AlertDialogContent className="gap-6">

@@ -1,10 +1,12 @@
 import { type ColumnDef } from '@tanstack/react-table';
-import { format } from 'date-fns';
 import { Edit2, Trash2 } from 'lucide-react';
 import Link from 'next/link';
 
-import { cn } from '../../../../../helpers/utils';
-import { type IPrescription } from '../../../../../types/prescription';
+import { useRemoveInvoice } from '../_api/use-delete-invoice';
+
+import { AppConstants } from '@/helpers/primitives';
+import { formatRupee } from '@/helpers/utils';
+import { type IInvoice } from '@/types/bills-items';
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -15,68 +17,76 @@ import {
 	AlertDialogHeader,
 	AlertDialogTitle,
 	AlertDialogTrigger,
-} from '../../../../../ui/alert';
-import { useRemovePrescription } from '../_api/use-remove-prescription';
-
-import { AppConstants } from '@/helpers/primitives';
+} from '@/ui/alert';
 import { Button } from '@/ui/button';
 
-export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
-	const { mutateAsync: removePrescription } = useRemovePrescription();
+export function useColumns(): ColumnDef<IInvoice>[] {
+	const { mutateAsync: removeInvoice } = useRemoveInvoice();
 
-	const handleDelete = async (prescriptionNo: string) => {
-		const response = await removePrescription({
-			id: prescriptionNo,
+	const handleDelete = async (invoiceNo: string) => {
+		await removeInvoice({
+			id: invoiceNo,
+			active: false,
 		});
-		if (response.status === AppConstants.Success) {
-			refetch();
-		}
 	};
 
 	return [
 		{
-			accessorKey: 'prescriptionNo',
-			header: 'Prescription No',
+			accessorKey: 'invoiceNo',
+			header: 'Invoice No',
 			cell: ({ row }) => (
 				<Link
 					className="hover:text-purple hover:underline"
-					href={`/prescription/${row.original.prescriptionNo}`}
+					href={`/prescription/${row.original.invoiceNo}`}
 				>
-					{row.original.prescriptionNo}
+					{row.original.invoiceNo}
 				</Link>
 			),
 		},
 		{
-			accessorKey: 'prescriptionDate',
-			header: 'Date',
+			accessorKey: 'billToName',
+			header: 'BillTo',
 			cell: ({ row }) => (
 				<span>
-					{row.original.prescriptionDate &&
-						format(row.original.prescriptionDate, 'do MMM, yyyy')}
+					{row.original.billToName}({row.original.billToMobile})
 				</span>
 			),
 		},
 		{
-			accessorKey: 'parentName',
-			header: 'Parent Name',
-			cell: ({ row }) => <span>{row.original.parentName}</span>,
-		},
-		{
-			accessorKey: 'patientName',
-			header: 'Patient Name',
-			cell: ({ row }) => <span>{row.original.patientName}</span>,
-		},
-		{
-			accessorKey: 'active',
-			header: 'Active',
+			accessorKey: 'totalAmount',
+			header: 'Total',
 			cell: ({ row }) => (
-				<div
-					className={cn(
-						row.original.active ? 'bg-primary' : 'bg-orange-700',
-						'inline-flex rounded-full px-3 py-1 !text-xs text-white'
+				<span>{formatRupee(row.original.totalAmount)}</span>
+			),
+		},
+		{
+			accessorKey: 'paidAmount',
+			header: 'Paid',
+			cell: ({ row }) => (
+				<span>{formatRupee(row.original.paidAmount)}</span>
+			),
+		},
+		{
+			accessorKey: 'dueAmount',
+			header: 'Due',
+			cell: ({ row }) => (
+				<span>{formatRupee(row.original.dueAmount)}</span>
+			),
+		},
+		{
+			id: 'due',
+			header: 'Status',
+			cell: ({ row }) => (
+				<div>
+					{row.original.dueAmount > 0 ? (
+						<span className="bg-orange-700 px-4 text-white py-1 rounded-full text-sm font-semibold">
+							Due
+						</span>
+					) : (
+						<span className="bg-emerald-800 px-4 text-white py-1 rounded-full text-sm font-semibold">
+							Paid
+						</span>
 					)}
-				>
-					{row.original.active ? 'Active' : 'InActive'}
 				</div>
 			),
 		},
@@ -87,7 +97,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 				return (
 					<div className="flex items-center gap-3">
 						<Link
-							href={`/prescription/${row.original.prescriptionNo}`}
+							href={`/prescription/${row.original.invoiceNo}`}
 							className="flex size-6 items-center justify-center"
 						>
 							<Button size="icon" variant="ghost">
@@ -116,9 +126,7 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 								<AlertDialogFooter className="!pt-2">
 									<AlertDialogAction
 										onClick={() =>
-											handleDelete(
-												row.original.prescriptionNo
-											)
+											handleDelete(row.original.invoiceNo)
 										}
 										className="px-6"
 									>

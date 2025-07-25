@@ -75,7 +75,7 @@ export function useColumns(
 			cell: ({ row }) => (
 				<div
 					className={cn(
-						row.original.active ? 'bg-primary' : 'bg-destructive',
+						row.original.active ? 'bg-primary' : 'bg-orange-700',
 						'inline-flex rounded-full px-3 py-1 !text-xs text-white'
 					)}
 				>
@@ -108,7 +108,7 @@ export function useColumns(
 									size="icon"
 									variant="ghost"
 								>
-									<Trash2 className="text-destructive size-4" />
+									<Trash2 className="text-orange-700 size-4" />
 								</Button>
 							</AlertDialogTrigger>
 							<AlertDialogContent className="gap-6">

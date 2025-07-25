@@ -86,7 +86,7 @@ export default function Actions({
 						data-umami-event="vaccination_delete"
 						data-umami-event-id={record._id}
 					>
-						<Trash2 className="text-destructive size-4" />
+						<Trash2 className="text-orange-700 size-4" />
 					</Button>
 				</AlertDialogTrigger>
 				<AlertDialogContent className="gap-6">

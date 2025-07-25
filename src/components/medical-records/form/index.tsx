@@ -88,9 +88,9 @@ export default function MedicalRecordForm({
 								e.stopPropagation();
 								clear();
 							}}
-							className="border-destructive absolute -right-2 -top-2 z-10 flex size-6 cursor-pointer items-center justify-center rounded-full border bg-white"
+							className="border-orange-700 absolute -right-2 -top-2 z-10 flex size-6 cursor-pointer items-center justify-center rounded-full border bg-white"
 						>
-							<X className="text-destructive size-4" />
+							<X className="text-orange-700 size-4" />
 						</div>
 					)}
 				</div>
