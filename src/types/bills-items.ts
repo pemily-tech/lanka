@@ -62,3 +62,11 @@ export interface IBillAddress {
 	createdAt: string;
 	updatedAt: string;
 }
+
+export interface IInvoiceBasicDetails {
+	billByName: string;
+	billByMobile: string;
+	billByAddress: IBillAddress;
+	billToName: string;
+	billToMobile: string;
+}

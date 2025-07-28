@@ -5,6 +5,8 @@ import { useCallback, useState } from 'react';
 import { type DateRange } from 'react-day-picker';
 import { format, parseISO, startOfToday } from 'date-fns';
 import debounce from 'lodash.debounce';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/navigation';
 import { useQueryStates } from 'nuqs';
 
 import { useGetBills } from '../_api/use-get-bills';
@@ -12,12 +14,18 @@ import { useColumns } from './_ui/columns';
 
 import CommonFilters from '@/components/common-filters';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
+import { Routes } from '@/helpers/routes';
 import { useUpdateUrl } from '@/hooks/use-update-url';
 import { type IInvoice } from '@/types/bills-items';
 import { Badge } from '@/ui/badge';
-import { Button } from '@/ui/button';
 import { DataTable } from '@/ui/data-table';
 import { PaginationWithLinks } from '@/ui/pagination-with-links';
+import Spinner from '@/ui/spinner';
+
+const ParentModal = dynamic(() => import('./_ui/parent-modal'), {
+	loading: () => <Spinner />,
+	ssr: false,
+});
 
 const filters = [
 	{
@@ -84,6 +92,8 @@ export default function Page() {
 	const invoiceData = data?.data?.invoices || ([] as IInvoice[]);
 	const totalCount = data?.data?.totalCount || 0;
 	const columns = useColumns();
+	const router = useRouter();
+	const [open, setOpen] = useState(false);
 
 	const debouncedSearch = useCallback(
 		debounce((val: string) => setSearchTerm(val), 500),
@@ -121,7 +131,7 @@ export default function Page() {
 					setActive={setActive}
 					searchTerm={input}
 					setSearchTerm={handleChange}
-					btnAction={() => console.log()}
+					btnAction={() => setOpen(true)}
 					btnTxt="Create Invoice"
 				/>
 				<div className="mt-4 flex justify-end items-center gap-2">
@@ -162,6 +172,7 @@ export default function Page() {
 				className="flex flex-1 items-center justify-end gap-3"
 				limit={limit}
 			/>
+			<ParentModal open={open} setOpen={setOpen} />
 		</div>
 	);
 }

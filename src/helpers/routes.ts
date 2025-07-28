@@ -9,8 +9,6 @@ export const Routes = {
 	ADD_ITEM: '/items/add',
 	EDIT_ITEM: '/items/edit',
 	BILLS_LIST: '/bills/list',
-	ADD_BILLS_ITEM: '/bills/add',
-	EDIT_BILLS_ITEM: '/bills/edit',
 	BILLS_DETAILS: '/bills/details',
 	PRESCRIPTION_LIST: '/prescription/list',
 	PRESCRIPTION_ADD: '/prescription/create',
