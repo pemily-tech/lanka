@@ -1,0 +1,120 @@
+import { type ColumnDef } from '@tanstack/react-table';
+import { Edit2, Trash2 } from 'lucide-react';
+import Link from 'next/link';
+
+import { Routes } from '@/helpers/routes';
+import { type IItem } from '@/types/bills-items';
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+} from '@/ui/alert';
+import { AlertDialogFooter, AlertDialogHeader } from '@/ui/alert';
+import { Button } from '@/ui/button';
+
+const renderHeader = ({ title }: { title: string }) => {
+	return (
+		<span className="text-neutral-500 font-semibold">
+			{title.toUpperCase()}
+		</span>
+	);
+};
+
+export function useColumns(): ColumnDef<IItem>[] {
+	const handelRemove = (id: string) => {
+		// removeItem({ id });
+	};
+
+	return [
+		{
+			accessorKey: 'itemId',
+			header: () => renderHeader({ title: 'id' }),
+			cell: ({ row }) => <div>{row.original.itemId}</div>,
+		},
+		{
+			accessorKey: 'name',
+			header: () => renderHeader({ title: 'name' }),
+			cell: ({ row }) => <span>{row.original.name}</span>,
+		},
+		{
+			accessorKey: 'price',
+			header: () => renderHeader({ title: 'price' }),
+			cell: ({ row }) => (
+				<span>&#8377;{Math.floor(row.original.price)}</span>
+			),
+		},
+		{
+			accessorKey: 'mrp',
+			header: () => renderHeader({ title: 'mrp' }),
+			cell: ({ row }) => (
+				<span>&#8377;{Math.floor(row.original.mrp)}</span>
+			),
+		},
+		{
+			accessorKey: 'quantity',
+			header: () => renderHeader({ title: 'quantity' }),
+			cell: ({ row }) => <span>{row.original.quantity}</span>,
+		},
+		{
+			id: 'buttons',
+			header: () => renderHeader({ title: 'actions' }),
+			cell: ({ row }) => (
+				<div className="flex items-center gap-3">
+					<Link
+						href={`${Routes.EDIT_ITEM}/${row.original.itemId}`}
+						className="flex size-6 items-center justify-center"
+					>
+						<Button
+							size="icon"
+							variant="ghost"
+							data-umami-event="items_edit_button"
+							data-umami-event-id={row.original.itemId}
+						>
+							<Edit2 className="size-4" />
+						</Button>
+					</Link>
+					<AlertDialog>
+						<AlertDialogTrigger asChild>
+							<Button
+								disabled={!row.original.active}
+								size="icon"
+								variant="ghost"
+								data-umami-event="items_delete"
+								data-umami-event-id={row.original.itemId}
+							>
+								<Trash2 className="text-orange-700 size-4" />
+							</Button>
+						</AlertDialogTrigger>
+						<AlertDialogContent className="gap-6">
+							<AlertDialogHeader>
+								<AlertDialogTitle className="text-2xl">
+									Delete
+								</AlertDialogTitle>
+								<AlertDialogDescription>
+									Are you sure you want to delete?
+								</AlertDialogDescription>
+							</AlertDialogHeader>
+							<AlertDialogFooter className="!pt-2">
+								<AlertDialogAction
+									onClick={() =>
+										handelRemove(row.original.itemId)
+									}
+									className="px-6"
+								>
+									Confirm
+								</AlertDialogAction>
+								<AlertDialogCancel className="px-6">
+									<span className="text-sm">Cancel</span>
+								</AlertDialogCancel>
+							</AlertDialogFooter>
+						</AlertDialogContent>
+					</AlertDialog>
+				</div>
+			),
+		},
+	];
+}

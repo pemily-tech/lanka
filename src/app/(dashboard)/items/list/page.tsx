@@ -4,10 +4,10 @@ import { useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useQueryStates } from 'nuqs';
 
-import { useGetItems } from '../_api/use-get-items';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
 
+import { useGetItems } from '@/api/queries/use-get-items';
 import { useUpdateUrl } from '@/hooks/use-update-url';
 import { type IItem } from '@/types/bills-items';
 import { DataTable } from '@/ui/data-table';

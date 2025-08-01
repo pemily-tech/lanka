@@ -31,7 +31,7 @@ export function Header() {
 	return (
 		<div className="flex justify-between bg-white p-4 rounded-xl shadow-md">
 			<div className="flex-1">
-				<h1 className="font-semibold mb-2">Invoice Number</h1>
+				<h1 className="font-semibold mb-2 text-base">Invoice Number</h1>
 				<div className="flex flex-col gap-1 text-gray-600">
 					<div>{invoiceNo}</div>
 					<div>
@@ -40,7 +40,7 @@ export function Header() {
 				</div>
 			</div>
 			<div className="flex-1 flex flex-col items-end">
-				<h1 className="font-semibold mb-2">Billed To</h1>
+				<h1 className="font-semibold mb-2 text-base">Billed To</h1>
 				<div className="flex flex-col gap-1 text-gray-600 items-end">
 					<div>{basicDetails.billToName}</div>
 					<div>{basicDetails.billToMobile}</div>
