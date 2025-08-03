@@ -1,8 +1,9 @@
 import { type ColumnDef } from '@tanstack/react-table';
 import { Edit2, Trash2 } from 'lucide-react';
-import Link from 'next/link';
 
-import { Routes } from '@/helpers/routes';
+import { useItemStore } from '../_context/use-items';
+import UpdateItem from './update-item';
+
 import { type IItem } from '@/types/bills-items';
 import {
 	AlertDialog,
@@ -15,6 +16,7 @@ import {
 } from '@/ui/alert';
 import { AlertDialogFooter, AlertDialogHeader } from '@/ui/alert';
 import { Button } from '@/ui/button';
+import { Dialog, DialogTrigger } from '@/ui/dialog';
 
 const renderHeader = ({ title }: { title: string }) => {
 	return (
@@ -25,8 +27,10 @@ const renderHeader = ({ title }: { title: string }) => {
 };
 
 export function useColumns(): ColumnDef<IItem>[] {
+	const { removeItem, updateItem } = useItemStore();
+
 	const handelRemove = (id: string) => {
-		// removeItem({ id });
+		removeItem(id);
 	};
 
 	return [
@@ -64,19 +68,22 @@ export function useColumns(): ColumnDef<IItem>[] {
 			header: () => renderHeader({ title: 'actions' }),
 			cell: ({ row }) => (
 				<div className="flex items-center gap-3">
-					<Link
-						href={`${Routes.EDIT_ITEM}/${row.original.itemId}`}
-						className="flex size-6 items-center justify-center"
-					>
-						<Button
-							size="icon"
-							variant="ghost"
-							data-umami-event="items_edit_button"
-							data-umami-event-id={row.original.itemId}
-						>
-							<Edit2 className="size-4" />
-						</Button>
-					</Link>
+					<Dialog>
+						<DialogTrigger asChild>
+							<Button
+								size="icon"
+								variant="ghost"
+								data-umami-event="items_edit_button"
+								data-umami-event-id={row.original.itemId}
+							>
+								<Edit2 className="size-4" />
+							</Button>
+						</DialogTrigger>
+						<UpdateItem
+							item={row.original}
+							updateItem={updateItem}
+						/>
+					</Dialog>
 					<AlertDialog>
 						<AlertDialogTrigger asChild>
 							<Button
@@ -103,6 +110,7 @@ export function useColumns(): ColumnDef<IItem>[] {
 									onClick={() =>
 										handelRemove(row.original.itemId)
 									}
+									variant="secondary"
 									className="px-6"
 								>
 									Confirm

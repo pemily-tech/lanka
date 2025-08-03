@@ -1,10 +1,12 @@
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import {
 	type ColumnDef,
 	getCoreRowModel,
 	useReactTable,
 } from '@tanstack/react-table';
 import debounce from 'lodash.debounce';
+
+import { useItemStore } from '../_context/use-items';
 
 import { useGetItems } from '@/api/queries/use-get-items';
 import { type IItem } from '@/types/bills-items';
@@ -39,44 +41,45 @@ export function useSearchItems() {
 		() => data?.data?.items || ([] as IItem[]),
 		[data]
 	);
+	const { setItems, items, removeItem } = useItemStore();
 
-	const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+	const [selectedItems, setSelectedItems] = useState<Map<string, IItem>>(
+		new Map()
+	);
 
-	const toggleRow = (id: string) => {
-		setSelectedIds((prev) => {
-			const next = new Set(prev);
-			next.has(id) ? next.delete(id) : next.add(id);
-			return next;
-		});
-	};
+	useEffect(() => {
+		const tempMap = new Map(selectedItems);
 
-	const toggleAll = (checked: boolean) => {
-		setSelectedIds(() =>
-			checked ? new Set(itemsData.map((item) => item._id)) : new Set()
-		);
+		for (const item of items) {
+			tempMap.set(item.itemId, item);
+		}
+		setSelectedItems(tempMap);
+	}, []);
+
+	const toggleRow = (item: IItem) => {
+		const nextItem = new Map(selectedItems);
+		if (nextItem.has(item.itemId)) {
+			nextItem.delete(item.itemId);
+			removeItem(item.itemId);
+		} else {
+			nextItem.set(item.itemId, item);
+		}
+		setSelectedItems(nextItem);
 	};
 
 	const columns: ColumnDef<IItem>[] = useMemo(
 		() => [
 			{
 				id: 'select',
-				header: () => {
-					const allSelected = selectedIds.size === itemsData.length;
-					return (
-						<Checkbox
-							checked={allSelected}
-							onCheckedChange={(checked) => toggleAll(!!checked)}
-						/>
-					);
-				},
+				header: () => <div></div>,
 				cell: ({ row }) => {
-					const id = row.original._id;
-					const isChecked = selectedIds.has(id);
+					const item = row.original;
+					const isChecked = selectedItems.has(item.itemId);
 
 					return (
 						<Checkbox
 							checked={isChecked}
-							onCheckedChange={() => toggleRow(id)}
+							onCheckedChange={() => toggleRow(item)}
 						/>
 					);
 				},
@@ -126,15 +129,8 @@ export function useSearchItems() {
 					);
 				},
 			},
-			{
-				id: 'actions',
-				header: 'Actions',
-				cell: ({ row }) => {
-					return <div></div>;
-				},
-			},
 		],
-		[itemsData, selectedIds]
+		[selectedItems]
 	);
 
 	const table = useReactTable({
@@ -142,6 +138,10 @@ export function useSearchItems() {
 		columns,
 		getCoreRowModel: getCoreRowModel(),
 	});
+
+	const save = () => {
+		setItems(Array.from(selectedItems.values()));
+	};
 
 	return {
 		value,
@@ -152,8 +152,9 @@ export function useSearchItems() {
 		setQuantity,
 		columns,
 		table,
-		selectedIds,
+		selectedItems,
 		itemsData,
 		isPending,
+		save,
 	};
 }

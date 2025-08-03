@@ -20,12 +20,14 @@ export const buttonVariants = cva(
 					'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
 				ghost: 'hover:bg-accent hover:text-accent-foreground',
 				link: 'text-primary bg-neutral-100',
+				plain: 'bg-transparent',
 			},
 			size: {
 				default: 'h-12 px-3 rounded-xl',
 				sm: 'h-8 rounded-xl px-1',
 				lg: 'h-14 rounded-xl px-3',
 				icon: 'h-8 w-8',
+				none: 'h-auto w-auto',
 			},
 		},
 		defaultVariants: {

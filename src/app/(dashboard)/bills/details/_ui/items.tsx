@@ -1,22 +1,18 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import dynamic from 'next/dynamic';
 import { useParams } from 'next/navigation';
 
 import { useGetInvoiceByNo } from '../_api/use-get-invoice-byno';
+import { useItemStore } from '../_context/use-items';
 import { useColumns } from './columns';
+import SearchItemsModal from './search-items-modal';
 import { ItemsTable } from './table';
 
 import { type IInvoice } from '@/types/bills-items';
 import { Button } from '@/ui/button';
 import { Dialog, DialogTrigger } from '@/ui/dialog';
-import Spinner from '@/ui/spinner';
-
-const SearchItemsModal = dynamic(() => import('./search-items-modal'), {
-	loading: () => <Spinner />,
-	ssr: false,
-});
+import { Skeleton } from '@/ui/skeleton';
 
 export default function Items() {
 	const params = useParams();
@@ -27,9 +23,16 @@ export default function Items() {
 	}, [invoiceData]);
 	const columns = useColumns();
 	const [open, setOpen] = useState(false);
+	const { items } = useItemStore();
 
 	if (isPending) {
-		return <Spinner />;
+		return (
+			<div className="bg-white p-4 rounded-xl shadow-md space-y-2 h-[420px]">
+				<Skeleton className="h-6 w-92" />
+				<Skeleton className="h-4 w-32" />
+				<Skeleton className="h-4 w-42" />
+			</div>
+		);
 	}
 
 	return (
@@ -38,24 +41,25 @@ export default function Items() {
 			<p className="text-neutral-500">Details item with more info</p>
 			<ItemsTable
 				columns={columns}
-				data={invoice?.items}
+				data={items}
 				getRowId={(row) => row._id}
 			/>
-			<div className="flex">
+			<div className="flex mt-6">
 				<div className="flex-1">
 					<Dialog open={open} onOpenChange={() => setOpen(!open)}>
 						<DialogTrigger asChild>
 							<Button
-								variant="ghost"
-								className="text-primary font-semibold hover:text-primary"
+								variant="plain"
+								className="text-primary font-semibold hover:text-primary px-2"
+								size="none"
 							>
 								Add Item
 							</Button>
 						</DialogTrigger>
-						{open && <SearchItemsModal />}
+						{open && <SearchItemsModal setOpen={setOpen} />}
 					</Dialog>
 				</div>
-				<div className="flex-1 flex flex-col items-end mt-2 gap-2">
+				<div className="flex-1 flex flex-col items-end gap-2">
 					<div className="flex justify-between flex-1 w-full">
 						<div className="font-medium">Sub Total</div>
 						<div className="font-bold">100</div>

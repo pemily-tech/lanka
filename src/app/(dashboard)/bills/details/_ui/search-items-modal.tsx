@@ -25,7 +25,11 @@ import {
 	TableRow,
 } from '@/ui/table';
 
-export default function SearchItemsModal() {
+export default function SearchItemsModal({
+	setOpen,
+}: {
+	setOpen: (open: boolean) => void;
+}) {
 	const {
 		value,
 		handleChange,
@@ -36,8 +40,14 @@ export default function SearchItemsModal() {
 		table,
 		isPending,
 		columns,
-		selectedIds,
+		selectedItems,
+		save,
 	} = useSearchItems();
+
+	const handleClose = () => {
+		save();
+		setOpen(false);
+	};
 
 	return (
 		<DialogContent className="max-w-5xl gap-1">
@@ -136,8 +146,8 @@ export default function SearchItemsModal() {
 			</div>
 			<DialogFooter className="border-t border-neutral-300 pt-4 flex !justify-between items-center">
 				<div className="text-neutral-600 font-semibold">
-					{selectedIds.size > 0 &&
-						`Selected Items: ${selectedIds.size}`}
+					{selectedItems.size > 0 &&
+						`Selected Items: ${selectedItems.size}`}
 				</div>
 				<div className="gap-2 flex">
 					<DialogClose asChild>
@@ -145,7 +155,11 @@ export default function SearchItemsModal() {
 							Cancel
 						</Button>
 					</DialogClose>
-					<Button className="px-10" variant="secondary">
+					<Button
+						onClick={handleClose}
+						className="px-10"
+						variant="secondary"
+					>
 						Save
 					</Button>
 				</div>

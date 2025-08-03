@@ -9,6 +9,7 @@ import { useGetInvoiceByNo } from '../_api/use-get-invoice-byno';
 
 import { DATE_FORMAT } from '@/helpers/constant';
 import { type IInvoice, type IInvoiceBasicDetails } from '@/types/bills-items';
+import { Skeleton } from '@/ui/skeleton';
 import Spinner from '@/ui/spinner';
 
 export function Header() {
@@ -24,8 +25,21 @@ export function Header() {
 		return invoiceData?.data?.invoice ?? ({} as IInvoice);
 	}, [invoiceData]);
 
-	if (isPending || isLoading) {
-		return <Spinner />;
+	if (isLoading || isPending) {
+		return (
+			<div className="flex justify-between bg-white p-4 rounded-xl shadow-md">
+				<div className="space-y-2">
+					<Skeleton className="h-6 w-56" />
+					<Skeleton className="h-4 w-32" />
+					<Skeleton className="h-4 w-42" />
+				</div>
+				<div className="space-y-2 flex flex-col items-end">
+					<Skeleton className="h-6 w-56" />
+					<Skeleton className="h-4 w-32" />
+					<Skeleton className="h-4 w-42" />
+				</div>
+			</div>
+		);
 	}
 
 	return (

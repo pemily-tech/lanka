@@ -13,7 +13,7 @@ import {
 	type IInvoiceBasicDetails,
 } from '@/types/bills-items';
 import { Button } from '@/ui/button';
-import Spinner from '@/ui/spinner';
+import { Skeleton } from '@/ui/skeleton';
 
 const addressFields: (keyof IBillAddress)[] = [
 	'line1',
@@ -36,8 +36,24 @@ export function BilledBy() {
 		return invoiceData?.data?.invoice ?? ({} as IInvoice);
 	}, [invoiceData]);
 
-	if (isPending || isLoading) {
-		return <Spinner />;
+	if (isLoading || isPending) {
+		return (
+			<div className="flex flex-col gap-6">
+				<div className="space-y-2 bg-white p-4 rounded-xl shadow-md w-full">
+					<Skeleton className="h-4 w-56" />
+					<Skeleton className="h-4 w-32" />
+					<Skeleton className="h-4 w-92" />
+				</div>
+				<div className="bg-white p-4 rounded-xl shadow-md space-y-4">
+					<Skeleton className="h-6 w-32" />
+					<div className="flex gap-4">
+						<Skeleton className="h-14 w-full" />
+						<Skeleton className="h-14 w-full" />
+					</div>
+					<Skeleton className="h-14 w-full" />
+				</div>
+			</div>
+		);
 	}
 
 	return (
