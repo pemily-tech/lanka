@@ -1,11 +1,11 @@
 'use client';
 
-import { useMemo, useState } from 'react';
-import { Pencil, SendHorizonal } from 'lucide-react';
+import { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'next/navigation';
 
 import { useGetInvoiceByNo } from '../_api/use-get-invoice-byno';
 import { useItemStore } from '../_context/use-items';
+import { BillCalculation } from './bill-calculation';
 import { useColumns } from './columns';
 import SearchItemsModal from './search-items-modal';
 import { ItemsTable } from './table';
@@ -24,10 +24,27 @@ export default function Items() {
 	}, [invoiceData]);
 	const columns = useColumns();
 	const [open, setOpen] = useState(false);
-	const { items, subTotalAmount, totalAmount, totalItemDiscount } =
-		useItemStore();
-	const [discount, setDiscount] = useState('');
-	const [showDiscount, toggleDiscount] = useState(false);
+	const {
+		items,
+		subTotalAmount,
+		totalAmount,
+		totalItemDiscount,
+		setAmount,
+		invoiceDiscount,
+		paidAmount,
+	} = useItemStore();
+
+	useEffect(() => {
+		if (invoice) {
+			setAmount({
+				totalAmount: invoice.totalAmount ?? 0,
+				totalItemDiscount: invoice.totalItemDiscount ?? 0,
+				subTotalAmount: invoice.subTotalAmount ?? 0,
+				invoiceDiscount: invoice.invoiceDiscount ?? 0,
+				paidAmount: invoice.paidAmount ?? 0,
+			});
+		}
+	}, [invoice]);
 
 	if (isPending) {
 		return (
@@ -63,61 +80,13 @@ export default function Items() {
 						{open && <SearchItemsModal setOpen={setOpen} />}
 					</Dialog>
 				</div>
-				<div className="flex-1 flex flex-col items-end gap-2">
-					<div className="flex justify-between flex-1 w-full">
-						<div className="font-medium">Sub Total</div>
-						<div className="font-bold">&#8377;{subTotalAmount}</div>
-					</div>
-					<div className="flex justify-between flex-1 w-full">
-						<div className="font-medium">Discount on Items</div>
-						<div className="font-bold">
-							&#8377;{totalItemDiscount}
-						</div>
-					</div>
-					<div className="flex justify-between items-end flex-1 w-full">
-						<div className="font-medium">Invoice Discount</div>
-						<div className="">
-							{showDiscount ? (
-								<div className="flex gap-3">
-									<input
-										className="border-b border-neutral-500 outline-none text-right w-24"
-										value={discount}
-										onChange={(e) =>
-											setDiscount(e.target.value)
-										}
-									/>
-									<Button size="icon" variant="secondary">
-										<SendHorizonal />
-									</Button>
-								</div>
-							) : (
-								<div>
-									<button
-										onClick={() =>
-											toggleDiscount(!showDiscount)
-										}
-										className=""
-									>
-										<Pencil className="size-4" />
-									</button>
-								</div>
-							)}
-						</div>
-					</div>
-					<div className="my-1 h-[1px] bg-neutral-300 w-full" />
-					<div className="flex justify-between flex-1 w-full">
-						<div className="font-medium">Total Payable Amount</div>
-						<div className="font-bold">&#8377;{totalAmount}</div>
-					</div>
-					<div className="flex justify-between flex-1 w-full">
-						<div className="font-medium">Payments Received</div>
-						<div className="font-bold">100</div>
-					</div>
-					<div className="flex justify-between flex-1 w-full">
-						<div className="font-medium">Balance Due</div>
-						<div className="font-bold">100</div>
-					</div>
-				</div>
+				<BillCalculation
+					subTotalAmount={subTotalAmount}
+					totalAmount={totalAmount}
+					totalItemDiscount={totalItemDiscount}
+					invoiceDiscount={invoiceDiscount}
+					paidAmount={paidAmount}
+				/>
 			</div>
 		</div>
 	);

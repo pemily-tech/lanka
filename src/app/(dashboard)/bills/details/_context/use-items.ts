@@ -7,15 +7,28 @@ interface IItemsStore {
 	totalAmount: number;
 	totalItemDiscount: number;
 	subTotalAmount: number;
+	invoiceDiscount: number;
+	paidAmount: number;
 	setItems: (items: IItem[]) => void;
 	removeItem: (itemId: string) => void;
 	updateItem: (item: IItem) => void;
+	setAmount: (payload: {
+		totalAmount: number;
+		totalItemDiscount: number;
+		subTotalAmount: number;
+		invoiceDiscount: number;
+		paidAmount: number;
+	}) => void;
+	setInvoiceDiscount: (invoiceDiscount: number) => void;
+	setPaidAmount: (paidAmount: number) => void;
 }
 
 const calculateItemTotal = (items: IItem[]) => {
 	let totalAmount = 0;
 	let totalItemDiscount = 0;
 	let subTotalAmount = 0;
+	let invoiceDiscount = 0;
+	let paidAmount = 0;
 
 	const updatedItems = items.map((item) => {
 		const itemDiscount = parseFloat(
@@ -37,6 +50,8 @@ const calculateItemTotal = (items: IItem[]) => {
 			itemTotal,
 			itemSubTotal,
 			itemDiscount,
+			invoiceDiscount,
+			paidAmount,
 		};
 	});
 
@@ -48,6 +63,35 @@ export const useItemStore = create<IItemsStore>((set) => ({
 	totalAmount: 0,
 	totalItemDiscount: 0,
 	subTotalAmount: 0,
+	invoiceDiscount: 0,
+	paidAmount: 0,
+
+	setAmount: (payload: {
+		totalAmount: number;
+		totalItemDiscount: number;
+		subTotalAmount: number;
+		invoiceDiscount: number;
+		paidAmount: number;
+	}) =>
+		set(() => {
+			return {
+				totalAmount: payload.totalAmount,
+				totalItemDiscount: payload.totalItemDiscount,
+				subTotalAmount: payload.subTotalAmount,
+				invoiceDiscount: payload.invoiceDiscount,
+				paidAmount: payload.paidAmount,
+			};
+		}),
+
+	setInvoiceDiscount: (invoiceDiscount: number) =>
+		set(() => ({
+			invoiceDiscount,
+		})),
+
+	setPaidAmount: (paidAmount: number) =>
+		set(() => ({
+			paidAmount,
+		})),
 
 	setItems: (items) =>
 		set((state) => {

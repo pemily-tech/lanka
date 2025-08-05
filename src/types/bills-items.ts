@@ -50,6 +50,7 @@ export interface IInvoice {
 	items: IItem[];
 	createdAt: string;
 	updatedAt: string;
+	subTotalAmount: number;
 }
 
 export interface IBillAddress {
