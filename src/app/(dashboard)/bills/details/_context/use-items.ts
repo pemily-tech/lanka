@@ -21,6 +21,8 @@ interface IItemsStore {
 	}) => void;
 	setInvoiceDiscount: (invoiceDiscount: number) => void;
 	setPaidAmount: (paidAmount: number) => void;
+	getTotalPayable: () => number;
+	getBalanceDue: () => number;
 }
 
 const calculateItemTotal = (items: IItem[]) => {
@@ -58,7 +60,7 @@ const calculateItemTotal = (items: IItem[]) => {
 	return { updatedItems, totalAmount, totalItemDiscount, subTotalAmount };
 };
 
-export const useItemStore = create<IItemsStore>((set) => ({
+export const useItemStore = create<IItemsStore>((set, get) => ({
 	items: [],
 	totalAmount: 0,
 	totalItemDiscount: 0,
@@ -148,4 +150,18 @@ export const useItemStore = create<IItemsStore>((set) => ({
 				subTotalAmount,
 			};
 		}),
+
+	getTotalPayable: () => {
+		const state = get();
+		return Math.max(state.totalAmount - state.invoiceDiscount, 0);
+	},
+
+	getBalanceDue: () => {
+		const state = get();
+		const totalPayable = Math.max(
+			state.totalAmount - state.invoiceDiscount,
+			0
+		);
+		return Math.max(totalPayable - state.paidAmount, 0);
+	},
 }));

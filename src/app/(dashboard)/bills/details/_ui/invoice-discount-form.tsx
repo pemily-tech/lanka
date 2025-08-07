@@ -23,8 +23,12 @@ const schema = z.object({
 
 export default function InvoiceDiscountForm({
 	setTempInvoiceDiscount,
+	setInvoiceDialog,
+	tempInvoiceDiscount,
 }: {
 	setTempInvoiceDiscount: (value: number) => void;
+	setInvoiceDialog: (value: boolean) => void;
+	tempInvoiceDiscount: number;
 }) {
 	const form = useForm({
 		resolver: zodResolver(schema),
@@ -36,6 +40,10 @@ export default function InvoiceDiscountForm({
 	const watchInvoiceDiscount = form.watch('invoiceDiscount');
 
 	useEffect(() => {
+		form.setValue('invoiceDiscount', tempInvoiceDiscount.toString() ?? '');
+	}, []);
+
+	useEffect(() => {
 		if (watchInvoiceDiscount) {
 			setTempInvoiceDiscount(Number(watchInvoiceDiscount));
 		}
@@ -43,6 +51,7 @@ export default function InvoiceDiscountForm({
 
 	const onSubmit = (data: { invoiceDiscount: number }) => {
 		setInvoiceDiscount(data.invoiceDiscount);
+		setInvoiceDialog(false);
 		form.reset();
 	};
 

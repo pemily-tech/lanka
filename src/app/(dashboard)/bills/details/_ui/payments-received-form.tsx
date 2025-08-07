@@ -23,8 +23,12 @@ const schema = z.object({
 
 export default function PaymentReceivedForm({
 	setTempPaidAmount,
+	setPaymentsDialog,
+	tempPaidAmount,
 }: {
 	setTempPaidAmount: (value: number) => void;
+	setPaymentsDialog: (value: boolean) => void;
+	tempPaidAmount: number;
 }) {
 	const form = useForm({
 		resolver: zodResolver(schema),
@@ -36,6 +40,10 @@ export default function PaymentReceivedForm({
 	const watchPaymentReceived = form.watch('paymentReceived');
 
 	useEffect(() => {
+		form.setValue('paymentReceived', tempPaidAmount.toString() ?? '');
+	}, []);
+
+	useEffect(() => {
 		if (watchPaymentReceived) {
 			setTempPaidAmount(Number(watchPaymentReceived));
 		}
@@ -43,6 +51,7 @@ export default function PaymentReceivedForm({
 
 	const onSubmit = (data: { paymentReceived: number }) => {
 		setPaidAmount(data.paymentReceived);
+		setPaymentsDialog(false);
 		form.reset();
 	};
 

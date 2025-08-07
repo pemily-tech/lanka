@@ -37,31 +37,50 @@ export function useColumns(): ColumnDef<IItem>[] {
 		{
 			accessorKey: 'itemId',
 			header: () => renderHeader({ title: 'id' }),
-			cell: ({ row }) => <div>{row.original.itemId}</div>,
+			cell: ({ row }) => (
+				<div className="font-medium">#{row.index + 1}</div>
+			),
 		},
 		{
 			accessorKey: 'name',
 			header: () => renderHeader({ title: 'name' }),
-			cell: ({ row }) => <span>{row.original.name}</span>,
+			cell: ({ row }) => (
+				<span className="font-medium">{row.original.name}</span>
+			),
 		},
 		{
 			accessorKey: 'price',
 			header: () => renderHeader({ title: 'price' }),
 			cell: ({ row }) => (
-				<span>&#8377;{Math.floor(row.original.price)}</span>
+				<span className="font-medium">
+					&#8377;{Math.floor(row.original.price)}
+				</span>
 			),
 		},
 		{
 			accessorKey: 'mrp',
 			header: () => renderHeader({ title: 'mrp' }),
 			cell: ({ row }) => (
-				<span>&#8377;{Math.floor(row.original.mrp)}</span>
+				<span className="font-medium">
+					&#8377;{Math.floor(row.original.mrp)}
+				</span>
 			),
 		},
 		{
 			accessorKey: 'quantity',
 			header: () => renderHeader({ title: 'quantity' }),
-			cell: ({ row }) => <span>{row.original.quantity}</span>,
+			cell: ({ row }) => (
+				<span className="font-medium">{row.original.quantity}</span>
+			),
+		},
+		{
+			id: 'itemTotal',
+			header: () => renderHeader({ title: 'item total' }),
+			cell: ({ row }) => (
+				<span className="font-medium">
+					&#8377;{row.original.price * row.original.quantity}
+				</span>
+			),
 		},
 		{
 			id: 'buttons',

@@ -27,7 +27,6 @@ export default function Items() {
 	const {
 		items,
 		subTotalAmount,
-		totalAmount,
 		totalItemDiscount,
 		setAmount,
 		invoiceDiscount,
@@ -82,7 +81,6 @@ export default function Items() {
 				</div>
 				<BillCalculation
 					subTotalAmount={subTotalAmount}
-					totalAmount={totalAmount}
 					totalItemDiscount={totalItemDiscount}
 					invoiceDiscount={invoiceDiscount}
 					paidAmount={paidAmount}
