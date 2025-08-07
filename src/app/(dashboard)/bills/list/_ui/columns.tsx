@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { useRemoveInvoice } from '../_api/use-delete-invoice';
 
-import { AppConstants } from '@/helpers/primitives';
+import { Routes } from '@/helpers/routes';
 import { formatRupee } from '@/helpers/utils';
 import { type IInvoice } from '@/types/bills-items';
 import {
@@ -97,7 +97,7 @@ export function useColumns(): ColumnDef<IInvoice>[] {
 				return (
 					<div className="flex items-center gap-3">
 						<Link
-							href={`/prescription/${row.original.invoiceNo}`}
+							href={`${Routes.BILLS_DETAILS}/${row.original.invoiceNo}`}
 							className="flex size-6 items-center justify-center"
 						>
 							<Button size="icon" variant="ghost">

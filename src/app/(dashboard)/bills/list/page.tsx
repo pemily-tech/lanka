@@ -6,7 +6,6 @@ import { type DateRange } from 'react-day-picker';
 import { format, parseISO, startOfToday } from 'date-fns';
 import debounce from 'lodash.debounce';
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
 import { useQueryStates } from 'nuqs';
 
 import { useGetBills } from '../_api/use-get-bills';
@@ -14,7 +13,6 @@ import { useColumns } from './_ui/columns';
 
 import CommonFilters from '@/components/common-filters';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
-import { Routes } from '@/helpers/routes';
 import { useUpdateUrl } from '@/hooks/use-update-url';
 import { type IInvoice } from '@/types/bills-items';
 import { Badge } from '@/ui/badge';
@@ -92,7 +90,6 @@ export default function Page() {
 	const invoiceData = data?.data?.invoices || ([] as IInvoice[]);
 	const totalCount = data?.data?.totalCount || 0;
 	const columns = useColumns();
-	const router = useRouter();
 	const [open, setOpen] = useState(false);
 
 	const debouncedSearch = useCallback(

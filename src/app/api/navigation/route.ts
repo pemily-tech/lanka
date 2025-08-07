@@ -67,7 +67,7 @@ const data: INavigationItem[] = [
 		path: '',
 		title: 'Bills & Items',
 		isIcon: false,
-		icon: '/images/ePrescription.svg',
+		icon: '/images/bills.svg',
 		roles: [Roles.Clinic],
 		items: [
 			{

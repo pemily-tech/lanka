@@ -31,6 +31,7 @@ export default function Items() {
 		setAmount,
 		invoiceDiscount,
 		paidAmount,
+		setItems,
 	} = useItemStore();
 
 	useEffect(() => {
@@ -44,6 +45,12 @@ export default function Items() {
 			});
 		}
 	}, [invoice]);
+
+	useEffect(() => {
+		if (invoice.items && invoice.items.length > 0) {
+			setItems(invoice.items);
+		}
+	}, [invoice.items]);
 
 	if (isPending) {
 		return (
