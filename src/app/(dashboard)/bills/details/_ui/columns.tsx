@@ -1,7 +1,7 @@
 import { type ColumnDef } from '@tanstack/react-table';
 import { Edit2, Trash2 } from 'lucide-react';
 
-import { useItemStore } from '../_context/use-items';
+import { useItemStore } from '../../_context/use-items';
 import UpdateItem from './update-item';
 
 import { type IItem } from '@/types/bills-items';

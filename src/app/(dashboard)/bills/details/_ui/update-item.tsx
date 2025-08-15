@@ -41,8 +41,8 @@ export const schema = z
 			.refine((val) => Number(val) <= 100000, {
 				message: 'Price must not exceed 100,000',
 			})
-			.refine((val) => /^\d+(\.\d{1,2})?$/.test(val), {
-				message: 'Price can have up to two decimal places',
+			.refine((val) => Number(val) % 1 === 0, {
+				message: 'Price must be a whole number (no decimals)',
 			}),
 
 		mrp: z
@@ -54,8 +54,8 @@ export const schema = z
 			.refine((val) => Number(val) > 0, {
 				message: 'MRP must be a positive number',
 			})
-			.refine((val) => /^\d+(\.\d{1,2})?$/.test(val), {
-				message: 'MRP can have up to two decimal places',
+			.refine((val) => Number(val) % 1 === 0, {
+				message: 'MRP must be a whole number (no decimals)',
 			}),
 
 		quantity: z
@@ -82,6 +82,9 @@ export const schema = z
 			})
 			.refine((val) => Number(val) >= 0, {
 				message: 'Discount must be at least 1',
+			})
+			.refine((val) => Number(val) % 1 === 0, {
+				message: 'Discount must be a whole number (no decimals)',
 			}),
 
 		type: z.nativeEnum(IItemType, {
@@ -132,11 +135,11 @@ export default function UpdateItem({
 		const payload = {
 			...item,
 			name: values.name,
-			price: Number(values.price),
-			quantity: Number(values.quantity),
-			mrp: Number(values.mrp),
+			price: Math.floor(Number(values.price)),
+			quantity: Math.floor(Number(values.quantity)),
+			mrp: Math.floor(Number(values.mrp)),
 			description: values.description ?? '',
-			discount: Number(values.discount),
+			discount: Math.floor(Number(values.discount)),
 		};
 		updateItem(payload);
 	};

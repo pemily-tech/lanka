@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Send } from 'lucide-react';
 import z from 'zod';
 
-import { useItemStore } from '../_context/use-items';
+import { useItemStore } from '../../_context/use-items';
 
 import { Button } from '@/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/ui/form';

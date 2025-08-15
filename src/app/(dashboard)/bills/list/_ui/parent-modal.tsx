@@ -3,6 +3,7 @@ import { type MouseEvent, useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useRouter } from 'next/navigation';
 
+import { useItemStore } from '../../_context/use-items';
 import { useCreateInvoice } from '../_api/use-create-invoice';
 
 import { useGetPetParents } from '@/api/queries/use-get-pet-parent';
@@ -44,6 +45,7 @@ export default function ParentModal({
 	const { mutateAsync: createInvoice, isPending: isLoading } =
 		useCreateInvoice();
 	const router = useRouter();
+	const { setItems } = useItemStore();
 
 	const debouncedSearch = useCallback(
 		debounce((val: string) => setSearchTerm(val), 500),
@@ -74,6 +76,7 @@ export default function ParentModal({
 		});
 		if (response.status === AppConstants.Success) {
 			setOpen(false);
+			setItems([]);
 			router.push(
 				`${Routes.BILLS_DETAILS}/${response.data.invoice.invoiceNo}`
 			);

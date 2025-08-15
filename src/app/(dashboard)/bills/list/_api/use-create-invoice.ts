@@ -3,7 +3,6 @@ import { toast } from 'sonner';
 
 import { AppConstants } from '@/helpers/primitives';
 import { HttpService } from '@/services/http-service';
-import { queryClient } from '@/services/providers';
 import { type IInvoice } from '@/types/bills-items';
 import { type IApiResponse } from '@/types/common';
 

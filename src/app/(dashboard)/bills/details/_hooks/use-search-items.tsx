@@ -6,7 +6,7 @@ import {
 } from '@tanstack/react-table';
 import debounce from 'lodash.debounce';
 
-import { useItemStore } from '../_context/use-items';
+import { useItemStore } from '../../_context/use-items';
 
 import { useGetItems } from '@/api/queries/use-get-items';
 import { type IItem } from '@/types/bills-items';
@@ -62,8 +62,13 @@ export function useSearchItems() {
 			nextItem.delete(item.itemId);
 			removeItem(item.itemId);
 		} else {
-			nextItem.set(item.itemId, item);
+			nextItem.set(item.itemId, {
+				...item,
+				quantity: item.quantity || 1,
+			});
 		}
+		console.log(nextItem, 'next');
+
 		setSelectedItems(nextItem);
 	};
 
@@ -140,6 +145,8 @@ export function useSearchItems() {
 	});
 
 	const save = () => {
+		console.log(selectedItems, selectedItems.values(), '===sel');
+
 		setItems(Array.from(selectedItems.values()));
 	};
 

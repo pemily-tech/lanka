@@ -4,8 +4,10 @@ import { useMemo } from 'react';
 import { Download, Eye, Save } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
+import { useItemStore } from '../../_context/use-items';
 import { useGetInvoiceBasicDetails } from '../_api/use-get-basic-details';
 import { useGetInvoiceByNo } from '../_api/use-get-invoice-byno';
+import { useCreateInvoice } from '../_api/use-save-invoice';
 
 import {
 	type IBillAddress,
@@ -35,6 +37,32 @@ export function BilledBy() {
 	const invoice = useMemo(() => {
 		return invoiceData?.data?.invoice ?? ({} as IInvoice);
 	}, [invoiceData]);
+	const { mutateAsync: saveInvoice, isPending: isSaving } =
+		useCreateInvoice(invoiceNo);
+
+	const {
+		items,
+		totalAmount,
+		paidAmount,
+		getBalanceDue,
+		getTotalPayable,
+		subTotalAmount,
+		invoiceDiscount,
+	} = useItemStore();
+	const balanceDue = getBalanceDue();
+
+	const handleSave = async () => {
+		const payload = {
+			...basicDetails,
+			items: items.map(({ itemDiscount, ...rest }) => rest),
+			totalAmount,
+			paidAmount,
+			dueAmount: balanceDue,
+			totalDiscount: invoiceDiscount,
+			subTotalAmount,
+		};
+		const response = await saveInvoice(payload);
+	};
 
 	if (isLoading || isPending) {
 		return (
@@ -81,16 +109,31 @@ export function BilledBy() {
 				<h2 className="font-semibold mb-4 text-base">Actions</h2>
 				<div className="flex flex-col gap-4">
 					<div className="flex gap-4">
-						<Button size="lg" variant="link" className="flex-1">
+						<Button
+							disabled={isSaving || items.length === 0}
+							size="lg"
+							variant="link"
+							className="flex-1"
+						>
 							<Eye />
 							<span>Preview</span>
 						</Button>
-						<Button size="lg" variant="link" className="flex-1">
+						<Button
+							disabled={isSaving || items.length === 0}
+							size="lg"
+							variant="link"
+							className="flex-1"
+						>
 							<Download />
 							<span>Download</span>
 						</Button>
 					</div>
-					<Button variant="secondary" size="lg">
+					<Button
+						disabled={isSaving || items.length === 0}
+						onClick={handleSave}
+						variant="secondary"
+						size="lg"
+					>
 						<Save />
 						<span>Save PDF</span>
 					</Button>
