@@ -30,7 +30,7 @@ const calculateTotals = (items: IItem[]) => {
 	let totalItemDiscount = 0;
 	let subTotalAmount = 0;
 
-	for (const item of items) {
+	const updatedItems = items.map((item) => {
 		const itemDiscount = parseFloat(
 			Math.max(0, (item.discount || 0) * item.quantity).toFixed(2)
 		);
@@ -44,9 +44,15 @@ const calculateTotals = (items: IItem[]) => {
 		subTotalAmount += itemSubTotal;
 		totalAmount += itemTotal;
 		totalItemDiscount += itemDiscount;
-	}
 
-	return { totalAmount, totalItemDiscount, subTotalAmount };
+		return {
+			...item,
+			itemTotal,
+			itemSubTotal,
+			itemDiscount,
+		};
+	});
+	return { updatedItems, totalAmount, totalItemDiscount, subTotalAmount };
 };
 
 export const useItemStore = create<IItemsStore>((set, get) => ({
@@ -90,20 +96,20 @@ export const useItemStore = create<IItemsStore>((set, get) => ({
 			const uniqMap = new Map(merged.map((item) => [item.itemId, item]));
 			const mergedUnique = Array.from(uniqMap.values());
 
-			const totals = calculateTotals(mergedUnique);
+			const { updatedItems, ...rest } = calculateTotals(mergedUnique);
 			return {
-				items: mergedUnique,
-				...totals,
+				items: updatedItems,
+				...rest,
 			};
 		}),
 
 	removeItem: (id) =>
 		set((state) => {
 			const filtered = state.items.filter((item) => item.itemId !== id);
-			const totals = calculateTotals(filtered);
+			const { updatedItems, ...rest } = calculateTotals(filtered);
 			return {
-				items: filtered,
-				...totals,
+				items: updatedItems,
+				...rest,
 			};
 		}),
 
@@ -112,8 +118,8 @@ export const useItemStore = create<IItemsStore>((set, get) => ({
 			const updated = state.items.map((item) =>
 				item.itemId === newItem.itemId ? newItem : item
 			);
-			const totals = calculateTotals(updated);
-			return { items: updated, ...totals };
+			const { updatedItems, ...rest } = calculateTotals(updated);
+			return { items: updatedItems, ...rest };
 		}),
 
 	getTotalPayable: () => {

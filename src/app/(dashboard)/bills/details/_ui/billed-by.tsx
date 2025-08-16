@@ -54,7 +54,7 @@ export function BilledBy() {
 	const handleSave = async () => {
 		const payload = {
 			...basicDetails,
-			items: items.map(({ itemDiscount, ...rest }) => rest),
+			items,
 			totalAmount,
 			paidAmount,
 			dueAmount: balanceDue,
