@@ -64,7 +64,7 @@ export const AppSidebar = () => {
 					</SidebarMenuItem>
 				</SidebarMenu>
 			</SidebarHeader>
-			<SidebarContent>
+			<SidebarContent className="scrollbar-custom">
 				<SidebarGroup>
 					<Menu navMenu={filteredNavMenu} role={role} />
 				</SidebarGroup>
