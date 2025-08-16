@@ -67,9 +67,9 @@ export async function GET(req: Request) {
 			sharpImage = sharpImage.blur();
 		}
 
-		const output = await sharpImage
+		const output = (await sharpImage
 			.webp({ quality: quality || 75 })
-			.toBuffer();
+			.toBuffer()) as any;
 
 		return new Response(output, {
 			headers: {
