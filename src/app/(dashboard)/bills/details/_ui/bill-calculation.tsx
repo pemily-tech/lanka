@@ -75,7 +75,7 @@ export function BillCalculation({
 			</div>
 			<div className="flex justify-between flex-1 w-full">
 				<div className="font-medium">Balance Due</div>
-				<div className="font-bold">{balanceDue}</div>
+				<div className="font-bold">&#8377;{balanceDue}</div>
 			</div>
 			<Dialog open={showInvoiceDialog} onOpenChange={setInvoiceDialog}>
 				<DialogContent className="max-w-xl">

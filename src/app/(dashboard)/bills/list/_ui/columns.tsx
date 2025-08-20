@@ -37,7 +37,7 @@ export function useColumns(): ColumnDef<IInvoice>[] {
 			cell: ({ row }) => (
 				<Link
 					className="hover:text-purple hover:underline"
-					href={`/prescription/${row.original.invoiceNo}`}
+					href={`${Routes.BILLS_DETAILS}/${row.original.invoiceNo}`}
 				>
 					{row.original.invoiceNo}
 				</Link>

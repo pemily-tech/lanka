@@ -2,6 +2,7 @@
 
 import { useMemo } from 'react';
 import { Download, Eye, Save } from 'lucide-react';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 
 import { useItemStore } from '../../_context/use-items';
@@ -9,6 +10,8 @@ import { useGetInvoiceBasicDetails } from '../_api/use-get-basic-details';
 import { useGetInvoiceByNo } from '../_api/use-get-invoice-byno';
 import { useCreateInvoice } from '../_api/use-save-invoice';
 
+import { env } from '@/env.mjs';
+import useDocumentDownload from '@/hooks/use-download-document';
 import {
 	type IBillAddress,
 	type IInvoice,
@@ -39,29 +42,34 @@ export function BilledBy() {
 	}, [invoiceData]);
 	const { mutateAsync: saveInvoice, isPending: isSaving } =
 		useCreateInvoice(invoiceNo);
+	const { url } = useDocumentDownload(invoice?.url);
 
 	const {
 		items,
-		totalAmount,
 		paidAmount,
 		getBalanceDue,
 		getTotalPayable,
 		subTotalAmount,
 		invoiceDiscount,
+		totalItemDiscount,
 	} = useItemStore();
 	const balanceDue = getBalanceDue();
 
 	const handleSave = async () => {
 		const payload = {
 			...basicDetails,
-			items,
-			totalAmount,
+			items: items.map(({ createdAt, updatedAt, ...rest }) => rest),
+			totalAmount: getTotalPayable(),
 			paidAmount,
 			dueAmount: balanceDue,
-			totalDiscount: invoiceDiscount,
+			totalDiscount: parseFloat(
+				(totalItemDiscount + invoiceDiscount).toFixed(2)
+			),
+			invoiceDiscount: invoiceDiscount,
+			totalItemDiscount,
 			subTotalAmount,
 		};
-		const response = await saveInvoice(payload);
+		await saveInvoice(payload);
 	};
 
 	if (isLoading || isPending) {
@@ -119,13 +127,20 @@ export function BilledBy() {
 							<span>Preview</span>
 						</Button>
 						<Button
-							disabled={isSaving || items.length === 0}
+							disabled={
+								isSaving || !invoice.url || items.length === 0
+							}
 							size="lg"
 							variant="link"
 							className="flex-1"
 						>
-							<Download />
-							<span>Download</span>
+							<Link
+								className="flex gap-2 items-center"
+								href={url || ''}
+							>
+								<Download />
+								<span>Download</span>
+							</Link>
 						</Button>
 					</div>
 					<Button
