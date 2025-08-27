@@ -1,7 +1,9 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useParams } from 'next/navigation';
 
+import { useItemStore } from '../../_context/use-items';
 import { BilledBy } from '../_ui/billed-by';
 import { Header } from '../_ui/header';
 import Items from '../_ui/items';
@@ -9,6 +11,12 @@ import Items from '../_ui/items';
 export default function Page() {
 	const params = useParams();
 	const invoiceNo = params?.invoiceNo as string;
+
+	useEffect(() => {
+		return () => {
+			useItemStore.getState().reset();
+		};
+	}, []);
 
 	return (
 		<div>

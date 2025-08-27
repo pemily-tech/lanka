@@ -23,6 +23,7 @@ interface IItemsStore {
 	setPaidAmount: (paidAmount: number) => void;
 	getTotalPayable: () => number;
 	getBalanceDue: () => number;
+	reset: () => void;
 }
 
 const calculateTotals = (items: IItem[]) => {
@@ -135,4 +136,6 @@ export const useItemStore = create<IItemsStore>((set, get) => ({
 		);
 		return Math.max(totalPayable - state.paidAmount, 0);
 	},
+
+	reset: () => set({ items: [] }),
 }));

@@ -10,7 +10,7 @@ import { useGetInvoiceBasicDetails } from '../_api/use-get-basic-details';
 import { useGetInvoiceByNo } from '../_api/use-get-invoice-byno';
 import { useCreateInvoice } from '../_api/use-save-invoice';
 
-import { env } from '@/env.mjs';
+import { AppConstants } from '@/helpers/primitives';
 import useDocumentDownload from '@/hooks/use-download-document';
 import {
 	type IBillAddress,
@@ -35,8 +35,11 @@ export function BilledBy() {
 	const basicDetails = useMemo(() => {
 		return data?.data?.invoiceBasicDetails ?? ({} as IInvoiceBasicDetails);
 	}, [data]);
-	const { data: invoiceData, isPending: isLoading } =
-		useGetInvoiceByNo(invoiceNo);
+	const {
+		data: invoiceData,
+		isPending: isLoading,
+		refetch,
+	} = useGetInvoiceByNo(invoiceNo);
 	const invoice = useMemo(() => {
 		return invoiceData?.data?.invoice ?? ({} as IInvoice);
 	}, [invoiceData]);
@@ -69,7 +72,11 @@ export function BilledBy() {
 			totalItemDiscount,
 			subTotalAmount,
 		};
-		await saveInvoice(payload);
+		const response = await saveInvoice(payload);
+		if (response.status === AppConstants.Success) {
+			refetch();
+			useItemStore.getState().reset();
+		}
 	};
 
 	if (isLoading || isPending) {
@@ -144,7 +151,7 @@ export function BilledBy() {
 						</Button>
 					</div>
 					<Button
-						disabled={isSaving || items.length === 0}
+						disabled={isSaving || items.length === 0 || !!url}
 						onClick={handleSave}
 						variant="secondary"
 						size="lg"

@@ -79,6 +79,7 @@ export default function Items() {
 								variant="plain"
 								className="text-primary font-semibold hover:text-primary px-2"
 								size="none"
+								disabled={!!invoice.url}
 							>
 								Add Item
 							</Button>
