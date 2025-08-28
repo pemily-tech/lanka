@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -41,8 +41,8 @@ export const schema = z
 			.refine((val) => Number(val) <= 100000, {
 				message: 'Price must not exceed 100,000',
 			})
-			.refine((val) => Number(val) % 1 === 0, {
-				message: 'Price must be a whole number (no decimals)',
+			.refine((val) => /^\d+(\.\d{1,2})?$/.test(val), {
+				message: 'Price can have up to two decimal places',
 			}),
 
 		mrp: z
@@ -54,8 +54,8 @@ export const schema = z
 			.refine((val) => Number(val) > 0, {
 				message: 'MRP must be a positive number',
 			})
-			.refine((val) => Number(val) % 1 === 0, {
-				message: 'MRP must be a whole number (no decimals)',
+			.refine((val) => /^\d+(\.\d{1,2})?$/.test(val), {
+				message: 'MRP can have up to two decimal places',
 			}),
 
 		quantity: z
@@ -121,6 +121,20 @@ export default function UpdateItem({
 			} satisfies IFormData;
 		}, [item]),
 	});
+	const watchMrp = form.watch('mrp');
+	const watchPrice = form.watch('price');
+
+	useEffect(() => {
+		if (
+			watchMrp &&
+			watchPrice &&
+			!isNaN(+watchMrp) &&
+			!isNaN(+watchPrice)
+		) {
+			const calculatedDiscount = Math.max(+watchMrp - +watchPrice, 0);
+			form.setValue('discount', calculatedDiscount.toFixed(2));
+		}
+	}, [watchMrp, watchPrice, form]);
 
 	const inputFields: Array<[keyof IFormData, string, 'text' | 'numeric']> = [
 		['name', 'Name', 'text'],
