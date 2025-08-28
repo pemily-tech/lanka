@@ -82,9 +82,6 @@ export const schema = z
 			})
 			.refine((val) => Number(val) >= 0, {
 				message: 'Discount must be at least 1',
-			})
-			.refine((val) => Number(val) % 1 === 0, {
-				message: 'Discount must be a whole number (no decimals)',
 			}),
 
 		type: z.nativeEnum(IItemType, {
