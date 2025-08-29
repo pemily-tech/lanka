@@ -68,7 +68,7 @@ const data: INavigationItem[] = [
 		title: 'Bills & Items',
 		isIcon: false,
 		icon: '/images/bills.svg',
-		roles: [Roles.Clinic],
+		roles: [Roles.Clinic, Roles.Staff],
 		items: [
 			{
 				id: uuidv4(),
@@ -76,7 +76,7 @@ const data: INavigationItem[] = [
 				path: Routes.BILLS_LIST,
 				title: 'Bills',
 				isIcon: false,
-				roles: [Roles.Clinic],
+				roles: [Roles.Clinic, Roles.Staff],
 			},
 			{
 				id: uuidv4(),
@@ -84,7 +84,7 @@ const data: INavigationItem[] = [
 				path: Routes.ITEMS_LIST,
 				title: 'Items',
 				isIcon: false,
-				roles: [Roles.Clinic],
+				roles: [Roles.Clinic, Roles.Staff],
 			},
 		],
 	},
