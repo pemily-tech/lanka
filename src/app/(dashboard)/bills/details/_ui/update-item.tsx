@@ -146,11 +146,11 @@ export default function UpdateItem({
 		const payload = {
 			...item,
 			name: values.name,
-			price: Math.floor(Number(values.price)),
-			quantity: Math.floor(Number(values.quantity)),
-			mrp: Math.floor(Number(values.mrp)),
+			price: Number(Number(values.price).toFixed(2)),
+			quantity: Number(values.quantity),
+			mrp: Number(Number(values.mrp).toFixed(2)),
 			description: values.description ?? '',
-			discount: Math.floor(Number(values.discount)),
+			discount: Number(Number(values.discount).toFixed(2)),
 		};
 		updateItem(payload);
 	};

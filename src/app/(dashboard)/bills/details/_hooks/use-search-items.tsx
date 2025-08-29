@@ -96,21 +96,23 @@ export function useSearchItems() {
 				accessorKey: 'price',
 				header: 'Price',
 				cell: ({ row }) => (
-					<span>&#8377;{Math.floor(row.original.price)}</span>
+					<span>&#8377;{Number(row.original.price).toFixed(2)}</span>
 				),
 			},
 			{
 				accessorKey: 'mrp',
 				header: 'Mrp',
 				cell: ({ row }) => (
-					<span>&#8377;{Math.floor(row.original.mrp)}</span>
+					<span>&#8377;{Number(row.original.mrp).toFixed(2)}</span>
 				),
 			},
 			{
 				accessorKey: 'discount',
 				header: 'Discount',
 				cell: ({ row }) => (
-					<span>&#8377;{Math.floor(row.original.discount)}</span>
+					<span>
+						&#8377;{Number(row.original.discount).toFixed(2)}
+					</span>
 				),
 			},
 			{
@@ -143,8 +145,6 @@ export function useSearchItems() {
 	});
 
 	const save = () => {
-		console.log(selectedItems, selectedItems.values(), '===sel');
-
 		setItems(Array.from(selectedItems.values()));
 	};
 
