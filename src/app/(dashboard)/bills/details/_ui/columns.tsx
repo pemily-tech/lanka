@@ -53,7 +53,7 @@ export function useColumns(): ColumnDef<IItem>[] {
 			header: () => renderHeader({ title: 'price' }),
 			cell: ({ row }) => (
 				<span className="font-medium">
-					&#8377;{Math.floor(row.original.price)}
+					&#8377;{Number(row.original.price ?? 0).toFixed(2)}
 				</span>
 			),
 		},
@@ -62,7 +62,7 @@ export function useColumns(): ColumnDef<IItem>[] {
 			header: () => renderHeader({ title: 'mrp' }),
 			cell: ({ row }) => (
 				<span className="font-medium">
-					&#8377;{Math.floor(row.original.mrp)}
+					&#8377;{Number(row.original.mrp ?? 0).toFixed(2)}
 				</span>
 			),
 		},
@@ -78,7 +78,10 @@ export function useColumns(): ColumnDef<IItem>[] {
 			header: () => renderHeader({ title: 'item total' }),
 			cell: ({ row }) => (
 				<span className="font-medium">
-					&#8377;{row.original.price * row.original.quantity}
+					&#8377;
+					{Number(row.original.price * row.original.quantity).toFixed(
+						2
+					)}
 				</span>
 			),
 		},

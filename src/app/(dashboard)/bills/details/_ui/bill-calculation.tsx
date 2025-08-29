@@ -36,11 +36,15 @@ export function BillCalculation({
 		<div className="flex-1 flex flex-col items-end gap-2">
 			<div className="flex justify-between flex-1 w-full">
 				<div className="font-medium">Sub Total</div>
-				<div className="font-bold">&#8377;{subTotalAmount}</div>
+				<div className="font-bold">
+					&#8377;{Number(subTotalAmount).toFixed(2)}
+				</div>
 			</div>
 			<div className="flex justify-between flex-1 w-full">
 				<div className="font-medium">Discount on Items</div>
-				<div className="font-bold">&#8377;{totalItemDiscount}</div>
+				<div className="font-bold">
+					&#8377;{Number(totalItemDiscount).toFixed(2)}
+				</div>
 			</div>
 			<div className="flex justify-between items-end flex-1 w-full">
 				<div className="font-medium flex items-center gap-1">
@@ -53,7 +57,9 @@ export function BillCalculation({
 						Update
 					</button>
 				</div>
-				<div className="font-bold">&#8377;{invoiceDiscount}</div>
+				<div className="font-bold">
+					&#8377;{Number(invoiceDiscount).toFixed(2)}
+				</div>
 			</div>
 			<div className="my-1 h-[1px] bg-neutral-300 w-full" />
 			<div className="flex justify-between flex-1 w-full">
@@ -71,11 +77,15 @@ export function BillCalculation({
 						Update
 					</button>
 				</div>
-				<div className="font-bold">&#8377;{paidAmount}</div>
+				<div className="font-bold">
+					&#8377;{Number(paidAmount).toFixed(2)}
+				</div>
 			</div>
 			<div className="flex justify-between flex-1 w-full">
 				<div className="font-medium">Balance Due</div>
-				<div className="font-bold">&#8377;{balanceDue}</div>
+				<div className="font-bold">
+					&#8377;{Number(balanceDue).toFixed(2)}
+				</div>
 			</div>
 			<Dialog open={showInvoiceDialog} onOpenChange={setInvoiceDialog}>
 				<DialogContent className="max-w-xl">
@@ -86,7 +96,7 @@ export function BillCalculation({
 								Current Discount:
 							</span>
 							<span className="font-bold">
-								&#8377;{tempInvoiceDiscount}
+								&#8377;{Number(tempInvoiceDiscount).toFixed(2)}
 							</span>
 						</DialogDescription>
 					</DialogHeader>
@@ -104,7 +114,7 @@ export function BillCalculation({
 						<DialogDescription>
 							<span className="font-medium">Current price:</span>
 							<span className="font-bold">
-								&#8377;{tempPaidAmount}
+								&#8377;{Number(tempPaidAmount).toFixed(2)}
 							</span>
 						</DialogDescription>
 					</DialogHeader>
