@@ -67,8 +67,6 @@ export function useSearchItems() {
 				quantity: 1,
 			});
 		}
-		console.log(nextItem, 'next');
-
 		setSelectedItems(nextItem);
 	};
 

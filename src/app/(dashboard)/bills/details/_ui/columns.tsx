@@ -4,7 +4,7 @@ import { Edit2, Trash2 } from 'lucide-react';
 import { useItemStore } from '../../_context/use-items';
 import UpdateItem from './update-item';
 
-import { type IItem } from '@/types/bills-items';
+import { type IInvoice, type IItem } from '@/types/bills-items';
 import {
 	AlertDialog,
 	AlertDialogAction,
@@ -26,7 +26,7 @@ const renderHeader = ({ title }: { title: string }) => {
 	);
 };
 
-export function useColumns(): ColumnDef<IItem>[] {
+export function useColumns(invoice: IInvoice): ColumnDef<IItem>[] {
 	const { removeItem, updateItem } = useItemStore();
 
 	const handelRemove = (id: string) => {
@@ -97,6 +97,7 @@ export function useColumns(): ColumnDef<IItem>[] {
 								variant="ghost"
 								data-umami-event="items_edit_button"
 								data-umami-event-id={row.original.itemId}
+								disabled={!!invoice.url}
 							>
 								<Edit2 className="size-4" />
 							</Button>
@@ -109,7 +110,7 @@ export function useColumns(): ColumnDef<IItem>[] {
 					<AlertDialog>
 						<AlertDialogTrigger asChild>
 							<Button
-								disabled={!row.original.active}
+								disabled={!row.original.active || !!invoice.url}
 								size="icon"
 								variant="ghost"
 								data-umami-event="items_delete"

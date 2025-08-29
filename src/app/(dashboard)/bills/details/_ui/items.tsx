@@ -22,7 +22,7 @@ export default function Items() {
 	const invoice = useMemo(() => {
 		return invoiceData?.data?.invoice ?? ({} as IInvoice);
 	}, [invoiceData]);
-	const columns = useColumns();
+	const columns = useColumns(invoice);
 	const [open, setOpen] = useState(false);
 	const {
 		items,

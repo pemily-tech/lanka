@@ -124,7 +124,7 @@ export function BilledBy() {
 				<h2 className="font-semibold mb-4 text-base">Actions</h2>
 				<div className="flex flex-col gap-4">
 					<div className="flex gap-4">
-						<Button
+						{/* <Button
 							disabled={isSaving || items.length === 0}
 							size="lg"
 							variant="link"
@@ -132,7 +132,7 @@ export function BilledBy() {
 						>
 							<Eye />
 							<span>Preview</span>
-						</Button>
+						</Button> */}
 						<Button
 							disabled={
 								isSaving || !invoice.url || items.length === 0
