@@ -64,7 +64,9 @@ export function BillCalculation({
 			<div className="my-1 h-[1px] bg-neutral-300 w-full" />
 			<div className="flex justify-between flex-1 w-full">
 				<div className="font-medium">Total Payable Amount</div>
-				<div className="font-bold">&#8377;{totalPayable}</div>
+				<div className="font-bold">
+					&#8377;{Number(totalPayable).toFixed(2)}
+				</div>
 			</div>
 			<div className="flex justify-between flex-1 w-full">
 				<div className="font-medium flex items-center gap-1">
