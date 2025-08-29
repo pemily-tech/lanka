@@ -64,7 +64,7 @@ export function useSearchItems() {
 		} else {
 			nextItem.set(item.itemId, {
 				...item,
-				quantity: item.quantity || 1,
+				quantity: 1,
 			});
 		}
 		console.log(nextItem, 'next');
