@@ -42,9 +42,11 @@ const calculateTotals = (items: IItem[]) => {
 			Math.max(0, itemSubTotal - itemDiscount).toFixed(2)
 		);
 
-		subTotalAmount += itemSubTotal;
-		totalAmount += itemTotal;
-		totalItemDiscount += itemDiscount;
+		subTotalAmount = parseFloat((subTotalAmount + itemSubTotal).toFixed(2));
+		totalAmount = parseFloat((totalAmount + itemTotal).toFixed(2));
+		totalItemDiscount = parseFloat(
+			(totalItemDiscount + itemDiscount).toFixed(2)
+		);
 
 		return {
 			...item,
@@ -96,7 +98,6 @@ export const useItemStore = create<IItemsStore>((set, get) => ({
 			const merged = [...items, ...state.items];
 			const uniqMap = new Map(merged.map((item) => [item.itemId, item]));
 			const mergedUnique = Array.from(uniqMap.values());
-
 			const { updatedItems, ...rest } = calculateTotals(mergedUnique);
 			return {
 				items: updatedItems,
@@ -134,7 +135,8 @@ export const useItemStore = create<IItemsStore>((set, get) => ({
 			state.totalAmount - state.invoiceDiscount,
 			0
 		);
-		return Math.max(totalPayable - state.paidAmount, 0);
+		const balance = Math.max(totalPayable - state.paidAmount, 0);
+		return parseFloat(balance.toFixed(2));
 	},
 
 	reset: () => set({ items: [] }),
