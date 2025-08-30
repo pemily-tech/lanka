@@ -6,26 +6,28 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '@/helpers/utils';
 
 export const buttonVariants = cva(
-	"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 aria-invalid:border-destructive cursor-pointer",
+	"inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-orange-700/20 aria-invalid:border-orange-700 cursor-pointer",
 	{
 		variants: {
 			variant: {
 				default:
 					'bg-primary text-primary-foreground shadow-xs hover:bg-primary/90',
 				destructive:
-					'bg-destructive text-white shadow-xs hover:bg-destructive/90 focus-visible:ring-destructive/20',
+					'bg-orange-700 text-white shadow-xs hover:bg-orange-700/90 focus-visible:ring-orange-700/20',
 				outline:
 					'border border-border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',
 				secondary:
 					'bg-secondary text-secondary-foreground shadow-xs hover:bg-secondary/80',
 				ghost: 'hover:bg-accent hover:text-accent-foreground',
-				link: 'text-primary underline-offset-4 hover:underline',
+				link: 'text-primary bg-neutral-100',
+				plain: 'bg-transparent',
 			},
 			size: {
 				default: 'h-12 px-3 rounded-xl',
 				sm: 'h-8 rounded-xl px-1',
 				lg: 'h-14 rounded-xl px-3',
 				icon: 'h-8 w-8',
+				none: 'h-auto w-auto',
 			},
 		},
 		defaultVariants: {

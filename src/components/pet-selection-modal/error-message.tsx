@@ -18,17 +18,17 @@ export default function ErrorMessage({
 	return (
 		<>
 			{stepperId === 'doctor' && doctorError && !selectedDoctorId && (
-				<p className="text-destructive text-sm font-semibold">
+				<p className="text-orange-700 text-sm font-semibold">
 					Please choose a doctor to proceed
 				</p>
 			)}
 			{stepperId === 'parent' && parentError && !selectedParentId && (
-				<p className="text-destructive text-sm font-semibold">
+				<p className="text-orange-700 text-sm font-semibold">
 					Please choose a parent to proceed
 				</p>
 			)}
 			{stepperId === 'pet' && petError && !selectedPetId && (
-				<p className="text-destructive text-sm font-semibold">
+				<p className="text-orange-700 text-sm font-semibold">
 					Please choose a pet to proceed
 				</p>
 			)}

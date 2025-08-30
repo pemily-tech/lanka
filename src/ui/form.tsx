@@ -98,7 +98,7 @@ export function FormLabel({
 		<Label
 			data-slot="form-label"
 			data-error={!!error}
-			className={cn('data-[error=true]:text-destructive', className)}
+			className={cn('data-[error=true]:text-orange-700', className)}
 			htmlFor={formItemId}
 			{...props}
 		/>
@@ -155,7 +155,7 @@ export function FormMessage({
 		<p
 			data-slot="form-message"
 			id={formMessageId}
-			className={cn('text-destructive text-xs', className)}
+			className={cn('text-orange-700 text-xs', className)}
 			{...props}
 		>
 			{body}

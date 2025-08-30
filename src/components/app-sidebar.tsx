@@ -3,31 +3,17 @@
 import {
 	ChevronRight,
 	House,
-	LogOutIcon,
 	PackageSearch,
 	Pill,
 	ReceiptIndianRupee,
 	UserCircleIcon,
-	UserRoundCheck,
 } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 
 import { useGetNavigation } from '../api/queries/use-get-navigation';
-import { logout } from '../helpers/utils';
 import { useAuthStore } from '../store/user-auth';
 import { type INavigationItem } from '../types/common';
-import {
-	AlertDialog,
-	AlertDialogAction,
-	AlertDialogCancel,
-	AlertDialogContent,
-	AlertDialogDescription,
-	AlertDialogFooter,
-	AlertDialogHeader,
-	AlertDialogTitle,
-	AlertDialogTrigger,
-} from '../ui/alert';
 import {
 	Collapsible,
 	CollapsibleContent,
@@ -46,8 +32,8 @@ import {
 	SidebarMenuSubButton,
 	SidebarMenuSubItem,
 } from '../ui/sidebar';
+import { LogoutAlert } from './logout-alert';
 
-import { Routes } from '@/helpers/routes';
 import { BlurImage } from '@/ui/blur-image';
 
 const IconMap: Record<string, React.ElementType> = {
@@ -59,83 +45,35 @@ const IconMap: Record<string, React.ElementType> = {
 };
 
 export const AppSidebar = () => {
-	const { name, mobile, role } = useAuthStore();
+	const { role } = useAuthStore();
 	const { data } = useGetNavigation();
 	const navMenu: INavigationItem[] = data?.data || [];
 	const filteredNavMenu = navMenu.filter((item) => {
 		if (!item.roles) return true;
 		return item.roles.includes(role);
 	});
-	const router = useRouter();
-
-	const handleLogout = () => {
-		logout();
-		router.replace(Routes.LOGIN);
-	};
 
 	return (
 		<Sidebar collapsible="icon" className="bg-white">
-			<SidebarHeader className="px-2">
+			<SidebarHeader className="px-4">
 				<SidebarMenu>
 					<SidebarMenuItem>
-						<SidebarMenuButton>
-							<UserRoundCheck className="text-primary !size-5" />
-							<span className="text-sm">{name || mobile}</span>
-						</SidebarMenuButton>
+						<Link className="w-24 block py-4" href="/home">
+							<img src="/images/logo-full.png" />
+						</Link>
 					</SidebarMenuItem>
 				</SidebarMenu>
 			</SidebarHeader>
-			<SidebarContent className="py-6">
+			<SidebarContent className="scrollbar-custom">
 				<SidebarGroup>
 					<Menu navMenu={filteredNavMenu} role={role} />
 				</SidebarGroup>
 			</SidebarContent>
-			<SidebarFooter className="px-4">
+			<SidebarFooter className="px-4 py-4">
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<SidebarMenuButton className="p-0" asChild>
-							<div>
-								<AlertDialog>
-									<AlertDialogTrigger
-										className="flex w-full items-center gap-3 py-3 cursor-pointer"
-										data-umami-event="user_logout_button"
-										data-umami-event-id={mobile}
-									>
-										<LogOutIcon width={16} height={16} />
-										<span className="text-sm">Logout</span>
-									</AlertDialogTrigger>
-									<AlertDialogContent className="gap-6">
-										<AlertDialogHeader>
-											<AlertDialogTitle className="text-xl font-semibold">
-												Logout
-											</AlertDialogTitle>
-											<AlertDialogDescription>
-												Are you sure you want to logout?
-											</AlertDialogDescription>
-										</AlertDialogHeader>
-										<AlertDialogFooter className="!pt-2">
-											<AlertDialogAction
-												onClick={handleLogout}
-												className="px-6"
-												data-umami-event="user_logout_confirm_button"
-												data-umami-event-id={mobile}
-												variant="secondary"
-											>
-												Logout
-											</AlertDialogAction>
-											<AlertDialogCancel
-												data-umami-event="user_logout_cancel_button"
-												data-umami-event-id={mobile}
-												className="px-4"
-											>
-												<span className="text-sm">
-													Cancel
-												</span>
-											</AlertDialogCancel>
-										</AlertDialogFooter>
-									</AlertDialogContent>
-								</AlertDialog>
-							</div>
+							<LogoutAlert />
 						</SidebarMenuButton>
 					</SidebarMenuItem>
 				</SidebarMenu>
@@ -232,11 +170,11 @@ const MenuItem = ({ item, role }: { item: INavigationItem; role: string }) => {
 							/>
 						)}
 						<span className="text-sm">{item.title}</span>
-						<ChevronRight className="ml-auto !size-5 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+						<ChevronRight className="ml-auto !size-4 transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
 					</SidebarMenuButton>
 				</CollapsibleTrigger>
 				<CollapsibleContent>
-					<SidebarMenuSub className="mx-0 ml-6 mt-2 gap-3 px-0">
+					<SidebarMenuSub className="mx-0 ml-8 mt-2 gap-3 px-0">
 						{visibleItems?.map((ite, index) => {
 							const active = pathname === ite.path;
 							return (

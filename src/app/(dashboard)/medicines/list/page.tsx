@@ -3,13 +3,14 @@
 import { useCallback, useState } from 'react';
 import debounce from 'lodash.debounce';
 
-import { useUpdateUrl } from '../../../../hooks/use-update-url';
-import { type IMedicine } from '../../../../types/prescription';
-import { DataTable } from '../../../../ui/data-table';
-import { PaginationWithLinks } from '../../../../ui/pagination-with-links';
 import { useGetMedicines } from './_api/use-get-medicines';
 import { useColumns } from './_ui/columns';
 import Filters from './_ui/filters';
+
+import { useUpdateUrl } from '@/hooks/use-update-url';
+import { type IMedicine } from '@/types/prescription';
+import { DataTable } from '@/ui/data-table';
+import { PaginationWithLinks } from '@/ui/pagination-with-links';
 
 export default function Page() {
 	const [input, setInput] = useState('');
