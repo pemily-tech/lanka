@@ -22,10 +22,9 @@ export function useRemoveInvoice() {
 	const searchParams = useSearchParams();
 	const filter = searchParams.get('filter') ?? '';
 	const page = searchParams.get('page') ?? 0;
-	const limit = searchParams.get('limit') ?? 0;
 	const type = searchParams.get('type') ?? 'ACTIVE';
-	const startDate = searchParams.get('startDate') ?? null;
-	const endDate = searchParams.get('endDate') ?? null;
+	const startDate = searchParams.get('start') ?? null;
+	const endDate = searchParams.get('end') ?? null;
 
 	return useMutation({
 		mutationFn: (payload: { id: string; active: boolean }) =>
@@ -38,7 +37,7 @@ export function useRemoveInvoice() {
 						{
 							page,
 							count: 1,
-							limit,
+							limit: 15,
 							filter,
 							type,
 							startDate,
