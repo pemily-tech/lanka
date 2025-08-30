@@ -9,6 +9,7 @@ import { useItemStore } from '../../_context/use-items';
 import { useGetInvoiceBasicDetails } from '../_api/use-get-basic-details';
 import { useGetInvoiceByNo } from '../_api/use-get-invoice-byno';
 import { useCreateInvoice } from '../_api/use-save-invoice';
+import { ClinicLogo } from './clinic-logo';
 
 import { AppConstants } from '@/helpers/primitives';
 import useDocumentDownload from '@/hooks/use-download-document';
@@ -102,22 +103,27 @@ export function BilledBy() {
 	return (
 		<div className="flex flex-col gap-6">
 			<div className="bg-white p-4 rounded-xl shadow-md">
-				<h1 className="font-semibold mb-2 text-base">Billed By</h1>
-				<div className="flex flex-col gap-1 text-gray-600">
-					<div>{basicDetails.billByName}</div>
-					<div>{basicDetails.billByMobile}</div>
-					<div className="flex">
-						{basicDetails?.billByAddress &&
-							addressFields.map((field, index) => {
-								return (
-									<div key={field}>
-										{basicDetails.billByAddress[field]}
-										{index < addressFields.length - 1 &&
-											', '}
-									</div>
-								);
-							})}
+				<div className="flex justify-between gap-4">
+					<div className="flex flex-col gap-1 text-gray-600">
+						<h1 className="font-semibold mb-2 text-base">
+							Billed By
+						</h1>
+						<div>{basicDetails.billByName}</div>
+						<div>{basicDetails.billByMobile}</div>
+						<div className="flex">
+							{basicDetails?.billByAddress &&
+								addressFields.map((field, index) => {
+									return (
+										<div key={field}>
+											{basicDetails.billByAddress[field]}
+											{index < addressFields.length - 1 &&
+												', '}
+										</div>
+									);
+								})}
+						</div>
 					</div>
+					<ClinicLogo />
 				</div>
 			</div>
 			<div className="bg-white p-4 rounded-xl shadow-md">
