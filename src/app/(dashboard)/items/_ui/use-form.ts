@@ -33,7 +33,7 @@ export const useItemForm = (type: 'UPDATE' | 'CREATE') => {
 				description: item?.description ?? '',
 				price: item?.price?.toString() ?? '',
 				mrp: item?.mrp?.toString() ?? '',
-				quantity: item?.quantity?.toString() ?? 0,
+				quantity: item?.quantity?.toString() ?? '0',
 				discount: item?.discount?.toString() ?? '',
 				type: isValidType(item?.type) ? item.type : IItemType.PRODUCT,
 			} satisfies IFormData;
