@@ -175,3 +175,5 @@ export function formatRupee(amount: number): string {
 		currency: 'INR',
 	}).format(amount);
 }
+
+export const round2 = (val: number) => parseFloat(val.toFixed(2));
