@@ -28,7 +28,7 @@ export function useColumns(): ColumnDef<IItem>[] {
 
 	return [
 		{
-			accessorKey: '#',
+			accessorKey: 'itemId',
 			header: 'ID',
 			cell: ({ row }) => <div>{row.original.itemId}</div>,
 		},
