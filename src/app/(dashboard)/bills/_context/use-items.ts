@@ -126,7 +126,11 @@ export const useItemStore = create<IItemsStore>((set, get) => ({
 
 	getTotalPayable: () => {
 		const state = get();
-		return Math.max(state.totalAmount - state.invoiceDiscount, 0);
+		const totalPayable = Math.max(
+			state.totalAmount - state.invoiceDiscount,
+			0
+		);
+		return parseFloat(totalPayable.toFixed(2));
 	},
 
 	getBalanceDue: () => {
