@@ -1,7 +1,9 @@
 import { useMutation } from '@tanstack/react-query';
+import { format } from 'date-fns';
 import { useSearchParams } from 'next/navigation';
 import { toast } from 'sonner';
 
+import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
 import { HttpService } from '@/services/http-service';
 import { queryClient } from '@/services/providers';
@@ -23,8 +25,10 @@ export function useRemoveInvoice() {
 	const filter = searchParams.get('filter') ?? '';
 	const page = searchParams.get('page') ?? 0;
 	const type = searchParams.get('type') ?? 'ACTIVE';
-	const startDate = searchParams.get('start') ?? null;
-	const endDate = searchParams.get('end') ?? null;
+	const startDate =
+		searchParams.get('start') ?? format(new Date(), DEFAULT_DATE_FORMAT);
+	const endDate =
+		searchParams.get('end') ?? format(new Date(), DEFAULT_DATE_FORMAT);
 
 	return useMutation({
 		mutationFn: (payload: { id: string; active: boolean }) =>
