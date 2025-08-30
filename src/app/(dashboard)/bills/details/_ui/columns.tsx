@@ -50,7 +50,7 @@ export function useColumns(invoice: IInvoice): ColumnDef<IItem>[] {
 		},
 		{
 			accessorKey: 'quantity',
-			header: () => renderHeader({ title: 'quantity' }),
+			header: () => renderHeader({ title: 'qty' }),
 			cell: ({ row }) => (
 				<span className="font-medium">{row.original.quantity}</span>
 			),

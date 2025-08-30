@@ -157,7 +157,9 @@ export function BilledBy() {
 						</Button>
 					</div>
 					<Button
-						disabled={isSaving || items.length === 0}
+						disabled={
+							isSaving || items.length === 0 || !invoice.active
+						}
 						onClick={handleSave}
 						variant="secondary"
 						size="lg"
