@@ -36,25 +36,23 @@ export function useColumns(invoice: IInvoice): ColumnDef<IItem>[] {
 	return [
 		{
 			accessorKey: 'itemId',
-			header: () => renderHeader({ title: 'id' }),
+			header: () => renderHeader({ title: '#' }),
 			cell: ({ row }) => (
 				<div className="font-medium">#{row.index + 1}</div>
 			),
 		},
 		{
 			accessorKey: 'name',
-			header: () => renderHeader({ title: 'name' }),
+			header: () => renderHeader({ title: 'item' }),
 			cell: ({ row }) => (
 				<span className="font-medium">{row.original.name}</span>
 			),
 		},
 		{
-			accessorKey: 'price',
-			header: () => renderHeader({ title: 'price' }),
+			accessorKey: 'quantity',
+			header: () => renderHeader({ title: 'quantity' }),
 			cell: ({ row }) => (
-				<span className="font-medium">
-					&#8377;{Number(row.original.price ?? 0).toFixed(2)}
-				</span>
+				<span className="font-medium">{row.original.quantity}</span>
 			),
 		},
 		{
@@ -67,15 +65,26 @@ export function useColumns(invoice: IInvoice): ColumnDef<IItem>[] {
 			),
 		},
 		{
-			accessorKey: 'quantity',
-			header: () => renderHeader({ title: 'quantity' }),
+			accessorKey: 'discount',
+			header: () => renderHeader({ title: 'discount' }),
 			cell: ({ row }) => (
-				<span className="font-medium">{row.original.quantity}</span>
+				<span className="font-medium">
+					&#8377;{Number(row.original.discount ?? 0).toFixed(2)}
+				</span>
+			),
+		},
+		{
+			accessorKey: 'price',
+			header: () => renderHeader({ title: 'price' }),
+			cell: ({ row }) => (
+				<span className="font-medium">
+					&#8377;{Number(row.original.price ?? 0).toFixed(2)}
+				</span>
 			),
 		},
 		{
 			id: 'itemTotal',
-			header: () => renderHeader({ title: 'item total' }),
+			header: () => renderHeader({ title: 'Total' }),
 			cell: ({ row }) => (
 				<span className="font-medium">
 					&#8377;

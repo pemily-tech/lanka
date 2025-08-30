@@ -34,15 +34,13 @@ export function useColumns(): ColumnDef<IItem>[] {
 		},
 		{
 			accessorKey: 'name',
-			header: 'Name',
+			header: 'Item',
 			cell: ({ row }) => <span>{row.original.name}</span>,
 		},
 		{
-			accessorKey: 'price',
-			header: 'Price',
-			cell: ({ row }) => (
-				<span>&#8377;{Number(row.original.price).toFixed(2)}</span>
-			),
+			accessorKey: 'quantity',
+			header: 'Quantity',
+			cell: ({ row }) => <span>{row.original.quantity}</span>,
 		},
 		{
 			accessorKey: 'mrp',
@@ -52,9 +50,11 @@ export function useColumns(): ColumnDef<IItem>[] {
 			),
 		},
 		{
-			accessorKey: 'quantity',
-			header: 'Quantity',
-			cell: ({ row }) => <span>{row.original.quantity}</span>,
+			accessorKey: 'price',
+			header: 'Price',
+			cell: ({ row }) => (
+				<span>&#8377;{Number(row.original.price).toFixed(2)}</span>
+			),
 		},
 		{
 			id: 'buttons',

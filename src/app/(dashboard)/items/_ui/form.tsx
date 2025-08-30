@@ -22,8 +22,8 @@ export function ItemForm({ type }: { type: 'UPDATE' | 'CREATE' }) {
 		['description', 'Description', 'text'],
 		['price', 'Price', 'numeric'],
 		['mrp', 'Mrp', 'numeric'],
-		['quantity', 'Quantity', 'numeric'],
 		['discount', 'Discount', 'numeric'],
+		['quantity', 'Quantity', 'numeric'],
 	];
 
 	return (
