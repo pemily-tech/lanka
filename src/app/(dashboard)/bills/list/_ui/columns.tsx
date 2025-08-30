@@ -78,13 +78,13 @@ export function useColumns(): ColumnDef<IInvoice>[] {
 			header: 'Status',
 			cell: ({ row }) => (
 				<div>
-					{row.original.dueAmount > 0 ? (
+					{row.original.dueAmount >= 1 ? (
 						<span className="bg-orange-700 px-4 text-white py-1 rounded-full text-sm font-semibold">
-							Due
+							DUE
 						</span>
 					) : (
 						<span className="bg-emerald-800 px-4 text-white py-1 rounded-full text-sm font-semibold">
-							Paid
+							PAID
 						</span>
 					)}
 				</div>
