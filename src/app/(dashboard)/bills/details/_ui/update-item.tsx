@@ -138,8 +138,8 @@ export default function UpdateItem({
 		['description', 'Description', 'text'],
 		['price', 'Price', 'numeric'],
 		['mrp', 'Mrp', 'numeric'],
-		['quantity', 'Quantity', 'numeric'],
 		['discount', 'Discount', 'numeric'],
+		['quantity', 'Quantity', 'numeric'],
 	];
 
 	const onSubmit = (values: IFormData) => {
