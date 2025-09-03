@@ -18,7 +18,9 @@ const schema = z.object({
 				'Price must be a valid number with up to two decimal places',
 		})
 		.transform((val) => parseFloat(val))
-		.refine((val) => val > 0, { message: 'Price must be greater than 0' }),
+		.refine((val) => val >= 0, {
+			message: 'Amount should not be negative.',
+		}),
 });
 
 export default function PaymentReceivedForm({
@@ -68,7 +70,7 @@ export default function PaymentReceivedForm({
 						<FormItem className="relative w-full">
 							<FormControl>
 								<FloatingInput
-									label="Enter your price"
+									label="Enter payment received"
 									type="numeric"
 									id="paymentReceived"
 									isError={!!fieldState.error}
