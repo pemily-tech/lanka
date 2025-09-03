@@ -153,7 +153,8 @@ export function BilledBy() {
 									disabled={
 										isSaving ||
 										!invoice.url ||
-										items.length === 0
+										items.length === 0 ||
+										!invoice.active
 									}
 									size="lg"
 									variant="link"
