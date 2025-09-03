@@ -1,14 +1,26 @@
+/* eslint-disable max-lines-per-function */
 'use client';
 
 import { useMemo } from 'react';
-import { Download, Eye, Save } from 'lucide-react';
-import Link from 'next/link';
+import { Download, Save, SendHorizonal } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
+import {
+	AlertDialog,
+	AlertDialogAction,
+	AlertDialogCancel,
+	AlertDialogContent,
+	AlertDialogDescription,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogTitle,
+	AlertDialogTrigger,
+} from '../../../../../ui/alert';
 import { useItemStore } from '../../_context/use-items';
 import { useGetInvoiceBasicDetails } from '../_api/use-get-basic-details';
 import { useGetInvoiceByNo } from '../_api/use-get-invoice-byno';
 import { useCreateInvoice } from '../_api/use-save-invoice';
+import { useShareInvoice } from '../_api/use-share-invoice';
 import { ClinicLogo } from './clinic-logo';
 
 import { AppConstants } from '@/helpers/primitives';
@@ -47,6 +59,7 @@ export function BilledBy() {
 	const { mutateAsync: saveInvoice, isPending: isSaving } =
 		useCreateInvoice(invoiceNo);
 	const { url } = useDocumentDownload(invoice?.url);
+	const { mutateAsync: shareInvoice } = useShareInvoice(invoiceNo);
 
 	const {
 		items,
@@ -78,6 +91,10 @@ export function BilledBy() {
 			refetch();
 			useItemStore.getState().reset();
 		}
+	};
+
+	const handleShare = () => {
+		shareInvoice();
 	};
 
 	if (isLoading || isPending) {
@@ -130,15 +147,49 @@ export function BilledBy() {
 				<h2 className="font-semibold mb-4 text-base">Actions</h2>
 				<div className="flex flex-col gap-4">
 					<div className="flex gap-4">
-						{/* <Button
-							disabled={isSaving || items.length === 0}
-							size="lg"
-							variant="link"
-							className="flex-1"
-						>
-							<Eye />
-							<span>Preview</span>
-						</Button> */}
+						<AlertDialog>
+							<AlertDialogTrigger asChild>
+								<Button
+									disabled={
+										isSaving ||
+										!invoice.url ||
+										items.length === 0
+									}
+									size="lg"
+									variant="link"
+									className="flex-1"
+								>
+									<SendHorizonal className="size-4" />
+									<span>Share</span>
+								</Button>
+							</AlertDialogTrigger>
+							<AlertDialogContent className="gap-6">
+								<AlertDialogHeader>
+									<AlertDialogTitle className="text-2xl">
+										Share Invoice via WhatsApp?
+									</AlertDialogTitle>
+									<AlertDialogDescription>
+										This invoice will be shared with the pet
+										parent via WhatsApp on their registered
+										mobile number (as mentioned in the
+										Invoice).
+									</AlertDialogDescription>
+								</AlertDialogHeader>
+								<AlertDialogFooter className="!pt-2">
+									<AlertDialogAction
+										onClick={handleShare}
+										className="bg-secondary hover:bg-secondary/90 px-6 text-white hover:text-white"
+									>
+										Confirm
+									</AlertDialogAction>
+									<AlertDialogCancel className="bg-transparent px-6 hover:bg-transparent">
+										<span className="text-sm font-normal text-black">
+											Cancel
+										</span>
+									</AlertDialogCancel>
+								</AlertDialogFooter>
+							</AlertDialogContent>
+						</AlertDialog>
 						<Button
 							disabled={
 								isSaving || !invoice.url || items.length === 0
@@ -146,14 +197,10 @@ export function BilledBy() {
 							size="lg"
 							variant="link"
 							className="flex-1"
+							onClick={() => window.open(url ?? '')}
 						>
-							<Link
-								className="flex gap-2 items-center"
-								href={url || ''}
-							>
-								<Download />
-								<span>Download</span>
-							</Link>
+							<Download />
+							<span>View/Download</span>
 						</Button>
 					</div>
 					<Button
@@ -165,7 +212,9 @@ export function BilledBy() {
 						size="lg"
 					>
 						<Save />
-						<span>Save PDF</span>
+						<span className="text-sm font-bold">
+							Create/Update Invoice
+						</span>
 					</Button>
 				</div>
 			</div>
