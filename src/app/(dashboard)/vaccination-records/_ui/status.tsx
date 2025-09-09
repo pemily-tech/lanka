@@ -110,53 +110,6 @@ export default function Status({
 							>
 								<FormField
 									control={form.control}
-									name="repeatAfter"
-									render={({ field: selectField }) => {
-										return (
-											<FormItem className="col-span-1">
-												<FormLabel>
-													Repeat same Vaccine after
-												</FormLabel>
-												<Select
-													onValueChange={
-														selectField.onChange
-													}
-													defaultValue={
-														selectField.value
-													}
-													value={selectField.value}
-												>
-													<FormControl>
-														<SelectTrigger className="!mt-1 bg-white w-full">
-															<SelectValue placeholder="Select a type" />
-														</SelectTrigger>
-													</FormControl>
-													<SelectContent>
-														{dropdownData.map(
-															(item, i) => {
-																return (
-																	<SelectItem
-																		key={`${i}`}
-																		value={
-																			item.value
-																		}
-																	>
-																		{
-																			item.label
-																		}
-																	</SelectItem>
-																);
-															}
-														)}
-													</SelectContent>
-												</Select>
-												<FormMessage />
-											</FormItem>
-										);
-									}}
-								/>
-								<FormField
-									control={form.control}
 									name="vaccinatedOnDate"
 									render={({ field }) => {
 										const dateValue = field.value
@@ -166,7 +119,7 @@ export default function Status({
 										return (
 											<FormItem className="col-span-1 flex flex-col">
 												<FormLabel>
-													Choose Vaccine Complete Date
+													Select Vaccine Complete Date
 												</FormLabel>
 												<Popover>
 													<PopoverTrigger asChild>
@@ -219,6 +172,53 @@ export default function Status({
 														/>
 													</PopoverContent>
 												</Popover>
+												<FormMessage />
+											</FormItem>
+										);
+									}}
+								/>
+								<FormField
+									control={form.control}
+									name="repeatAfter"
+									render={({ field: selectField }) => {
+										return (
+											<FormItem className="col-span-1">
+												<FormLabel>
+													Repeat same Vaccine after
+												</FormLabel>
+												<Select
+													onValueChange={
+														selectField.onChange
+													}
+													defaultValue={
+														selectField.value
+													}
+													value={selectField.value}
+												>
+													<FormControl>
+														<SelectTrigger className="!mt-1 bg-white w-full">
+															<SelectValue placeholder="Select a type" />
+														</SelectTrigger>
+													</FormControl>
+													<SelectContent>
+														{dropdownData.map(
+															(item, i) => {
+																return (
+																	<SelectItem
+																		key={`${i}`}
+																		value={
+																			item.value
+																		}
+																	>
+																		{
+																			item.label
+																		}
+																	</SelectItem>
+																);
+															}
+														)}
+													</SelectContent>
+												</Select>
 												<FormMessage />
 											</FormItem>
 										);
