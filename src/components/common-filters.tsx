@@ -73,29 +73,12 @@ export default function CommonFilters({
 						</SelectContent>
 					</Select>
 				</div>
-				<motion.button
+				<button
 					className="bg-secondary flex size-[48px] cursor-pointer items-center justify-center rounded-xl"
-					initial={{ width: 48 }}
-					whileHover={{ width: 120 }}
-					transition={{ type: 'spring', stiffness: 300, damping: 20 }}
 					onClick={btnAction}
-					onMouseEnter={() => setHovered(!hovered)}
-					onMouseLeave={() => setHovered(!hovered)}
 				>
-					{hovered ? (
-						<motion.span
-							initial={{ opacity: 0, y: 10 }}
-							animate={{ opacity: 1, y: 0 }}
-							exit={{ opacity: 0, y: -10 }}
-							transition={{ duration: 0.25 }}
-							className="text-[10px] font-bold text-white"
-						>
-							{btnTxt}
-						</motion.span>
-					) : (
-						<Plus className="size-4 text-white" />
-					)}
-				</motion.button>
+					<Plus className="size-4 text-white" />
+				</button>
 			</div>
 		</div>
 	);
