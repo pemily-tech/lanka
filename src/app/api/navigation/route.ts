@@ -95,7 +95,7 @@ const data: INavigationItem[] = [
 		title: 'ePrescription',
 		isIcon: false,
 		icon: '/images/ePrescription.svg',
-		roles: [Roles.Clinic],
+		roles: [Roles.Clinic, Roles.Staff],
 		items: [
 			{
 				id: uuidv4(),
