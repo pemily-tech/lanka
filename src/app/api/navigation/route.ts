@@ -95,7 +95,7 @@ const data: INavigationItem[] = [
 		title: 'ePrescription',
 		isIcon: false,
 		icon: '/images/ePrescription.svg',
-		roles: [Roles.Clinic],
+		roles: [Roles.Clinic, Roles.Staff],
 		items: [
 			{
 				id: uuidv4(),
@@ -103,7 +103,7 @@ const data: INavigationItem[] = [
 				path: Routes.PRESCRIPTION_LIST,
 				title: 'Rx & SOAP',
 				isIcon: false,
-				roles: [Roles.Clinic],
+				roles: [Roles.Clinic, Roles.Staff],
 			},
 			{
 				id: uuidv4(),
@@ -111,7 +111,7 @@ const data: INavigationItem[] = [
 				path: Routes.MEDICINES_LIST,
 				title: 'My Medications',
 				isIcon: false,
-				roles: [Roles.Clinic],
+				roles: [Roles.Clinic, Roles.Staff],
 			},
 		],
 	},

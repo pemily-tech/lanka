@@ -1,9 +1,15 @@
+'use client';
+
 import { BgImage } from './_ui/bg-image';
 import { HomeForm } from './_ui/form';
 
 import { homeInfoCard } from '@/helpers/constant';
+import { Roles } from '@/helpers/primitives';
+import { useAuthStore } from '@/store/user-auth';
 
 const Page = async () => {
+	const { role } = useAuthStore();
+
 	return (
 		<section className="rounded-lg bg-white shadow-card p-6">
 			<div className="grid grid-cols-5">
@@ -24,7 +30,7 @@ const Page = async () => {
 							</li>
 						))}
 					</ul>
-					<HomeForm />
+					{role === Roles.Clinic && <HomeForm />}
 				</div>
 				<div className="col-span-3 p-6">
 					<BgImage />
