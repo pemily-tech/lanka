@@ -1,3 +1,5 @@
+'use client';
+
 import { BgImage } from './_ui/bg-image';
 import { HomeForm } from './_ui/form';
 
