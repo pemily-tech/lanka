@@ -57,6 +57,11 @@ export function useColumns(refetch: () => void): ColumnDef<IPrescription>[] {
 			),
 		},
 		{
+			accessorKey: 'doctorName',
+			header: 'Dr. Name',
+			cell: ({ row }) => <span>{row.original.doctorDetails.name}</span>,
+		},
+		{
 			accessorKey: 'parentName',
 			header: 'Parent Name',
 			cell: ({ row }) => <span>{row.original.parentName}</span>,
