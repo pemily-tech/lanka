@@ -25,6 +25,7 @@ export default [
 ],
 	},
 	...compat.extends(
+		'next/core-web-vitals',
 		'prettier',
 		'eslint:recommended',
 		'plugin:prettier/recommended',
