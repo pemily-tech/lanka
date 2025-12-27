@@ -18,6 +18,34 @@ const data: INavigationItem[] = [
 	},
 	{
 		id: uuidv4(),
+		type: 'menu',
+		path: '',
+		title: 'Appointments',
+		isIcon: false,
+		icon: '/images/appointments.svg.png',
+		roles: [Roles.Clinic, Roles.Staff],
+		items: [
+			{
+				id: uuidv4(),
+				type: 'link',
+				path: Routes.DOCTOR_APPOINTMENTS,
+				title: 'Doctor',
+				isIcon: false,
+				roles: [Roles.Clinic, Roles.Staff],
+			},
+			{
+				id: uuidv4(),
+				type: 'link',
+				path: Routes.GROOMING_APPOINTMENTS,
+				title: 'Grooming',
+				isIcon: false,
+				roles: [Roles.Clinic, Roles.Staff],
+			},
+		],
+	},
+
+	{
+		id: uuidv4(),
 		type: 'link',
 		path: Routes.MEDICAL_RECORDS,
 		title: 'Medical Records',
