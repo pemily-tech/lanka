@@ -59,7 +59,7 @@ export const AppSidebar = () => {
 				<SidebarMenu>
 					<SidebarMenuItem>
 						<Link className="w-24 block py-4" href="/home">
-							<img src="/images/logo-full.png" />
+							<img src="/images/logo.png" />
 						</Link>
 					</SidebarMenuItem>
 				</SidebarMenu>
