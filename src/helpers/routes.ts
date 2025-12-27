@@ -24,4 +24,6 @@ export const Routes = {
 	PET_PARENTS: '/pet-parents',
 	HEALTH_CERTIFICATE_LIST: '/health-certificate/list',
 	HEALTH_CERTIFICATE_EDIT_ITEM: '/health-certificate/edit',
+	DOCTOR_APPOINTMENTS :'/appointments/doctor',
+	GROOMING_APPOINTMENTS :'/appointments/grooming'
 };

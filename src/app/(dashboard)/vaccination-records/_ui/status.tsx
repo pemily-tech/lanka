@@ -1,31 +1,21 @@
-/* eslint-disable max-lines-per-function */
 /* eslint-disable indent */
-import { useState } from 'react';
+/* eslint-disable max-lines-per-function */
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { format } from 'date-fns';
-import { CalendarIcon, CheckCircle } from 'lucide-react';
+import { CalendarIcon } from 'lucide-react';
 import { z } from 'zod';
 
-import { useUpdateVaccination } from '../_api/use-update-vaccination';
+import { useCreateVaccination } from '../_api/use-create-vaccination';
+import { useGetVaccinationList } from '../_api/use-get-vaccination-list';
 
-import { useGetDropdownList } from '@/api/queries/use-get-dropdownlist';
 import { DEFAULT_DATE_FORMAT } from '@/helpers/constant';
 import { AppConstants } from '@/helpers/primitives';
-import { cn, dateDisable } from '@/helpers/utils';
-import { type IVaccinationRecord } from '@/types/clinic';
+import { cn } from '@/helpers/utils';
+import { queryClient } from '@/services/providers';
+import { type IOtherCommonFilter } from '@/types/common';
 import { Button } from '@/ui/button';
 import { Calendar } from '@/ui/calendar';
-import {
-	Dialog,
-	DialogClose,
-	DialogContent,
-	DialogDescription,
-	DialogFooter,
-	DialogHeader,
-	DialogTitle,
-	DialogTrigger,
-} from '@/ui/dialog';
 import {
 	Form,
 	FormControl,
@@ -44,209 +34,223 @@ import {
 } from '@/ui/select';
 
 const schema = z.object({
-	vaccinatedOnDate: z
+	vaccinationDates: z
 		.string()
-		.min(1, 'Please pick a vaccination complete date'),
-	repeatAfter: z.string().nonempty('Please select a repeat type'),
+		.min(1, 'Please pick at least one vaccine due date'),
+	vaccineName: z.string().nonempty('Please select a vaccine'),
 });
 
 type IFormData = z.infer<typeof schema>;
 
-export default function Status({
-	record,
-	refetch,
+export default function VaccinationForm({
+	stepper,
+	parentId,
+	petId,
+	isModal = false,
+	onFinish,
+	filterType,
 }: {
-	record: IVaccinationRecord;
-	refetch: () => void;
+	stepper?: any;
+	parentId: string;
+	petId: string;
+	isModal?: boolean;
+	onFinish: () => void;
+	filterType?: IOtherCommonFilter;
 }) {
-	const [open, setOpen] = useState(false);
 	const form = useForm<IFormData>({
 		resolver: zodResolver(schema),
 		defaultValues: {
-			vaccinatedOnDate: record.vaccinatedOnDate ?? '',
-			repeatAfter: '',
+			vaccinationDates: '',
+			vaccineName: '',
 		},
 	});
-	const { mutateAsync: updateVaccination, isPending } =
-		useUpdateVaccination();
-	const { data } = useGetDropdownList('REPEAT_AFTERS', open);
-	const dropdownData =
-		data?.data?.dropdown || ([] as { label: string; value: string }[]);
+	const { data } = useGetVaccinationList();
+	const vaccinationData =
+		data?.data?.vaccination || ([] as { label: string; value: string }[]);
+	const { mutateAsync: createVaccination, isPending } =
+		useCreateVaccination();
 
 	const onSubmit = async (values: IFormData) => {
-		const payload = {
-			id: record._id,
-			vaccinatedOnDate: format(
-				values.vaccinatedOnDate,
-				DEFAULT_DATE_FORMAT
-			),
-			repeatAfter: values.repeatAfter,
+		const data = {
+			petId,
+			parentId,
+			vaccineName: values.vaccineName,
+			vaccinationDates: [
+				format(values.vaccinationDates, DEFAULT_DATE_FORMAT),
+			],
 		};
-		const response = await updateVaccination(payload);
+		const response = await createVaccination(data);
 		if (response.status === AppConstants.Success) {
-			setOpen(!open);
-			refetch();
+			queryClient.invalidateQueries({
+				queryKey: [
+					'clinic/vaccinationRecords',
+					filterType,
+					petId,
+					undefined,
+				],
+			});
+			onFinish();
 		}
 	};
 
 	return (
-		<div>
-			{record?.vaccinatedOnDate === null || !record?.vaccinatedOnDate ? (
-				<Dialog open={open} onOpenChange={() => setOpen(!open)}>
-					<DialogTrigger asChild>
-						<Button className="min-w-[120px] !rounded-2xl">
-							<span className="font-normal">Complete Now</span>
-						</Button>
-					</DialogTrigger>
-					<DialogContent className="max-w-3xl">
-						<DialogHeader>
-							<DialogTitle>Update Vaccination</DialogTitle>
-						</DialogHeader>
-						<DialogDescription />
-						<Form {...form}>
-							<form
-								onSubmit={form.handleSubmit(onSubmit)}
-								className="grid grid-cols-2 gap-6"
-							>
-								<FormField
-									control={form.control}
-									name="vaccinatedOnDate"
-									render={({ field }) => {
-										const dateValue = field.value
-											? new Date(field.value)
-											: undefined;
-
-										return (
-											<FormItem className="col-span-1 flex flex-col">
-												<FormLabel>
-													Select Vaccine Complete Date
-												</FormLabel>
-												<Popover>
-													<PopoverTrigger asChild>
-														<FormControl>
-															<Button
-																variant={
-																	'outline'
+		<div
+			className={cn('mb-12 mt-1 flex h-full flex-col', isModal && 'my-0')}
+		>
+			<h2 className="mx-6 text-2xl font-semibold">
+				Add Vaccination Details
+			</h2>
+			<h6 className="mx-6 mb-6 text-black/50">
+				We will remind you when vaccination is due
+			</h6>
+			<Form {...form}>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className="flex flex-1 flex-col"
+				>
+					<div className="mx-6 flex max-w-sm flex-1 flex-col gap-6">
+						<FormField
+							control={form.control}
+							name="vaccineName"
+							render={({ field: selectField, fieldState }) => {
+								return (
+									<FormItem className="col-span-1 space-y-1">
+										<FormLabel>
+											{' '}
+											Select Vaccine(s)
+										</FormLabel>
+										<Select
+											onValueChange={selectField.onChange}
+											defaultValue={selectField.value}
+											value={selectField.value}
+										>
+											<FormControl>
+												<SelectTrigger className="!mt-1 bg-white w-full">
+													<SelectValue placeholder="Select" />
+												</SelectTrigger>
+											</FormControl>
+											<SelectContent>
+												{vaccinationData.map(
+													(item, i) => {
+														return (
+															<SelectItem
+																key={`${i}`}
+																value={
+																	item.value
 																}
-																className={cn(
-																	'!mt-1 h-12 text-left font-normal',
-																	!field.value &&
-																		'text-muted-foreground'
-																)}
 															>
-																{field.value
-																	? format(
-																			new Date(
-																				field.value
-																			),
-																			'PPP'
-																		)
-																	: 'Pick a date'}
-																<CalendarIcon className="ml-auto size-6 opacity-50" />
-															</Button>
-														</FormControl>
-													</PopoverTrigger>
-													<PopoverContent
-														className="max-h-[--radix-popover-content-available-height] w-[--radix-popover-trigger-width]"
-														align="start"
-													>
-														<Calendar
-															mode="single"
-															selected={dateValue}
-															onSelect={(
-																selectedDate
-															) => {
-																field.onChange(
-																	selectedDate
-																		? selectedDate.toISOString()
-																		: ''
-																);
-															}}
-															disabled={(
-																date
-															) => {
-																return dateDisable(
-																	date
-																);
-															}}
-														/>
-													</PopoverContent>
-												</Popover>
-												<FormMessage />
-											</FormItem>
-										);
-									}}
-								/>
-								<FormField
-									control={form.control}
-									name="repeatAfter"
-									render={({ field: selectField }) => {
-										return (
-											<FormItem className="col-span-1">
-												<FormLabel>
-													Repeat same Vaccine after
-												</FormLabel>
-												<Select
-													onValueChange={
-														selectField.onChange
+																{item.label}
+															</SelectItem>
+														);
 													}
-													defaultValue={
-														selectField.value
-													}
-													value={selectField.value}
-												>
-													<FormControl>
-														<SelectTrigger className="!mt-1 bg-white w-full">
-															<SelectValue placeholder="Select a type" />
-														</SelectTrigger>
-													</FormControl>
-													<SelectContent>
-														{dropdownData.map(
-															(item, i) => {
-																return (
-																	<SelectItem
-																		key={`${i}`}
-																		value={
-																			item.value
-																		}
-																	>
-																		{
-																			item.label
-																		}
-																	</SelectItem>
-																);
-															}
+												)}
+											</SelectContent>
+										</Select>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
+						<FormField
+							control={form.control}
+							name="vaccinationDates"
+							render={({ field }) => {
+								const dateValue = field.value
+									? new Date(field.value)
+									: undefined;
+
+								return (
+									<FormItem className="col-span-1 flex flex-col">
+										<FormLabel>
+											Choose Vaccine Due Date
+										</FormLabel>
+										<Popover>
+											<PopoverTrigger asChild>
+												<FormControl>
+													<Button
+														variant="outline"
+														className={cn(
+															'!mt-1 h-12 text-left font-normal',
+															'flex flex-row truncate',
+															!field.value &&
+																'text-muted-foreground'
 														)}
-													</SelectContent>
-												</Select>
-												<FormMessage />
-											</FormItem>
-										);
-									}}
-								/>
-								<DialogFooter className="col-span-2 mt-1 flex gap-6">
-									<DialogClose className="cursor-pointer">
-										Cancel
-									</DialogClose>
+													>
+														<span className="flex-1 truncate">
+															{field.value
+																? format(
+																		new Date(
+																			field.value
+																		),
+																		'PPP'
+																	)
+																: 'Pick a date'}
+														</span>
+														<CalendarIcon className="ml-auto size-6 opacity-50" />
+													</Button>
+												</FormControl>
+											</PopoverTrigger>
+											<PopoverContent
+												className="max-h-[--radix-popover-content-available-height] w-[340px]"
+												align="start"
+											>
+												<Calendar
+													mode="single"
+													selected={dateValue}
+													onSelect={(
+														selectedDate
+													) => {
+														field.onChange(
+															selectedDate
+																? selectedDate.toISOString()
+																: ''
+														);
+													}}
+												/>
+											</PopoverContent>
+										</Popover>
+										<FormMessage />
+									</FormItem>
+								);
+							}}
+						/>
+					</div>
+					{isModal ? (
+						<div className="mt-4 px-6">
+							<Button
+								disabled={isPending}
+								type="submit"
+								className="w-[240px]"
+							>
+								Submit
+							</Button>
+						</div>
+					) : (
+						<>
+							{stepper.isLast && (
+								<div className="shadow-top sticky bottom-0 left-0 flex w-full justify-end gap-4 rounded-b-lg bg-white px-6 py-4">
 									<Button
-										type="submit"
+										type="button"
 										variant="secondary"
-										disabled={isPending}
-										className="px-6"
+										onClick={stepper.prev}
+										disabled={stepper.isFirst}
+										className="w-[240px]"
 									>
-										Confirm
+										Back
 									</Button>
-								</DialogFooter>
-							</form>
-						</Form>
-					</DialogContent>
-				</Dialog>
-			) : (
-				<div className="flex items-center gap-6">
-					<CheckCircle className="size-4 text-green-800" />
-					<span className="text-green-800">Completed</span>
-				</div>
-			)}
+									<Button
+										disabled={isPending}
+										type="submit"
+										className="w-[240px]"
+									>
+										{stepper.isLast ? 'Done' : 'Next'}
+									</Button>
+								</div>
+							)}
+						</>
+					)}
+				</form>
+			</Form>
 		</div>
 	);
 }
