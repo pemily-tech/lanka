@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export interface Appointment {
 	_id: string;
-	prescriptionNo: string;
+	appointmentNo: string;
 	date: string;
 	doctorName: string;
 	parentName: string;
@@ -41,7 +41,7 @@ export function useGetAppointments(params: GetAppointmentsParams) {
 			const allData: Appointment[] = [
 				{
 					_id: '1',
-					prescriptionNo: 'RX-1001',
+					appointmentNo: 'RX-1001',
 					date: '2025-12-25',
 					doctorName: 'Dr. Sharma',
 					parentName: 'Rahul Verma',
@@ -50,7 +50,7 @@ export function useGetAppointments(params: GetAppointmentsParams) {
 				},
 				{
 					_id: '2',
-					prescriptionNo: 'RX-1002',
+					appointmentNo: 'RX-1002',
 					date: '2025-12-26',
 					doctorName: 'Dr. Mehta',
 					parentName: 'Anita Singh',

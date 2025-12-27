@@ -2,9 +2,9 @@ import { type ColumnDef } from '@tanstack/react-table';
 
 export const appointmentColumns: ColumnDef<any>[] = [
 	{
-		accessorKey: 'prescriptionNo',
-		header: 'Prescription No',
-		cell: ({ row }) => row.original.prescriptionNo || '-',
+		accessorKey: 'appointmentNo',
+		header: 'Appointment No',
+		cell: ({ row }) => row.original.appointmentNo || '-',
 	},
 	{
 		accessorKey: 'date',
